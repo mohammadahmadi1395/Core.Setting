@@ -1,6 +1,6 @@
 using System;
 using Alsahab.Setting.Data.Contracts;
-using Alsahab.Setting.MyAPI.Models;
+using Alsahab.Setting.DTO.Models;
 using Alsahab.Setting.Entities;
 using Alsahab.Setting.Entities.Models;
 using Alsahab.Setting.WebFramework.Api;

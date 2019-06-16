@@ -3490,7 +3490,8 @@
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "Alsahab.Setting.Common": "1.0.0",
-          "FluentValidation.AspNetCore": "8.4.0"
+          "FluentValidation.AspNetCore": "8.4.0",
+          "Microsoft.Extensions.Identity.Stores": "2.1.6"
         },
         "compile": {
           "bin/placeholder/Alsahab.Setting.DTO.dll": {}
@@ -10347,7 +10348,6 @@
       "Autofac.Extensions.DependencyInjection >= 4.3.1",
       "ElmahCore >= 1.2.0",
       "ElmahCore.Sql >= 1.2.1",
-      "FluentValidation.AspNetCore >= 8.4.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 2.1.2",
       "Microsoft.AspNetCore.Authorization >= 2.1.2",
       "Microsoft.AspNetCore.Diagnostics >= 2.1.1",
@@ -10419,10 +10419,6 @@
           "ElmahCore.Sql": {
             "target": "Package",
             "version": "[1.2.1, )"
-          },
-          "FluentValidation.AspNetCore": {
-            "target": "Package",
-            "version": "[8.4.0, )"
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",

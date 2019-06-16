@@ -3042,7 +3042,8 @@
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "Alsahab.Setting.Common": "1.0.0",
-          "FluentValidation.AspNetCore": "8.4.0"
+          "FluentValidation.AspNetCore": "8.4.0",
+          "Microsoft.Extensions.Identity.Stores": "2.1.6"
         },
         "compile": {
           "bin/placeholder/Alsahab.Setting.DTO.dll": {}

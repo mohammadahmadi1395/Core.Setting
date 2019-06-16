@@ -14,5 +14,3 @@
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/obj/Debug/netcoreapp2.1/Alsahab.Setting.Data.csproj.CopyComplete
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/obj/Debug/netcoreapp2.1/Alsahab.Setting.Data.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/obj/Debug/netcoreapp2.1/Alsahab.Setting.Data.pdb
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.dll
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.pdb

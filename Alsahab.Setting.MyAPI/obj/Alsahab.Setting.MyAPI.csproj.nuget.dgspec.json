@@ -66,14 +66,14 @@
         }
       }
     },
-    "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj": {
+    "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj",
-        "projectName": "Alsahab.Setting.MyAPI.Models",
-        "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj",
+        "projectUniqueName": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj",
+        "projectName": "Alsahab.Setting.DTO",
+        "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj",
         "packagesPath": "/home/mohammad/.nuget/packages/",
-        "outputPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI.Models/obj/",
+        "outputPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/share/dotnet/sdk/NuGetFallbackFolder"
@@ -108,6 +108,10 @@
             "FluentValidation.AspNetCore": {
               "target": "Package",
               "version": "[8.4.0, )"
+            },
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[2.1.6, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
@@ -148,8 +152,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj": {
-                "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj"
+              "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj": {
+                "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj"
               },
               "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/Alsahab.Setting.Entities.csproj": {
                 "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/Alsahab.Setting.Entities.csproj"
@@ -177,7 +181,7 @@
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.1.11, )",
+              "version": "[2.1.10, )",
               "autoReferenced": true
             }
           },
@@ -439,10 +443,6 @@
             "ElmahCore.Sql": {
               "target": "Package",
               "version": "[1.2.1, )"
-            },
-            "FluentValidation.AspNetCore": {
-              "target": "Package",
-              "version": "[8.4.0, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",

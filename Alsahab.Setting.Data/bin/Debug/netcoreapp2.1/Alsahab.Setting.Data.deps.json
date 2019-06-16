@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v2.1": {
       "Alsahab.Setting.Data/1.0.0": {
         "dependencies": {
-          "Alsahab.Setting.DTO": "1.0.0",
           "Alsahab.Setting.Entities": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.1.6",
           "Microsoft.EntityFrameworkCore.Design": "2.1.0"
@@ -893,14 +892,6 @@
           "Alsahab.Setting.Common.dll": {}
         }
       },
-      "Alsahab.Setting.DTO/1.0.0": {
-        "dependencies": {
-          "Alsahab.Setting.Common": "1.0.0"
-        },
-        "runtime": {
-          "Alsahab.Setting.DTO.dll": {}
-        }
-      },
       "Alsahab.Setting.Entities/1.0.0": {
         "dependencies": {
           "Alsahab.Setting.Common": "1.0.0",
@@ -1521,11 +1512,6 @@
       "hashPath": "system.threading.tasks.4.0.11.nupkg.sha512"
     },
     "Alsahab.Setting.Common/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Alsahab.Setting.DTO/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

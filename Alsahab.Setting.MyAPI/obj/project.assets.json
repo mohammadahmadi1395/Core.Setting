@@ -4691,7 +4691,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
-          "Alsahab.Setting.MyAPI.Models": "1.0.0",
+          "Alsahab.Setting.DTO": "1.0.0",
           "Alsahab.Setting.Entities": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.1.6",
           "Microsoft.EntityFrameworkCore.Design": "2.1.0"
@@ -4703,18 +4703,19 @@
           "bin/placeholder/Alsahab.Setting.Data.dll": {}
         }
       },
-      "Alsahab.Setting.MyAPI.Models/1.0.0": {
+      "Alsahab.Setting.DTO/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "Alsahab.Setting.Common": "1.0.0",
-          "FluentValidation.AspNetCore": "8.4.0"
+          "FluentValidation.AspNetCore": "8.4.0",
+          "Microsoft.Extensions.Identity.Stores": "2.1.6"
         },
         "compile": {
-          "bin/placeholder/Alsahab.Setting.MyAPI.Models.dll": {}
+          "bin/placeholder/Alsahab.Setting.DTO.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Alsahab.Setting.MyAPI.Models.dll": {}
+          "bin/placeholder/Alsahab.Setting.DTO.dll": {}
         }
       },
       "Alsahab.Setting.Entities/1.0.0": {
@@ -4756,7 +4757,6 @@
           "Autofac.Extensions.DependencyInjection": "4.3.1",
           "ElmahCore": "1.2.0",
           "ElmahCore.Sql": "1.2.1",
-          "FluentValidation.AspNetCore": "8.4.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "2.1.2",
           "Microsoft.AspNetCore.Authorization": "2.1.2",
           "Microsoft.AspNetCore.Diagnostics": "2.1.1",
@@ -12721,10 +12721,10 @@
       "path": "../Alsahab.Setting.Data/Alsahab.Setting.Data.csproj",
       "msbuildProject": "../Alsahab.Setting.Data/Alsahab.Setting.Data.csproj"
     },
-    "Alsahab.Setting.MyAPI.Models/1.0.0": {
+    "Alsahab.Setting.DTO/1.0.0": {
       "type": "project",
-      "path": "../Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj",
-      "msbuildProject": "../Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj"
+      "path": "../Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj",
+      "msbuildProject": "../Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj"
     },
     "Alsahab.Setting.Entities/1.0.0": {
       "type": "project",

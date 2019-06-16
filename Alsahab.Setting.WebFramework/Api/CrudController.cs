@@ -12,6 +12,7 @@ using Alsahab.Setting.WebFramework.Filter;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Alsahab.Setting.DTO.Models;
 
 namespace Alsahab.Setting.WebFramework.Api
 {
@@ -21,7 +22,8 @@ namespace Alsahab.Setting.WebFramework.Api
     // [Route("api/v{version:apiVersion}/[controller]")] //api/v1/[controller]
     [ApiVersion("1")]
     public class CrudController<TDto, TEntity, TKey> : BaseController//ControllerBase
-        where TDto : BaseDTO<TDto, TEntity, TKey>, new()
+        // where TDto : BaseDTO<TDto, TEntity, TKey>, new()
+        where TDto : BaseDTO, new()
         where TEntity : BaseEntity<TKey>, new()
     {
         private readonly IRepository<TEntity> _repository;
@@ -56,6 +58,25 @@ namespace Alsahab.Setting.WebFramework.Api
         //GetById: (entity => dto)            
         //var newDto = PostDto.FromEntity(entity); (Note: mehod is static (PostDto not postDto))
         #endregion
+
+        // private TDto CastToDerivedClass(BaseDTO baseInstance)
+        // {
+        //     return Mapper.Map<TDto>(baseInstance);
+        // }
+
+
+        // // یک دی تی او را به موجودیت جدید تبدیل می‌کند
+        // public TEntity ToEntity()
+        // {
+        //     return Mapper.Map<TEntity>(CastToDerivedClass(this));
+        // }
+
+        // // یک دی تی او را به موجودیت موجود تبدیل می‌کند، یعنی خروجی همان ورودی تغییریافته است
+        // public TEntity ToEntity(TEntity entity)
+        // {
+        //     return Mapper.Map(CastToDerivedClass(this), entity);
+        // }
+
         [HttpPost]
         public virtual async Task<ApiResult<TDto>> Create(TDto dto, CancellationToken cancellationToken)
         {
@@ -90,7 +111,8 @@ namespace Alsahab.Setting.WebFramework.Api
     }
 
     public class CrudController<TDto, TEntity> : CrudController<TDto, TEntity, long>
-        where TDto : BaseDTO<TDto, TEntity, long>, new()
+        // where TDto : BaseDTO<TDto, TEntity, long>, new()
+        where TDto : BaseDTO, new()
         where TEntity : BaseEntity<long>, new()
     {
         public CrudController(IRepository<TEntity> repository) : base(repository)

@@ -10,8 +10,8 @@
   </ItemGroup> 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RuntimeFrameworkVersion>2.1.11</RuntimeFrameworkVersion>
-    <!-- <RuntimeFrameworkVersion>2.1.10</RuntimeFrameworkVersion> -->
+    <!-- <RuntimeFrameworkVersion>2.1.11</RuntimeFrameworkVersion> -->
+    <RuntimeFrameworkVersion>2.1.10</RuntimeFrameworkVersion>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 </Project>
