@@ -1,28 +1,12 @@
-using System;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
-using Alsahab.Setting.Common;
-using System.Threading.Tasks;
-using Alsahab.Setting.Data.Contracts;
-using System.Security.Claims;
-using System.Linq;
-using Alsahab.Setting.Common.Utilities;
-using Alsahab.Setting.Common.Exceptions;
-using Alsahab.Setting.Common.Api;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Options;
-using Alsahab.Setting.Entities;
 using Microsoft.Extensions.Configuration;
 using Alsahab.Setting.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using Alsahab.Setting.DTO;
 using FluentValidation.AspNetCore;
+using Alsahab.Setting.WebFramework.Api;
 
 namespace Alsahab.Setting.WebFramework.Configuration
 {
@@ -51,7 +35,7 @@ namespace Alsahab.Setting.WebFramework.Configuration
                 // بالای هر اکشن نداشته باشیم
                 options.Filters.Add(new AuthorizeFilter());
             })
-            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<BaseDTO>())
+            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<EmptyResult>())
             .AddApiExplorer()
             .AddAuthorization()
             .AddFormatterMappings()

@@ -4691,7 +4691,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
-          "Alsahab.Setting.DTO": "1.0.0",
+          "Alsahab.Setting.MyAPI.Models": "1.0.0",
           "Alsahab.Setting.Entities": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.1.6",
           "Microsoft.EntityFrameworkCore.Design": "2.1.0"
@@ -4703,17 +4703,18 @@
           "bin/placeholder/Alsahab.Setting.Data.dll": {}
         }
       },
-      "Alsahab.Setting.DTO/1.0.0": {
+      "Alsahab.Setting.MyAPI.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
-          "Alsahab.Setting.Common": "1.0.0"
+          "Alsahab.Setting.Common": "1.0.0",
+          "FluentValidation.AspNetCore": "8.4.0"
         },
         "compile": {
-          "bin/placeholder/Alsahab.Setting.DTO.dll": {}
+          "bin/placeholder/Alsahab.Setting.MyAPI.Models.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Alsahab.Setting.DTO.dll": {}
+          "bin/placeholder/Alsahab.Setting.MyAPI.Models.dll": {}
         }
       },
       "Alsahab.Setting.Entities/1.0.0": {
@@ -12720,10 +12721,10 @@
       "path": "../Alsahab.Setting.Data/Alsahab.Setting.Data.csproj",
       "msbuildProject": "../Alsahab.Setting.Data/Alsahab.Setting.Data.csproj"
     },
-    "Alsahab.Setting.DTO/1.0.0": {
+    "Alsahab.Setting.MyAPI.Models/1.0.0": {
       "type": "project",
-      "path": "../Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj",
-      "msbuildProject": "../Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj"
+      "path": "../Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj",
+      "msbuildProject": "../Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj"
     },
     "Alsahab.Setting.Entities/1.0.0": {
       "type": "project",

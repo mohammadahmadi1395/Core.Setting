@@ -21,7 +21,7 @@ namespace Alsahab.Setting.WebFramework.Api
     // [Route("api/v{version:apiVersion}/[controller]")] //api/v1/[controller]
     [ApiVersion("1")]
     public class CrudController<TDto, TEntity, TKey> : BaseController//ControllerBase
-        where TDto : BaseDto<TDto, TEntity, TKey>, new()
+        where TDto : BaseDTO<TDto, TEntity, TKey>, new()
         where TEntity : BaseEntity<TKey>, new()
     {
         private readonly IRepository<TEntity> _repository;
@@ -89,9 +89,9 @@ namespace Alsahab.Setting.WebFramework.Api
         }
     }
 
-    public class CrudController<TDto, TEntity> : CrudController<TDto, TEntity, int>
-        where TDto : BaseDto<TDto, TEntity, int>, new()
-        where TEntity : BaseEntity<int>, new()
+    public class CrudController<TDto, TEntity> : CrudController<TDto, TEntity, long>
+        where TDto : BaseDTO<TDto, TEntity, long>, new()
+        where TEntity : BaseEntity<long>, new()
     {
         public CrudController(IRepository<TEntity> repository) : base(repository)
         {

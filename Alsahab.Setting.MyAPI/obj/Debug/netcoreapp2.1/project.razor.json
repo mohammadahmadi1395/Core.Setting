@@ -1,5 +1,5 @@
 {
-  "FilePath": "/home/mohammad/Documents/company/Alsahab.Setting/dotNetCore_Test.MyAPI/dotNetCore_Test.MyAPI.csproj",
+  "FilePath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Alsahab.Setting.MyAPI.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
@@ -2856,6 +2856,6 @@
     ],
     "CSharpLanguageVersion": 703
   },
-  "RootNamespace": "dotNetCore_Test.MyAPI",
+  "RootNamespace": "Alsahab.Setting.MyAPI",
   "Documents": []
 }

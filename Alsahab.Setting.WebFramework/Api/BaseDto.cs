@@ -6,12 +6,14 @@ using Alsahab.Setting.WebFramework.CustomMapping;
 
 namespace Alsahab.Setting.WebFramework.Api
 {
-    public abstract class BaseDto<TDto, TEntity, TKey> : IHaveCustomMapping
+    public abstract class BaseDTO<TDto, TEntity, TKey> : IHaveCustomMapping
         where TDto : class, new()
         where TEntity : BaseEntity<TKey>, new()
     {
         public TKey Id { get; set; }
-        private TDto CastToDerivedClass(BaseDto<TDto, TEntity, TKey> baseInstance)
+        public DateTime? CreateDate { get; set; }
+        public bool? IsDeleted { get; set; }
+        private TDto CastToDerivedClass(BaseDTO<TDto, TEntity, TKey> baseInstance)
         {
             return Mapper.Map<TDto>(baseInstance);
         }
@@ -52,9 +54,9 @@ namespace Alsahab.Setting.WebFramework.Api
         }
     }
 
-    public abstract class BaseDto<TDto, TEntity> : BaseDto<TDto, TEntity, int>
+    public abstract class BaseDTO<TDto, TEntity> : BaseDTO<TDto, TEntity, long>
         where TDto : class, new()
-        where TEntity : BaseEntity<int>, new()
+        where TEntity : BaseEntity<long>, new()
     {
 
     }

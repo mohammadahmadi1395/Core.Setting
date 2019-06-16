@@ -66,14 +66,14 @@
         }
       }
     },
-    "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj": {
+    "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj",
-        "projectName": "Alsahab.Setting.DTO",
-        "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj",
+        "projectUniqueName": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj",
+        "projectName": "Alsahab.Setting.MyAPI.Models",
+        "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj",
         "packagesPath": "/home/mohammad/.nuget/packages/",
-        "outputPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/obj/",
+        "outputPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI.Models/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/share/dotnet/sdk/NuGetFallbackFolder"
@@ -105,6 +105,10 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[8.4.0, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -144,8 +148,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj": {
-                "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj"
+              "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj": {
+                "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI.Models/Alsahab.Setting.MyAPI.Models.csproj"
               },
               "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/Alsahab.Setting.Entities.csproj": {
                 "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/Alsahab.Setting.Entities.csproj"
