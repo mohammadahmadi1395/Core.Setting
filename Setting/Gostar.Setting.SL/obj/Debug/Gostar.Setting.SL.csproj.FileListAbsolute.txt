@@ -1,0 +1,6 @@
+D:\MainWorkspace\CommonWorkspace\Setting\Output\Gostar.Setting.SL.dll.config
+D:\MainWorkspace\CommonWorkspace\Setting\Output\Gostar.Setting.SL.dll
+D:\MainWorkspace\CommonWorkspace\Setting\Output\Gostar.Setting.SL.pdb
+D:\MainWorkspace\CommonWorkspace\Setting\Gostar.Setting.SL\obj\Debug\Gostar.Setting.SL.csprojResolveAssemblyReference.cache
+D:\MainWorkspace\CommonWorkspace\Setting\Gostar.Setting.SL\obj\Debug\Gostar.Setting.SL.dll
+D:\MainWorkspace\CommonWorkspace\Setting\Gostar.Setting.SL\obj\Debug\Gostar.Setting.SL.pdb

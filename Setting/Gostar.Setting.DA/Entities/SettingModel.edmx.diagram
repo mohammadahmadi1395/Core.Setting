@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8df64346ee2048e8b626d4ff8d13b149" Name="Diagram1" ZoomLevel="78">
+        <EntityTypeShape EntityType="SettingModel.Area" Width="1.5" PointX="12.25" PointY="7.625" />
+        <EntityTypeShape EntityType="SettingModel.Branch" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="SettingModel.BranchAddress" Width="1.5" PointX="3" PointY="1.875" />
+        <EntityTypeShape EntityType="SettingModel.BranchRegionWork" Width="1.5" PointX="7.5" PointY="2.375" />
+        <EntityTypeShape EntityType="SettingModel.City" Width="1.5" PointX="10" PointY="7.625" />
+        <EntityTypeShape EntityType="SettingModel.Country" Width="1.5" PointX="7.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SettingModel.Currency" Width="1.5" PointX="11.75" PointY="1.125" />
+        <EntityTypeShape EntityType="SettingModel.ExchangeRate" Width="1.5" PointX="14" PointY="1" />
+        <EntityTypeShape EntityType="SettingModel.FormType" Width="1.5" PointX="3" PointY="11.375" />
+        <EntityTypeShape EntityType="SettingModel.GeneratedForm" Width="1.5" PointX="7.75" PointY="11.75" />
+        <EntityTypeShape EntityType="SettingModel.Log" Width="1.5" PointX="9.75" PointY="11.75" />
+        <EntityTypeShape EntityType="SettingModel.OrganizationalChart" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SettingModel.Prefix" Width="1.5" PointX="11.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SettingModel.Region" Width="1.5" PointX="14.5" PointY="7.625" />
+        <EntityTypeShape EntityType="SettingModel.RegionAgent" Width="1.5" PointX="16.75" PointY="6.125" />
+        <EntityTypeShape EntityType="SettingModel.Rule" Width="1.5" PointX="3" PointY="18.625" />
+        <EntityTypeShape EntityType="SettingModel.RuleTag" Width="1.5" PointX="5.25" PointY="11.625" />
+        <EntityTypeShape EntityType="SettingModel.Sector" Width="1.5" PointX="16.75" PointY="9.375" />
+        <EntityTypeShape EntityType="SettingModel.Statement" Width="1.5" PointX="0.75" PointY="6.625" />
+        <EntityTypeShape EntityType="SettingModel.StatementSubsystem" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="SettingModel.Subpart" Width="1.5" PointX="3" PointY="15.125" />
+        <EntityTypeShape EntityType="SettingModel.Subsystem" Width="1.5" PointX="0.75" PointY="10.125" />
+        <EntityTypeShape EntityType="SettingModel.sysdiagrams" Width="1.5" PointX="11.75" PointY="11.75" />
+        <EntityTypeShape EntityType="SettingModel.Typeoforganization" Width="1.5" PointX="13.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SettingModel.Zone" Width="1.5" PointX="0.75" PointY="1.5" />
+        <AssociationConnector Association="SettingModel.FK_Area_City" />
+        <AssociationConnector Association="SettingModel.FK_Region_Area" />
+        <AssociationConnector Association="SettingModel.FK_Branch_Branch" />
+        <AssociationConnector Association="SettingModel.FK_Branch_BranchAddress" />
+        <AssociationConnector Association="SettingModel.FK_BranchRegionWork_Branch" />
+        <AssociationConnector Association="SettingModel.FK_BranchAddress_Zone" />
+        <AssociationConnector Association="SettingModel.FK_BranchRegionWork_Zone" />
+        <AssociationConnector Association="SettingModel.FK_City_Country" />
+        <AssociationConnector Association="SettingModel.FK_ExchangeRate_Currency" />
+        <AssociationConnector Association="SettingModel.FK_ExchangeRate_Currency1" />
+        <AssociationConnector Association="SettingModel.FK_FormType_Subsystem" />
+        <AssociationConnector Association="SettingModel.FK_RuleTag_FormType" />
+        <AssociationConnector Association="SettingModel.FK_OrganizationalChart_OrganizationalChart" />
+        <AssociationConnector Association="SettingModel.FK_RegionAgent_Region" />
+        <AssociationConnector Association="SettingModel.FK_Sector_Region" />
+        <AssociationConnector Association="SettingModel.FK_RuleTag_Rule" />
+        <AssociationConnector Association="SettingModel.FK_StatementSubsystem_Statement" />
+        <AssociationConnector Association="SettingModel.FK_StatementSubsystem_Subsystem" />
+        <AssociationConnector Association="SettingModel.FK_Subpart_Subsystem" />
+        <AssociationConnector Association="SettingModel.FK_Zone_Zone" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

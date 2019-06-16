@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SettingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SettingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Area" EntityType="SettingModel.Area" />
+    <EntitySet Name="Branch" EntityType="SettingModel.Branch" />
+    <EntitySet Name="BranchAddress" EntityType="SettingModel.BranchAddress" />
+    <EntitySet Name="BranchRegionWork" EntityType="SettingModel.BranchRegionWork" />
+    <EntitySet Name="City" EntityType="SettingModel.City" />
+    <EntitySet Name="Country" EntityType="SettingModel.Country" />
+    <EntitySet Name="Currency" EntityType="SettingModel.Currency" />
+    <EntitySet Name="ExchangeRate" EntityType="SettingModel.ExchangeRate" />
+    <EntitySet Name="FormType" EntityType="SettingModel.FormType" />
+    <EntitySet Name="GeneratedForm" EntityType="SettingModel.GeneratedForm" />
+    <EntitySet Name="Log" EntityType="SettingModel.Log" />
+    <EntitySet Name="OrganizationalChart" EntityType="SettingModel.OrganizationalChart" />
+    <EntitySet Name="Prefix" EntityType="SettingModel.Prefix" />
+    <EntitySet Name="Region" EntityType="SettingModel.Region" />
+    <EntitySet Name="RegionAgent" EntityType="SettingModel.RegionAgent" />
+    <EntitySet Name="Rule" EntityType="SettingModel.Rule" />
+    <EntitySet Name="RuleTag" EntityType="SettingModel.RuleTag" />
+    <EntitySet Name="Sector" EntityType="SettingModel.Sector" />
+    <EntitySet Name="Statement" EntityType="SettingModel.Statement" />
+    <EntitySet Name="StatementSubsystem" EntityType="SettingModel.StatementSubsystem" />
+    <EntitySet Name="Subpart" EntityType="SettingModel.Subpart" />
+    <EntitySet Name="Subsystem" EntityType="SettingModel.Subsystem" />
+    <EntitySet Name="sysdiagrams" EntityType="SettingModel.sysdiagrams" />
+    <EntitySet Name="Typeoforganization" EntityType="SettingModel.Typeoforganization" />
+    <EntitySet Name="Zone" EntityType="SettingModel.Zone" />
+    <AssociationSet Name="FK_Area_City" Association="SettingModel.FK_Area_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Area" EntitySet="Area" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Region_Area" Association="SettingModel.FK_Region_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Region" EntitySet="Region" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Branch_Branch" Association="SettingModel.FK_Branch_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="Branch1" EntitySet="Branch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Branch_BranchAddress" Association="SettingModel.FK_Branch_BranchAddress">
+      <End Role="BranchAddress" EntitySet="BranchAddress" />
+      <End Role="Branch" EntitySet="Branch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchRegionWork_Branch" Association="SettingModel.FK_BranchRegionWork_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="BranchRegionWork" EntitySet="BranchRegionWork" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchAddress_Zone" Association="SettingModel.FK_BranchAddress_Zone">
+      <End Role="Zone" EntitySet="Zone" />
+      <End Role="BranchAddress" EntitySet="BranchAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchRegionWork_Zone" Association="SettingModel.FK_BranchRegionWork_Zone">
+      <End Role="Zone" EntitySet="Zone" />
+      <End Role="BranchRegionWork" EntitySet="BranchRegionWork" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_Country" Association="SettingModel.FK_City_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExchangeRate_Currency" Association="SettingModel.FK_ExchangeRate_Currency">
+      <End Role="Currency" EntitySet="Currency" />
+      <End Role="ExchangeRate" EntitySet="ExchangeRate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExchangeRate_Currency1" Association="SettingModel.FK_ExchangeRate_Currency1">
+      <End Role="Currency" EntitySet="Currency" />
+      <End Role="ExchangeRate" EntitySet="ExchangeRate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FormType_Subsystem" Association="SettingModel.FK_FormType_Subsystem">
+      <End Role="Subsystem" EntitySet="Subsystem" />
+      <End Role="FormType" EntitySet="FormType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RuleTag_FormType" Association="SettingModel.FK_RuleTag_FormType">
+      <End Role="FormType" EntitySet="FormType" />
+      <End Role="RuleTag" EntitySet="RuleTag" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrganizationalChart_OrganizationalChart" Association="SettingModel.FK_OrganizationalChart_OrganizationalChart">
+      <End Role="OrganizationalChart" EntitySet="OrganizationalChart" />
+      <End Role="OrganizationalChart1" EntitySet="OrganizationalChart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegionAgent_Region" Association="SettingModel.FK_RegionAgent_Region">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="RegionAgent" EntitySet="RegionAgent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sector_Region" Association="SettingModel.FK_Sector_Region">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="Sector" EntitySet="Sector" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RuleTag_Rule" Association="SettingModel.FK_RuleTag_Rule">
+      <End Role="Rule" EntitySet="Rule" />
+      <End Role="RuleTag" EntitySet="RuleTag" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StatementSubsystem_Statement" Association="SettingModel.FK_StatementSubsystem_Statement">
+      <End Role="Statement" EntitySet="Statement" />
+      <End Role="StatementSubsystem" EntitySet="StatementSubsystem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StatementSubsystem_Subsystem" Association="SettingModel.FK_StatementSubsystem_Subsystem">
+      <End Role="Subsystem" EntitySet="Subsystem" />
+      <End Role="StatementSubsystem" EntitySet="StatementSubsystem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subpart_Subsystem" Association="SettingModel.FK_Subpart_Subsystem">
+      <End Role="Subsystem" EntitySet="Subsystem" />
+      <End Role="Subpart" EntitySet="Subpart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zone_Zone" Association="SettingModel.FK_Zone_Zone">
+      <End Role="Zone" EntitySet="Zone" />
+      <End Role="Zone1" EntitySet="Zone" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CityID" Type="Int64" Nullable="false" />
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="City" Relationship="SettingModel.FK_Area_City" FromRole="Area" ToRole="City" />
+    <NavigationProperty Name="Region" Relationship="SettingModel.FK_Region_Area" FromRole="Area" ToRole="Region" />
+  </EntityType>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParentID" Type="Int64" />
+    <Property Name="BranchAddressID" Type="Int64" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HeadPersonID" Type="Int64" />
+    <Property Name="BranchPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BranchEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsCentral" Type="Boolean" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="LeftIndex" Type="Int64" />
+    <Property Name="RightIndex" Type="Int64" />
+    <Property Name="Depth" Type="Int64" />
+    <Property Name="OldCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Branch1" Relationship="SettingModel.FK_Branch_Branch" FromRole="Branch" ToRole="Branch1" />
+    <NavigationProperty Name="Branch2" Relationship="SettingModel.FK_Branch_Branch" FromRole="Branch1" ToRole="Branch" />
+    <NavigationProperty Name="BranchAddress" Relationship="SettingModel.FK_Branch_BranchAddress" FromRole="Branch" ToRole="BranchAddress" />
+    <NavigationProperty Name="BranchRegionWork" Relationship="SettingModel.FK_BranchRegionWork_Branch" FromRole="Branch" ToRole="BranchRegionWork" />
+  </EntityType>
+  <EntityType Name="BranchAddress">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ZoneID" Type="Int64" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Latitude" Type="Double" />
+    <Property Name="Longitude" Type="Double" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Branch" Relationship="SettingModel.FK_Branch_BranchAddress" FromRole="BranchAddress" ToRole="Branch" />
+    <NavigationProperty Name="Zone" Relationship="SettingModel.FK_BranchAddress_Zone" FromRole="BranchAddress" ToRole="Zone" />
+  </EntityType>
+  <EntityType Name="BranchRegionWork">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BranchID" Type="Int64" Nullable="false" />
+    <Property Name="ZoneID" Type="Int64" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Branch" Relationship="SettingModel.FK_BranchRegionWork_Branch" FromRole="BranchRegionWork" ToRole="Branch" />
+    <NavigationProperty Name="Zone" Relationship="SettingModel.FK_BranchRegionWork_Zone" FromRole="BranchRegionWork" ToRole="Zone" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="CountryID" Type="Int64" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Area" Relationship="SettingModel.FK_Area_City" FromRole="City" ToRole="Area" />
+    <NavigationProperty Name="Country" Relationship="SettingModel.FK_City_Country" FromRole="City" ToRole="Country" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneCode" Type="Int32" />
+    <Property Name="ShortName" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="SettingModel.FK_City_Country" FromRole="Country" ToRole="City" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Symbol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ExchangeRate" Relationship="SettingModel.FK_ExchangeRate_Currency" FromRole="Currency" ToRole="ExchangeRate" />
+    <NavigationProperty Name="ExchangeRate1" Relationship="SettingModel.FK_ExchangeRate_Currency1" FromRole="Currency" ToRole="ExchangeRate" />
+  </EntityType>
+  <EntityType Name="ExchangeRate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FromCurrencyID" Type="Int64" Nullable="false" />
+    <Property Name="ToCurrencyID" Type="Int64" Nullable="false" />
+    <Property Name="Ratio" Type="Double" Nullable="false" />
+    <Property Name="Year" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Currency" Relationship="SettingModel.FK_ExchangeRate_Currency" FromRole="ExchangeRate" ToRole="Currency" />
+    <NavigationProperty Name="Currency1" Relationship="SettingModel.FK_ExchangeRate_Currency1" FromRole="ExchangeRate" ToRole="Currency" />
+  </EntityType>
+  <EntityType Name="FormType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EnumID" Type="Int32" />
+    <Property Name="SubSystemID" Type="Int64" Nullable="false" />
+    <Property Name="PublicCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Coment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Subsystem" Relationship="SettingModel.FK_FormType_Subsystem" FromRole="FormType" ToRole="Subsystem" />
+    <NavigationProperty Name="RuleTag" Relationship="SettingModel.FK_RuleTag_FormType" FromRole="FormType" ToRole="RuleTag" />
+  </EntityType>
+  <EntityType Name="GeneratedForm">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PublicCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrivateCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SubsystemID" Type="Int64" Nullable="false" />
+    <Property Name="UniqeCode" Type="Int64" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int64" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EntityID" Type="Int32" Nullable="false" />
+    <Property Name="ActionTypeID" Type="Int32" Nullable="false" />
+    <Property Name="RecordID" Type="Int64" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GroupID" Type="Int64" />
+    <Property Name="RegistrantPersonID" Type="Int64" />
+    <Property Name="RegistrantPersonFullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="OrganizationalChart">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ParentID" Type="Int64" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LeftIndex" Type="Int64" />
+    <Property Name="RightIndex" Type="Int64" />
+    <Property Name="Depth" Type="Int64" />
+    <Property Name="OldCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrganizationalChart1" Relationship="SettingModel.FK_OrganizationalChart_OrganizationalChart" FromRole="OrganizationalChart" ToRole="OrganizationalChart1" />
+    <NavigationProperty Name="OrganizationalChart2" Relationship="SettingModel.FK_OrganizationalChart_OrganizationalChart" FromRole="OrganizationalChart1" ToRole="OrganizationalChart" />
+  </EntityType>
+  <EntityType Name="Prefix">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AreaID" Type="Int64" Nullable="false" />
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Area" Relationship="SettingModel.FK_Region_Area" FromRole="Region" ToRole="Area" />
+    <NavigationProperty Name="RegionAgent" Relationship="SettingModel.FK_RegionAgent_Region" FromRole="Region" ToRole="RegionAgent" />
+    <NavigationProperty Name="Sector" Relationship="SettingModel.FK_Sector_Region" FromRole="Region" ToRole="Sector" />
+  </EntityType>
+  <EntityType Name="RegionAgent">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PersonID" Type="Int64" Nullable="false" />
+    <Property Name="RegionID" Type="Int64" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Region" Relationship="SettingModel.FK_RegionAgent_Region" FromRole="RegionAgent" ToRole="Region" />
+  </EntityType>
+  <EntityType Name="Rule">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="RuleTag" Relationship="SettingModel.FK_RuleTag_Rule" FromRole="Rule" ToRole="RuleTag" />
+  </EntityType>
+  <EntityType Name="RuleTag">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RuleID" Type="Int64" Nullable="false" />
+    <Property Name="FormTypeID" Type="Int64" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="FormType" Relationship="SettingModel.FK_RuleTag_FormType" FromRole="RuleTag" ToRole="FormType" />
+    <NavigationProperty Name="Rule" Relationship="SettingModel.FK_RuleTag_Rule" FromRole="RuleTag" ToRole="Rule" />
+  </EntityType>
+  <EntityType Name="Sector">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegionID" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Region" Relationship="SettingModel.FK_Sector_Region" FromRole="Sector" ToRole="Region" />
+  </EntityType>
+  <EntityType Name="Statement">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TagName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PersianText" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EnglishText" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ArabicText" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="StatementSubsystem" Relationship="SettingModel.FK_StatementSubsystem_Statement" FromRole="Statement" ToRole="StatementSubsystem" />
+  </EntityType>
+  <EntityType Name="StatementSubsystem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatementID" Type="Int64" Nullable="false" />
+    <Property Name="SubsystemID" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Statement" Relationship="SettingModel.FK_StatementSubsystem_Statement" FromRole="StatementSubsystem" ToRole="Statement" />
+    <NavigationProperty Name="Subsystem" Relationship="SettingModel.FK_StatementSubsystem_Subsystem" FromRole="StatementSubsystem" ToRole="Subsystem" />
+  </EntityType>
+  <EntityType Name="Subpart">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="IsSystem" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SubsystemID" Type="Int64" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Subsystem" Relationship="SettingModel.FK_Subpart_Subsystem" FromRole="Subpart" ToRole="Subsystem" />
+  </EntityType>
+  <EntityType Name="Subsystem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsSystem" Type="Boolean" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="RunOrder" Type="Int32" />
+    <Property Name="IsPart" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="FormType" Relationship="SettingModel.FK_FormType_Subsystem" FromRole="Subsystem" ToRole="FormType" />
+    <NavigationProperty Name="StatementSubsystem" Relationship="SettingModel.FK_StatementSubsystem_Subsystem" FromRole="Subsystem" ToRole="StatementSubsystem" />
+    <NavigationProperty Name="Subpart" Relationship="SettingModel.FK_Subpart_Subsystem" FromRole="Subsystem" ToRole="Subpart" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Typeoforganization">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Zone">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ParentID" Type="Int64" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="LeftIndex" Type="Int64" />
+    <Property Name="RightIndex" Type="Int64" />
+    <Property Name="Depth" Type="Int64" />
+    <Property Name="OldCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BranchAddress" Relationship="SettingModel.FK_BranchAddress_Zone" FromRole="Zone" ToRole="BranchAddress" />
+    <NavigationProperty Name="BranchRegionWork" Relationship="SettingModel.FK_BranchRegionWork_Zone" FromRole="Zone" ToRole="BranchRegionWork" />
+    <NavigationProperty Name="Zone1" Relationship="SettingModel.FK_Zone_Zone" FromRole="Zone" ToRole="Zone1" />
+    <NavigationProperty Name="Zone2" Relationship="SettingModel.FK_Zone_Zone" FromRole="Zone1" ToRole="Zone" />
+  </EntityType>
+  <Association Name="FK_Area_City">
+    <End Type="SettingModel.City" Role="City" Multiplicity="1" />
+    <End Type="SettingModel.Area" Role="Area" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Area">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Region_Area">
+    <End Type="SettingModel.Area" Role="Area" Multiplicity="1" />
+    <End Type="SettingModel.Region" Role="Region" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Region">
+        <PropertyRef Name="AreaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Branch_Branch">
+    <End Type="SettingModel.Branch" Role="Branch" Multiplicity="1" />
+    <End Type="SettingModel.Branch" Role="Branch1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Branch1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Branch_BranchAddress">
+    <End Type="SettingModel.BranchAddress" Role="BranchAddress" Multiplicity="1" />
+    <End Type="SettingModel.Branch" Role="Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchAddress">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Branch">
+        <PropertyRef Name="BranchAddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchRegionWork_Branch">
+    <End Type="SettingModel.Branch" Role="Branch" Multiplicity="1" />
+    <End Type="SettingModel.BranchRegionWork" Role="BranchRegionWork" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BranchRegionWork">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchAddress_Zone">
+    <End Type="SettingModel.Zone" Role="Zone" Multiplicity="1" />
+    <End Type="SettingModel.BranchAddress" Role="BranchAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zone">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BranchAddress">
+        <PropertyRef Name="ZoneID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchRegionWork_Zone">
+    <End Type="SettingModel.Zone" Role="Zone" Multiplicity="1" />
+    <End Type="SettingModel.BranchRegionWork" Role="BranchRegionWork" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zone">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BranchRegionWork">
+        <PropertyRef Name="ZoneID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_Country">
+    <End Type="SettingModel.Country" Role="Country" Multiplicity="1" />
+    <End Type="SettingModel.City" Role="City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExchangeRate_Currency">
+    <End Type="SettingModel.Currency" Role="Currency" Multiplicity="1" />
+    <End Type="SettingModel.ExchangeRate" Role="ExchangeRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ExchangeRate">
+        <PropertyRef Name="FromCurrencyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExchangeRate_Currency1">
+    <End Type="SettingModel.Currency" Role="Currency" Multiplicity="1" />
+    <End Type="SettingModel.ExchangeRate" Role="ExchangeRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ExchangeRate">
+        <PropertyRef Name="ToCurrencyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FormType_Subsystem">
+    <End Type="SettingModel.Subsystem" Role="Subsystem" Multiplicity="1" />
+    <End Type="SettingModel.FormType" Role="FormType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subsystem">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FormType">
+        <PropertyRef Name="SubSystemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RuleTag_FormType">
+    <End Type="SettingModel.FormType" Role="FormType" Multiplicity="1" />
+    <End Type="SettingModel.RuleTag" Role="RuleTag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FormType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RuleTag">
+        <PropertyRef Name="FormTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrganizationalChart_OrganizationalChart">
+    <End Type="SettingModel.OrganizationalChart" Role="OrganizationalChart" Multiplicity="0..1" />
+    <End Type="SettingModel.OrganizationalChart" Role="OrganizationalChart1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganizationalChart">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrganizationalChart1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegionAgent_Region">
+    <End Type="SettingModel.Region" Role="Region" Multiplicity="1" />
+    <End Type="SettingModel.RegionAgent" Role="RegionAgent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RegionAgent">
+        <PropertyRef Name="RegionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sector_Region">
+    <End Type="SettingModel.Region" Role="Region" Multiplicity="1" />
+    <End Type="SettingModel.Sector" Role="Sector" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Sector">
+        <PropertyRef Name="RegionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RuleTag_Rule">
+    <End Type="SettingModel.Rule" Role="Rule" Multiplicity="1" />
+    <End Type="SettingModel.RuleTag" Role="RuleTag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rule">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RuleTag">
+        <PropertyRef Name="RuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StatementSubsystem_Statement">
+    <End Type="SettingModel.Statement" Role="Statement" Multiplicity="1" />
+    <End Type="SettingModel.StatementSubsystem" Role="StatementSubsystem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statement">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StatementSubsystem">
+        <PropertyRef Name="StatementID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StatementSubsystem_Subsystem">
+    <End Type="SettingModel.Subsystem" Role="Subsystem" Multiplicity="1" />
+    <End Type="SettingModel.StatementSubsystem" Role="StatementSubsystem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subsystem">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StatementSubsystem">
+        <PropertyRef Name="SubsystemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subpart_Subsystem">
+    <End Type="SettingModel.Subsystem" Role="Subsystem" Multiplicity="1" />
+    <End Type="SettingModel.Subpart" Role="Subpart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subsystem">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subpart">
+        <PropertyRef Name="SubsystemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zone_Zone">
+    <End Type="SettingModel.Zone" Role="Zone" Multiplicity="0..1" />
+    <End Type="SettingModel.Zone" Role="Zone1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zone">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Zone1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

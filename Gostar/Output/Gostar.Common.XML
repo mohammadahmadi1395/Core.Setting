@@ -1,0 +1,3371 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gostar.Common</name>
+    </assembly>
+    <members>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.CurrencyCode">
+            <summary>
+            Standard Code
+            Syrian Pound: SYP
+            UAE Dirham: AED
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.IsCurrencyNameFeminine">
+            <summary>
+            Is the currency name feminine ( Mua'anath مؤنث)
+            ليرة سورية : مؤنث = true
+            درهم : مذكر = false
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.EnglishCurrencyName">
+            <summary>
+            English Currency Name for single use
+            Syrian Pound
+            UAE Dirham
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.EnglishPluralCurrencyName">
+            <summary>
+            English Plural Currency Name for Numbers over 1
+            Syrian Pounds
+            UAE Dirhams
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.SingleCurrencyName">
+            <summary>
+            Arabic Currency Name for 1 unit only
+            ليرة سورية
+            درهم إماراتي
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.DualCurrencyName">
+            <summary>
+            Arabic Currency Name for 2 units only
+            ليرتان سوريتان
+            درهمان إماراتيان
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.PluralCurrencyName">
+            <summary>
+            Arabic Currency Name for 3 to 10 units
+            خمس ليرات سورية
+            خمسة دراهم إماراتية
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.Arabic1199CurrencyName">
+            <summary>
+            Arabic Currency Name for 11 to 99 units
+            خمس و سبعون ليرةً سوريةً
+            خمسة و سبعون درهماً إماراتياً
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.PartPrecision">
+            <summary>
+            Decimal Part Precision
+            for Syrian Pounds: 2 ( 1 SP = 100 parts)
+            for Tunisian Dinars: 3 ( 1 TND = 1000 parts)
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.IsCurrencyPartNameFeminine">
+            <summary>
+            Is the currency part name feminine ( Mua'anath مؤنث)
+            هللة : مؤنث = true
+            قرش : مذكر = false
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.EnglishCurrencyPartName">
+            <summary>
+            English Currency Part Name for single use
+            Piaster
+            Fils
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.EnglishPluralCurrencyPartName">
+            <summary>
+            English Currency Part Name for Plural
+            Piasters
+            Fils
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.SingleCurrencyPartName">
+            <summary>
+            Arabic Currency Part Name for 1 unit only
+            قرش
+            هللة
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.DualCurrencyPartName">
+            <summary>
+            Arabic Currency Part Name for 2 unit only
+            قرشان
+            هللتان
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.PluralCurrencyPartName">
+            <summary>
+            Arabic Currency Part Name for 3 to 10 units
+            قروش
+            هللات
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.CurrencyToWordDTO.Arabic1199CurrencyPartName">
+            <summary>
+            Arabic Currency Part Name for 11 to 99 units
+            قرشاً
+            هللةً
+            </summary>
+        </member>
+        <member name="F:Gostar.Common.RoleType.BoxCollector">
+            <summary>
+            Box Collector,
+            اون کسی که صندوق ها را جمع آوری میکند
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.SqlError">
+            <summary>
+            Database Error Code
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Bool">
+            <summary>
+            For Question With 2 Item
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.AbstractValidator`1">
+            <summary>
+            Base class for object validators.
+            </summary>
+            <typeparam name="T">The type of the object being validated</typeparam>
+        </member>
+        <member name="P:Gostar.Common.Validation.AbstractValidator`1.CascadeMode">
+            <summary>
+            Sets the cascade mode for all rules within this validator.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.Validate(`0)">
+            <summary>
+            Validates the specified instance
+            </summary>
+            <param name="instance">The object to validate</param>
+            <returns>A ValidationResult object containing any validation failures</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.ValidateAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            Validates the specified instance asynchronously
+            </summary>
+            <param name="instance">The object to validate</param>
+            <param name="cancellation">Cancellation token</param>
+            <returns>A ValidationResult object containing any validation failures</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.Validate(Gostar.Common.Validation.ValidationContext{`0})">
+            <summary>
+            Validates the specified instance.
+            </summary>
+            <param name="context">Validation Context</param>
+            <returns>A ValidationResult object containing any validation failures.</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.ValidateAsync(Gostar.Common.Validation.ValidationContext{`0},System.Threading.CancellationToken)">
+            <summary>
+            Validates the specified instance asynchronously.
+            </summary>
+            <param name="context">Validation Context</param>
+            <param name="cancellation">Cancellation token</param>
+            <returns>A ValidationResult object containing any validation failures.</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.AddRule(Gostar.Common.Validation.IValidationRule)">
+            <summary>
+            Adds a rule to the current validator.
+            </summary>
+            <param name="rule"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.CreateDescriptor">
+            <summary>
+            Creates a <see cref="T:Gostar.Common.Validation.IValidatorDescriptor" /> that can be used to obtain metadata about the current validator.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.RuleFor``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Defines a validation rule for a specify property.
+            </summary>
+            <example>
+            RuleFor(x => x.Surname)...
+            </example>
+            <typeparam name="TProperty">The type of property being validated</typeparam>
+            <param name="expression">The expression representing the property to validate</param>
+            <returns>an IRuleBuilder instance on which validators can be defined</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.RuleForEach``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IEnumerable{``0}}})">
+            <summary>
+            Invokes a rule for each item in the collection
+            </summary>
+            <typeparam name="TProperty">Type of property</typeparam>
+            <param name="expression">Expression representing the collection to validate</param>
+            <returns>An IRuleBuilder instance on which validators can be defined</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.RuleSet(System.String,System.Action)">
+            <summary>
+            Defines a RuleSet that can be used to group together several validators.
+            </summary>
+            <param name="ruleSetName">The name of the ruleset.</param>
+            <param name="action">Action that encapsulates the rules in the ruleset.</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.When(System.Func{`0,System.Boolean},System.Action)">
+            <summary>
+            Defines a condition that applies to several rules
+            </summary>
+            <param name="predicate">The condition that should apply to multiple rules</param>
+            <param name="action">Action that encapsulates the rules.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.Unless(System.Func{`0,System.Boolean},System.Action)">
+            <summary>
+            Defines an inverse condition that applies to several rules
+            </summary>
+            <param name="predicate">The condition that should be applied to multiple rules</param>
+            <param name="action">Action that encapsulates the rules</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.WhenAsync(System.Func{`0,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Action)">
+            <summary>
+            Defines an asynchronous condition that applies to several rules
+            </summary>
+            <param name="predicate">The asynchronous condition that should apply to multiple rules</param>
+            <param name="action">Action that encapsulates the rules.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.UnlessAsync(System.Func{`0,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Action)">
+            <summary>
+            Defines an inverse asynchronous condition that applies to several rules
+            </summary>
+            <param name="predicate">The asynchronous condition that should be applied to multiple rules</param>
+            <param name="action">Action that encapsulates the rules</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.Include(Gostar.Common.Validation.IValidator{`0})">
+            <summary>
+            Includes the rules from the specified validator
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.Include``1(System.Func{`0,``0})">
+            <summary>
+            Includes the rules from the specified validator
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection of validation rules.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.EnsureInstanceNotNull(System.Object)">
+            <summary>
+            Throws an exception if the instance being validated is null.
+            </summary>
+            <param name="instanceToValidate"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.AbstractValidator`1.PreValidate(Gostar.Common.Validation.ValidationContext{`0},Gostar.Common.Validation.Results.ValidationResult)">
+            <summary>
+            Determines if validation should occur and provides a means to modify the context and ValidationResult prior to execution.
+            If this method returns false, then the ValidationResult is immediately returned from Validate/ValidateAsync.
+            </summary>
+            <param name="context"></param>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.AssemblyScanner">
+            <summary>
+            Class that can be used to find all the validators from a collection of types.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.AssemblyScanner.#ctor(System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Creates a scanner that works on a sequence of types.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.AssemblyScanner.FindValidatorsInAssembly(System.Reflection.Assembly)">
+            <summary>
+            Finds all the validators in the specified assembly.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.AssemblyScanner.FindValidatorsInAssemblies(System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
+            <summary>
+            Finds all the validators in the specified assemblies
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.AssemblyScanner.FindValidatorsInAssemblyContaining``1">
+            <summary>
+            Finds all the validators in the assembly containing the specified type.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.AssemblyScanner.ForEach(System.Action{Gostar.Common.Validation.AssemblyScanner.AssemblyScanResult})">
+            <summary>
+            Performs the specified action to all of the assembly scan results.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.AssemblyScanner.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="T:Gostar.Common.Validation.AssemblyScanner.AssemblyScanResult">
+            <summary>
+            Result of performing a scan.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.AssemblyScanner.AssemblyScanResult.#ctor(System.Type,System.Type)">
+            <summary>
+            Creates an instance of an AssemblyScanResult.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.AssemblyScanner.AssemblyScanResult.InterfaceType">
+            <summary>
+            Validator interface type, eg IValidator&lt;Foo&gt;
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.AssemblyScanner.AssemblyScanResult.ValidatorType">
+            <summary>
+            Concrete type that implements the InterfaceType, eg FooValidator.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.CollectionValidatorExtensions">
+            <summary>
+            Extension methods for collection validation rules 
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.CollectionValidatorExtensions.SetCollectionValidator``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Collections.Generic.IEnumerable{``1}},Gostar.Common.Validation.IValidator{``1})">
+            <summary>
+            Associates an instance of IValidator with the current property rule and is used to validate each item within the collection.
+            </summary>
+            <param name="ruleBuilder">Rule builder</param>
+            <param name="validator">The validator to use</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.CollectionValidatorExtensions.SetCollectionValidator``3(Gostar.Common.Validation.IRuleBuilder{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``2})">
+            <summary>
+            Uses a provider to instantiate a validator instance to be associated with a collection
+            </summary>
+            <param name="ruleBuilder"></param>
+            <param name="validator"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TCollectionElement"></typeparam>
+            <typeparam name="TValidator"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.CollectionValidatorExtensions.ICollectionValidatorRuleBuilder`2">
+            <summary>
+            Collection rule builder syntax
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TCollectionElement"></typeparam>
+        </member>
+        <member name="M:Gostar.Common.Validation.CollectionValidatorExtensions.ICollectionValidatorRuleBuilder`2.Where(System.Func{`1,System.Boolean})">
+            <summary>
+            Defines a condition to be used to determine if validation should run
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.DefaultValidatorExtensions">
+            <summary>
+            Extension methods that provide the default set of validators.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.NotNull``2(Gostar.Common.Validation.IRuleBuilder{``0,``1})">
+            <summary>
+            Defines a 'not null' validator on the current rule builder.
+            Validation will fail if the property is null.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Null``2(Gostar.Common.Validation.IRuleBuilder{``0,``1})">
+            <summary>
+            Defines a 'null' validator on the current rule builder.
+            Validation will fail if the property is not null.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.NotEmpty``2(Gostar.Common.Validation.IRuleBuilder{``0,``1})">
+            <summary>
+            Defines a 'not empty' validator on the current rule builder.
+            Validation will fail if the property is null, an empty or the default value for the type (for example, 0 for integers)
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Empty``2(Gostar.Common.Validation.IRuleBuilder{``0,``1})">
+            <summary>
+            Defines a 'empty' validator on the current rule builder.
+            Validation will fail if the property is not null, an empty or the default value for the type (for example, 0 for integers)
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Length``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String},System.Int32,System.Int32)">
+            <summary>
+            Defines a length validator on the current rule builder, but only for string properties.
+            Validation will fail if the length of the string is outside of the specified range. The range is inclusive.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="min"></param>
+            <param name="max"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Length``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String},System.Func{``0,System.Int32},System.Func{``0,System.Int32})">
+            <summary>
+            Defines a length validator on the current rule builder, but only for string properties.
+            Validation will fail if the length of the string is outside of the specified range. The range is inclusive.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="min"></param>
+            <param name="max"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Length``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String},System.Int32)">
+            <summary>
+            Defines a length validator on the current rule builder, but only for string properties.
+            Validation will fail if the length of the string is not equal to the length specified.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="exactLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Length``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String},System.Func{``0,System.Int32})">
+            <summary>
+            Defines a length validator on the current rule builder, but only for string properties.
+            Validation will fail if the length of the string is not equal to the length specified.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="exactLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Matches``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String},System.String)">
+            <summary>
+            Defines a regular expression validator on the current rule builder, but only for string properties.
+            Validation will fail if the value returned by the lambda does not match the regular expression.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">The regular expression to check the value against.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.MaximumLength``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String},System.Int32)">
+            <summary>
+            Defines a length validator on the current rule builder, but only for string properties.
+            Validation will fail if the length of the string is larger than the length specified.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="maximumLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.MinimumLength``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String},System.Int32)">
+            <summary>
+            Defines a length validator on the current rule builder, but only for string properties.
+            Validation will fail if the length of the string is less than the length specified.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="minimumLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Matches``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String},System.Func{``0,System.String})">
+            <summary>
+            Defines a regular expression validator on the current rule builder, but only for string properties.
+            Validation will fail if the value returned by the lambda does not match the regular expression.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">The regular expression to check the value against.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Matches``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String},System.Text.RegularExpressions.Regex)">
+            <summary>
+            Defines a regular expression validator on the current rule builder, but only for string properties.
+            Validation will fail if the value returned by the lambda does not match the regular expression.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="regex">The regular expression to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Matches``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String},System.Func{``0,System.Text.RegularExpressions.Regex})">
+            <summary>
+            Defines a regular expression validator on the current rule builder, but only for string properties.
+            Validation will fail if the value returned by the lambda does not match the regular expression.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="regex">The regular expression to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Matches``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String},System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Defines a regular expression validator on the current rule builder, but only for string properties.
+            Validation will fail if the value returned by the lambda does not match the regular expression.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">The regular expression to check the value against.</param>
+            <param name="options">Regex options</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Matches``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String},System.Func{``0,System.String},System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Defines a regular expression validator on the current rule builder, but only for string properties.
+            Validation will fail if the value returned by the lambda does not match the regular expression.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">The regular expression to check the value against.</param>
+            <param name="options">Regex options</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.EmailAddress``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String})">
+            <summary>
+            Defines a regular expression validator on the current rule builder, but only for string properties.
+            Validation will fail if the value returned by the lambda is not a valid email address.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.NotEqual``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},``1,System.Collections.IEqualityComparer)">
+            <summary>
+            Defines a 'not equal' validator on the current rule builder.
+            Validation will fail if the specified value is equal to the value of the property.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="toCompare">The value to compare</param>
+            <param name="comparer">Equality comparer to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.NotEqual``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.IEqualityComparer)">
+            <summary>
+            Defines a 'not equal' validator on the current rule builder using a lambda to specify the value.
+            Validation will fail if the value returned by the lambda is equal to the value of the property.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">A lambda expression to provide the comparison value</param>
+            <param name="comparer">Equality Comparer to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Equal``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},``1,System.Collections.IEqualityComparer)">
+            <summary>
+            Defines an 'equals' validator on the current rule builder.
+            Validation will fail if the specified value is not equal to the value of the property.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="toCompare">The value to compare</param>
+            <param name="comparer">Equality Comparer to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Equal``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.IEqualityComparer)">
+            <summary>
+            Defines an 'equals' validator on the current rule builder using a lambda to specify the comparison value.
+            Validation will fail if the value returned by the lambda is not equal to the value of the property.
+            </summary>
+            <typeparam name="T">The type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">A lambda expression to provide the comparison value</param>
+            <param name="comparer">Equality comparer to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Must``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Func{``1,System.Boolean})">
+            <summary>
+            Defines a predicate validator on the current rule builder using a lambda expression to specify the predicate.
+            Validation will fail if the specified lambda returns false.
+            Validation will succeed if the specified lambda returns true.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="predicate">A lambda expression specifying the predicate</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Must``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Func{``0,``1,System.Boolean})">
+            <summary>
+            Defines a predicate validator on the current rule builder using a lambda expression to specify the predicate.
+            Validation will fail if the specified lambda returns false.
+            Validation will succeed if the specified lambda returns true.
+            This overload accepts the object being validated in addition to the property being validated.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="predicate">A lambda expression specifying the predicate</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Must``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Func{``0,``1,Gostar.Common.Validation.Validators.PropertyValidatorContext,System.Boolean})">
+            <summary>
+            Defines a predicate validator on the current rule builder using a lambda expression to specify the predicate.
+            Validation will fail if the specified lambda returns false.
+            Validation will succeed if the specified lambda returns true.
+            This overload accepts the object being validated in addition to the property being validated.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="predicate">A lambda expression specifying the predicate</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.MustAsync``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Func{``1,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}})">
+            <summary>
+            Defines an asynchronous predicate validator on the current rule builder using a lambda expression to specify the predicate.
+            Validation will fail if the specified lambda returns false.
+            Validation will succeed if the specified lambda returns true.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="predicate">A lambda expression specifying the predicate</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.MustAsync``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Func{``0,``1,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}})">
+            <summary>
+            Defines an asynchronous predicate validator on the current rule builder using a lambda expression to specify the predicate.
+            Validation will fail if the specified lambda returns false.
+            Validation will succeed if the specified lambda returns true.
+            This overload accepts the object being validated in addition to the property being validated.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="predicate">A lambda expression specifying the predicate</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.MustAsync``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Func{``0,``1,Gostar.Common.Validation.Validators.PropertyValidatorContext,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}})">
+            <summary>
+            Defines an asynchronous predicate validator on the current rule builder using a lambda expression to specify the predicate.
+            Validation will fail if the specified lambda returns false.
+            Validation will succeed if the specified lambda returns true.
+            This overload accepts the object being validated in addition to the property being validated.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="predicate">A lambda expression specifying the predicate</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.LessThan``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},``1)">
+            <summary>
+            Defines a 'less than' validator on the current rule builder.
+            The validation will succeed if the property value is less than the specified value.
+            The validation will fail if the property value is greater than or equal to the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="valueToCompare">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.LessThan``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},``1)">
+            <summary>
+            Defines a 'less than' validator on the current rule builder.
+            The validation will succeed if the property value is less than the specified value.
+            The validation will fail if the property value is greater than or equal to the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="valueToCompare">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.LessThanOrEqualTo``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},``1)">
+            <summary>
+            Defines a 'less than or equal' validator on the current rule builder.
+            The validation will succeed if the property value is less than or equal to the specified value.
+            The validation will fail if the property value is greater than the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="valueToCompare">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.LessThanOrEqualTo``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},``1)">
+            <summary>
+            Defines a 'less than or equal' validator on the current rule builder.
+            The validation will succeed if the property value is less than or equal to the specified value.
+            The validation will fail if the property value is greater than the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="valueToCompare">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.GreaterThan``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},``1)">
+            <summary>
+            Defines a 'greater than' validator on the current rule builder.
+            The validation will succeed if the property value is greater than the specified value.
+            The validation will fail if the property value is less than or equal to the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="valueToCompare">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.GreaterThan``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},``1)">
+            <summary>
+            Defines a 'greater than' validator on the current rule builder.
+            The validation will succeed if the property value is greater than the specified value.
+            The validation will fail if the property value is less than or equal to the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="valueToCompare">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.GreaterThanOrEqualTo``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},``1)">
+            <summary>
+            Defines a 'greater than or equal' validator on the current rule builder.
+            The validation will succeed if the property value is greater than or equal the specified value.
+            The validation will fail if the property value is less than the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="valueToCompare">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.GreaterThanOrEqualTo``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},``1)">
+            <summary>
+            Defines a 'greater than or equal' validator on the current rule builder.
+            The validation will succeed if the property value is greater than or equal the specified value.
+            The validation will fail if the property value is less than the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="valueToCompare">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.LessThan``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Defines a 'less than' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is less than the specified value.
+            The validation will fail if the property value is greater than or equal to the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">A lambda that should return the value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.LessThan``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{``1}}})">
+            <summary>
+            Defines a 'less than' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is less than the specified value.
+            The validation will fail if the property value is greater than or equal to the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">A lambda that should return the value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.LessThan``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Defines a 'less than' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is less than the specified value.
+            The validation will fail if the property value is greater than or equal to the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">A lambda that should return the value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.LessThan``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{``1}}})">
+            <summary>
+            Defines a 'less than' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is less than the specified value.
+            The validation will fail if the property value is greater than or equal to the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">A lambda that should return the value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.LessThanOrEqualTo``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Defines a 'less than or equal' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is less than or equal to the specified value.
+            The validation will fail if the property value is greater than the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.LessThanOrEqualTo``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{``1}}})">
+            <summary>
+            Defines a 'less than or equal' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is less than or equal to the specified value.
+            The validation will fail if the property value is greater than the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.LessThanOrEqualTo``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Defines a 'less than or equal' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is less than or equal to the specified value.
+            The validation will fail if the property value is greater than the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.LessThanOrEqualTo``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{``1}}})">
+            <summary>
+            Defines a 'less than or equal' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is less than or equal to the specified value.
+            The validation will fail if the property value is greater than the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.GreaterThan``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Defines a 'less than' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is greater than the specified value.
+            The validation will fail if the property value is less than or equal to the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.GreaterThan``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{``1}}})">
+            <summary>
+            Defines a 'less than' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is greater than the specified value.
+            The validation will fail if the property value is less than or equal to the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.GreaterThan``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Defines a 'less than' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is greater than the specified value.
+            The validation will fail if the property value is less than or equal to the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.GreaterThan``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{``1}}})">
+            <summary>
+            Defines a 'less than' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is greater than the specified value.
+            The validation will fail if the property value is less than or equal to the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="expression">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.GreaterThanOrEqualTo``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Defines a 'greater than' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is greater than or equal the specified value.
+            The validation will fail if the property value is less than the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="valueToCompare">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.GreaterThanOrEqualTo``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{``1}}})">
+            <summary>
+            Defines a 'greater than' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is greater than or equal the specified value.
+            The validation will fail if the property value is less than the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="valueToCompare">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.GreaterThanOrEqualTo``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{``1}}})">
+            <summary>
+            Defines a 'greater than or equal to' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is greater than or equal the specified value.
+            The validation will fail if the property value is less than the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="valueToCompare">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.GreaterThanOrEqualTo``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Defines a 'greater than or equal to' validator on the current rule builder using a lambda expression.
+            The validation will succeed if the property value is greater than or equal the specified value.
+            The validation will fail if the property value is less than the specified value.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="valueToCompare">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Validate``1(Gostar.Common.Validation.IValidator{``0},``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}}[])">
+            <summary>
+            Validates certain properties of the specified instance.
+            </summary>
+            <param name="validator">The current validator</param>
+            <param name="instance">The object to validate</param>
+            <param name="propertyExpressions">Expressions to specify the properties to validate</param>
+            <returns>A ValidationResult object containing any validation failures</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Validate``1(Gostar.Common.Validation.IValidator{``0},``0,System.String[])">
+            <summary>
+            Validates certain properties of the specified instance.
+            </summary>
+            <param name="validator"></param>
+            <param name="instance">The object to validate</param>
+            <param name="properties">The names of the properties to validate.</param>
+            <returns>A ValidationResult object containing any validation failures.</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Validate``1(Gostar.Common.Validation.IValidator{``0},``0,Gostar.Common.Validation.Internal.IValidatorSelector,System.String)">
+            <summary>
+            Validates an object using either a custom validator selector or a ruleset.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="validator"></param>
+            <param name="instance"></param>
+            <param name="selector"></param>
+            <param name="ruleSet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.ValidateAsync``1(Gostar.Common.Validation.IValidator{``0},``0,System.Threading.CancellationToken,System.Linq.Expressions.Expression{System.Func{``0,System.Object}}[])">
+            <summary>
+            Validates certain properties of the specified instance asynchronously.
+            </summary>
+            <param name="validator">The current validator</param>
+            <param name="instance">The object to validate</param>
+            <param name="cancellationToken"></param>
+            <param name="propertyExpressions">Expressions to specify the properties to validate</param>
+            <returns>A ValidationResult object containing any validation failures</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.ValidateAsync``1(Gostar.Common.Validation.IValidator{``0},``0,System.Threading.CancellationToken,System.String[])">
+            <summary>
+            Validates certain properties of the specified instance asynchronously.
+            </summary>
+            <param name="validator"></param>
+            <param name="instance">The object to validate</param>
+            <param name="cancellationToken"></param>
+            <param name="properties">The names of the properties to validate.</param>
+            <returns>A ValidationResult object containing any validation failures.</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.ValidateAsync``1(Gostar.Common.Validation.IValidator{``0},``0,System.Threading.CancellationToken,Gostar.Common.Validation.Internal.IValidatorSelector,System.String)">
+            <summary>
+            Validates an object asynchronously using a custom validator selector or a ruleset
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="validator"></param>
+            <param name="instance"></param>
+            <param name="cancellationToken"></param>
+            <param name="selector"></param>
+            <param name="ruleSet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.ValidateAndThrow``1(Gostar.Common.Validation.IValidator{``0},``0,System.String)">
+            <summary>
+            Performs validation and then throws an exception if validation fails.
+            </summary>
+            <param name="validator">The validator this method is extending.</param>
+            <param name="instance">The instance of the type we are validating.</param>
+            <param name="ruleSet">Optional: a ruleset when need to validate against.</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.ValidateAndThrowAsync``1(Gostar.Common.Validation.IValidator{``0},``0,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Performs validation asynchronously and then throws an exception if validation fails.
+            </summary>
+            <param name="validator">The validator this method is extending.</param>
+            <param name="instance">The instance of the type we are validating.</param>
+            <param name="cancellationToken"></param>
+            <param name="ruleSet">Optional: a ruleset when need to validate against.</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.InclusiveBetween``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},``1,``1)">
+            <summary>
+            Defines an 'inclusive between' validator on the current rule builder, but only for properties of types that implement IComparable.
+            Validation will fail if the value of the property is outside of the specified range. The range is inclusive.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="from">The lowest allowed value</param>
+            <param name="to">The highest allowed value</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.InclusiveBetween``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},``1,``1)">
+            <summary>
+            Defines an 'inclusive between' validator on the current rule builder, but only for properties of types that implement IComparable.
+            Validation will fail if the value of the property is outside of the specified range. The range is inclusive.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="from">The lowest allowed value</param>
+            <param name="to">The highest allowed value</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.ExclusiveBetween``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},``1,``1)">
+            <summary>
+            Defines an 'exclusive between' validator on the current rule builder, but only for properties of types that implement IComparable.
+            Validation will fail if the value of the property is outside of the specified range. The range is exclusive.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="from">The lowest allowed value</param>
+            <param name="to">The highest allowed value</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.ExclusiveBetween``2(Gostar.Common.Validation.IRuleBuilder{``0,System.Nullable{``1}},``1,``1)">
+            <summary>
+            Defines an 'exclusive between' validator on the current rule builder, but only for properties of types that implement IComparable.
+            Validation will fail if the value of the property is outside of the specified range. The range is exclusive.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="from">The lowest allowed value</param>
+            <param name="to">The highest allowed value</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.CreditCard``1(Gostar.Common.Validation.IRuleBuilder{``0,System.String})">
+            <summary>
+            Defines a credit card validator for the current rule builder that ensures that the specified string is a valid credit card number.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.IsInEnum``2(Gostar.Common.Validation.IRuleBuilder{``0,``1})">
+            <summary>
+            Defines a enum value validator on the current rule builder that ensures that the specific value is a valid enum value.
+            </summary>
+            <typeparam name="T">Type of Enum being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.ScalePrecision``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Defines a scale precision validator on the current rule builder that ensures that the specific value has a certain scale and precision
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="ruleBuilder">The rule builder on which the validator should be defined</param>
+            <param name="scale">Allowed scale of the value</param>
+            <param name="precision">Allowed precision of the value</param>
+            <param name="ignoreTrailingZeros">Whether the validator will ignore trailing zeros.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.Custom``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Action{``1,Gostar.Common.Validation.Validators.CustomContext})">
+            <summary>
+            Defines a custom validation rule
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <param name="ruleBuilder"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorExtensions.CustomAsync``2(Gostar.Common.Validation.IRuleBuilder{``0,``1},System.Func{``1,Gostar.Common.Validation.Validators.CustomContext,System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+            <summary>
+            Defines a custom validation rule
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <param name="ruleBuilder"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.DefaultValidatorOptions">
+            <summary>
+            Default options that can be used to configure a validator.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.Cascade``2(Gostar.Common.Validation.IRuleBuilderInitial{``0,``1},Gostar.Common.Validation.CascadeMode)">
+            <summary>
+            Specifies the cascade mode for failures.
+            If set to 'Stop' then execution of the rule will stop once the first validator in the chain fails.
+            If set to 'Continue' then all validators in the chain will execute regardless of failures.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.Cascade``2(Gostar.Common.Validation.IRuleBuilderInitialCollection{``0,``1},Gostar.Common.Validation.CascadeMode)">
+            <summary>
+            Specifies the cascade mode for failures.
+            If set to 'Stop' then execution of the rule will stop once the first validator in the chain fails.
+            If set to 'Continue' then all validators in the chain will execute regardless of failures.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.Transform``2(Gostar.Common.Validation.IRuleBuilderInitial{``0,``1},System.Func{``1,``1})">
+            <summary>
+            Transforms the property value before validation occurs. The transformed value must be of the same type as the input value.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <param name="ruleBuilder"></param>
+            <param name="transformationFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.Transform``2(Gostar.Common.Validation.IRuleBuilderInitialCollection{``0,``1},System.Func{``1,``1})">
+            <summary>
+            Transforms the property value before validation occurs. The transformed value must be of the same type as the input value.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <param name="ruleBuilder"></param>
+            <param name="transformationFunc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.OnAnyFailure``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Action{``0})">
+            <summary>
+            Specifies a custom action to be invoked when the validator fails.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <param name="rule"></param>
+            <param name="onFailure"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.WithMessage``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.String)">
+            <summary>
+            Specifies a custom error message to use when validation fails. Only applies to the rule that directly precedes it.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="errorMessage">The error message to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.WithMessage``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Func{``0,System.String})">
+            <summary>
+            Specifies a custom error message to use when validation fails. Only applies to the rule that directly precedes it.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="messageProvider">Delegate that will be invoked to retrieve the localized message. </param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.WithMessage``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Func{``0,``1,System.String})">
+            <summary>
+            Specifies a custom error message to use when validation fails. Only applies to the rule that directly precedes it.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="messageProvider">Delegate that will be invoked.Uses_localized_name to retrieve the localized message. </param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.WithErrorCode``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.String)">
+            <summary>
+            Specifies a custom error code to use if validation fails.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="errorCode">The error code to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.WithLocalizedMessage``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Type,System.String)">
+            <summary>
+            Specifies a custom error message resource to use when validation fails.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="resourceType">Resource type representing a resx file</param>
+            <param name="resourceName">Name of resource</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.When``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Func{``0,System.Boolean},Gostar.Common.Validation.ApplyConditionTo)">
+            <summary>
+            Specifies a condition limiting when the validator should run.
+            The validator will only be executed if the result of the lambda returns true.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="predicate">A lambda expression that specifies a condition for when the validator should run</param>
+            <param name="applyConditionTo">Whether the condition should be applied to the current rule or all rules in the chain</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.Unless``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Func{``0,System.Boolean},Gostar.Common.Validation.ApplyConditionTo)">
+            <summary>
+            Specifies a condition limiting when the validator should not run.
+            The validator will only be executed if the result of the lambda returns false.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="predicate">A lambda expression that specifies a condition for when the validator should not run</param>
+            <param name="applyConditionTo">Whether the condition should be applied to the current rule or all rules in the chain</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.WhenAsync``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Func{``0,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},Gostar.Common.Validation.ApplyConditionTo)">
+            <summary>
+            Specifies an asynchronous condition limiting when the validator should run.
+            The validator will only be executed if the result of the lambda returns true.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="predicate">A lambda expression that specifies a condition for when the validator should run</param>
+            <param name="applyConditionTo">Whether the condition should be applied to the current rule or all rules in the chain</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.UnlessAsync``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Func{``0,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},Gostar.Common.Validation.ApplyConditionTo)">
+            <summary>
+            Specifies an asynchronous condition limiting when the validator should not run.
+            The validator will only be executed if the result of the lambda returns false.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="predicate">A lambda expression that specifies a condition for when the validator should not run</param>
+            <param name="applyConditionTo">Whether the condition should be applied to the current rule or all rules in the chain</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.Where``2(Gostar.Common.Validation.IRuleBuilderInitialCollection{``0,``1},System.Func{``1,System.Boolean})">
+            <summary>
+            Applies a filter to a collection property.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="predicate">The condition</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.DependentRules``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Action)">
+            <summary>
+            Triggers an action when the rule passes. Typically used to configure dependent rules. This applies to all preceding rules in the chain.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="action">An action to be invoked if the rule is valid</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.WithName``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.String)">
+            <summary>
+            Specifies a custom property name to use within the error message.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="overridePropertyName">The property name to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.WithName``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Func{``0,System.String})">
+            <summary>
+            Specifies a custom property name to use within the error message.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="nameProvider">Func used to retrieve the property's display name</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.OverridePropertyName``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.String)">
+            <summary>
+            Overrides the name of the property associated with this rule.
+            NOTE: This is a considered to be an advanced feature. Most of the time that you use this, you actually meant to use WithName.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="propertyName">The property name to use</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.OverridePropertyName``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Overrides the name of the property associated with this rule.
+            NOTE: This is a considered to be an advanced feature. Most of the time that you use this, you actually meant to use WithName.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="expr">An expression referencing another property</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.WithState``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Func{``0,System.Object})">
+            <summary>
+            Specifies custom state that should be stored alongside the validation message when validation fails for this rule.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <param name="rule"></param>
+            <param name="stateProvider"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.WithState``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Func{``0,``1,System.Object})">
+            <summary>
+            Specifies custom state that should be stored alongside the validation message when validation fails for this rule.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <param name="rule"></param>
+            <param name="stateProvider"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.WithSeverity``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},Gostar.Common.Validation.Severity)">
+            <summary>
+             Specifies custom severity that should be stored alongside the validation message when validation fails for this rule.
+             </summary>
+             <typeparam name="T"></typeparam>
+             <typeparam name="TProperty"></typeparam>
+             <param name="rule"></param>
+             <param name="severity"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.OnFailure``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Action{``0})">
+            <summary>
+            Specifies custom method that will be called when specific rule fails
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <param name="rule"></param>
+            <param name="onFailure"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.OnFailure``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Action{``0,Gostar.Common.Validation.Validators.PropertyValidatorContext})">
+            <summary>
+            Specifies custom method that will be called when specific rule fails
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <param name="rule"></param>
+            <param name="onFailure"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.OnFailure``2(Gostar.Common.Validation.IRuleBuilderOptions{``0,``1},System.Action{``0,Gostar.Common.Validation.Validators.PropertyValidatorContext,System.String})">
+            <summary>
+            Specifies custom method that will be called when specific rule fails
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <param name="rule"></param>
+            <param name="onFailure"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.OverrideIndexer``2(Gostar.Common.Validation.IRuleBuilderInitialCollection{``0,``1},System.Func{``0,System.Collections.Generic.IEnumerable{``1},``1,System.Int32,System.String})">
+            <summary>
+            Allows the generated indexer to be overridden for collection rules.
+            </summary>
+            <param name="rule">The current rule</param>
+            <param name="callback">The callback. Receives the model, the collection, the current element and the current index as parameters. Should return a string representation of the indexer. The default is "[" + index + "]"</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.DefaultValidatorOptions.GetStringForValidator``1(Gostar.Common.Validation.Resources.ILanguageManager)">
+            <summary>
+            Gets the default message for a property validator
+            </summary>
+            <typeparam name="T">The validator type</typeparam>
+            <returns>The translated string</returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.CascadeMode">
+            <summary>
+            Specifies how rules should cascade when one fails.
+            </summary>
+        </member>
+        <member name="F:Gostar.Common.Validation.CascadeMode.Continue">
+            <summary>
+            When a rule fails, execution continues to the next rule.
+            </summary>
+        </member>
+        <member name="F:Gostar.Common.Validation.CascadeMode.StopOnFirstFailure">
+            <summary>
+            When a rule fails, validation is stopped and all other rules in the chain will not be executed.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.ApplyConditionTo">
+            <summary>
+            Specifies where a When/Unless condition should be applied
+            </summary>
+        </member>
+        <member name="F:Gostar.Common.Validation.ApplyConditionTo.AllValidators">
+            <summary>
+            Applies the condition to all validators declared so far in the chain.
+            </summary>
+        </member>
+        <member name="F:Gostar.Common.Validation.ApplyConditionTo.CurrentValidator">
+            <summary>
+            Applies the condition to the current validator only.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Severity">
+            <summary>
+            Specifies the severity of a rule. 
+            </summary>
+        </member>
+        <member name="F:Gostar.Common.Validation.Severity.Error">
+            <summary>
+            Error
+            </summary>
+        </member>
+        <member name="F:Gostar.Common.Validation.Severity.Warning">
+            <summary>
+            Warning
+            </summary>
+        </member>
+        <member name="F:Gostar.Common.Validation.Severity.Info">
+            <summary>
+            Info
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.ErrorLanguageManager">
+            <summary>
+            All Error Message 
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.ErrorLanguageManager.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.InlineValidator`1">
+            <summary>
+            Validator implementation that allows rules to be defined without inheriting from AbstractValidator.
+            </summary>
+            <example>
+            <code>
+            public class Customer {
+              public int Id { get; set; }
+              public string Name { get; set; }
+            
+              public static readonly InlineValidator&lt;Customer&gt; Validator = new InlineValidator&lt;Customer&gt; {
+                v =&gt; v.RuleFor(x =&gt; x.Name).NotNull(),
+                v =&gt; v.RuleFor(x =&gt; x.Id).NotEqual(0),
+              }
+            }
+            </code>
+            </example>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Gostar.Common.Validation.InlineValidator`1.Add``1(System.Func{Gostar.Common.Validation.InlineValidator{`0},Gostar.Common.Validation.IRuleBuilderOptions{`0,``0}})">
+            <summary>
+            Allows configuration of the validator.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.AccessorCache`1">
+            <summary>
+            Member accessor cache.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.AccessorCache`1.GetCachedAccessor``1(System.Reflection.MemberInfo,System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean)">
+            <summary>
+            Gets an accessor func based on an expression
+            </summary>
+            <typeparam name="TProperty"></typeparam>
+            <param name="member">The member represented by the expression</param>
+            <param name="expression"></param>
+            <param name="bypassCache"></param>
+            <returns>Accessor func</returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.CollectionPropertyRule`1">
+            <summary>
+            Rule definition for collection properties
+            </summary>
+            <typeparam name="TProperty"></typeparam>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.CollectionPropertyRule`1.#ctor(System.Reflection.MemberInfo,System.Func{System.Object,System.Object},System.Linq.Expressions.LambdaExpression,System.Func{Gostar.Common.Validation.CascadeMode},System.Type,System.Type)">
+            <summary>
+            Initializes new instance of the CollectionPropertyRule class
+            </summary>
+            <param name="member"></param>
+            <param name="propertyFunc"></param>
+            <param name="expression"></param>
+            <param name="cascadeModeThunk"></param>
+            <param name="typeToValidate"></param>
+            <param name="containerType"></param>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.CollectionPropertyRule`1.Filter">
+            <summary>
+            Filter that should include/exclude items in the collection.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.CollectionPropertyRule`1.IndexBuilder">
+            <summary>
+            Constructs the indexer in the property name associated with the error message.
+            By default this is "[" + index + "]"
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.CollectionPropertyRule`1.Create``1(System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.IEnumerable{`0}}},System.Func{Gostar.Common.Validation.CascadeMode})">
+            <summary>
+            Creates a new property rule from a lambda expression.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.CollectionPropertyRule`1.InvokePropertyValidatorAsync(Gostar.Common.Validation.ValidationContext,Gostar.Common.Validation.Validators.IPropertyValidator,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Invokes the validator asynchronously
+            </summary>
+            <param name="context"></param>
+            <param name="validator"></param>
+            <param name="propertyName"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.CollectionPropertyRule`1.InvokePropertyValidator(Gostar.Common.Validation.ValidationContext,Gostar.Common.Validation.Validators.IPropertyValidator,System.String)">
+            <summary>
+            Invokes the validator
+            </summary>
+            <param name="context"></param>
+            <param name="validator"></param>
+            <param name="propertyName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.Comparer">
+            <summary>
+            Custom logic for performing comparisons
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.Comparer.TryCompare(System.IComparable,System.IComparable,System.Int32@)">
+            <summary>
+            Tries to compare the two objects.
+            </summary>
+            <param name="valueToCompare"></param>
+            <param name="result">The resulting comparison value.</param>
+            <param name="value"></param>
+            <returns>True if all went well, otherwise False.</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.Comparer.Compare(System.IComparable,System.IComparable,System.Int32@)">
+            <summary>
+            Tries to do a proper comparison but may fail.
+            First it tries the default comparison, if this fails, it will see 
+            if the values are fractions. If they are, then it does a double 
+            comparison, otherwise it does a long comparison.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.Comparer.GetComparisonResult(System.IComparable,System.IComparable)">
+            <summary>
+            Tries to compare the two objects, but will throw an exception if it fails.
+            </summary>
+            <returns>True on success, otherwise False.</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.Comparer.GetEqualsResult(System.IComparable,System.IComparable)">
+            <summary>
+            Tries to compare the two objects, but will throw an exception if it fails.
+            </summary>
+            <returns>True on success, otherwise False.</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.ConditionBuilder`1.When(System.Func{`0,System.Boolean},System.Action)">
+            <summary>
+            Defines a condition that applies to several rules
+            </summary>
+            <param name="predicate">The condition that should apply to multiple rules</param>
+            <param name="action">Action that encapsulates the rules.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.ConditionBuilder`1.Unless(System.Func{`0,System.Boolean},System.Action)">
+            <summary>
+            Defines an inverse condition that applies to several rules
+            </summary>
+            <param name="predicate">The condition that should be applied to multiple rules</param>
+            <param name="action">Action that encapsulates the rules</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.AsyncConditionBuilder`1.WhenAsync(System.Func{`0,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Action)">
+            <summary>
+            Defines an asynchronous condition that applies to several rules
+            </summary>
+            <param name="predicate">The asynchronous condition that should apply to multiple rules</param>
+            <param name="action">Action that encapsulates the rules.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.AsyncConditionBuilder`1.UnlessAsync(System.Func{`0,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},System.Action)">
+            <summary>
+            Defines an inverse asynchronous condition that applies to several rules
+            </summary>
+            <param name="predicate">The asynchronous condition that should be applied to multiple rules</param>
+            <param name="action">Action that encapsulates the rules</param>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.DefaultValidatorSelector">
+            <summary>
+            Default validator selector that will execute all rules that do not belong to a RuleSet.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.DefaultValidatorSelector.CanExecute(Gostar.Common.Validation.IValidationRule,System.String,Gostar.Common.Validation.ValidationContext)">
+            <summary>
+            Determines whether or not a rule should execute.
+            </summary>
+            <param name="rule">The rule</param>
+            <param name="propertyPath">Property path (eg Customer.Address.Line1)</param>
+            <param name="context">Contextual information</param>
+            <returns>Whether or not the validator can execute.</returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.DisplayNameCache">
+            <summary>
+            Display name cache.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.Extensions">
+            <summary>
+            Useful extensions
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.Extensions.IsParameterExpression(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Checks if the expression is a parameter expression
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.Extensions.GetMember(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Gets a MemberInfo from a member expression.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.Extensions.GetMember``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Gets a MemberInfo from a member expression.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.Extensions.SplitPascalCase(System.String)">
+            <summary>
+            Splits pascal case, so "FooBar" would become "Foo Bar"
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.Extensions.GetConstantExpressionFromConstant``2(``1)">
+            <summary>
+            Helper method to construct a constant expression from a constant.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+            <param name="valueToCompare">The value being compared</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.Extensions.IsAsync(Gostar.Common.Validation.ValidationContext)">
+            <summary>
+            Checks whether this is an asynchronous validation run.
+            </summary>
+            <param name="ctx"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.IConfigurable`2">
+            <summary>
+            Represents an object that is configurable.
+            </summary>
+            <typeparam name="TConfiguration">Type of object being configured</typeparam>
+            <typeparam name="TNext">Return type</typeparam>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.IConfigurable`2.Configure(System.Action{`0})">
+            <summary>
+            Configures the current object.
+            </summary>
+            <param name="configurator">Action to configure the object.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.IncludeRule">
+            <summary>
+            Include rule
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.IncludeRule.#ctor(Gostar.Common.Validation.IValidator,System.Func{Gostar.Common.Validation.CascadeMode},System.Type,System.Type)">
+            <summary>
+            Creates a new IncludeRule
+            </summary>
+            <param name="validator"></param>
+            <param name="cascadeModeThunk"></param>
+            <param name="typeToValidate"></param>
+            <param name="containerType"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.IncludeRule.#ctor(System.Func{Gostar.Common.Validation.IValidationContext,Gostar.Common.Validation.IValidator},System.Func{Gostar.Common.Validation.CascadeMode},System.Type,System.Type,System.Type)">
+            <summary>
+            Creates a new IncludeRule
+            </summary>
+            <param name="func"></param>
+            <param name="cascadeModeThunk"></param>
+            <param name="typeToValidate"></param>
+            <param name="containerType"></param>
+            <param name="validatorType"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.IncludeRule.Create``1(Gostar.Common.Validation.IValidator,System.Func{Gostar.Common.Validation.CascadeMode})">
+            <summary>
+            Creates a new include rule from an existing validator
+            </summary>
+            <param name="validator"></param>
+            <param name="cascadeModeThunk"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.IncludeRule.Create``2(System.Func{``0,``1},System.Func{Gostar.Common.Validation.CascadeMode})">
+            <summary>
+            Creates a new include rule from an existing validator
+            </summary>
+            <param name="func"></param>
+            <param name="cascadeModeThunk"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValidator"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.IValidatorSelector">
+            <summary>
+            Determines whether or not a rule should execute.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.IValidatorSelector.CanExecute(Gostar.Common.Validation.IValidationRule,System.String,Gostar.Common.Validation.ValidationContext)">
+            <summary>
+            Determines whether or not a rule should execute.
+            </summary>
+            <param name="rule">The rule</param>
+            <param name="propertyPath">Property path (eg Customer.Address.Line1)</param>
+            <param name="context">Contextual information</param>
+            <returns>Whether or not the validator can execute.</returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.MemberNameValidatorSelector">
+            <summary>
+            Selects validators that are associated with a particular property.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.MemberNameValidatorSelector.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new instance of MemberNameValidatorSelector.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.MemberNameValidatorSelector.MemberNames">
+            <summary>
+            Member names that are validated.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.MemberNameValidatorSelector.CanExecute(Gostar.Common.Validation.IValidationRule,System.String,Gostar.Common.Validation.ValidationContext)">
+            <summary>
+            Determines whether or not a rule should execute.
+            </summary>
+            <param name="rule">The rule</param>
+            <param name="propertyPath">Property path (eg Customer.Address.Line1)</param>
+            <param name="context">Contextual information</param>
+            <returns>Whether or not the validator can execute.</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.MemberNameValidatorSelector.FromExpressions``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}}[])">
+            <summary>
+             Creates a MemberNameValidatorSelector from a collection of expressions.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.MemberNameValidatorSelector.MemberNamesFromExpressions``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}}[])">
+            <summary>
+            Gets member names from expressions
+            </summary>
+            <param name="propertyExpressions"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.MessageFormatter">
+            <summary>
+            Assists in the construction of validation messages.
+            </summary>
+        </member>
+        <member name="F:Gostar.Common.Validation.Internal.MessageFormatter.PropertyName">
+            <summary>
+            Default Property Name placeholder.
+            </summary>
+        </member>
+        <member name="F:Gostar.Common.Validation.Internal.MessageFormatter.PropertyValue">
+            <summary>
+            Default Property Value placeholder.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.MessageFormatter.AppendArgument(System.String,System.Object)">
+            <summary>
+            Adds a value for a validation message placeholder.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.MessageFormatter.AppendPropertyName(System.String)">
+            <summary>
+            Appends a property name to the message.
+            </summary>
+            <param name="name">The name of the property</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.MessageFormatter.AppendPropertyValue(System.Object)">
+            <summary>
+            Appends a property value to the message.
+            </summary>
+            <param name="value">The value of the property</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.MessageFormatter.AppendAdditionalArguments(System.Object[])">
+            <summary>
+            Adds additional arguments to the message for use with standard string placeholders.
+            </summary>
+            <param name="additionalArgs">Additional arguments</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.MessageFormatter.BuildMessage(System.String)">
+            <summary>
+            Constructs the final message from the specified template. 
+            </summary>
+            <param name="messageTemplate">Message template</param>
+            <returns>The message with placeholders replaced with their appropriate values</returns>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.MessageFormatter.AdditionalArguments">
+            <summary>
+            Additional arguments to use
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.MessageFormatter.PlaceholderValues">
+            <summary>
+            Additional placeholder values
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.PropertyChain">
+            <summary>
+            Represents a chain of properties
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyChain.#ctor">
+            <summary>
+            Creates a new PropertyChain.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyChain.#ctor(Gostar.Common.Validation.Internal.PropertyChain)">
+            <summary>
+            Creates a new PropertyChain based on another.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyChain.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new PropertyChain
+            </summary>
+            <param name="memberNames"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyChain.FromExpression(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Creates a PropertyChain from a lambda expression
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyChain.Add(System.Reflection.MemberInfo)">
+            <summary>
+            Adds a MemberInfo instance to the chain
+            </summary>
+            <param name="member">Member to add</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyChain.Add(System.String)">
+            <summary>
+            Adds a property name to the chain
+            </summary>
+            <param name="propertyName">Name of the property to add</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyChain.AddIndexer(System.Object,System.Boolean)">
+            <summary>
+            Adds an indexer to the property chain. For example, if the following chain has been constructed:
+            Parent.Child
+            then calling AddIndexer(0) would convert this to:
+            Parent.Child[0]
+            </summary>
+            <param name="indexer"></param>
+            <param name="surroundWithBrackets">Whether square brackets should be applied before and after the indexer. Default true.</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyChain.ToString">
+            <summary>
+            Creates a string representation of a property chain.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyChain.IsChildChainOf(Gostar.Common.Validation.Internal.PropertyChain)">
+            <summary>
+            Checks if the current chain is the child of another chain.
+            For example, if chain1 were for "Parent.Child" and chain2 were for "Parent.Child.GrandChild" then
+            chain2.IsChildChainOf(chain1) would be true.
+            </summary>
+            <param name="parentChain">The parent chain to compare</param>
+            <returns>True if the current chain is the child of the other chain, otherwise false</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyChain.BuildPropertyName(System.String)">
+            <summary>
+            Builds a property path.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyChain.Count">
+            <summary>
+            Number of member names in the chain
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.PropertyRule">
+            <summary>
+            Defines a rule associated with a property.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.Condition">
+            <summary>
+            Condition for all validators in this rule.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.AsyncCondition">
+            <summary>
+            Asynchronous condition for all validators in this rule.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.Member">
+            <summary>
+            Property associated with this rule.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.PropertyFunc">
+            <summary>
+            Function that can be invoked to retrieve the value of the property.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.Expression">
+            <summary>
+            Expression that was used to create the rule.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.DisplayName">
+            <summary>
+            String source that can be used to retrieve the display name (if null, falls back to the property name)
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.RuleSets">
+            <summary>
+            Rule set that this rule belongs to (if specified)
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.OnFailure">
+            <summary>
+            Function that will be invoked if any of the validators associated with this rule fail.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.CurrentValidator">
+            <summary>
+            The current validator being configured by this rule.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.TypeToValidate">
+            <summary>
+            Type of the property being validated
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.CascadeMode">
+            <summary>
+            Cascade mode for this rule.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.Validators">
+            <summary>
+            Validators associated with this rule.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.#ctor(System.Reflection.MemberInfo,System.Func{System.Object,System.Object},System.Linq.Expressions.LambdaExpression,System.Func{Gostar.Common.Validation.CascadeMode},System.Type,System.Type)">
+            <summary>
+            Creates a new property rule.
+            </summary>
+            <param name="member">Property</param>
+            <param name="propertyFunc">Function to get the property value</param>
+            <param name="expression">Lambda expression used to create the rule</param>
+            <param name="cascadeModeThunk">Function to get the cascade mode.</param>
+            <param name="typeToValidate">Type to validate</param>
+            <param name="containerType">Container type that owns the property</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.Create``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Creates a new property rule from a lambda expression.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.Create``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Func{Gostar.Common.Validation.CascadeMode},System.Boolean)">
+            <summary>
+            Creates a new property rule from a lambda expression.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.AddValidator(Gostar.Common.Validation.Validators.IPropertyValidator)">
+            <summary>
+            Adds a validator to the rule.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.ReplaceValidator(Gostar.Common.Validation.Validators.IPropertyValidator,Gostar.Common.Validation.Validators.IPropertyValidator)">
+            <summary>
+            Replaces a validator in this rule. Used to wrap validators.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.RemoveValidator(Gostar.Common.Validation.Validators.IPropertyValidator)">
+            <summary>
+            Remove a validator in this rule.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.ClearValidators">
+            <summary>
+            Clear all validators from this rule.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.PropertyName">
+            <summary>
+            Returns the property name for the property being validated.
+            Returns null if it is not a property being validated (eg a method call)
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.MessageBuilder">
+            <summary>
+            Allows custom creation of an error message
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.PropertyRule.DependentRules">
+            <summary>
+            Dependent rules
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.GetDisplayName">
+            <summary>
+            Display name for the property.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.GetDisplayName(Gostar.Common.Validation.IValidationContext)">
+            <summary>
+            Display name for the property.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.Validate(Gostar.Common.Validation.ValidationContext)">
+            <summary>
+            Performs validation using a validation context and returns a collection of Validation Failures.
+            </summary>
+            <param name="context">Validation Context</param>
+            <returns>A collection of validation failures</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.ValidateAsync(Gostar.Common.Validation.ValidationContext,System.Threading.CancellationToken)">
+            <summary>
+            Performs asynchronous validation using a validation context and returns a collection of Validation Failures.
+            </summary>
+            <param name="context">Validation Context</param>
+            <param name="cancellation"></param>
+            <returns>A collection of validation failures</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.InvokePropertyValidatorAsync(Gostar.Common.Validation.ValidationContext,Gostar.Common.Validation.Validators.IPropertyValidator,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Invokes the validator asynchronously
+            </summary>
+            <param name="context"></param>
+            <param name="validator"></param>
+            <param name="propertyName"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.InvokePropertyValidator(Gostar.Common.Validation.ValidationContext,Gostar.Common.Validation.Validators.IPropertyValidator,System.String)">
+            <summary>
+            Invokes a property validator using the specified validation context.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.ApplyCondition(System.Func{Gostar.Common.Validation.Validators.PropertyValidatorContext,System.Boolean},Gostar.Common.Validation.ApplyConditionTo)">
+            <summary>
+            Applies a condition to the rule
+            </summary>
+            <param name="predicate"></param>
+            <param name="applyConditionTo"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.PropertyRule.ApplyAsyncCondition(System.Func{Gostar.Common.Validation.Validators.PropertyValidatorContext,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},Gostar.Common.Validation.ApplyConditionTo)">
+            <summary>
+            Applies the condition to the rule asynchronously
+            </summary>
+            <param name="predicate"></param>
+            <param name="applyConditionTo"></param>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.RuleBuilder`2">
+            <summary>
+            Builds a validation rule and constructs a validator.
+            </summary>
+            <typeparam name="T">Type of object being validated</typeparam>
+            <typeparam name="TProperty">Type of property being validated</typeparam>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.RuleBuilder`2.Rule">
+            <summary>
+            The rule being created by this RuleBuilder.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.RuleBuilder`2.ParentValidator">
+            <summary>
+            Parent validator
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.RuleBuilder`2.#ctor(Gostar.Common.Validation.Internal.PropertyRule,Gostar.Common.Validation.IValidator{`0})">
+            <summary>
+            Creates a new instance of the <see cref="T:Gostar.Common.Validation.Internal.RuleBuilder`2">RuleBuilder</see> class.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.RuleBuilder`2.SetValidator(Gostar.Common.Validation.Validators.IPropertyValidator)">
+            <summary>
+            Sets the validator associated with the rule.
+            </summary>
+            <param name="validator">The validator to set</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.RuleBuilder`2.SetValidator(Gostar.Common.Validation.IValidator{`1},System.String[])">
+            <summary>
+            Sets the validator associated with the rule. Use with complex properties where an IValidator instance is already declared for the property type.
+            </summary>
+            <param name="validator">The validator to set</param>
+            <param name="ruleSets"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.RuleBuilder`2.SetValidator``1(System.Func{`0,``0},System.String[])">
+            <summary>
+            Sets the validator associated with the rule. Use with complex properties where an IValidator instance is already declared for the property type.
+            </summary>
+            <param name="validatorProvider">The validator provider to set</param>
+            <param name="ruleSet"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.RuleBuilder`2.SetValidator``1(System.Func{Gostar.Common.Validation.IValidationContext,``0})">
+            <summary>
+            Sets the validator associated with the rule. Use with complex properties where an IValidator instance is already declared for the property type.
+            </summary>
+            <param name="validatorProvider">The validator provider to set</param>
+        </member>
+        <member name="T:Gostar.Common.Validation.Internal.RulesetValidatorSelector">
+            <summary>
+            Selects validators that belong to the specified rulesets.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Internal.RulesetValidatorSelector.RuleSets">
+            <summary>
+            Rule sets
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.RulesetValidatorSelector.#ctor(System.String[])">
+            <summary>
+            Creates a new instance of the RulesetValidatorSelector.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.RulesetValidatorSelector.CanExecute(Gostar.Common.Validation.IValidationRule,System.String,Gostar.Common.Validation.ValidationContext)">
+            <summary>
+            Determines whether or not a rule should execute.
+            </summary>
+            <param name="rule">The rule</param>
+            <param name="propertyPath">Property path (eg Customer.Address.Line1)</param>
+            <param name="context">Contextual information</param>
+            <returns>Whether or not the validator can execute.</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Internal.RulesetValidatorSelector.IsIncludeRule(Gostar.Common.Validation.IValidationRule)">
+            <summary>
+            Checks if the rule is an IncludeRule
+            </summary>
+            <param name="rule"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.IValidationRule">
+            <summary>
+            Defines a rule associated with a property which can have multiple validators.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.IValidationRule.Validators">
+            <summary>
+            The validators that are grouped under this rule.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.IValidationRule.RuleSets">
+            <summary>
+            Name of the rule-set to which this rule belongs.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidationRule.Validate(Gostar.Common.Validation.ValidationContext)">
+            <summary>
+            Performs validation using a validation context and returns a collection of Validation Failures.
+            </summary>
+            <param name="context">Validation Context</param>
+            <returns>A collection of validation failures</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidationRule.ValidateAsync(Gostar.Common.Validation.ValidationContext,System.Threading.CancellationToken)">
+            <summary>
+            Performs validation using a validation context and returns a collection of Validation Failures asynchronously.
+            </summary>
+            <param name="context">Validation Context</param>
+            <param name="cancellation">Cancellation token</param>
+            <returns>A collection of validation failures</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidationRule.ApplyCondition(System.Func{Gostar.Common.Validation.Validators.PropertyValidatorContext,System.Boolean},Gostar.Common.Validation.ApplyConditionTo)">
+            <summary>
+            Applies a condition to the rule
+            </summary>
+            <param name="predicate"></param>
+            <param name="applyConditionTo"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidationRule.ApplyAsyncCondition(System.Func{Gostar.Common.Validation.Validators.PropertyValidatorContext,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}},Gostar.Common.Validation.ApplyConditionTo)">
+            <summary>
+            Applies a condition to the rule asynchronously
+            </summary>
+            <param name="predicate"></param>
+            <param name="applyConditionTo"></param>
+        </member>
+        <member name="T:Gostar.Common.Validation.IValidator`1">
+            <summary>
+            Defines a validator for a particular type.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidator`1.Validate(`0)">
+            <summary>
+            Validates the specified instance.
+            </summary>
+            <param name="instance">The instance to validate</param>
+            <returns>A ValidationResult object containing any validation failures.</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidator`1.ValidateAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            Validate the specified instance asynchronously
+            </summary>
+            <param name="instance">The instance to validate</param>
+            <param name="cancellation"></param>
+            <returns>A ValidationResult object containing any validation failures.</returns>
+        </member>
+        <member name="P:Gostar.Common.Validation.IValidator`1.CascadeMode">
+            <summary>
+            Sets the cascade mode for all rules within this validator.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.IValidator">
+            <summary>
+            Defines a validator for a particular type.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidator.Validate(System.Object)">
+            <summary>
+            Validates the specified instance
+            </summary>
+            <param name="instance"></param>
+            <returns>A ValidationResult containing any validation failures</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidator.ValidateAsync(System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Validates the specified instance asynchronously
+            </summary>
+            <param name="instance"></param>
+            <param name="cancellation">Cancellation token</param>
+            <returns>A ValidationResult containing any validation failures</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidator.Validate(Gostar.Common.Validation.ValidationContext)">
+            <summary>
+            Validates the specified instance.
+            </summary>
+            <param name="context">A ValidationContext</param>
+            <returns>A ValidationResult object contains any validation failures.</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidator.ValidateAsync(Gostar.Common.Validation.ValidationContext,System.Threading.CancellationToken)">
+            <summary>
+            Validates the specified instance asynchronously.
+            </summary>
+            <param name="context">A ValidationContext</param>
+            <param name="cancellation">Cancellation token</param>
+            <returns>A ValidationResult object contains any validation failures.</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidator.CreateDescriptor">
+            <summary>
+            Creates a hook to access various meta data properties
+            </summary>
+            <returns>A IValidatorDescriptor object which contains methods to access metadata</returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidator.CanValidateInstancesOfType(System.Type)">
+            <summary>
+            Checks to see whether the validator can validate objects of the specified type
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.IValidatorDescriptor">
+            <summary>
+            Provides metadata about a validator.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidatorDescriptor.GetName(System.String)">
+            <summary>
+            Gets the name display name for a property. 
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidatorDescriptor.GetMembersWithValidators">
+            <summary>
+            Gets a collection of validators grouped by property.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidatorDescriptor.GetValidatorsForMember(System.String)">
+            <summary>
+            Gets validators for a particular property.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidatorDescriptor.GetRulesForMember(System.String)">
+            <summary>
+            Gets rules for a property.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.IValidatorFactory">
+            <summary>
+            Gets validators for a particular type.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidatorFactory.GetValidator``1">
+            <summary>
+            Gets the validator for the specified type.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.IValidatorFactory.GetValidator(System.Type)">
+            <summary>
+            Gets the validator for the specified type.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Resources.ErrorCodeLanguageStringSource">
+            <summary>
+            Uses error code as the lookup for language manager, falling back to the default LanguageStringSource if not found.
+            Internal as the api may change.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Resources.ILanguageManager">
+            <summary>
+            Allows the default error message translations to be managed. 
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.ILanguageManager.Enabled">
+            <summary>
+            Whether localization is enabled.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.ILanguageManager.Culture">
+            <summary>
+            Default culture to use for all requests to the LanguageManager. If not specified, uses the current UI culture. 
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.ILanguageManager.GetString(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Gets a translated string based on its key. If the culture is specific and it isn't registered, we try the neutral culture instead.
+            If no matching culture is found  to be registered we use English.
+            </summary>
+            <param name="key">The key</param>
+            <param name="culture">The culture to translate into</param>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.Resources.IStringSource">
+            <summary>
+            Provides error message templates
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.IStringSource.GetString(Gostar.Common.Validation.IValidationContext)">
+            <summary>
+            Construct the error message template
+            </summary>
+            <returns>Error message template</returns>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.IStringSource.ResourceName">
+            <summary>
+            The name of the resource if localized.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.IStringSource.ResourceType">
+            <summary>
+            The type of the resource provider if localized.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Resources.Language">
+            <summary>
+            Base class for languages
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.Language.Name">
+            <summary>
+            Name of language (culture code)
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.Language.Translate(System.String,System.String)">
+            <summary>
+            Adds a translation
+            </summary>
+            <param name="key"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.Language.Translate``1(System.String)">
+            <summary>
+            Adds a translation for a type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="message"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.Language.GetTranslation(System.String)">
+            <summary>
+            Gets the localized version of a string with a specific key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.Resources.LanguageManager">
+            <summary>
+            Allows the default error message translations to be managed.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.LanguageManager.#ctor">
+            <summary>
+            Creates a new instance of the LanguageManager class.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.LanguageManager.Enabled">
+            <summary>
+            Whether localization is enabled.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.LanguageManager.Culture">
+            <summary>
+            Default culture to use for all requests to the LanguageManager. If not specified, uses the current UI culture.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.LanguageManager.GetSupportedLanguages">
+            <summary>
+            Provides a collection of all supported languages.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.LanguageManager.Clear">
+            <summary>
+            Removes all languages except the default.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.LanguageManager.GetString(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Gets a translated string based on its key. If the culture is specific and it isn't registered, we try the neutral culture instead.
+            If no matching culture is found  to be registered we use English.
+            </summary>
+            <param name="key">The key</param>
+            <param name="culture">The culture to translate into</param>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.Resources.LanguageStringSource">
+            <summary>
+            IStringSource implementation that uses the default language manager.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Resources.LazyStringSource">
+            <summary>
+            Lazily loads the string
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.LazyStringSource.#ctor(System.Func{Gostar.Common.Validation.IValidationContext,System.String})">
+            <summary>
+            Creates a LazyStringSource
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.LazyStringSource.GetString(Gostar.Common.Validation.IValidationContext)">
+            <summary>
+            Gets the value
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.LazyStringSource.ResourceName">
+            <summary>
+            Resource type
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.LazyStringSource.ResourceType">
+            <summary>
+            Resource name
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Resources.LocalizedStringSource">
+            <summary>
+            Represents a localized string.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.LocalizedStringSource.#ctor(System.Type,System.String)">
+            <summary>
+            Creates a new instance of the LocalizedErrorMessageSource class using the specified resource name and resource type.
+            </summary>
+            <param name="resourceType">The resource type</param>
+            <param name="resourceName">The resource name</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.LocalizedStringSource.GetString(Gostar.Common.Validation.IValidationContext)">
+            <summary>
+            Construct the error message template
+            </summary>
+            <returns>Error message template</returns>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.LocalizedStringSource.ResourceName">
+            <summary>
+            The name of the resource if localized.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.LocalizedStringSource.ResourceType">
+            <summary>
+            The type of the resource provider if localized.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.LocalizedStringSource.GetResourceProperty(System.Type@,System.String@)">
+            <summary>
+            Gets the PropertyInfo for a resource.
+            ResourceType and ResourceName are ref parameters to allow derived types
+            to replace the type/name of the resource before the delegate is constructed.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Resources.ResourceAccessor">
+            <summary>
+            Defines an accessor for localization resources
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.ResourceAccessor.Accessor">
+            <summary>
+            Function that can be used to retrieve the resource
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.ResourceAccessor.ResourceType">
+            <summary>
+            Resource type
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.ResourceAccessor.ResourceName">
+            <summary>
+            Resource name
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Resources.StaticStringSource">
+            <summary>
+            Represents a static string.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.StaticStringSource.#ctor(System.String)">
+            <summary>
+            Creates a new StringErrorMessageSource using the specified error message as the error template.
+            </summary>
+            <param name="message">The error message template.</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Resources.StaticStringSource.GetString(Gostar.Common.Validation.IValidationContext)">
+            <summary>
+            Construct the error message template
+            </summary>
+            <returns>Error message template</returns>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.StaticStringSource.ResourceName">
+            <summary>
+            The name of the resource if localized.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Resources.StaticStringSource.ResourceType">
+            <summary>
+            The type of the resource provider if localized.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Results.ValidationFailure">
+            <summary>
+            Defines a validation failure
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Results.ValidationFailure.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new validation failure.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Results.ValidationFailure.#ctor(System.String,System.String,System.Object)">
+            <summary>
+            Creates a new ValidationFailure.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Results.ValidationFailure.PropertyName">
+            <summary>
+            The name of the property.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Results.ValidationFailure.ErrorMessage">
+            <summary>
+            The error message
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Results.ValidationFailure.AttemptedValue">
+            <summary>
+            The property value that caused the failure.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Results.ValidationFailure.CustomState">
+            <summary>
+            Custom state associated with the failure.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Results.ValidationFailure.Severity">
+            <summary>
+            Custom severity level associated with the failure.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Results.ValidationFailure.ErrorCode">
+            <summary>
+            Gets or sets the error code.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Results.ValidationFailure.FormattedMessageArguments">
+            <summary>
+            Gets or sets the formatted message arguments.
+            These are values for custom formatted message in validator resource files
+            Same formatted message can be reused in UI and with same number of format placeholders
+            Like "Value {0} that you entered should be {1}"
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Results.ValidationFailure.FormattedMessagePlaceholderValues">
+            <summary>
+            Gets or sets the formatted message placeholder values.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Results.ValidationFailure.ResourceName">
+            <summary>
+            The resource name used for building the message
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Results.ValidationFailure.ToString">
+            <summary>
+            Creates a textual representation of the failure.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Results.ValidationResult">
+            <summary>
+            The result of running a validator
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Results.ValidationResult.IsValid">
+            <summary>
+            Whether validation succeeded
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Results.ValidationResult.Errors">
+            <summary>
+            A collection of errors
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Results.ValidationResult.#ctor">
+            <summary>
+            Creates a new validationResult
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Results.ValidationResult.#ctor(System.Collections.Generic.IEnumerable{Gostar.Common.Validation.Results.ValidationFailure})">
+            <summary>
+            Creates a new ValidationResult from a collection of failures
+            </summary>
+            <param name="failures">List of <see cref="T:Gostar.Common.Validation.Results.ValidationFailure"/> which is later available through <see cref="P:Gostar.Common.Validation.Results.ValidationResult.Errors"/>. This list get's copied.</param>
+            <remarks>
+            Every caller is responsible for not adding <c>null</c> to the list.
+            </remarks>
+        </member>
+        <member name="M:Gostar.Common.Validation.Results.ValidationResult.ToString">
+            <summary>
+            Generates a string representation of the error messages separated by new lines.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Results.ValidationResult.ToString(System.String)">
+            <summary>
+            Generates a string representation of the error messages separated by the specified character.
+            </summary>
+            <param name="separator">The character to separate the error messages.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.IRuleBuilderInitial`2">
+            <summary>
+            Rule builder that starts the chain
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+        </member>
+        <member name="T:Gostar.Common.Validation.IRuleBuilder`2">
+            <summary>
+            Rule builder
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+        </member>
+        <member name="M:Gostar.Common.Validation.IRuleBuilder`2.SetValidator(Gostar.Common.Validation.Validators.IPropertyValidator)">
+            <summary>
+            Associates a validator with this the property for this rule builder.
+            </summary>
+            <param name="validator">The validator to set</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.IRuleBuilder`2.SetValidator(Gostar.Common.Validation.IValidator{`1},System.String[])">
+            <summary>
+            Associates an instance of IValidator with the current property rule.
+            </summary>
+            <param name="validator">The validator to use</param>
+            <param name="ruleSets"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.IRuleBuilder`2.SetValidator``1(System.Func{`0,``0},System.String[])">
+            <summary>
+            Associates a validator provider with the current property rule.
+            </summary>
+            <param name="validatorProvider">The validator provider to use</param>
+            <param name="ruleSets"></param>
+        </member>
+        <member name="T:Gostar.Common.Validation.IRuleBuilderOptions`2">
+            <summary>
+            Rule builder
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+        </member>
+        <member name="T:Gostar.Common.Validation.IRuleBuilderInitialCollection`2">
+            <summary>
+            Rule builder that starts the chain for a child collection
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TElement"></typeparam>
+        </member>
+        <member name="T:Gostar.Common.Validation.IConditionBuilder">
+            <summary>
+            Fluent interface for conditions (When/Unless/WhenAsync/UnlessAsync)
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.IConditionBuilder.Otherwise(System.Action)">
+            <summary>
+            Rules to be invoked if the condition fails.
+            </summary>
+            <param name="action"></param>
+            
+        </member>
+        <member name="T:Gostar.Common.Validation.IValidationContext">
+            <summary>
+            Defines a validation context.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.IValidationContext.InstanceToValidate">
+            <summary>
+            The object currently being validated.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.IValidationContext.PropertyValue">
+            <summary>
+            The value of the property being validated.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.IValidationContext.ParentContext">
+            <summary>
+            Parent validation context.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.ValidationContext`1">
+            <summary>
+            Validation context
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidationContext`1.#ctor(`0)">
+            <summary>
+            Creates a new validation context
+            </summary>
+            <param name="instanceToValidate"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidationContext`1.#ctor(`0,Gostar.Common.Validation.Internal.PropertyChain,Gostar.Common.Validation.Internal.IValidatorSelector)">
+            <summary>
+            Creates a new validation context with a custom property chain and selector
+            </summary>
+            <param name="instanceToValidate"></param>
+            <param name="propertyChain"></param>
+            <param name="validatorSelector"></param>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidationContext`1.InstanceToValidate">
+            <summary>
+            The object to validate
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.ValidationContext">
+            <summary>
+            Validation context
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidationContext.RootContextData">
+            <summary>
+            Additional data associated with the validation request.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidationContext.#ctor(System.Object)">
+            <summary>
+            Creates a new validation context
+            </summary>
+            <param name="instanceToValidate"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidationContext.#ctor(System.Object,Gostar.Common.Validation.Internal.PropertyChain,Gostar.Common.Validation.Internal.IValidatorSelector)">
+            <summary>
+            Creates a new validation context with a property chain and validation selector
+            </summary>
+            <param name="instanceToValidate"></param>
+            <param name="propertyChain"></param>
+            <param name="validatorSelector"></param>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidationContext.PropertyChain">
+            <summary>
+            Property chain
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidationContext.InstanceToValidate">
+            <summary>
+            Object being validated
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidationContext.Selector">
+            <summary>
+            Selector
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidationContext.IsChildContext">
+            <summary>
+            Whether this is a child context
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidationContext.IsChildCollectionContext">
+            <summary>
+            Whether this is a child collection context.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidationContext.Clone(Gostar.Common.Validation.Internal.PropertyChain,System.Object,Gostar.Common.Validation.Internal.IValidatorSelector)">
+            <summary>
+            Creates a new ValidationContext based on this one
+            </summary>
+            <param name="chain"></param>
+            <param name="instanceToValidate"></param>
+            <param name="selector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidationContext.CloneForChildValidator(System.Object,System.Boolean,Gostar.Common.Validation.Internal.IValidatorSelector)">
+            <summary>
+            Creates a new validation context for use with a child validator
+            </summary>
+            <param name="instanceToValidate"></param>
+            <param name="preserveParentContext"></param>
+            <param name="selector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidationContext.CloneForChildCollectionValidator(System.Object,System.Boolean)">
+            <summary>
+            Creates a new validation context for use with a child collection validator
+            </summary>
+            <param name="instanceToValidate"></param>
+            <param name="preserveParentContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidationContext.ToGeneric``1">
+            <summary>
+            Converts a non-generic ValidationContext to a generic version.
+            No type check is performed.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.ValidationException">
+            <summary>
+            An exception that represents failed validation
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidationException.Errors">
+            <summary>
+            Validation errors
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidationException.#ctor(System.String)">
+            <summary>
+            Creates a new ValidationException
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidationException.#ctor(System.String,System.Collections.Generic.IEnumerable{Gostar.Common.Validation.Results.ValidationFailure})">
+            <summary>
+            Creates a new ValidationException
+            </summary>
+            <param name="message"></param>
+            <param name="errors"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidationException.#ctor(System.Collections.Generic.IEnumerable{Gostar.Common.Validation.Results.ValidationFailure})">
+            <summary>
+            Creates a new ValidationException
+            </summary>
+            <param name="errors"></param>
+        </member>
+        <member name="T:Gostar.Common.Validation.ValidatorDescriptor`1">
+            <summary>
+            Used for providing metadata about a validator.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidatorDescriptor`1.Rules">
+            <summary>
+            Rules associated with the validator
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidatorDescriptor`1.#ctor(System.Collections.Generic.IEnumerable{Gostar.Common.Validation.IValidationRule})">
+            <summary>
+            Creates a ValidatorDescriptor
+            </summary>
+            <param name="ruleBuilders"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidatorDescriptor`1.GetName(System.String)">
+            <summary>
+            Gets the display name or a property property
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidatorDescriptor`1.GetMembersWithValidators">
+            <summary>
+            Gets all members with their associated validators
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidatorDescriptor`1.GetValidatorsForMember(System.String)">
+            <summary>
+            Gets validators for a specific member
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidatorDescriptor`1.GetRulesForMember(System.String)">
+            <summary>
+            Gets rules for a specific member
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidatorDescriptor`1.GetName(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            Gets the member name from an expression
+            </summary>
+            <param name="propertyExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidatorDescriptor`1.GetValidatorsForMember``1(Gostar.Common.Validation.Internal.MemberAccessor{`0,``0})">
+            <summary>
+            Gets validators for a member
+            </summary>
+            <typeparam name="TValue"></typeparam>
+            <param name="accessor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidatorDescriptor`1.GetRulesByRuleset">
+            <summary>
+            Gets rules grouped by ruleset
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.ValidatorDescriptor`1.RulesetMetadata">
+            <summary>
+            Information about rulesets
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidatorDescriptor`1.RulesetMetadata.#ctor(System.String,System.Collections.Generic.IEnumerable{Gostar.Common.Validation.Internal.PropertyRule})">
+            <summary>
+            Creates a new RulesetMetadata
+            </summary>
+            <param name="name"></param>
+            <param name="rules"></param>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidatorDescriptor`1.RulesetMetadata.Name">
+            <summary>
+            Ruleset name
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidatorDescriptor`1.RulesetMetadata.Rules">
+            <summary>
+            Rules in the ruleset
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.ValidatorFactoryBase">
+            <summary>
+            Factory for creating validators
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidatorFactoryBase.GetValidator``1">
+            <summary>
+            Gets a validator for a type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidatorFactoryBase.GetValidator(System.Type)">
+            <summary>
+            Gets a validator for a type
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.ValidatorFactoryBase.CreateInstance(System.Type)">
+            <summary>
+            Instantiates the validator
+            </summary>
+            <param name="validatorType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.PropertyValidatorOptions">
+            <summary>
+            Validator metadata.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.PropertyValidatorOptions.CustomStateProvider">
+            <summary>
+            Function used to retrieve custom state for the validator
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.PropertyValidatorOptions.Severity">
+            <summary>
+            Severity of error.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.PropertyValidatorOptions.ErrorMessageSource">
+            <summary>
+            Retrieves the unformatted error message template.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.PropertyValidatorOptions.ErrorCodeSource">
+            <summary>
+            Retrieves the error code.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.PropertyValidatorOptions.Empty">
+            <summary>
+            Empty metadata.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.ValidatorOptions">
+            <summary>
+            Validator runtime options
+            </summary>
+        </member>
+        <member name="F:Gostar.Common.Validation.ValidatorOptions.CascadeMode">
+            <summary>
+            Default cascade mode
+            </summary>
+        </member>
+        <member name="F:Gostar.Common.Validation.ValidatorOptions.PropertyChainSeparator">
+            <summary>
+            Default property chain separator
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidatorOptions.LanguageManager">
+            <summary>
+            Default language manager 
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidatorOptions.ValidatorSelectors">
+            <summary>
+            Customizations of validator selector
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidatorOptions.MessageFormatterFactory">
+            <summary>
+            Specifies a factory for creating MessageFormatter instances.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidatorOptions.PropertyNameResolver">
+            <summary>
+            Pluggable logic for resolving property names
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidatorOptions.DisplayNameResolver">
+            <summary>
+            Pluggable logic for resolving display names
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidatorOptions.DisableAccessorCache">
+            <summary>
+            Disables the expression accessor cache. Not recommended.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidatorOptions.ErrorCodeResolver">
+            <summary>
+            Pluggable resolver for default error codes
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.ValidatorSelectorOptions">
+            <summary>
+            ValidatorSelector options
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidatorSelectorOptions.DefaultValidatorSelectorFactory">
+            <summary>
+            Factory func for creating the default validator selector
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidatorSelectorOptions.MemberNameValidatorSelectorFactory">
+            <summary>
+            Factory func for creating the member validator selector
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.ValidatorSelectorOptions.RulesetValidatorSelectorFactory">
+            <summary>
+            Factory func for creating the ruleset validator selector
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Validators.AbstractComparisonValidator">
+            <summary>
+            Base class for all comparison validators
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.AbstractComparisonValidator.#ctor(System.IComparable,Gostar.Common.Validation.Resources.IStringSource)">
+            <summary>
+            </summary>
+            <param name="value"></param>
+            <param name="errorSource"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.AbstractComparisonValidator.#ctor(System.Func{System.Object,System.Object},System.Reflection.MemberInfo,Gostar.Common.Validation.Resources.IStringSource)">
+            <summary>
+            </summary>
+            <param name="valueToCompareFunc"></param>
+            <param name="member"></param>
+            <param name="errorSource"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.AbstractComparisonValidator.IsValid(Gostar.Common.Validation.Validators.PropertyValidatorContext)">
+            <summary>
+            Performs the comparison
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.AbstractComparisonValidator.IsValid(System.IComparable,System.IComparable)">
+            <summary>
+            Override to perform the comparison
+            </summary>
+            <param name="value"></param>
+            <param name="valueToCompare"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Gostar.Common.Validation.Validators.AbstractComparisonValidator.Comparison">
+            <summary>
+            Metadata- the comparison type
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Validators.AbstractComparisonValidator.MemberToCompare">
+            <summary>
+            Metadata- the member being compared
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Validators.AbstractComparisonValidator.ValueToCompare">
+            <summary>
+            Metadata- the value being compared
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Validators.IComparisonValidator">
+            <summary>
+            Defines a comparison validator
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Validators.IComparisonValidator.Comparison">
+            <summary>
+            Metadata- the comparison type
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Validators.IComparisonValidator.MemberToCompare">
+            <summary>
+            Metadata- the member being compared
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Validators.IComparisonValidator.ValueToCompare">
+            <summary>
+            Metadata- the value being compared
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Validators.AsyncPredicateValidator">
+            <summary>
+            Asynchronous custom validator
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.AsyncPredicateValidator.#ctor(System.Func{System.Object,System.Object,Gostar.Common.Validation.Validators.PropertyValidatorContext,System.Threading.CancellationToken,System.Threading.Tasks.Task{System.Boolean}})">
+            <summary>
+            Creates a new AsyncPredicateValidator
+            </summary>
+            <param name="predicate"></param>
+        </member>
+        <member name="T:Gostar.Common.Validation.Validators.AsyncValidatorBase">
+            <summary>
+            Defines a property validator that can be run asynchronously.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Validators.IChildValidatorAdaptor">
+            <summary>
+            Indicates that this validator wraps another validator.
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.Validation.Validators.IChildValidatorAdaptor.ValidatorType">
+            <summary>
+            The type of the underlying validator
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Validators.CreditCardValidator">
+            <summary>
+            Ensures that the property value is a valid credit card number.
+            </summary>
+        </member>
+        <member name="T:Gostar.Common.Validation.Validators.CustomValidator`1">
+            <summary>
+            Custom validator that allows for manual/direct creation of ValidationFailure instances.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.CustomValidator`1.#ctor(System.Action{`0,Gostar.Common.Validation.Validators.CustomContext})">
+            <summary>
+            Creates a new instance of the CustomValidator
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.CustomValidator`1.#ctor(System.Func{`0,Gostar.Common.Validation.Validators.CustomContext,System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a new instance of the CustomValidator.
+            </summary>
+            <param name="asyncAction"></param>
+        </member>
+        <member name="T:Gostar.Common.Validation.Validators.CustomContext">
+            <summary>
+            Custom validation context
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.CustomContext.#ctor(Gostar.Common.Validation.Validators.PropertyValidatorContext)">
+            <summary>
+            Creates a new CustomContext
+            </summary>
+            <param name="context">The parent PropertyValidatorContext that represents this execution</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.CustomContext.AddFailure(System.String,System.String)">
+            <summary>
+            Adds a new validation failure.
+            </summary>
+            <param name="propertyName">The property name</param>
+            <param name="errorMessage">The error message</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.CustomContext.AddFailure(System.String)">
+            <summary>
+            Adds a new validation failure (the property name is inferred)
+            </summary>
+            <param name="errorMessage">The error message</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.CustomContext.AddFailure(Gostar.Common.Validation.Results.ValidationFailure)">
+            <summary>
+            Adds a new validation failure
+            </summary>
+            <param name="failure">The failure to add</param>
+        </member>
+        <member name="T:Gostar.Common.Validation.Validators.IPropertyValidator">
+            <summary>
+            A custom property validator.
+            This interface should not be implemented directly in your code as it is subject to change.
+            Please inherit from <see cref="T:Gostar.Common.Validation.Validators.PropertyValidator">PropertyValidator</see> instead.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.IPropertyValidator.Validate(Gostar.Common.Validation.Validators.PropertyValidatorContext)">
+            <summary>
+            Performs validation
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.IPropertyValidator.ValidateAsync(Gostar.Common.Validation.Validators.PropertyValidatorContext,System.Threading.CancellationToken)">
+            <summary>
+            Performs validation asynchronously.
+            </summary>
+            <param name="context"></param>
+            <param name="cancellation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.IPropertyValidator.ShouldValidateAsync(Gostar.Common.Validation.ValidationContext)">
+            <summary>
+            Determines whether this validator should be run asynchronously or not.
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Gostar.Common.Validation.Validators.IPropertyValidator.Options">
+            <summary>
+            Additional options for configuring the property validator.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.PropertyValidator.PrepareMessageFormatterForValidationError(Gostar.Common.Validation.Validators.PropertyValidatorContext)">
+            <summary>
+            Prepares the <see cref="T:Gostar.Common.Validation.Internal.MessageFormatter"/> of <paramref name="context"/> for an upcoming <see cref="T:Gostar.Common.Validation.Results.ValidationFailure"/>.
+            </summary>
+            <param name="context">The validator context</param>
+        </member>
+        <member name="M:Gostar.Common.Validation.Validators.PropertyValidator.CreateValidationError(Gostar.Common.Validation.Validators.PropertyValidatorContext)">
+            <summary>
+            Creates an error validation result for this validator.
+            </summary>
+            <param name="context">The validator context</param>
+            <returns>Returns an error validation result.</returns>
+        </member>
+        <member name="T:Gostar.Common.Validation.Validators.ScalePrecisionValidator">
+            <summary>
+            Allows a decimal to be validated for scale and precision.  
+            Scale would be the number of digits to the right of the decimal point.  
+            Precision would be the number of digits.  
+            
+            It can be configured to use the effective scale and precision 
+            (i.e. ignore trailing zeros) if required.
+            
+            123.4500 has an scale of 4 and a precision of 7, but an effective scale
+            and precision of 2 and 5 respectively.
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.GDateTime.Conversation(System.Nullable{System.Boolean})">
+            <summary>
+            False To MinValue , True To MaxValue , Nothing To NowDate
+            </summary>
+            <param name="MaxValue"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Gostar.Common.UtilityMethods._intergerValue">
+            <summary>
+            integer part
+            </summary>
+        </member>
+        <member name="F:Gostar.Common.UtilityMethods._decimalValue">
+            <summary>
+            Decimal Part
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.UtilityMethods.Number">
+            <summary>
+            Number to be converted
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.UtilityMethods.EnglishPrefixText">
+            <summary>
+            Currency to use
+            </summary>
+            <summary>
+            English text to be placed before the generated text
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.UtilityMethods.EnglishSuffixText">
+            <summary>
+            English text to be placed after the generated text
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.UtilityMethods.ArabicPrefixText">
+            <summary>
+            Arabic text to be placed before the generated text
+            </summary>
+        </member>
+        <member name="P:Gostar.Common.UtilityMethods.ArabicSuffixText">
+            <summary>
+            Arabic text to be placed after the generated text
+            </summary>
+        </member>
+        <member name="M:Gostar.Common.UtilityMethods.EmailIsValid(System.String)">
+            <summary>
+            Validate EmailAddress
+            </summary>
+            <param name="Email"></param>
+            <returns>
+            True For IsValidate
+            False For NotValidate
+            </returns>
+        </member>
+        <member name="M:Gostar.Common.UtilityMethods.Validate``2(``1,System.Globalization.CultureInfo)">
+            <summary>
+            Validate data With Class
+            </summary>
+            <typeparam name="TValidator"> Validator Class</typeparam>
+            <typeparam name="TObject"> DTO Class </typeparam>
+            <param name="data"> </param>
+            <param name="culture"> Set culture For Translate Error Messages</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

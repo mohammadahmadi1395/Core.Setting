@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{50217DAD-D2DA-49A9-828E-60A1FC5246FD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gostar.Common</RootNamespace>
+    <AssemblyName>Gostar.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Output\Gostar.Common.XML</DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\dlls\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2015.2.728.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ColorsAndStyles.cs" />
+    <Compile Include="DTO.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="UserConfigDTO.cs" />
+    <Compile Include="Validation\AbstractValidator.cs" />
+    <Compile Include="Validation\AssemblyScanner.cs" />
+    <Compile Include="Validation\CollectionValidatorExtensions.cs" />
+    <Compile Include="Validation\DefaultValidatorExtensions.cs" />
+    <Compile Include="Validation\DefaultValidatorOptions.cs" />
+    <Compile Include="Validation\Enums.cs" />
+    <Compile Include="Validation\ErrorLanguageManager.cs" />
+    <Compile Include="GDateTime.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UtilityMethods.cs" />
+    <Compile Include="Validation\InlineValidator.cs" />
+    <Compile Include="Validation\Internal\AccessorCache.cs" />
+    <Compile Include="Validation\Internal\CollectionPropertyRule.cs" />
+    <Compile Include="Validation\Internal\Comparer.cs" />
+    <Compile Include="Validation\Internal\ConditionBuilder.cs" />
+    <Compile Include="Validation\Internal\DefaultValidatorSelector.cs" />
+    <Compile Include="Validation\Internal\DisplayNameCache.cs" />
+    <Compile Include="Validation\Internal\Extensions.cs" />
+    <Compile Include="Validation\Internal\IConfigurable.cs" />
+    <Compile Include="Validation\Internal\IncludeRule.cs" />
+    <Compile Include="Validation\Internal\IValidatorSelector.cs" />
+    <Compile Include="Validation\Internal\MemberNameValidatorSelector.cs" />
+    <Compile Include="Validation\Internal\MessageBuilderContext.cs" />
+    <Compile Include="Validation\Internal\MessageFormatter.cs" />
+    <Compile Include="Validation\Internal\PropertyChain.cs" />
+    <Compile Include="Validation\Internal\PropertyRule.cs" />
+    <Compile Include="Validation\Internal\RuleBuilder.cs" />
+    <Compile Include="Validation\Internal\RulesetValidatorSelector.cs" />
+    <Compile Include="Validation\Internal\TrackingCollection.cs" />
+    <Compile Include="Validation\IValidationRule.cs" />
+    <Compile Include="Validation\IValidator.cs" />
+    <Compile Include="Validation\IValidatorDescriptor.cs" />
+    <Compile Include="Validation\IValidatorFactory.cs" />
+    <Compile Include="Validation\MemberAccessor.cs" />
+    <Compile Include="Validation\Resources\ErrorCodeLanguageStringSource.cs" />
+    <Compile Include="Validation\Resources\ILanguageManager.cs" />
+    <Compile Include="Validation\Resources\IStringSource.cs" />
+    <Compile Include="Validation\Resources\Language.cs" />
+    <Compile Include="Validation\Resources\LanguageManager.cs" />
+    <Compile Include="Validation\Resources\LanguageStringSource.cs" />
+    <Compile Include="Validation\Resources\Languages\ArabicLanguage.cs" />
+    <Compile Include="Validation\Resources\Languages\EnglishLanguage.cs" />
+    <Compile Include="Validation\Resources\Languages\PersianLanguage.cs" />
+    <Compile Include="Validation\Resources\LazyStringSource.cs" />
+    <Compile Include="Validation\Resources\LocalizedStringSource.cs" />
+    <Compile Include="Validation\Resources\ResourceAccessor.cs" />
+    <Compile Include="Validation\Resources\StaticStringSource.cs" />
+    <Compile Include="Validation\Results\ValidationFailure.cs" />
+    <Compile Include="Validation\Results\ValidationResult.cs" />
+    <Compile Include="Validation\Syntax.cs" />
+    <Compile Include="Validation\TestHelper\ITestPropertyChain.cs" />
+    <Compile Include="Validation\TestHelper\IValidationResultTester.cs" />
+    <Compile Include="Validation\TestHelper\TestPropertyChain.cs" />
+    <Compile Include="Validation\TestHelper\TestValidationResult.cs" />
+    <Compile Include="Validation\TestHelper\ValidationResultTester.cs" />
+    <Compile Include="Validation\TestHelper\ValidationTestException.cs" />
+    <Compile Include="Validation\TestHelper\ValidatorTestExtensions.cs" />
+    <Compile Include="Validation\ValidationContext.cs" />
+    <Compile Include="Validation\ValidationException.cs" />
+    <Compile Include="Validation\ValidatorDescriptor.cs" />
+    <Compile Include="Validation\ValidatorFactoryBase.cs" />
+    <Compile Include="Validation\ValidatorMetadata.cs" />
+    <Compile Include="Validation\ValidatorOptions.cs" />
+    <Compile Include="Validation\Validators\AbstractComparisonValidator.cs" />
+    <Compile Include="Validation\Validators\AsyncPredicateValidator.cs" />
+    <Compile Include="Validation\Validators\AsyncValidatorBase.cs" />
+    <Compile Include="Validation\Validators\ChildValidatorAdaptor.cs" />
+    <Compile Include="Validation\Validators\CreditCardValidator.cs" />
+    <Compile Include="Validation\Validators\CustomValidator.cs" />
+    <Compile Include="Validation\Validators\DelegatingValidator.cs" />
+    <Compile Include="Validation\Validators\EmailValidator.cs" />
+    <Compile Include="Validation\Validators\EmptyValidator.cs" />
+    <Compile Include="Validation\Validators\EnumValidator.cs" />
+    <Compile Include="Validation\Validators\EqualValidator.cs" />
+    <Compile Include="Validation\Validators\ExclusiveBetweenValidator.cs" />
+    <Compile Include="Validation\Validators\GreaterThanOrEqualValidator.cs" />
+    <Compile Include="Validation\Validators\GreaterThanValidator.cs" />
+    <Compile Include="Validation\Validators\InclusiveBetweenValidator.cs" />
+    <Compile Include="Validation\Validators\IPropertyValidator.cs" />
+    <Compile Include="Validation\Validators\LengthValidator.cs" />
+    <Compile Include="Validation\Validators\LessThanOrEqualValidator.cs" />
+    <Compile Include="Validation\Validators\LessThanValidator.cs" />
+    <Compile Include="Validation\Validators\NoopPropertyValidator.cs" />
+    <Compile Include="Validation\Validators\NotEmptyValidator.cs" />
+    <Compile Include="Validation\Validators\NotEqualValidator.cs" />
+    <Compile Include="Validation\Validators\NotNullValidator.cs" />
+    <Compile Include="Validation\Validators\NullValidator.cs" />
+    <Compile Include="Validation\Validators\OnFailureValidator.cs" />
+    <Compile Include="Validation\Validators\PredicateValidator.cs" />
+    <Compile Include="Validation\Validators\PropertyValidator.cs" />
+    <Compile Include="Validation\Validators\PropertyValidatorContext.cs" />
+    <Compile Include="Validation\Validators\RegularExpressionValidator.cs" />
+    <Compile Include="Validation\Validators\ScalePrecisionValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Validation\Custom\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.OrphanPoor\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.Box\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.HR\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\CommonWorkspace\FileManagement\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\CommonWorkspace\Setting\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\CommonWorkspace\UserManagement\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\CommonWorkspace\IntegratedUI\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.InQuery\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\CommonWorkspace\Alsahab.SmsPanel\Dlls\"
+
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.InQuiry\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.Bailment\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.Visitor\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.SponsorShip\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.PublicRelation\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.IT\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.HR\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.Donation\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.Accounting\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\CommonWorkspace\IntegratedUI\Output\"
+
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\SmartClinicWorkspace\SmartClinic.Base\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\OverallOutputs\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\CommonWorkspace\Gostar.FileManagement\Dlls"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.Member\Dlls\"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

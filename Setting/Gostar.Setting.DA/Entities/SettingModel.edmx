@@ -1,0 +1,1715 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SettingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CityID" Type="bigint" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentID" Type="bigint" />
+          <Property Name="BranchAddressID" Type="bigint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="HeadPersonID" Type="bigint" />
+          <Property Name="BranchPhoneNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="BranchEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsCentral" Type="bit" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="LeftIndex" Type="bigint" />
+          <Property Name="RightIndex" Type="bigint" />
+          <Property Name="Depth" Type="bigint" />
+          <Property Name="OldCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BranchAddress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ZoneID" Type="bigint" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BranchRegionWork">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchID" Type="bigint" Nullable="false" />
+          <Property Name="ZoneID" Type="bigint" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="CountryID" Type="bigint" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneCode" Type="int" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="3" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Symbol" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExchangeRate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromCurrencyID" Type="bigint" Nullable="false" />
+          <Property Name="ToCurrencyID" Type="bigint" Nullable="false" />
+          <Property Name="Ratio" Type="float" Nullable="false" />
+          <Property Name="Year" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FormType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EnumID" Type="int" />
+          <Property Name="SubSystemID" Type="bigint" Nullable="false" />
+          <Property Name="PublicCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Coment" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GeneratedForm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PublicCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PrivateCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubsystemID" Type="bigint" Nullable="false" />
+          <Property Name="UniqeCode" Type="bigint" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="EntityID" Type="int" Nullable="false" />
+          <Property Name="ActionTypeID" Type="int" Nullable="false" />
+          <Property Name="RecordID" Type="bigint" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="GroupID" Type="bigint" />
+          <Property Name="RegistrantPersonID" Type="bigint" />
+          <Property Name="RegistrantPersonFullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OrganizationalChart">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ParentID" Type="bigint" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="LeftIndex" Type="bigint" />
+          <Property Name="RightIndex" Type="bigint" />
+          <Property Name="Depth" Type="bigint" />
+          <Property Name="OldCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Prefix">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDefault" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AreaID" Type="bigint" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegionAgent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="PersonID" Type="bigint" Nullable="false" />
+          <Property Name="RegionID" Type="bigint" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rule">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RuleTag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RuleID" Type="bigint" Nullable="false" />
+          <Property Name="FormTypeID" Type="bigint" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sector">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionID" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="int" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Statement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PersianText" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EnglishText" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ArabicText" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StatementSubsystem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatementID" Type="bigint" Nullable="false" />
+          <Property Name="SubsystemID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subpart">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsSystem" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="SubsystemID" Type="bigint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Subsystem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsSystem" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="RunOrder" Type="int" />
+          <Property Name="IsPart" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Typeoforganization">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentID" Type="bigint" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="LeftIndex" Type="bigint" />
+          <Property Name="RightIndex" Type="bigint" />
+          <Property Name="Depth" Type="bigint" />
+          <Property Name="OldCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Area_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Area" Type="Self.Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Area">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branch_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="Branch1" Type="Self.Branch" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Branch1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branch_BranchAddress">
+          <End Role="BranchAddress" Type="Self.BranchAddress" Multiplicity="1" />
+          <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BranchAddress">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="BranchAddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchAddress_Zone">
+          <End Role="Zone" Type="Self.Zone" Multiplicity="1" />
+          <End Role="BranchAddress" Type="Self.BranchAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BranchAddress">
+              <PropertyRef Name="ZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchRegionWork_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="BranchRegionWork" Type="Self.BranchRegionWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BranchRegionWork">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchRegionWork_Zone">
+          <End Role="Zone" Type="Self.Zone" Multiplicity="1" />
+          <End Role="BranchRegionWork" Type="Self.BranchRegionWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BranchRegionWork">
+              <PropertyRef Name="ZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExchangeRate_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="ExchangeRate" Type="Self.ExchangeRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ExchangeRate">
+              <PropertyRef Name="FromCurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExchangeRate_Currency1">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="ExchangeRate" Type="Self.ExchangeRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ExchangeRate">
+              <PropertyRef Name="ToCurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormType_Subsystem">
+          <End Role="Subsystem" Type="Self.Subsystem" Multiplicity="1" />
+          <End Role="FormType" Type="Self.FormType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subsystem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormType">
+              <PropertyRef Name="SubSystemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrganizationalChart_OrganizationalChart">
+          <End Role="OrganizationalChart" Type="Self.OrganizationalChart" Multiplicity="0..1" />
+          <End Role="OrganizationalChart1" Type="Self.OrganizationalChart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganizationalChart">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrganizationalChart1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegionAgent_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="RegionAgent" Type="Self.RegionAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RegionAgent">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleTag_FormType">
+          <End Role="FormType" Type="Self.FormType" Multiplicity="1" />
+          <End Role="RuleTag" Type="Self.RuleTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RuleTag">
+              <PropertyRef Name="FormTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleTag_Rule">
+          <End Role="Rule" Type="Self.Rule" Multiplicity="1" />
+          <End Role="RuleTag" Type="Self.RuleTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rule">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RuleTag">
+              <PropertyRef Name="RuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sector_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Sector" Type="Self.Sector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sector">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatementSubsystem_Statement">
+          <End Role="Statement" Type="Self.Statement" Multiplicity="1" />
+          <End Role="StatementSubsystem" Type="Self.StatementSubsystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StatementSubsystem">
+              <PropertyRef Name="StatementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatementSubsystem_Subsystem">
+          <End Role="Subsystem" Type="Self.Subsystem" Multiplicity="1" />
+          <End Role="StatementSubsystem" Type="Self.StatementSubsystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subsystem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StatementSubsystem">
+              <PropertyRef Name="SubsystemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subpart_Subsystem">
+          <End Role="Subsystem" Type="Self.Subsystem" Multiplicity="1" />
+          <End Role="Subpart" Type="Self.Subpart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subsystem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subpart">
+              <PropertyRef Name="SubsystemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zone_Zone">
+          <End Role="Zone" Type="Self.Zone" Multiplicity="0..1" />
+          <End Role="Zone1" Type="Self.Zone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zone1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SettingModelStoreContainer">
+          <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BranchAddress" EntityType="Self.BranchAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BranchRegionWork" EntityType="Self.BranchRegionWork" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExchangeRate" EntityType="Self.ExchangeRate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormType" EntityType="Self.FormType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneratedForm" EntityType="Self.GeneratedForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrganizationalChart" EntityType="Self.OrganizationalChart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prefix" EntityType="Self.Prefix" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegionAgent" EntityType="Self.RegionAgent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rule" EntityType="Self.Rule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RuleTag" EntityType="Self.RuleTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sector" EntityType="Self.Sector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statement" EntityType="Self.Statement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatementSubsystem" EntityType="Self.StatementSubsystem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subpart" EntityType="Self.Subpart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subsystem" EntityType="Self.Subsystem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Typeoforganization" EntityType="Self.Typeoforganization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zone" EntityType="Self.Zone" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Area_City" Association="Self.FK_Area_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Area" EntitySet="Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branch_Branch" Association="Self.FK_Branch_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Branch1" EntitySet="Branch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branch_BranchAddress" Association="Self.FK_Branch_BranchAddress">
+            <End Role="BranchAddress" EntitySet="BranchAddress" />
+            <End Role="Branch" EntitySet="Branch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchAddress_Zone" Association="Self.FK_BranchAddress_Zone">
+            <End Role="Zone" EntitySet="Zone" />
+            <End Role="BranchAddress" EntitySet="BranchAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchRegionWork_Branch" Association="Self.FK_BranchRegionWork_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="BranchRegionWork" EntitySet="BranchRegionWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchRegionWork_Zone" Association="Self.FK_BranchRegionWork_Zone">
+            <End Role="Zone" EntitySet="Zone" />
+            <End Role="BranchRegionWork" EntitySet="BranchRegionWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_Country" Association="Self.FK_City_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExchangeRate_Currency" Association="Self.FK_ExchangeRate_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="ExchangeRate" EntitySet="ExchangeRate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExchangeRate_Currency1" Association="Self.FK_ExchangeRate_Currency1">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="ExchangeRate" EntitySet="ExchangeRate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormType_Subsystem" Association="Self.FK_FormType_Subsystem">
+            <End Role="Subsystem" EntitySet="Subsystem" />
+            <End Role="FormType" EntitySet="FormType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrganizationalChart_OrganizationalChart" Association="Self.FK_OrganizationalChart_OrganizationalChart">
+            <End Role="OrganizationalChart" EntitySet="OrganizationalChart" />
+            <End Role="OrganizationalChart1" EntitySet="OrganizationalChart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_Area" Association="Self.FK_Region_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegionAgent_Region" Association="Self.FK_RegionAgent_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="RegionAgent" EntitySet="RegionAgent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleTag_FormType" Association="Self.FK_RuleTag_FormType">
+            <End Role="FormType" EntitySet="FormType" />
+            <End Role="RuleTag" EntitySet="RuleTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleTag_Rule" Association="Self.FK_RuleTag_Rule">
+            <End Role="Rule" EntitySet="Rule" />
+            <End Role="RuleTag" EntitySet="RuleTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sector_Region" Association="Self.FK_Sector_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Sector" EntitySet="Sector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatementSubsystem_Statement" Association="Self.FK_StatementSubsystem_Statement">
+            <End Role="Statement" EntitySet="Statement" />
+            <End Role="StatementSubsystem" EntitySet="StatementSubsystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatementSubsystem_Subsystem" Association="Self.FK_StatementSubsystem_Subsystem">
+            <End Role="Subsystem" EntitySet="Subsystem" />
+            <End Role="StatementSubsystem" EntitySet="StatementSubsystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subpart_Subsystem" Association="Self.FK_Subpart_Subsystem">
+            <End Role="Subsystem" EntitySet="Subsystem" />
+            <End Role="Subpart" EntitySet="Subpart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zone_Zone" Association="Self.FK_Zone_Zone">
+            <End Role="Zone" EntitySet="Zone" />
+            <End Role="Zone1" EntitySet="Zone" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SettingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SettingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Area" EntityType="SettingModel.Area" />
+          <EntitySet Name="Branch" EntityType="SettingModel.Branch" />
+          <EntitySet Name="BranchAddress" EntityType="SettingModel.BranchAddress" />
+          <EntitySet Name="BranchRegionWork" EntityType="SettingModel.BranchRegionWork" />
+          <EntitySet Name="City" EntityType="SettingModel.City" />
+          <EntitySet Name="Country" EntityType="SettingModel.Country" />
+          <EntitySet Name="Currency" EntityType="SettingModel.Currency" />
+          <EntitySet Name="ExchangeRate" EntityType="SettingModel.ExchangeRate" />
+          <EntitySet Name="FormType" EntityType="SettingModel.FormType" />
+          <EntitySet Name="GeneratedForm" EntityType="SettingModel.GeneratedForm" />
+          <EntitySet Name="Log" EntityType="SettingModel.Log" />
+          <EntitySet Name="OrganizationalChart" EntityType="SettingModel.OrganizationalChart" />
+          <EntitySet Name="Prefix" EntityType="SettingModel.Prefix" />
+          <EntitySet Name="Region" EntityType="SettingModel.Region" />
+          <EntitySet Name="RegionAgent" EntityType="SettingModel.RegionAgent" />
+          <EntitySet Name="Rule" EntityType="SettingModel.Rule" />
+          <EntitySet Name="RuleTag" EntityType="SettingModel.RuleTag" />
+          <EntitySet Name="Sector" EntityType="SettingModel.Sector" />
+          <EntitySet Name="Statement" EntityType="SettingModel.Statement" />
+          <EntitySet Name="StatementSubsystem" EntityType="SettingModel.StatementSubsystem" />
+          <EntitySet Name="Subpart" EntityType="SettingModel.Subpart" />
+          <EntitySet Name="Subsystem" EntityType="SettingModel.Subsystem" />
+          <EntitySet Name="sysdiagrams" EntityType="SettingModel.sysdiagrams" />
+          <EntitySet Name="Typeoforganization" EntityType="SettingModel.Typeoforganization" />
+          <EntitySet Name="Zone" EntityType="SettingModel.Zone" />
+          <AssociationSet Name="FK_Area_City" Association="SettingModel.FK_Area_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Area" EntitySet="Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_Area" Association="SettingModel.FK_Region_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branch_Branch" Association="SettingModel.FK_Branch_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Branch1" EntitySet="Branch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branch_BranchAddress" Association="SettingModel.FK_Branch_BranchAddress">
+            <End Role="BranchAddress" EntitySet="BranchAddress" />
+            <End Role="Branch" EntitySet="Branch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchRegionWork_Branch" Association="SettingModel.FK_BranchRegionWork_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="BranchRegionWork" EntitySet="BranchRegionWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchAddress_Zone" Association="SettingModel.FK_BranchAddress_Zone">
+            <End Role="Zone" EntitySet="Zone" />
+            <End Role="BranchAddress" EntitySet="BranchAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchRegionWork_Zone" Association="SettingModel.FK_BranchRegionWork_Zone">
+            <End Role="Zone" EntitySet="Zone" />
+            <End Role="BranchRegionWork" EntitySet="BranchRegionWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_Country" Association="SettingModel.FK_City_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExchangeRate_Currency" Association="SettingModel.FK_ExchangeRate_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="ExchangeRate" EntitySet="ExchangeRate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExchangeRate_Currency1" Association="SettingModel.FK_ExchangeRate_Currency1">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="ExchangeRate" EntitySet="ExchangeRate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormType_Subsystem" Association="SettingModel.FK_FormType_Subsystem">
+            <End Role="Subsystem" EntitySet="Subsystem" />
+            <End Role="FormType" EntitySet="FormType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleTag_FormType" Association="SettingModel.FK_RuleTag_FormType">
+            <End Role="FormType" EntitySet="FormType" />
+            <End Role="RuleTag" EntitySet="RuleTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrganizationalChart_OrganizationalChart" Association="SettingModel.FK_OrganizationalChart_OrganizationalChart">
+            <End Role="OrganizationalChart" EntitySet="OrganizationalChart" />
+            <End Role="OrganizationalChart1" EntitySet="OrganizationalChart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegionAgent_Region" Association="SettingModel.FK_RegionAgent_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="RegionAgent" EntitySet="RegionAgent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sector_Region" Association="SettingModel.FK_Sector_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Sector" EntitySet="Sector" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleTag_Rule" Association="SettingModel.FK_RuleTag_Rule">
+            <End Role="Rule" EntitySet="Rule" />
+            <End Role="RuleTag" EntitySet="RuleTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatementSubsystem_Statement" Association="SettingModel.FK_StatementSubsystem_Statement">
+            <End Role="Statement" EntitySet="Statement" />
+            <End Role="StatementSubsystem" EntitySet="StatementSubsystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatementSubsystem_Subsystem" Association="SettingModel.FK_StatementSubsystem_Subsystem">
+            <End Role="Subsystem" EntitySet="Subsystem" />
+            <End Role="StatementSubsystem" EntitySet="StatementSubsystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subpart_Subsystem" Association="SettingModel.FK_Subpart_Subsystem">
+            <End Role="Subsystem" EntitySet="Subsystem" />
+            <End Role="Subpart" EntitySet="Subpart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zone_Zone" Association="SettingModel.FK_Zone_Zone">
+            <End Role="Zone" EntitySet="Zone" />
+            <End Role="Zone1" EntitySet="Zone" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CityID" Type="Int64" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="City" Relationship="SettingModel.FK_Area_City" FromRole="Area" ToRole="City" />
+          <NavigationProperty Name="Region" Relationship="SettingModel.FK_Region_Area" FromRole="Area" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentID" Type="Int64" />
+          <Property Name="BranchAddressID" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HeadPersonID" Type="Int64" />
+          <Property Name="BranchPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BranchEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsCentral" Type="Boolean" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="LeftIndex" Type="Int64" />
+          <Property Name="RightIndex" Type="Int64" />
+          <Property Name="Depth" Type="Int64" />
+          <Property Name="OldCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Branch1" Relationship="SettingModel.FK_Branch_Branch" FromRole="Branch" ToRole="Branch1" />
+          <NavigationProperty Name="Branch2" Relationship="SettingModel.FK_Branch_Branch" FromRole="Branch1" ToRole="Branch" />
+          <NavigationProperty Name="BranchAddress" Relationship="SettingModel.FK_Branch_BranchAddress" FromRole="Branch" ToRole="BranchAddress" />
+          <NavigationProperty Name="BranchRegionWork" Relationship="SettingModel.FK_BranchRegionWork_Branch" FromRole="Branch" ToRole="BranchRegionWork" />
+        </EntityType>
+        <EntityType Name="BranchAddress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ZoneID" Type="Int64" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Branch" Relationship="SettingModel.FK_Branch_BranchAddress" FromRole="BranchAddress" ToRole="Branch" />
+          <NavigationProperty Name="Zone" Relationship="SettingModel.FK_BranchAddress_Zone" FromRole="BranchAddress" ToRole="Zone" />
+        </EntityType>
+        <EntityType Name="BranchRegionWork">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchID" Type="Int64" Nullable="false" />
+          <Property Name="ZoneID" Type="Int64" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Branch" Relationship="SettingModel.FK_BranchRegionWork_Branch" FromRole="BranchRegionWork" ToRole="Branch" />
+          <NavigationProperty Name="Zone" Relationship="SettingModel.FK_BranchRegionWork_Zone" FromRole="BranchRegionWork" ToRole="Zone" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="CountryID" Type="Int64" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Area" Relationship="SettingModel.FK_Area_City" FromRole="City" ToRole="Area" />
+          <NavigationProperty Name="Country" Relationship="SettingModel.FK_City_Country" FromRole="City" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneCode" Type="Int32" />
+          <Property Name="ShortName" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="SettingModel.FK_City_Country" FromRole="Country" ToRole="City" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Symbol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ExchangeRate" Relationship="SettingModel.FK_ExchangeRate_Currency" FromRole="Currency" ToRole="ExchangeRate" />
+          <NavigationProperty Name="ExchangeRate1" Relationship="SettingModel.FK_ExchangeRate_Currency1" FromRole="Currency" ToRole="ExchangeRate" />
+        </EntityType>
+        <EntityType Name="ExchangeRate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromCurrencyID" Type="Int64" Nullable="false" />
+          <Property Name="ToCurrencyID" Type="Int64" Nullable="false" />
+          <Property Name="Ratio" Type="Double" Nullable="false" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Currency" Relationship="SettingModel.FK_ExchangeRate_Currency" FromRole="ExchangeRate" ToRole="Currency" />
+          <NavigationProperty Name="Currency1" Relationship="SettingModel.FK_ExchangeRate_Currency1" FromRole="ExchangeRate" ToRole="Currency" />
+        </EntityType>
+        <EntityType Name="FormType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EnumID" Type="Int32" />
+          <Property Name="SubSystemID" Type="Int64" Nullable="false" />
+          <Property Name="PublicCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Coment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Subsystem" Relationship="SettingModel.FK_FormType_Subsystem" FromRole="FormType" ToRole="Subsystem" />
+          <NavigationProperty Name="RuleTag" Relationship="SettingModel.FK_RuleTag_FormType" FromRole="FormType" ToRole="RuleTag" />
+        </EntityType>
+        <EntityType Name="GeneratedForm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PublicCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrivateCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubsystemID" Type="Int64" Nullable="false" />
+          <Property Name="UniqeCode" Type="Int64" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int64" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntityID" Type="Int32" Nullable="false" />
+          <Property Name="ActionTypeID" Type="Int32" Nullable="false" />
+          <Property Name="RecordID" Type="Int64" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GroupID" Type="Int64" />
+          <Property Name="RegistrantPersonID" Type="Int64" />
+          <Property Name="RegistrantPersonFullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrganizationalChart">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ParentID" Type="Int64" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LeftIndex" Type="Int64" />
+          <Property Name="RightIndex" Type="Int64" />
+          <Property Name="Depth" Type="Int64" />
+          <Property Name="OldCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrganizationalChart1" Relationship="SettingModel.FK_OrganizationalChart_OrganizationalChart" FromRole="OrganizationalChart" ToRole="OrganizationalChart1" />
+          <NavigationProperty Name="OrganizationalChart2" Relationship="SettingModel.FK_OrganizationalChart_OrganizationalChart" FromRole="OrganizationalChart1" ToRole="OrganizationalChart" />
+        </EntityType>
+        <EntityType Name="Prefix">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AreaID" Type="Int64" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Area" Relationship="SettingModel.FK_Region_Area" FromRole="Region" ToRole="Area" />
+          <NavigationProperty Name="RegionAgent" Relationship="SettingModel.FK_RegionAgent_Region" FromRole="Region" ToRole="RegionAgent" />
+          <NavigationProperty Name="Sector" Relationship="SettingModel.FK_Sector_Region" FromRole="Region" ToRole="Sector" />
+        </EntityType>
+        <EntityType Name="RegionAgent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PersonID" Type="Int64" Nullable="false" />
+          <Property Name="RegionID" Type="Int64" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Region" Relationship="SettingModel.FK_RegionAgent_Region" FromRole="RegionAgent" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="Rule">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="RuleTag" Relationship="SettingModel.FK_RuleTag_Rule" FromRole="Rule" ToRole="RuleTag" />
+        </EntityType>
+        <EntityType Name="RuleTag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RuleID" Type="Int64" Nullable="false" />
+          <Property Name="FormTypeID" Type="Int64" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="FormType" Relationship="SettingModel.FK_RuleTag_FormType" FromRole="RuleTag" ToRole="FormType" />
+          <NavigationProperty Name="Rule" Relationship="SettingModel.FK_RuleTag_Rule" FromRole="RuleTag" ToRole="Rule" />
+        </EntityType>
+        <EntityType Name="Sector">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionID" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Region" Relationship="SettingModel.FK_Sector_Region" FromRole="Sector" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="Statement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PersianText" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EnglishText" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ArabicText" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="StatementSubsystem" Relationship="SettingModel.FK_StatementSubsystem_Statement" FromRole="Statement" ToRole="StatementSubsystem" />
+        </EntityType>
+        <EntityType Name="StatementSubsystem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatementID" Type="Int64" Nullable="false" />
+          <Property Name="SubsystemID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Statement" Relationship="SettingModel.FK_StatementSubsystem_Statement" FromRole="StatementSubsystem" ToRole="Statement" />
+          <NavigationProperty Name="Subsystem" Relationship="SettingModel.FK_StatementSubsystem_Subsystem" FromRole="StatementSubsystem" ToRole="Subsystem" />
+        </EntityType>
+        <EntityType Name="Subpart">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsSystem" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SubsystemID" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Subsystem" Relationship="SettingModel.FK_Subpart_Subsystem" FromRole="Subpart" ToRole="Subsystem" />
+        </EntityType>
+        <EntityType Name="Subsystem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsSystem" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="RunOrder" Type="Int32" />
+          <Property Name="IsPart" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="FormType" Relationship="SettingModel.FK_FormType_Subsystem" FromRole="Subsystem" ToRole="FormType" />
+          <NavigationProperty Name="StatementSubsystem" Relationship="SettingModel.FK_StatementSubsystem_Subsystem" FromRole="Subsystem" ToRole="StatementSubsystem" />
+          <NavigationProperty Name="Subpart" Relationship="SettingModel.FK_Subpart_Subsystem" FromRole="Subsystem" ToRole="Subpart" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Typeoforganization">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentID" Type="Int64" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LeftIndex" Type="Int64" />
+          <Property Name="RightIndex" Type="Int64" />
+          <Property Name="Depth" Type="Int64" />
+          <Property Name="OldCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BranchAddress" Relationship="SettingModel.FK_BranchAddress_Zone" FromRole="Zone" ToRole="BranchAddress" />
+          <NavigationProperty Name="BranchRegionWork" Relationship="SettingModel.FK_BranchRegionWork_Zone" FromRole="Zone" ToRole="BranchRegionWork" />
+          <NavigationProperty Name="Zone1" Relationship="SettingModel.FK_Zone_Zone" FromRole="Zone" ToRole="Zone1" />
+          <NavigationProperty Name="Zone2" Relationship="SettingModel.FK_Zone_Zone" FromRole="Zone1" ToRole="Zone" />
+        </EntityType>
+        <Association Name="FK_Area_City">
+          <End Type="SettingModel.City" Role="City" Multiplicity="1" />
+          <End Type="SettingModel.Area" Role="Area" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Area">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_Area">
+          <End Type="SettingModel.Area" Role="Area" Multiplicity="1" />
+          <End Type="SettingModel.Region" Role="Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="AreaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branch_Branch">
+          <End Type="SettingModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="SettingModel.Branch" Role="Branch1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Branch1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branch_BranchAddress">
+          <End Type="SettingModel.BranchAddress" Role="BranchAddress" Multiplicity="1" />
+          <End Type="SettingModel.Branch" Role="Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BranchAddress">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="BranchAddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchRegionWork_Branch">
+          <End Type="SettingModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="SettingModel.BranchRegionWork" Role="BranchRegionWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BranchRegionWork">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchAddress_Zone">
+          <End Type="SettingModel.Zone" Role="Zone" Multiplicity="1" />
+          <End Type="SettingModel.BranchAddress" Role="BranchAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BranchAddress">
+              <PropertyRef Name="ZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchRegionWork_Zone">
+          <End Type="SettingModel.Zone" Role="Zone" Multiplicity="1" />
+          <End Type="SettingModel.BranchRegionWork" Role="BranchRegionWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BranchRegionWork">
+              <PropertyRef Name="ZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_Country">
+          <End Type="SettingModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="SettingModel.City" Role="City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExchangeRate_Currency">
+          <End Type="SettingModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="SettingModel.ExchangeRate" Role="ExchangeRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ExchangeRate">
+              <PropertyRef Name="FromCurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExchangeRate_Currency1">
+          <End Type="SettingModel.Currency" Role="Currency" Multiplicity="1" />
+          <End Type="SettingModel.ExchangeRate" Role="ExchangeRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ExchangeRate">
+              <PropertyRef Name="ToCurrencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormType_Subsystem">
+          <End Type="SettingModel.Subsystem" Role="Subsystem" Multiplicity="1" />
+          <End Type="SettingModel.FormType" Role="FormType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subsystem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FormType">
+              <PropertyRef Name="SubSystemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleTag_FormType">
+          <End Type="SettingModel.FormType" Role="FormType" Multiplicity="1" />
+          <End Type="SettingModel.RuleTag" Role="RuleTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RuleTag">
+              <PropertyRef Name="FormTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrganizationalChart_OrganizationalChart">
+          <End Type="SettingModel.OrganizationalChart" Role="OrganizationalChart" Multiplicity="0..1" />
+          <End Type="SettingModel.OrganizationalChart" Role="OrganizationalChart1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrganizationalChart">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrganizationalChart1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegionAgent_Region">
+          <End Type="SettingModel.Region" Role="Region" Multiplicity="1" />
+          <End Type="SettingModel.RegionAgent" Role="RegionAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RegionAgent">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sector_Region">
+          <End Type="SettingModel.Region" Role="Region" Multiplicity="1" />
+          <End Type="SettingModel.Sector" Role="Sector" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sector">
+              <PropertyRef Name="RegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleTag_Rule">
+          <End Type="SettingModel.Rule" Role="Rule" Multiplicity="1" />
+          <End Type="SettingModel.RuleTag" Role="RuleTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rule">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RuleTag">
+              <PropertyRef Name="RuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatementSubsystem_Statement">
+          <End Type="SettingModel.Statement" Role="Statement" Multiplicity="1" />
+          <End Type="SettingModel.StatementSubsystem" Role="StatementSubsystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statement">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StatementSubsystem">
+              <PropertyRef Name="StatementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatementSubsystem_Subsystem">
+          <End Type="SettingModel.Subsystem" Role="Subsystem" Multiplicity="1" />
+          <End Type="SettingModel.StatementSubsystem" Role="StatementSubsystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subsystem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StatementSubsystem">
+              <PropertyRef Name="SubsystemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subpart_Subsystem">
+          <End Type="SettingModel.Subsystem" Role="Subsystem" Multiplicity="1" />
+          <End Type="SettingModel.Subpart" Role="Subpart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subsystem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subpart">
+              <PropertyRef Name="SubsystemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zone_Zone">
+          <End Type="SettingModel.Zone" Role="Zone" Multiplicity="0..1" />
+          <End Type="SettingModel.Zone" Role="Zone1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Zone1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SettingModelStoreContainer" CdmEntityContainer="SettingEntities">
+          <EntitySetMapping Name="Area">
+            <EntityTypeMapping TypeName="SettingModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Branch">
+            <EntityTypeMapping TypeName="SettingModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="OldCode" ColumnName="OldCode" />
+                <ScalarProperty Name="Depth" ColumnName="Depth" />
+                <ScalarProperty Name="RightIndex" ColumnName="RightIndex" />
+                <ScalarProperty Name="LeftIndex" ColumnName="LeftIndex" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="IsCentral" ColumnName="IsCentral" />
+                <ScalarProperty Name="BranchEmail" ColumnName="BranchEmail" />
+                <ScalarProperty Name="BranchPhoneNo" ColumnName="BranchPhoneNo" />
+                <ScalarProperty Name="HeadPersonID" ColumnName="HeadPersonID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BranchAddressID" ColumnName="BranchAddressID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BranchAddress">
+            <EntityTypeMapping TypeName="SettingModel.BranchAddress">
+              <MappingFragment StoreEntitySet="BranchAddress">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ZoneID" ColumnName="ZoneID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BranchRegionWork">
+            <EntityTypeMapping TypeName="SettingModel.BranchRegionWork">
+              <MappingFragment StoreEntitySet="BranchRegionWork">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ZoneID" ColumnName="ZoneID" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="SettingModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="SettingModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="PhoneCode" ColumnName="PhoneCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currency">
+            <EntityTypeMapping TypeName="SettingModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExchangeRate">
+            <EntityTypeMapping TypeName="SettingModel.ExchangeRate">
+              <MappingFragment StoreEntitySet="ExchangeRate">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Ratio" ColumnName="Ratio" />
+                <ScalarProperty Name="ToCurrencyID" ColumnName="ToCurrencyID" />
+                <ScalarProperty Name="FromCurrencyID" ColumnName="FromCurrencyID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormType">
+            <EntityTypeMapping TypeName="SettingModel.FormType">
+              <MappingFragment StoreEntitySet="FormType">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Coment" ColumnName="Coment" />
+                <ScalarProperty Name="PublicCode" ColumnName="PublicCode" />
+                <ScalarProperty Name="SubSystemID" ColumnName="SubSystemID" />
+                <ScalarProperty Name="EnumID" ColumnName="EnumID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneratedForm">
+            <EntityTypeMapping TypeName="SettingModel.GeneratedForm">
+              <MappingFragment StoreEntitySet="GeneratedForm">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UniqeCode" ColumnName="UniqeCode" />
+                <ScalarProperty Name="SubsystemID" ColumnName="SubsystemID" />
+                <ScalarProperty Name="PrivateCode" ColumnName="PrivateCode" />
+                <ScalarProperty Name="PublicCode" ColumnName="PublicCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="SettingModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="RegistrantPersonFullName" ColumnName="RegistrantPersonFullName" />
+                <ScalarProperty Name="RegistrantPersonID" ColumnName="RegistrantPersonID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+                <ScalarProperty Name="ActionTypeID" ColumnName="ActionTypeID" />
+                <ScalarProperty Name="EntityID" ColumnName="EntityID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrganizationalChart">
+            <EntityTypeMapping TypeName="SettingModel.OrganizationalChart">
+              <MappingFragment StoreEntitySet="OrganizationalChart">
+                <ScalarProperty Name="OldCode" ColumnName="OldCode" />
+                <ScalarProperty Name="Depth" ColumnName="Depth" />
+                <ScalarProperty Name="RightIndex" ColumnName="RightIndex" />
+                <ScalarProperty Name="LeftIndex" ColumnName="LeftIndex" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prefix">
+            <EntityTypeMapping TypeName="SettingModel.Prefix">
+              <MappingFragment StoreEntitySet="Prefix">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Region">
+            <EntityTypeMapping TypeName="SettingModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegionAgent">
+            <EntityTypeMapping TypeName="SettingModel.RegionAgent">
+              <MappingFragment StoreEntitySet="RegionAgent">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rule">
+            <EntityTypeMapping TypeName="SettingModel.Rule">
+              <MappingFragment StoreEntitySet="Rule">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RuleTag">
+            <EntityTypeMapping TypeName="SettingModel.RuleTag">
+              <MappingFragment StoreEntitySet="RuleTag">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="FormTypeID" ColumnName="FormTypeID" />
+                <ScalarProperty Name="RuleID" ColumnName="RuleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sector">
+            <EntityTypeMapping TypeName="SettingModel.Sector">
+              <MappingFragment StoreEntitySet="Sector">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statement">
+            <EntityTypeMapping TypeName="SettingModel.Statement">
+              <MappingFragment StoreEntitySet="Statement">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="ArabicText" ColumnName="ArabicText" />
+                <ScalarProperty Name="EnglishText" ColumnName="EnglishText" />
+                <ScalarProperty Name="PersianText" ColumnName="PersianText" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatementSubsystem">
+            <EntityTypeMapping TypeName="SettingModel.StatementSubsystem">
+              <MappingFragment StoreEntitySet="StatementSubsystem">
+                <ScalarProperty Name="SubsystemID" ColumnName="SubsystemID" />
+                <ScalarProperty Name="StatementID" ColumnName="StatementID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subpart">
+            <EntityTypeMapping TypeName="SettingModel.Subpart">
+              <MappingFragment StoreEntitySet="Subpart">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SubsystemID" ColumnName="SubsystemID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsSystem" ColumnName="IsSystem" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subsystem">
+            <EntityTypeMapping TypeName="SettingModel.Subsystem">
+              <MappingFragment StoreEntitySet="Subsystem">
+                <ScalarProperty Name="IsPart" ColumnName="IsPart" />
+                <ScalarProperty Name="RunOrder" ColumnName="RunOrder" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsSystem" ColumnName="IsSystem" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SettingModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Typeoforganization">
+            <EntityTypeMapping TypeName="SettingModel.Typeoforganization">
+              <MappingFragment StoreEntitySet="Typeoforganization">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zone">
+            <EntityTypeMapping TypeName="SettingModel.Zone">
+              <MappingFragment StoreEntitySet="Zone">
+                <ScalarProperty Name="OldCode" ColumnName="OldCode" />
+                <ScalarProperty Name="Depth" ColumnName="Depth" />
+                <ScalarProperty Name="RightIndex" ColumnName="RightIndex" />
+                <ScalarProperty Name="LeftIndex" ColumnName="LeftIndex" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

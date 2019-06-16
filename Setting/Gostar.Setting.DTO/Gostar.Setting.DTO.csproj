@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FA5CE691-8C6F-44D9-A500-0C7A41C3B80C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gostar.Setting.DTO</RootNamespace>
+    <AssemblyName>Gostar.Setting.DTO</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gostar.Common">
+      <HintPath>..\Dlls\Gostar.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AreaDTO.cs" />
+    <Compile Include="AreaFilterDTO.cs" />
+    <Compile Include="BaseDTO.cs" />
+    <Compile Include="BranchDTO.cs" />
+    <Compile Include="BranchFilterDTO.cs" />
+    <Compile Include="BranchRegionWorkDTO.cs" />
+    <Compile Include="CityDTO.cs" />
+    <Compile Include="CityFilterDTO.cs" />
+    <Compile Include="CountryDTO.cs" />
+    <Compile Include="CountryFilterDTO.cs" />
+    <Compile Include="CurrencyDTO.cs" />
+    <Compile Include="CurrencyFilterDTO.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="BranchAddressDTO.cs" />
+    <Compile Include="BranchAddressFilterDTO.cs" />
+    <Compile Include="ExchangeRateDTO.cs" />
+    <Compile Include="ExchangeRateFilterDTO.cs" />
+    <Compile Include="Fixed.cs" />
+    <Compile Include="FormTypeDTO.cs" />
+    <Compile Include="FormTypeFilterDTO.cs" />
+    <Compile Include="GeneratedFormDTO.cs" />
+    <Compile Include="LogDTO.cs" />
+    <Compile Include="LogFiterDTO.cs" />
+    <Compile Include="OrganizationalChartDTO.cs" />
+    <Compile Include="OrganizationalChartFilterDTO.cs" />
+    <Compile Include="PrefixDTO.cs" />
+    <Compile Include="PrefixFilterDTO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RuleDTO.cs" />
+    <Compile Include="RuleFilterDTO.cs" />
+    <Compile Include="RegionAgentDTO.cs" />
+    <Compile Include="RegionAgentFilterDTO.cs" />
+    <Compile Include="RegionDTO.cs" />
+    <Compile Include="RegionFilterDTO.cs" />
+    <Compile Include="RuleTagDTO.cs" />
+    <Compile Include="RuleTagFilterDTO.cs" />
+    <Compile Include="SectorDTO.cs" />
+    <Compile Include="SectorFilterDTO.cs" />
+    <Compile Include="StatementDTO.cs" />
+    <Compile Include="StatementSubsystemDTO.cs" />
+    <Compile Include="SubpartDTO.cs" />
+    <Compile Include="SubsystemDTO.cs" />
+    <Compile Include="TypeoforganizationDTO.cs" />
+    <Compile Include="Validation\AreaValidator.cs" />
+    <Compile Include="Validation\BranchAddressValidator.cs" />
+    <Compile Include="Validation\BranchRegionWorkValidator.cs" />
+    <Compile Include="Validation\BranchValidator.cs" />
+    <Compile Include="Validation\CityValidator.cs" />
+    <Compile Include="Validation\CountryValidator.cs" />
+    <Compile Include="Validation\CurrencyValidator.cs" />
+    <Compile Include="Validation\ExchangeRateValidator.cs" />
+    <Compile Include="Validation\FormTypeValidator.cs" />
+    <Compile Include="Validation\PrefixValidator.cs" />
+    <Compile Include="Validation\RegionAgentValidator.cs" />
+    <Compile Include="Validation\RegionValidator.cs" />
+    <Compile Include="Validation\RuleTagValidator.cs" />
+    <Compile Include="Validation\RuleValidator.cs" />
+    <Compile Include="Validation\SectorValidator.cs" />
+    <Compile Include="Validation\StatementValidator.cs" />
+    <Compile Include="Validation\SubpartValidator.cs" />
+    <Compile Include="Validation\SubsystemValidator.cs" />
+    <Compile Include="Validation\TypeoforganizationValidator.cs" />
+    <Compile Include="Validation\ZoneValidator.cs" />
+    <Compile Include="ZoneDTO.cs" />
+    <Compile Include="ZoneFilterDTO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.OrphanPoor\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.PublicRelation\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\CommonWorkspace\FileManagement\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\CommonWorkspace\UserManagement\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\CommonWorkspace\Gostar\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\CommonWorkspace\IntegratedUI\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\CommonWorkspace\IntegratedUI\Output\Subsystems\Setting\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.Bailment\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.Box\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.HR\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.Visitor\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.IT\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.HR\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.Donation\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\OverallOutputs\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.InQuiry\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.Sponsorship\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.Accounting\Dlls\"
+xcopy /Y "$(TargetPath)" "$(SolutionDir)..\..\AlyatimWorkspace\Alyatim.Member\Dlls\"
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{29306F1E-6F33-4FFA-A2D0-4BE4F5B9B40E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gostar.Setting.BL</RootNamespace>
+    <AssemblyName>Gostar.Setting.BL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Alyatim.Member.DTO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\Alyatim.Member.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="Alyatim.Member.SC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\Alyatim.Member.SC.dll</HintPath>
+    </Reference>
+    <Reference Include="Gostar.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\Gostar.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Gostar.Setting.DTO, Version=1.0.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\Gostar.Setting.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Dlls\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UserManagement.DTO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\UserManagement.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="UserManagement.SC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\UserManagement.SC.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AreaBL.cs" />
+    <Compile Include="GeneratedFormBL.cs" />
+    <Compile Include="ObserverStates\Currency.cs" />
+    <Compile Include="ObserverStates\ExchangeRate.cs" />
+    <Compile Include="ObserverStates\FormType.cs" />
+    <Compile Include="ObserverStates\GeneratedForm.cs" />
+    <Compile Include="ObserverStates\Prefix.cs" />
+    <Compile Include="ObserverStates\Rule.cs" />
+    <Compile Include="ObserverStates\RuleTag.cs" />
+    <Compile Include="ObserverStates\Sector.cs" />
+    <Compile Include="ObserverStates\Typeoforganization.cs" />
+    <Compile Include="ObserverStates\Zone.cs" />
+    <Compile Include="Observers\ActionDTO\CurrencyActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\ExchangeRateActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\FormTypeActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\GeneratedFormActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\PrefixActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\RuleActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\RuleTagActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\SectorActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\TypeoforganizationActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\ZoneActionDTO.cs" />
+    <Compile Include="OrganizationalChartBL.cs" />
+    <Compile Include="PrefixBL.cs" />
+    <Compile Include="BaseBusiness.cs" />
+    <Compile Include="BranchBL.cs" />
+    <Compile Include="BranchRegionWorkBL.cs" />
+    <Compile Include="CityBL.cs" />
+    <Compile Include="CountryBL.cs" />
+    <Compile Include="CurrencyBL.cs" />
+    <Compile Include="ExchangeRateBL.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="BranchAddressBL.cs" />
+    <Compile Include="FormTypeBL.cs" />
+    <Compile Include="LogBL.cs" />
+    <Compile Include="Observers\ActionDTO\ActionBaseDTO.cs" />
+    <Compile Include="Observers\ActionDTO\AreaActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\BranchActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\BranchAddressActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\BranchRegionWorkActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\CityActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\CountryActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\RegionAgentActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\RegionActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\StatementSubsystemActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\StatementActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\SubpartActionDTO.cs" />
+    <Compile Include="Observers\ActionDTO\SubsystemActionDTO.cs" />
+    <Compile Include="Observers\LogObserver.cs" />
+    <Compile Include="Observers\ObserverBase.cs" />
+    <Compile Include="ObserverStates\Area.cs" />
+    <Compile Include="ObserverStates\Branch.cs" />
+    <Compile Include="ObserverStates\BranchAddress.cs" />
+    <Compile Include="ObserverStates\BranchRegionWork.cs" />
+    <Compile Include="ObserverStates\City.cs" />
+    <Compile Include="ObserverStates\Country.cs" />
+    <Compile Include="ObserverStates\ObserverStateBase.cs" />
+    <Compile Include="ObserverStates\RegionAgent.cs" />
+    <Compile Include="ObserverStates\Region.cs" />
+    <Compile Include="ObserverStates\StatementSubsystem.cs" />
+    <Compile Include="ObserverStates\Statement.cs" />
+    <Compile Include="ObserverStates\Subpart.cs" />
+    <Compile Include="ObserverStates\Subsystem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegionAgentBL.cs" />
+    <Compile Include="RegionBL.cs" />
+    <Compile Include="RuleBL.cs" />
+    <Compile Include="RuleTagBL.cs" />
+    <Compile Include="SectorBL.cs" />
+    <Compile Include="ServiceUtility.cs" />
+    <Compile Include="StatementBL.cs" />
+    <Compile Include="SubpartBL.cs" />
+    <Compile Include="SubsystemBL.cs" />
+    <Compile Include="Fixed.cs" />
+    <Compile Include="TypeoforganizationBL.cs" />
+    <Compile Include="Validation\AreaValidator.cs" />
+    <Compile Include="Validation\BranchAddressValidator.cs" />
+    <Compile Include="Validation\BranchRegionWorkValidator.cs" />
+    <Compile Include="Validation\BranchValidator.cs" />
+    <Compile Include="Validation\CityValidator.cs" />
+    <Compile Include="Validation\CountryValidator.cs" />
+    <Compile Include="Validation\CurrencyValidator.cs" />
+    <Compile Include="Validation\ExchangeRateValidator.cs" />
+    <Compile Include="Validation\FormTypeValidator.cs" />
+    <Compile Include="Validation\PrefixValidator.cs" />
+    <Compile Include="Validation\RegionAgentValidator.cs" />
+    <Compile Include="Validation\RegionValidator.cs" />
+    <Compile Include="Validation\RuleTagValidator.cs" />
+    <Compile Include="Validation\RuleValidator.cs" />
+    <Compile Include="Validation\SectorValidator.cs" />
+    <Compile Include="Validation\StatementValidator.cs" />
+    <Compile Include="Validation\SubpartValidator.cs" />
+    <Compile Include="Validation\SubsystemValidator.cs" />
+    <Compile Include="Validation\TypeoforganizationValidator.cs" />
+    <Compile Include="Validation\ZoneValidator.cs" />
+    <Compile Include="ZoneBL.cs" />
+    <Compile Include="ZoneBranchBL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gostar.Setting.DA\Gostar.Setting.DA.csproj">
+      <Project>{ff48b144-ef60-4f69-ba47-94368e20d3f8}</Project>
+      <Name>Gostar.Setting.DA</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

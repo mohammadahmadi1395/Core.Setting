@@ -1,0 +1,6 @@
+D:\MainWorkspace\CommonWorkspace\Gostar\Output\Gostar.Common.XML
+D:\MainWorkspace\CommonWorkspace\Gostar\Output\Gostar.Common.dll
+D:\MainWorkspace\CommonWorkspace\Gostar\Output\Gostar.Common.pdb
+D:\MainWorkspace\CommonWorkspace\Gostar\Gostar.Common\obj\Debug\Gostar.Common.csprojResolveAssemblyReference.cache
+D:\MainWorkspace\CommonWorkspace\Gostar\Gostar.Common\obj\Debug\Gostar.Common.dll
+D:\MainWorkspace\CommonWorkspace\Gostar\Gostar.Common\obj\Debug\Gostar.Common.pdb

@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "His.Reception.Api", "His.Reception.Api\His.Reception.Api.csproj", "{8263BE24-C165-4D05-A1F3-AF4B6073D77D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "His.Reception.DAL", "His.Reception.DAL\His.Reception.DAL.csproj", "{AB942CED-8205-44C0-AAC2-2C4FC66C8249}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "His.Reception.Application", "His.Reception.Application\His.Reception.Application.csproj", "{29F8EEAD-5C64-4DEC-B748-145069D8C473}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "His.Reception.DTO", "His.Reception.DTO\His.Reception.DTO.csproj", "{F2EF591D-29BC-4C8A-976A-6AD21D4FF3DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "His.Reception.Entities", "His.Reception.Entities\His.Reception.Entities.csproj", "{021E1126-82B7-417B-ABFB-A684C03B9CB2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "His.Reception.Infrastructure", "His.Reception.Infrastructure\His.Reception.Infrastructure.csproj", "{8C0C79DF-C67E-447B-8832-26ED3710B357}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8263BE24-C165-4D05-A1F3-AF4B6073D77D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8263BE24-C165-4D05-A1F3-AF4B6073D77D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8263BE24-C165-4D05-A1F3-AF4B6073D77D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8263BE24-C165-4D05-A1F3-AF4B6073D77D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB942CED-8205-44C0-AAC2-2C4FC66C8249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB942CED-8205-44C0-AAC2-2C4FC66C8249}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB942CED-8205-44C0-AAC2-2C4FC66C8249}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB942CED-8205-44C0-AAC2-2C4FC66C8249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29F8EEAD-5C64-4DEC-B748-145069D8C473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F8EEAD-5C64-4DEC-B748-145069D8C473}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F8EEAD-5C64-4DEC-B748-145069D8C473}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F8EEAD-5C64-4DEC-B748-145069D8C473}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2EF591D-29BC-4C8A-976A-6AD21D4FF3DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2EF591D-29BC-4C8A-976A-6AD21D4FF3DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2EF591D-29BC-4C8A-976A-6AD21D4FF3DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2EF591D-29BC-4C8A-976A-6AD21D4FF3DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{021E1126-82B7-417B-ABFB-A684C03B9CB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{021E1126-82B7-417B-ABFB-A684C03B9CB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{021E1126-82B7-417B-ABFB-A684C03B9CB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{021E1126-82B7-417B-ABFB-A684C03B9CB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C0C79DF-C67E-447B-8832-26ED3710B357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C0C79DF-C67E-447B-8832-26ED3710B357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C0C79DF-C67E-447B-8832-26ED3710B357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C0C79DF-C67E-447B-8832-26ED3710B357}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93006328-CAA2-4BF1-843C-5306144CEE0D}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://mainserver:8080/tfs/genral%20collection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = His.Reception.Api\\His.Reception.Api.csproj
+		SccProjectName1 = His.Reception.Api
+		SccLocalPath1 = His.Reception.Api
+		SccProjectUniqueName2 = His.Reception.Application\\His.Reception.Application.csproj
+		SccProjectName2 = His.Reception.Application
+		SccLocalPath2 = His.Reception.Application
+		SccProjectUniqueName3 = His.Reception.DAL\\His.Reception.DAL.csproj
+		SccProjectName3 = His.Reception.DAL
+		SccLocalPath3 = His.Reception.DAL
+		SccProjectUniqueName4 = His.Reception.DTO\\His.Reception.DTO.csproj
+		SccProjectName4 = His.Reception.DTO
+		SccLocalPath4 = His.Reception.DTO
+		SccProjectUniqueName5 = His.Reception.Entities\\His.Reception.Entities.csproj
+		SccProjectName5 = His.Reception.Entities
+		SccLocalPath5 = His.Reception.Entities
+		SccProjectUniqueName6 = His.Reception.Infrastructure\\His.Reception.Infrastructure.csproj
+		SccProjectName6 = His.Reception.Infrastructure
+		SccLocalPath6 = His.Reception.Infrastructure
+	EndGlobalSection
+EndGlobal

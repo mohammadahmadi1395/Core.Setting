@@ -1,0 +1,206 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gostar.Setting.UI", "Gostar.Setting.UI\Gostar.Setting.UI.csproj", "{6BA4B4E4-C588-4066-B00A-A0697561F609}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gostar.Setting.SC", "Gostar.Setting.SC\Gostar.Setting.SC.csproj", "{FBFCF3E9-8BBE-4EF2-9A12-A035089789E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gostar.Setting.DA", "Gostar.Setting.DA\Gostar.Setting.DA.csproj", "{FF48B144-EF60-4F69-BA47-94368E20D3F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gostar.Setting.BL", "Gostar.Setting.BL\Gostar.Setting.BL.csproj", "{29306F1E-6F33-4FFA-A2D0-4BE4F5B9B40E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gostar.Setting.SL", "Gostar.Setting.SL\Gostar.Setting.SL.csproj", "{AFD7D8D9-C07D-4E75-961F-003D30D65686}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gostar.Setting.DTO", "Gostar.Setting.DTO\Gostar.Setting.DTO.csproj", "{FA5CE691-8C6F-44D9-A500-0C7A41C3B80C}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SettingSite", "SettingSite", "{510E8C21-7001-4596-B760-569F2832C706}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{29306f1e-6f33-4ffa-a2d0-4be4f5b9b40e}|Gostar.Setting.BL.dll;{FF48B144-EF60-4F69-BA47-94368E20D3F8}|Gostar.Setting.DA.dll;{FA5CE691-8C6F-44D9-A500-0C7A41C3B80C}|Gostar.Setting.DTO.dll;{fbfcf3e9-8bbe-4ef2-9a12-a035089789e7}|Gostar.Setting.SC.dll;{afd7d8d9-c07d-4e75-961f-003d30d65686}|Gostar.Setting.SL.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_3769"
+		Debug.AspNetCompiler.PhysicalPath = "SettingSite\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3769\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_3769"
+		Release.AspNetCompiler.PhysicalPath = "SettingSite\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3769\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "3769"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SettingWinSite", "SettingWinSite", "{3DC80155-193F-4401-AFC8-C61B66178CD0}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{29306f1e-6f33-4ffa-a2d0-4be4f5b9b40e}|Gostar.Setting.BL.dll;{FF48B144-EF60-4F69-BA47-94368E20D3F8}|Gostar.Setting.DA.dll;{FA5CE691-8C6F-44D9-A500-0C7A41C3B80C}|Gostar.Setting.DTO.dll;{fbfcf3e9-8bbe-4ef2-9a12-a035089789e7}|Gostar.Setting.SC.dll;{afd7d8d9-c07d-4e75-961f-003d30d65686}|Gostar.Setting.SL.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_3854"
+		Debug.AspNetCompiler.PhysicalPath = "SettingWinSite\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3854\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_3854"
+		Release.AspNetCompiler.PhysicalPath = "SettingWinSite\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3854\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "3854"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gostar.Setting.Utility", "Gostar.Setting.Utility\Gostar.Setting.Utility.csproj", "{C0464B62-C805-4DB2-BECC-FC797D0AEB6B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6BA4B4E4-C588-4066-B00A-A0697561F609}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{6BA4B4E4-C588-4066-B00A-A0697561F609}.Debug|Any CPU.Build.0 = Debug|x64
+		{6BA4B4E4-C588-4066-B00A-A0697561F609}.Debug|x86.ActiveCfg = Debug|x64
+		{6BA4B4E4-C588-4066-B00A-A0697561F609}.Release|Any CPU.ActiveCfg = Release|x64
+		{6BA4B4E4-C588-4066-B00A-A0697561F609}.Release|x86.ActiveCfg = Release|x64
+		{FBFCF3E9-8BBE-4EF2-9A12-A035089789E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBFCF3E9-8BBE-4EF2-9A12-A035089789E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBFCF3E9-8BBE-4EF2-9A12-A035089789E7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FBFCF3E9-8BBE-4EF2-9A12-A035089789E7}.Debug|x86.Build.0 = Debug|Any CPU
+		{FBFCF3E9-8BBE-4EF2-9A12-A035089789E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBFCF3E9-8BBE-4EF2-9A12-A035089789E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBFCF3E9-8BBE-4EF2-9A12-A035089789E7}.Release|x86.ActiveCfg = Release|Any CPU
+		{FBFCF3E9-8BBE-4EF2-9A12-A035089789E7}.Release|x86.Build.0 = Release|Any CPU
+		{FF48B144-EF60-4F69-BA47-94368E20D3F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF48B144-EF60-4F69-BA47-94368E20D3F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF48B144-EF60-4F69-BA47-94368E20D3F8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FF48B144-EF60-4F69-BA47-94368E20D3F8}.Debug|x86.Build.0 = Debug|Any CPU
+		{FF48B144-EF60-4F69-BA47-94368E20D3F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF48B144-EF60-4F69-BA47-94368E20D3F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF48B144-EF60-4F69-BA47-94368E20D3F8}.Release|x86.ActiveCfg = Release|Any CPU
+		{FF48B144-EF60-4F69-BA47-94368E20D3F8}.Release|x86.Build.0 = Release|Any CPU
+		{29306F1E-6F33-4FFA-A2D0-4BE4F5B9B40E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29306F1E-6F33-4FFA-A2D0-4BE4F5B9B40E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29306F1E-6F33-4FFA-A2D0-4BE4F5B9B40E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{29306F1E-6F33-4FFA-A2D0-4BE4F5B9B40E}.Debug|x86.Build.0 = Debug|Any CPU
+		{29306F1E-6F33-4FFA-A2D0-4BE4F5B9B40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29306F1E-6F33-4FFA-A2D0-4BE4F5B9B40E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29306F1E-6F33-4FFA-A2D0-4BE4F5B9B40E}.Release|x86.ActiveCfg = Release|Any CPU
+		{29306F1E-6F33-4FFA-A2D0-4BE4F5B9B40E}.Release|x86.Build.0 = Release|Any CPU
+		{AFD7D8D9-C07D-4E75-961F-003D30D65686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFD7D8D9-C07D-4E75-961F-003D30D65686}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFD7D8D9-C07D-4E75-961F-003D30D65686}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AFD7D8D9-C07D-4E75-961F-003D30D65686}.Debug|x86.Build.0 = Debug|Any CPU
+		{AFD7D8D9-C07D-4E75-961F-003D30D65686}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFD7D8D9-C07D-4E75-961F-003D30D65686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFD7D8D9-C07D-4E75-961F-003D30D65686}.Release|x86.ActiveCfg = Release|Any CPU
+		{AFD7D8D9-C07D-4E75-961F-003D30D65686}.Release|x86.Build.0 = Release|Any CPU
+		{FA5CE691-8C6F-44D9-A500-0C7A41C3B80C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA5CE691-8C6F-44D9-A500-0C7A41C3B80C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA5CE691-8C6F-44D9-A500-0C7A41C3B80C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FA5CE691-8C6F-44D9-A500-0C7A41C3B80C}.Debug|x86.Build.0 = Debug|Any CPU
+		{FA5CE691-8C6F-44D9-A500-0C7A41C3B80C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA5CE691-8C6F-44D9-A500-0C7A41C3B80C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA5CE691-8C6F-44D9-A500-0C7A41C3B80C}.Release|x86.ActiveCfg = Release|Any CPU
+		{FA5CE691-8C6F-44D9-A500-0C7A41C3B80C}.Release|x86.Build.0 = Release|Any CPU
+		{510E8C21-7001-4596-B760-569F2832C706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{510E8C21-7001-4596-B760-569F2832C706}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{510E8C21-7001-4596-B760-569F2832C706}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{510E8C21-7001-4596-B760-569F2832C706}.Debug|x86.Build.0 = Debug|Any CPU
+		{510E8C21-7001-4596-B760-569F2832C706}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{510E8C21-7001-4596-B760-569F2832C706}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{510E8C21-7001-4596-B760-569F2832C706}.Release|x86.ActiveCfg = Debug|Any CPU
+		{510E8C21-7001-4596-B760-569F2832C706}.Release|x86.Build.0 = Debug|Any CPU
+		{3DC80155-193F-4401-AFC8-C61B66178CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC80155-193F-4401-AFC8-C61B66178CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DC80155-193F-4401-AFC8-C61B66178CD0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3DC80155-193F-4401-AFC8-C61B66178CD0}.Debug|x86.Build.0 = Debug|Any CPU
+		{3DC80155-193F-4401-AFC8-C61B66178CD0}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC80155-193F-4401-AFC8-C61B66178CD0}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{3DC80155-193F-4401-AFC8-C61B66178CD0}.Release|x86.ActiveCfg = Debug|Any CPU
+		{3DC80155-193F-4401-AFC8-C61B66178CD0}.Release|x86.Build.0 = Debug|Any CPU
+		{C0464B62-C805-4DB2-BECC-FC797D0AEB6B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{C0464B62-C805-4DB2-BECC-FC797D0AEB6B}.Debug|Any CPU.Build.0 = Debug|x86
+		{C0464B62-C805-4DB2-BECC-FC797D0AEB6B}.Debug|x86.ActiveCfg = Debug|x86
+		{C0464B62-C805-4DB2-BECC-FC797D0AEB6B}.Debug|x86.Build.0 = Debug|x86
+		{C0464B62-C805-4DB2-BECC-FC797D0AEB6B}.Release|Any CPU.ActiveCfg = Release|x86
+		{C0464B62-C805-4DB2-BECC-FC797D0AEB6B}.Release|x86.ActiveCfg = Release|x86
+		{C0464B62-C805-4DB2-BECC-FC797D0AEB6B}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://mainserver:8080/tfs/commoncollection
+		SccProjectUniqueName0 = Gostar.Setting.UI\\Gostar.Setting.UI.csproj
+		SccProjectName0 = Gostar.Setting.UI
+		SccAuxPath0 = http://mainserver:8080/tfs/commoncollection
+		SccLocalPath0 = Gostar.Setting.UI
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = Gostar.Setting.SC\\Gostar.Setting.SC.csproj
+		SccProjectName1 = Gostar.Setting.SC
+		SccAuxPath1 = http://mainserver:8080/tfs/commoncollection
+		SccLocalPath1 = Gostar.Setting.SC
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName2 = Gostar.Setting.DA\\Gostar.Setting.DA.csproj
+		SccProjectName2 = Gostar.Setting.DA
+		SccAuxPath2 = http://mainserver:8080/tfs/commoncollection
+		SccLocalPath2 = Gostar.Setting.DA
+		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName3 = Gostar.Setting.BL\\Gostar.Setting.BL.csproj
+		SccProjectName3 = Gostar.Setting.BL
+		SccAuxPath3 = http://mainserver:8080/tfs/commoncollection
+		SccLocalPath3 = Gostar.Setting.BL
+		SccProvider3 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName4 = Gostar.Setting.SL\\Gostar.Setting.SL.csproj
+		SccProjectName4 = Gostar.Setting.SL
+		SccAuxPath4 = http://mainserver:8080/tfs/commoncollection
+		SccLocalPath4 = Gostar.Setting.SL
+		SccProvider4 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName5 = Gostar.Setting.DTO\\Gostar.Setting.DTO.csproj
+		SccProjectName5 = Gostar.Setting.DTO
+		SccAuxPath5 = http://mainserver:8080/tfs/commoncollection
+		SccLocalPath5 = Gostar.Setting.DTO
+		SccProvider5 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccWebProject6 = true
+		SccProjectUniqueName6 = SettingSite
+		SccProjectName6 = SettingSite
+		SccAuxPath6 = http://mainserver:8080/tfs/commoncollection
+		SccLocalPath6 = SettingSite
+		SccProvider6 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectEnlistmentChoice6 = 2
+		SccWebProject7 = true
+		SccProjectUniqueName7 = SettingWinSite
+		SccProjectName7 = SettingWinSite
+		SccAuxPath7 = http://mainserver:8080/tfs/commoncollection
+		SccLocalPath7 = SettingWinSite
+		SccProvider7 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectEnlistmentChoice7 = 2
+		SccProjectUniqueName8 = Gostar.Setting.Utility\\Gostar.Setting.Utility.csproj
+		SccProjectName8 = Gostar.Setting.Utility
+		SccAuxPath8 = http://mainserver:8080/tfs/commoncollection
+		SccLocalPath8 = Gostar.Setting.Utility
+		SccProvider8 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+EndGlobal

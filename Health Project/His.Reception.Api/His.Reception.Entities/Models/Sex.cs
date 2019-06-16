@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace His.Reception.Entities.Models
+{
+    public partial class Sex
+    {
+        public Sex()
+        {
+            Person = new HashSet<Person>();
+        }
+
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string TitleLang2 { get; set; }
+        public string Note { get; set; }
+        public string Code1 { get; set; }
+        public string Code2 { get; set; }
+        public bool? IsAdmin { get; set; }
+
+        public virtual ICollection<Person> Person { get; set; }
+    }
+}

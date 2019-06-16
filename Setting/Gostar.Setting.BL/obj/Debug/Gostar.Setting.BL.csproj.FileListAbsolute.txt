@@ -1,0 +1,5 @@
+D:\MainWorkspace\CommonWorkspace\Setting\Output\Gostar.Setting.BL.dll
+D:\MainWorkspace\CommonWorkspace\Setting\Output\Gostar.Setting.BL.pdb
+D:\MainWorkspace\CommonWorkspace\Setting\Gostar.Setting.BL\obj\Debug\Gostar.Setting.BL.csprojResolveAssemblyReference.cache
+D:\MainWorkspace\CommonWorkspace\Setting\Gostar.Setting.BL\obj\Debug\Gostar.Setting.BL.dll
+D:\MainWorkspace\CommonWorkspace\Setting\Gostar.Setting.BL\obj\Debug\Gostar.Setting.BL.pdb

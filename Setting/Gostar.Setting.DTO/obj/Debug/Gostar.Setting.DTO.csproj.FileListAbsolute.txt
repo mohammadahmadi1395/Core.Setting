@@ -1,0 +1,6 @@
+D:\MainWorkspace\CommonWorkspace\Setting\Output\Gostar.Setting.DTO.dll.config
+D:\MainWorkspace\CommonWorkspace\Setting\Output\Gostar.Setting.DTO.dll
+D:\MainWorkspace\CommonWorkspace\Setting\Output\Gostar.Setting.DTO.pdb
+D:\MainWorkspace\CommonWorkspace\Setting\Gostar.Setting.DTO\obj\Debug\Gostar.Setting.DTO.dll
+D:\MainWorkspace\CommonWorkspace\Setting\Gostar.Setting.DTO\obj\Debug\Gostar.Setting.DTO.pdb
+D:\MainWorkspace\CommonWorkspace\Setting\Gostar.Setting.DTO\obj\Debug\Gostar.Setting.DTO.csprojResolveAssemblyReference.cache

@@ -1,0 +1,256 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Services/Alsahab.Setting.Services.csproj": {}
+  },
+  "projects": {
+    "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj",
+        "projectName": "Alsahab.Setting.Common",
+        "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj",
+        "packagesPath": "/home/mohammad/.nuget/packages/",
+        "outputPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/home/mohammad/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.1.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.1.4, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "Pluralize.NET": {
+              "target": "Package",
+              "version": "[0.1.84, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Alsahab.Setting.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Alsahab.Setting.Data.csproj",
+        "projectName": "Alsahab.Setting.Data",
+        "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Alsahab.Setting.Data.csproj",
+        "packagesPath": "/home/mohammad/.nuget/packages/",
+        "outputPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/home/mohammad/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/Alsahab.Setting.Entities.csproj": {
+                "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/Alsahab.Setting.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.1.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.11, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/Alsahab.Setting.Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/Alsahab.Setting.Entities.csproj",
+        "projectName": "Alsahab.Setting.Entities",
+        "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/Alsahab.Setting.Entities.csproj",
+        "packagesPath": "/home/mohammad/.nuget/packages/",
+        "outputPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/home/mohammad/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj": {
+                "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[2.1.6, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Services/Alsahab.Setting.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Services/Alsahab.Setting.Services.csproj",
+        "projectName": "Alsahab.Setting.Services",
+        "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Services/Alsahab.Setting.Services.csproj",
+        "packagesPath": "/home/mohammad/.nuget/packages/",
+        "outputPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Services/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/home/mohammad/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Alsahab.Setting.Data.csproj": {
+                "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Alsahab.Setting.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.Extensions.Identity.Core": {
+              "target": "Package",
+              "version": "[2.1.6, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "(, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "(, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
