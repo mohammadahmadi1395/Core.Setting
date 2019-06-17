@@ -26,7 +26,7 @@ namespace Alsahab.Setting.Data.Migrations
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("BranchAddressId")
+                    b.Property<long?>("BranchAddressId")
                         .HasColumnName("BranchAddressID");
 
                     b.Property<string>("BranchEmail")

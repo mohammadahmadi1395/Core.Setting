@@ -4,7 +4,7 @@
 // using Alsahab.Setting.Entities;
 // using Alsahab.Setting.WebFramework.Api;
 
-// namespace Alsahab.Setting.DTO.Models
+// namespace Alsahab.Setting.DTO
 // {
 //     public class UserDto : IValidatableObject
 //     {

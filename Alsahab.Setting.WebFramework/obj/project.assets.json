@@ -3454,10 +3454,27 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "Alsahab.Setting.BL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "Alsahab.Setting.Data": "1.0.0",
+          "Microsoft.Extensions.Identity.Core": "2.1.6",
+          "Microsoft.IdentityModel.Tokens": "(, )",
+          "System.IdentityModel.Tokens.Jwt": "(, )"
+        },
+        "compile": {
+          "bin/placeholder/Alsahab.Setting.BL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Alsahab.Setting.BL.dll": {}
+        }
+      },
       "Alsahab.Setting.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
+          "FluentValidation.AspNetCore": "8.4.0",
           "Microsoft.EntityFrameworkCore": "2.1.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
           "Pluralize.NET": "0.1.84"
@@ -3475,6 +3492,7 @@
         "dependencies": {
           "Alsahab.Setting.DTO": "1.0.0",
           "Alsahab.Setting.Entities": "1.0.0",
+          "AutoMapper": "8.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.1.6",
           "Microsoft.EntityFrameworkCore.Design": "2.1.0"
         },
@@ -3490,7 +3508,6 @@
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "Alsahab.Setting.Common": "1.0.0",
-          "FluentValidation.AspNetCore": "8.4.0",
           "Microsoft.Extensions.Identity.Stores": "2.1.6"
         },
         "compile": {
@@ -3512,22 +3529,6 @@
         },
         "runtime": {
           "bin/placeholder/Alsahab.Setting.Entities.dll": {}
-        }
-      },
-      "Alsahab.Setting.Services/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.1",
-        "dependencies": {
-          "Alsahab.Setting.Data": "1.0.0",
-          "Microsoft.Extensions.Identity.Core": "2.1.6",
-          "Microsoft.IdentityModel.Tokens": "(, )",
-          "System.IdentityModel.Tokens.Jwt": "(, )"
-        },
-        "compile": {
-          "bin/placeholder/Alsahab.Setting.Services.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Alsahab.Setting.Services.dll": {}
         }
       }
     }
@@ -10315,6 +10316,11 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "Alsahab.Setting.BL/1.0.0": {
+      "type": "project",
+      "path": "../Alsahab.Setting.BL/Alsahab.Setting.BL.csproj",
+      "msbuildProject": "../Alsahab.Setting.BL/Alsahab.Setting.BL.csproj"
+    },
     "Alsahab.Setting.Common/1.0.0": {
       "type": "project",
       "path": "../Alsahab.Setting.Common/Alsahab.Setting.Common.csproj",
@@ -10334,17 +10340,11 @@
       "type": "project",
       "path": "../Alsahab.Setting.Entities/Alsahab.Setting.Entities.csproj",
       "msbuildProject": "../Alsahab.Setting.Entities/Alsahab.Setting.Entities.csproj"
-    },
-    "Alsahab.Setting.Services/1.0.0": {
-      "type": "project",
-      "path": "../Alsahab.Setting.Services/Alsahab.Setting.Services.csproj",
-      "msbuildProject": "../Alsahab.Setting.Services/Alsahab.Setting.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "Alsahab.Setting.Services >= 1.0.0",
-      "AutoMapper >= 8.0.0",
+      "Alsahab.Setting.BL >= 1.0.0",
       "Autofac.Extensions.DependencyInjection >= 4.3.1",
       "ElmahCore >= 1.2.0",
       "ElmahCore.Sql >= 1.2.1",
@@ -10389,8 +10389,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Services/Alsahab.Setting.Services.csproj": {
-              "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Services/Alsahab.Setting.Services.csproj"
+            "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Alsahab.Setting.BL.csproj": {
+              "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Alsahab.Setting.BL.csproj"
             }
           }
         }
@@ -10404,10 +10404,6 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
-          "AutoMapper": {
-            "target": "Package",
-            "version": "[8.0.0, )"
-          },
           "Autofac.Extensions.DependencyInjection": {
             "target": "Package",
             "version": "[4.3.1, )"

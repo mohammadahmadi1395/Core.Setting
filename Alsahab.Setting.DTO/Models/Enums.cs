@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace Alsahab.Setting.DTO.Models
+namespace Alsahab.Setting.DTO
 {
     public class Enums
     {

@@ -110,7 +110,6 @@ namespace His.Reception.Application.Service
             {
                 Status = ResponseStatus.Success,
                 Data = curPatient
-
             };
         }
 

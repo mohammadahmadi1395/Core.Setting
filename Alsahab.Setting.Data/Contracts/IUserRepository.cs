@@ -1,11 +1,11 @@
-// to be added
+// // to be added
 // using System.Threading;
 // using System.Threading.Tasks;
 // using Alsahab.Setting.Entities;
 
 // namespace Alsahab.Setting.Data.Contracts
 // {
-//     public interface IUserRepository : IRepository<User>
+//     public interface IUserDL : IBaseDL<User>
 //     {
 //         Task<User> GetByUserAndPassAsync(string username, string password, CancellationToken cancellationToken);
 //         Task AddAsync(User user, string password, CancellationToken cancellationToken);

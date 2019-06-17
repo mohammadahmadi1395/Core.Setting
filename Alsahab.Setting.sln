@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alsahab.Setting.Data", "Als
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alsahab.Setting.Entities", "Alsahab.Setting.Entities\Alsahab.Setting.Entities.csproj", "{E0C4AA7F-8DE8-4CB7-9007-5DD93FE6F4F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alsahab.Setting.Services", "Alsahab.Setting.Services\Alsahab.Setting.Services.csproj", "{BB26AD66-1621-4027-ABD6-E420CB167F43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alsahab.Setting.BL", "Alsahab.Setting.BL\Alsahab.Setting.BL.csproj", "{BB26AD66-1621-4027-ABD6-E420CB167F43}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alsahab.Setting.WebFramework", "Alsahab.Setting.WebFramework\Alsahab.Setting.WebFramework.csproj", "{A9B31A71-882F-4DB6-9976-DCE0948B232C}"
 EndProject

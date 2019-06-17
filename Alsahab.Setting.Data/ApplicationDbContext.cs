@@ -27,7 +27,7 @@ namespace Alsahab.Setting.Data
         // // For Migrations
         // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         // {
-        //     optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Alsahab.Setting;Integrated Security=false; user id=sa; password=admin@123");
+        //     optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Setting;Integrated Security=false; user id=sa; password=admin@123");
         //     base.OnConfiguring(optionsBuilder);
         // }
 

@@ -8,6 +8,7 @@ using Alsahab.Setting.WebFramework.Configuration;
 using Alsahab.Setting.Common;
 using Alsahab.Setting.WebFramework.CustomMapping;
 using Alsahab.Setting.WebFramework.Swagger;
+using Alsahab.Setting.BL;
 
 namespace Alsahab.Setting.MyAPI
 {
@@ -50,6 +51,7 @@ namespace Alsahab.Setting.MyAPI
 
             // to be added
             // services.AddJwtAuthentication(_siteSettings.JwtSettings);
+            // services.AddScoped(typeof(IBranchBL), typeof(BranchBL));
 
             services.AddCustomApiVersioning();
 

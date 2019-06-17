@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 
-namespace Alsahab.Setting.DTO.Models
+namespace Alsahab.Setting.DTO
 {
     public class BranchDTO : BaseDTO//<BranchDTO, Branch, long>
     {

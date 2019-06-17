@@ -2,3 +2,11 @@
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/obj/Debug/netcoreapp2.1/Alsahab.Setting.DTO.csproj.CoreCompileInputs.cache
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/obj/Debug/netcoreapp2.1/Alsahab.Setting.DTO.AssemblyInfoInputs.cache
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/obj/Debug/netcoreapp2.1/Alsahab.Setting.DTO.AssemblyInfo.cs
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.deps.json
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.dll
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.pdb
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/bin/Debug/netcoreapp2.1/Alsahab.Setting.Common.dll
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/bin/Debug/netcoreapp2.1/Alsahab.Setting.Common.pdb
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/obj/Debug/netcoreapp2.1/Alsahab.Setting.DTO.csproj.CopyComplete
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/obj/Debug/netcoreapp2.1/Alsahab.Setting.DTO.dll
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/obj/Debug/netcoreapp2.1/Alsahab.Setting.DTO.pdb

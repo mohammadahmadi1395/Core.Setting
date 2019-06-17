@@ -5,7 +5,7 @@
 // using System.Threading.Tasks;
 // // using Alsahab.Common;
 
-// namespace Alsahab.Setting.DTO.Models
+// namespace Alsahab.Setting.DTO
 // {
 //     public class Fixed
 //     {

@@ -1,10 +1,10 @@
 using System;
 
-namespace Alsahab.Setting.DTO.Models
+namespace Alsahab.Setting.DTO
 {
-    public class BaseDTO : IHaveCustomMapping
+    public class BaseDTO
     {
-        public long? Id {get;set;}
+        public long? ID {get;set;}
         public bool? IsDeleted {get;set;}
         public DateTime? CreateDate {get;set;}
     }

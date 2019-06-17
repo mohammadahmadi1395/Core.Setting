@@ -8,7 +8,7 @@ namespace Alsahab.Setting.Entities.Models
     public class Branch : BaseEntity
     {
         public long? ParentId { get; set; }
-        public long BranchAddressId { get; set; }
+        public long? BranchAddressId { get; set; }
         public string Title { get; set; }
         public string Code { get; set; }
         public long? HeadPersonId { get; set; }

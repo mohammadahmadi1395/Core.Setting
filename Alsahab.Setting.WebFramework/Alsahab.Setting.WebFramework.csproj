@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\Alsahab.Setting.Services\Alsahab.Setting.Services.csproj"/>
+    <ProjectReference Include="..\Alsahab.Setting.BL\Alsahab.Setting.BL.csproj"/>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1"/>
-    <PackageReference Include="AutoMapper" Version="8.0.0"/>
+    <!-- <PackageReference Include="AutoMapper" Version="8.0.0"/> -->
     <PackageReference Include="ElmahCore" Version="1.2.0"/>
     <PackageReference Include="ElmahCore.Sql" Version="1.2.1"/>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.1.2"/>

@@ -3,11 +3,13 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Alsahab.Setting.Common;
 using Alsahab.Setting.Data;
-using Alsahab.Setting.Data.Contracts;
-using Alsahab.Setting.Data.Repositories;
 using Alsahab.Setting.Entities;
 using Alsahab.Setting.Services.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Alsahab.Setting.Data.Contracts;
+using Alsahab.Setting.Data.Repositories;
+using Alsahab.Setting.BL;
+using Alsahab.Setting.BL.Services;
 
 namespace Alsahab.Setting.WebFramework.Configuration
 {
@@ -22,7 +24,9 @@ namespace Alsahab.Setting.WebFramework.Configuration
 
             // builder.RegisterType<JwtService>().As<IJwtService>().InstancePerLifetimeScope();
             // builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
-            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+            
+            // builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(BaseDL<,>)).As(typeof(IBaseDL<,>)).InstancePerLifetimeScope();
 
             //قابلیت‌هایی که اتوفک دارد، اما 
             // IOC
@@ -37,7 +41,7 @@ namespace Alsahab.Setting.WebFramework.Configuration
             var EntityAssembly = typeof(IEntity).Assembly;
             // To be added
             // var serviceAssembly = typeof(JwtService).Assembly;
-            var serviceAssembly = typeof(AccessToken).Assembly;
+            var serviceAssembly = typeof(BranchBL).Assembly;
 
             builder.RegisterAssemblyTypes(commonAssembly, DataAssembly, EntityAssembly, serviceAssembly)
                 .AssignableTo<IScopedDependency>()

@@ -4,10 +4,11 @@
     <ProjectReference Include="..\Alsahab.Setting.DTO\Alsahab.Setting.DTO.csproj"/>
   </ItemGroup>
   <ItemGroup>
-     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.0"/> 
-     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.6"/> 
-     <!-- <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />  -->
-  </ItemGroup> 
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.0"/>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.6"/>
+    <PackageReference Include="AutoMapper" Version="8.0.0"/>
+    <!-- <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />  -->
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <!-- <RuntimeFrameworkVersion>2.1.11</RuntimeFrameworkVersion> -->

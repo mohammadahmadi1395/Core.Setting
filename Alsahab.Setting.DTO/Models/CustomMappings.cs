@@ -3,7 +3,7 @@
 // using Alsahab.Setting.Entities;
 // using Alsahab.Setting.WebFramework.CustomMapping;
 
-// namespace Alsahab.Setting.DTO.Models
+// namespace Alsahab.Setting.DTO
 // {
 //     public class PostCustomMapping : IHaveCustomMapping
 //     {

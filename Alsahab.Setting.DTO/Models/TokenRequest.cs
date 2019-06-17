@@ -1,7 +1,7 @@
 // using System;
 // using System.ComponentModel.DataAnnotations;
 
-// namespace Alsahab.Setting.DTO.Models
+// namespace Alsahab.Setting.DTO
 // {
 //     public class TokenRequest
 //     {
