@@ -10,7 +10,7 @@ using Gostar.Setting.DTO;
 
 namespace Gostar.Setting.BL
 {
-    public class BaseBusiness
+    public class BaseBL
     {
         public Gostar.Common.ResponseStatus ResponseStatus { get; set; }
         public int? ResultCount { get; set; }
@@ -18,7 +18,7 @@ namespace Gostar.Setting.BL
         public string ErrorMessage { get; set; }
         public IList<Gostar.Common.Validation.Results.ValidationFailure> ValidationErrors { get; set; }
         public CultureInfo Culture { get; set; }
-        public BaseBusiness()
+        public BaseBL()
         {
             ResponseStatus = Gostar.Common.ResponseStatus.BusinessError;
             ValidatorOptions.LanguageManager = new Gostar.Common.Validation.ErrorLanguageManager();

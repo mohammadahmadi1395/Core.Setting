@@ -8,7 +8,7 @@ using Gostar.Setting.DA;
 
 namespace Gostar.Setting.BL
 {
-    public class CurrencyBL: BaseBusiness
+    public class CurrencyBL: BaseBL
     {
         CurrencyDA CurrencyDL = new CurrencyDA();
         private bool Validate(CurrencyDTO data)

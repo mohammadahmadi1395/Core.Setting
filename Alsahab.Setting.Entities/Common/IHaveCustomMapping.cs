@@ -1,7 +1,7 @@
 using System;
 using AutoMapper;
 
-namespace Alsahab.Setting.WebFramework.CustomMapping
+namespace Alsahab.Setting.Entities.Common//.CustomMapping
 {
     public interface IHaveCustomMapping
     {

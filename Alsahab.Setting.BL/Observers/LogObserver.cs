@@ -7,6 +7,7 @@ using System.Configuration;
 using Alsahab.Setting.BL.Observers.ActionDTO;
 using Alsahab.Setting.BL.Observers.ObserverStates;
 using Alsahab.Common;
+using static Alsahab.Setting.DTO.Enums;
 
 namespace Alsahab.Setting.BL.Observers
 {
@@ -27,7 +28,7 @@ namespace Alsahab.Setting.BL.Observers
             //    RequestDto = new UserManagement.DTO.AcUserMemberDTO
             //    {
             //        UserID = state?.UserID,
-            //        UserType = (long?)UserManagement.DTO.Enums.UserType.SingleUser,
+            //        UserType = (long?)UserManagement.UserType.SingleUser,
             //    }
             //}))?.UserList?.FirstOrDefault();
 
@@ -57,143 +58,143 @@ namespace Alsahab.Setting.BL.Observers
             int result = 0;
             switch (state.Type)
             {
-                case DTO.Enums.LogActionType.BranchAdd:
+                case LogActionType.BranchAdd:
                     result = BranchAdd(state);
                     break;
-                case DTO.Enums.LogActionType.BranchEdit:
+                case LogActionType.BranchEdit:
                     result = BranchEdit(state);
                     break;
-                case DTO.Enums.LogActionType.BranchDelete:
+                case LogActionType.BranchDelete:
                     result = BranchDelete(state);
                     break;
 
-                // case DTO.Enums.LogActionType.BranchAddressAdd:
+                // case LogActionType.BranchAddressAdd:
                 //     result = BranchAddressAdd(state);
                 //     break;
-                // case DTO.Enums.LogActionType.BranchAddressEdit:
+                // case LogActionType.BranchAddressEdit:
                 //     result = BranchAddressEdit(state);
                 //     break;
-                // case DTO.Enums.LogActionType.BranchAddressDelete:
+                // case LogActionType.BranchAddressDelete:
                 //     result = BranchAddressDelete(state);
                 //     break;
 
-                // case DTO.Enums.LogActionType.BranchRegionWorkAdd:
+                // case LogActionType.BranchRegionWorkAdd:
                 //     result = BranchRegionWorkAdd(state);
                 //     break;
-                // case DTO.Enums.LogActionType.BranchRegionWorkEdit:
+                // case LogActionType.BranchRegionWorkEdit:
                 //     result = BranchRegionWorkEdit(state);
                 //     break;
-                // case DTO.Enums.LogActionType.BranchRegionWorkDelete:
+                // case LogActionType.BranchRegionWorkDelete:
                 //     result = BranchRegionWorkDelete(state);
                 //     break;
 
-                // case DTO.Enums.LogActionType.FormTypeAdd:
+                // case LogActionType.FormTypeAdd:
                 //     result = FormTypeAdd(state);
                 //     break;
-                // case DTO.Enums.LogActionType.FormTypeEdit:
+                // case LogActionType.FormTypeEdit:
                 //     result = FormTypeEdit(state);
                 //     break;
-                // case DTO.Enums.LogActionType.FormTypeDelete:
+                // case LogActionType.FormTypeDelete:
                 //     result = FormTypeDelete(state);
                 //     break;
 
-                // case DTO.Enums.LogActionType.GeneratedFormAdd:
+                // case LogActionType.GeneratedFormAdd:
                 //     result = GeneratedFormAdd(state);
                 //     break;
-                // case DTO.Enums.LogActionType.GeneratedFormEdit:
+                // case LogActionType.GeneratedFormEdit:
                 //     result = GeneratedFormEdit(state);
                 //     break;
-                // case DTO.Enums.LogActionType.GeneratedFormDelete:
+                // case LogActionType.GeneratedFormDelete:
                 //     result = GeneratedFormDelete(state);
                 //     break;
 
-                // case DTO.Enums.LogActionType.PrefixAdd:
+                // case LogActionType.PrefixAdd:
                 //     result = PrefixAdd(state);
                 //     break;
-                // case DTO.Enums.LogActionType.PrefixEdit:
+                // case LogActionType.PrefixEdit:
                 //     result = PrefixEdit(state);
                 //     break;
-                // case DTO.Enums.LogActionType.PrefixDelete:
+                // case LogActionType.PrefixDelete:
                 //     result = PrefixDelete(state);
                 //     break;
 
-                // case DTO.Enums.LogActionType.RuleAdd:
+                // case LogActionType.RuleAdd:
                 //     result = RuleAdd(state);
                 //     break;
-                // case DTO.Enums.LogActionType.RuleEdit:
+                // case LogActionType.RuleEdit:
                 //     result = RuleEdit(state);
                 //     break;
-                // case DTO.Enums.LogActionType.RuleDelete:
+                // case LogActionType.RuleDelete:
                 //     result = RuleDelete(state);
                 //     break;
 
-                // case DTO.Enums.LogActionType.RuleTagAdd:
+                // case LogActionType.RuleTagAdd:
                 //     result = RuleTagAdd(state);
                 //     break;
-                // case DTO.Enums.LogActionType.RuleTagEdit:
+                // case LogActionType.RuleTagEdit:
                 //     result = RuleTagEdit(state);
                 //     break;
-                // case DTO.Enums.LogActionType.RuleTagDelete:
+                // case LogActionType.RuleTagDelete:
                 //     result = RuleTagDelete(state);
                 //     break;
 
-                // case DTO.Enums.LogActionType.StatementAdd:
+                // case LogActionType.StatementAdd:
                 //     result = StatementAdd(state);
                 //     break;
-                // case DTO.Enums.LogActionType.StatementEdit:
+                // case LogActionType.StatementEdit:
                 //     result = StatementEdit(state);
                 //     break;
-                // case DTO.Enums.LogActionType.StatementDelete:
+                // case LogActionType.StatementDelete:
                 //     result = StatementDelete(state);
                 //     break;
 
-                // case DTO.Enums.LogActionType.StatementSubsystemAdd:
+                // case LogActionType.StatementSubsystemAdd:
                 //     result = StatementSubsystemAdd(state);
                 //     break;
-                // case DTO.Enums.LogActionType.StatementSubsystemEdit:
+                // case LogActionType.StatementSubsystemEdit:
                 //     result = StatementSubsystemEdit(state);
                 //     break;
-                // case DTO.Enums.LogActionType.StatementSubsystemDelete:
+                // case LogActionType.StatementSubsystemDelete:
                 //     result = StatementSubsystemDelete(state);
                 //     break;
 
-                // case DTO.Enums.LogActionType.SubpartAdd:
+                // case LogActionType.SubpartAdd:
                 //     result = SubpartAdd(state);
                 //     break;
-                // case DTO.Enums.LogActionType.SubpartEdit:
+                // case LogActionType.SubpartEdit:
                 //     result = SubpartEdit(state);
                 //     break;
-                // case DTO.Enums.LogActionType.SubpartDelete:
+                // case LogActionType.SubpartDelete:
                 //     result = SubpartDelete(state);
                 //     break;
 
-                // case DTO.Enums.LogActionType.SubsystemAdd:
+                // case LogActionType.SubsystemAdd:
                 //     result = SubsystemAdd(state);
                 //     break;
-                // case DTO.Enums.LogActionType.SubsystemEdit:
+                // case LogActionType.SubsystemEdit:
                 //     result = SubsystemEdit(state);
                 //     break;
-                // case DTO.Enums.LogActionType.SubsystemDelete:
+                // case LogActionType.SubsystemDelete:
                 //     result = SubsystemDelete(state);
                 //     break;
 
-                // case DTO.Enums.LogActionType.TypeoforganizationAdd:
+                // case LogActionType.TypeoforganizationAdd:
                 //     result = TypeoforganizationAdd(state);
                 //     break;
-                // case DTO.Enums.LogActionType.TypeoforganizationEdit:
+                // case LogActionType.TypeoforganizationEdit:
                 //     result = TypeoforganizationEdit(state);
                 //     break;
-                // case DTO.Enums.LogActionType.TypeoforganizationDelete:
+                // case LogActionType.TypeoforganizationDelete:
                 //     result = TypeoforganizationDelete(state);
                 //     break;
 
-                // case DTO.Enums.LogActionType.ZoneAdd:
+                // case LogActionType.ZoneAdd:
                 //     result = ZoneAdd(state);
                 //     break;
-                // case DTO.Enums.LogActionType.ZoneEdit:
+                // case LogActionType.ZoneEdit:
                 //     result = ZoneEdit(state);
                 //     break;
-                // case DTO.Enums.LogActionType.ZoneDelete:
+                // case LogActionType.ZoneDelete:
                 //     result = ZoneDelete(state);
                 //     break;
             }

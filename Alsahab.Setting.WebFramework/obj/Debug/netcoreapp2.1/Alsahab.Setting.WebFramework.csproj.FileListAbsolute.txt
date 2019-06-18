@@ -1,11 +1,15 @@
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.WebFramework.deps.json
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.WebFramework.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.WebFramework.pdb
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.BL.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.Common.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.Data.dll
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.Entities.dll
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.BL.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.Common.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.Data.pdb
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.Entities.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/obj/Debug/netcoreapp2.1/Alsahab.Setting.WebFramework.csprojAssemblyReference.cache
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/obj/Debug/netcoreapp2.1/Alsahab.Setting.WebFramework.csproj.CoreCompileInputs.cache
@@ -14,7 +18,3 @@
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/obj/Debug/netcoreapp2.1/Alsahab.Setting.WebFramework.csproj.CopyComplete
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/obj/Debug/netcoreapp2.1/Alsahab.Setting.WebFramework.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/obj/Debug/netcoreapp2.1/Alsahab.Setting.WebFramework.pdb
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.dll
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.pdb
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.BL.dll
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.BL.pdb

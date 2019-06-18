@@ -12,7 +12,7 @@ namespace Gostar.Setting.BL
 {
     public static class Extensions
     {
-        public static TResponse CallBL<TResponse, T>(this T bl, Func<T, TResponse> work, UserInfoDTO User,PagingInfoDTO paging = null) where T : BaseBusiness//, Language Language)
+        public static TResponse CallBL<TResponse, T>(this T bl, Func<T, TResponse> work, UserInfoDTO User,PagingInfoDTO paging = null) where T : BaseBL//, Language Language)
         {
             TResponse response = default(TResponse);
             try
@@ -27,7 +27,7 @@ namespace Gostar.Setting.BL
             }
             return response;
         }
-        public static TResponse CallBL<TResponse, T>(this T bl, Func<T, TResponse> work, UserInfoDTO User, Language? Language, PagingInfoDTO paging = null) where T : BaseBusiness
+        public static TResponse CallBL<TResponse, T>(this T bl, Func<T, TResponse> work, UserInfoDTO User, Language? Language, PagingInfoDTO paging = null) where T : BaseBL
         {
             TResponse response = default(TResponse);
 

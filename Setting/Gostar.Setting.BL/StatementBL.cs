@@ -10,7 +10,7 @@ using Gostar.Common;
 
 namespace Gostar.Setting.BL
 {
-    public class StatementBL : BaseBusiness
+    public class StatementBL : BaseBL
     {
         StatementDA StatementDA = new StatementDA();
         private bool Validate(DTO.StatementDTO data)

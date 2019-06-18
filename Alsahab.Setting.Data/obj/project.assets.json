@@ -2859,6 +2859,8 @@
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "Alsahab.Setting.Common": "1.0.0",
+          "Alsahab.Setting.DTO": "1.0.0",
+          "AutoMapper": "8.0.0",
           "Microsoft.Extensions.Identity.Stores": "2.1.6"
         },
         "compile": {
@@ -8532,7 +8534,6 @@
     ".NETCoreApp,Version=v2.1": [
       "Alsahab.Setting.DTO >= 1.0.0",
       "Alsahab.Setting.Entities >= 1.0.0",
-      "AutoMapper >= 8.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 2.1.6",
       "Microsoft.EntityFrameworkCore.Design >= 2.1.0",
       "Microsoft.NETCore.App >= 2.1.10"
@@ -8584,10 +8585,6 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
-          "AutoMapper": {
-            "target": "Package",
-            "version": "[8.0.0, )"
-          },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
             "version": "[2.1.6, )"

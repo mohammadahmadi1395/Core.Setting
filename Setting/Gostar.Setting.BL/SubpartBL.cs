@@ -10,7 +10,7 @@ using Gostar.Common;
 
 namespace Gostar.Setting.BL
 {
-    public class SubpartBL : BaseBusiness
+    public class SubpartBL : BaseBL
     {
         SubpartDA SubpartDA = new SubpartDA();
         private bool Validate(SubpartDTO data)

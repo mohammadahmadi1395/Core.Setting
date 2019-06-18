@@ -98,7 +98,7 @@
     <Compile Include="Observers\ActionDTO\ZoneActionDTO.cs" />
     <Compile Include="OrganizationalChartBL.cs" />
     <Compile Include="PrefixBL.cs" />
-    <Compile Include="BaseBusiness.cs" />
+    <Compile Include="BaseBL.cs" />
     <Compile Include="BranchBL.cs" />
     <Compile Include="BranchRegionWorkBL.cs" />
     <Compile Include="CityBL.cs" />

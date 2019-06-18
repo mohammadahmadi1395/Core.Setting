@@ -6,7 +6,7 @@
 
 // namespace Gostar.Setting.BL
 // {
-//     public class ZoneBL : BaseBusiness
+//     public class ZoneBL : BaseBL
 //     {
 //         bool Response;
 //         ZoneDA ZoneDA = new ZoneDA();

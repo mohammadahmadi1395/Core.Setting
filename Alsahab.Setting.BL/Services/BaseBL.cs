@@ -7,10 +7,12 @@ using System.Globalization;
 using Alsahab.Common;
 using FluentValidation;
 using Alsahab.Setting.Common.Validation;
+using System.Threading;
 
 namespace Alsahab.Setting.BL
 {
-    public class BaseBusiness
+    public class BaseBL<Dto> : IBaseBL<Dto>
+        where Dto : class
     {
         public ResponseStatus ResponseStatus { get; set; }
         public int? ResultCount { get; set; }
@@ -18,7 +20,7 @@ namespace Alsahab.Setting.BL
         public string ErrorMessage { get; set; }
         public IList<FluentValidation.Results.ValidationFailure> ValidationErrors { get; set; }
         public CultureInfo Culture { get; set; }
-        public BaseBusiness()
+        public BaseBL()
         {
             ResponseStatus = ResponseStatus.BusinessError;
             ValidatorOptions.LanguageManager = new ErrorLanguageManager();
@@ -50,6 +52,66 @@ namespace Alsahab.Setting.BL
             var result = ((AbstractValidator<TObject>)validator).Validate(data);
             ValidationErrors = result.Errors;
             return result.IsValid;
+        }
+
+        public virtual Task<Dto> InsertAsync(Dto data, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Dto Insert(Dto data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<List<Dto>> InsertListAsync(List<Dto> list, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual List<Dto> InsertList(List<Dto> list)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<Dto> UpdateAsync(Dto data, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Dto Update(Dto data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<List<Dto>> UpdateListAsync(List<Dto> list, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual List<Dto> UpdateList(List<Dto> list)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<Dto> Delete(Dto data, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Dto Delete(Dto data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<List<Dto>> DeleteListAsync(List<Dto> list, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual List<Dto> DeleteList(List<Dto> list)
+        {
+            throw new NotImplementedException();
         }
     }
 }

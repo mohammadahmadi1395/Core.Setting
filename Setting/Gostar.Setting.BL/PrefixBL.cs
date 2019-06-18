@@ -8,7 +8,7 @@ using Gostar.Setting.DA;
 
 namespace Gostar.Setting.BL
 {
-    public class PrefixBL : BaseBusiness
+    public class PrefixBL : BaseBL
     {
         PrefixDA PrefixDA = new PrefixDA();
         private bool Validate(PrefixDTO data)

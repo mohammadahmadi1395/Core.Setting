@@ -1,4 +1,6 @@
 using System;
+using Alsahab.Setting.Entities.Common;
+using AutoMapper;
 
 namespace Alsahab.Setting.Entities
 {
@@ -25,12 +27,17 @@ namespace Alsahab.Setting.Entities
     // هم ارث‌بری کند، برای ساخته شدن جدول نیازی به 
     // DbSet
     // ندارد.
-    public abstract class BaseEntity<TKey> : IEntity
+    public abstract class BaseEntity<TDto, TKey> : IEntity, IHaveCustomMapping
     {
         public TKey Id {get;set;}
+
+        public void CreateMappings(Profile profile)
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    public abstract class BaseEntity : BaseEntity<long>
+    public abstract class BaseEntity<TDto> : BaseEntity<TDto, long>
     {
     }
 }

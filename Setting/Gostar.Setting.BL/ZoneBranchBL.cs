@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gostar.Setting.BL
 {
-   public class ZoneBranchBL : BaseBusiness
+   public class ZoneBranchBL : BaseBL
     {
 
 

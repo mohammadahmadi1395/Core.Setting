@@ -8,7 +8,7 @@ using Gostar.Setting.DTO;
 
 namespace Gostar.Setting.BL
 {
-    public class TypeoforganizationBL : BaseBusiness
+    public class TypeoforganizationBL : BaseBL
     {
         TypeoforganizationDA TypeoforganizationDA = new TypeoforganizationDA();
         /// <summary>

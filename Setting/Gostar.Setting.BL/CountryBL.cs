@@ -8,7 +8,7 @@ using Gostar.Setting.DA;
 
 namespace Gostar.Setting.BL
 {
-    public class CountryBL : BaseBusiness
+    public class CountryBL : BaseBL
     {
         CountryDA CountryDA = new CountryDA();
         /// <summary>

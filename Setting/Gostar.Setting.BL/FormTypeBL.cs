@@ -8,7 +8,7 @@ using Gostar.Setting.DA;
 
 namespace Gostar.Setting.BL
 {
-    public class FormTypeBL : BaseBusiness
+    public class FormTypeBL : BaseBL
     {
         FormTypeDA FormTypeDL = new FormTypeDA();
         private bool Validate(FormTypeDTO data)

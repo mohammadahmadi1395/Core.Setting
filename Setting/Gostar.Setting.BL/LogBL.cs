@@ -7,7 +7,7 @@ using Gostar.Setting.DA;
 
 namespace Gostar.Setting.BL
 {
-    public class LogBL : BaseBusiness
+    public class LogBL : BaseBL
     {
         private LogDA logDA;
         private LogDA _LogDA => logDA ?? (logDA = new LogDA());

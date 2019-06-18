@@ -11,7 +11,7 @@ using Alsahab.Setting.Entities.Models;
 
 namespace Alsahab.Setting.BL
 {
-    public class BranchBL : BaseBusiness, IBranchBL
+    public class BranchBL : BaseBL<BranchDTO>
     {
         // private readonly BranchDL _repository;
         private List<BranchDTO> TempAllBranch = new List<BranchDTO>();
@@ -211,7 +211,7 @@ namespace Alsahab.Setting.BL
         // }
 
 
-        public async Task<BranchDTO> InsertAsync(BranchDTO data, CancellationToken cancellationToken)
+        public override async Task<BranchDTO> InsertAsync(BranchDTO data, CancellationToken cancellationToken)
         {
             if (!Validate(data))
             {

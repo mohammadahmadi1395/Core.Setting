@@ -8,7 +8,7 @@ using Gostar.Setting.DA;
 
 namespace Gostar.Setting.BL
 {
-    public class ExchangeRateBL:BaseBusiness
+    public class ExchangeRateBL:BaseBL
     {
         ExchangeRateDA ExchangeRateDL = new ExchangeRateDA();
         private bool Validate(ExchangeRateDTO data)

@@ -18,12 +18,14 @@ namespace Alsahab.Setting.WebFramework.Api
     [AllowAnonymous]
     [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")] // api/v1/post
-    public class BranchController : ControllerBase // BaseController
+    // public class BranchController : ControllerBase // BaseController
+    public class CrudController<TDto> : ControllerBase
+        where TDto : class
     {
-        private readonly IBranchBL _BranchBL;
-        public BranchController(IBranchBL branchBL)
+        private readonly IBaseBL<TDto> _TBL;
+        public CrudController(IBaseBL<TDto> tBL)
         {
-            _BranchBL = branchBL;
+            _TBL = tBL;
         }
 
         // [HttpGet]
@@ -72,10 +74,10 @@ namespace Alsahab.Setting.WebFramework.Api
         // }
 
         [HttpPost]
-        public async Task<ApiResult<BranchDTO>> Create(BranchDTO dto, CancellationToken cancellationToken)
+        public virtual async Task<ApiResult<TDto>> Create(TDto dto, CancellationToken cancellationToken)
         {
             // var entity = dto.ToEntity();
-            var resultDto = await _BranchBL.InsertAsync(dto, cancellationToken);
+            var resultDto = await _TBL.InsertAsync(dto, cancellationToken);
             // var resultDto = await _repository.TableNoTracking.ProjectTo<TDto>()
             //     .SingleOrDefaultAsync(s => s.Id.Equals(entity.Id), cancellationToken);
             return resultDto;

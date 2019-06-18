@@ -8,7 +8,7 @@ using Gostar.Setting.DA;
 
 namespace Gostar.Setting.BL
 {
-    public class OrganizationalChartBL : BaseBusiness
+    public class OrganizationalChartBL : BaseBL
     {
         private List<DTO.OrganizationalChartDTO> TempAllOrganizationalChart = new List<DTO.OrganizationalChartDTO>();
         private long? _index = 1, _depth = 2;

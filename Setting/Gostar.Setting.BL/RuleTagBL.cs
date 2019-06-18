@@ -8,7 +8,7 @@ using Gostar.Setting.DA;
 
 namespace Gostar.Setting.BL
 {
-    public class RuleTagBL : BaseBusiness
+    public class RuleTagBL : BaseBL
     {
         RuleTagDA RuleTagDL = new RuleTagDA();
         private bool Validate(RuleTagDTO data)

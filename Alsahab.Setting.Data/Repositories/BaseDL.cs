@@ -16,10 +16,9 @@ using Microsoft.EntityFrameworkCore;
 namespace Alsahab.Setting.Data.Repositories
 {
     public class BaseDL<TEntity, TDto> : IBaseDL<TEntity, TDto>
-        where TEntity : BaseEntity, IEntity
+        where TEntity : BaseEntity<TDto>, IEntity
         where TDto : class
     {
-
         public BaseDL()
         {
             // AutoMapper.Mapper.Initialize(config =>

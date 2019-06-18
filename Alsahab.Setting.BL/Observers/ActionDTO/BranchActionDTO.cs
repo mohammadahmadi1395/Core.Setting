@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 using Alsahab.Setting.DTO;
 using Alsahab.Common;
 using Newtonsoft.Json;
+using static Alsahab.Setting.DTO.Enums;
 
 namespace Alsahab.Setting.BL.Observers.ActionDTO
 {
     public class BranchActionDTO : ActionBaseDTO 
     {
-        public override DTO.Enums.SettingEntity Entity
+        public override SettingEntity Entity
         {
             get
             {
-                return DTO.Enums.SettingEntity.Branch;
+                return SettingEntity.Branch;
             }
         }
         public BranchDTO Branch { get; set; }

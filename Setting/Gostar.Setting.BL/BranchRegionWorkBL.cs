@@ -8,7 +8,7 @@ using Gostar.Setting.DTO;
 
 namespace Gostar.Setting.BL
 {
-    public class BranchRegionWorkBL : BaseBusiness
+    public class BranchRegionWorkBL : BaseBL
     {
         BranchRegionWorkDA BranchRegionWorkDA = new BranchRegionWorkDA();
         private bool Validate(BranchRegionWorkDTO data)

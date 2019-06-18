@@ -8,7 +8,7 @@ using Gostar.Setting.DTO;
 
 namespace Gostar.Setting.BL
 {
-    public class RegionBL : BaseBusiness
+    public class RegionBL : BaseBL
     {
         RegionDA RegionDA = new RegionDA();
         /// <summary>

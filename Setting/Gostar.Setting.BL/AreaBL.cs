@@ -8,7 +8,7 @@ using Gostar.Setting.DA;
 
 namespace Gostar.Setting.BL
 {
-    public class AreaBL : BaseBusiness
+    public class AreaBL : BaseBL
     {
         AreaDA AreaDA = new AreaDA();
         /// <summary>

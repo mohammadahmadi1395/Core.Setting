@@ -7,7 +7,7 @@
 
 // namespace Alsahab.Setting.BL
 // {
-//     public class BranchAddressBL : BaseBusiness
+//     public class BranchAddressBL : BaseBL
 //     {
 //         BranchAddressDL BranchAddressDA = new BranchAddressDL();
 //         /// <summary>

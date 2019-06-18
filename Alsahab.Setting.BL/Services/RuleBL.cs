@@ -8,7 +8,7 @@
 
 // namespace Gostar.Setting.BL
 // {
-//     public class RuleBL : BaseBusiness
+//     public class RuleBL : BaseBL
 //     {
 //         RuleDA RuleDL = new RuleDA();
 //         RuleTagBL RuleTag = new RuleTagBL();

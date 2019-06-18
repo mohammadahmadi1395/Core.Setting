@@ -24,7 +24,7 @@ namespace Alsahab.Setting.BL.Observers.ActionDTO
         public string MessageStr => JsonConvert.SerializeObject(this);
         [JsonIgnore]
         public abstract string DisplayMessage { get; }
-        public static ActionBaseDTO CreateInstance(DTO.Enums.SettingEntity entity, string data)
+        public static ActionBaseDTO CreateInstance(SettingEntity entity, string data)
         {
             switch (entity)
             {

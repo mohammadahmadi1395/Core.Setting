@@ -6,6 +6,7 @@ using Alsahab.Setting.Entities;
 using Alsahab.Setting.Data.Repositories;
 using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities.Models;
+using Alsahab.Setting.Entities.Common;
 
 namespace Alsahab.Setting.WebFramework.CustomMapping
 {
@@ -25,9 +26,10 @@ namespace Alsahab.Setting.WebFramework.CustomMapping
                 //     .ForMember(p => p.Category, opt => opt.Ignore());
 
                 // config.AddCustomMappingProfile();
-                config.CreateMap<Branch, BranchDTO>().ReverseMap()
-                    .ForMember(p=>p.BranchAddress, opt=>opt.Ignore())
-                    .ForMember(p=>p.BranchRegionWork, opt=>opt.Ignore());
+                config.CreateMap<Branch, BranchDTO>().ReverseMap();
+                    //TODO
+                    // .ForMember(p=>p.BranchAddress, opt=>opt.Ignore())
+                    // .ForMember(p=>p.BranchRegionWork, opt=>opt.Ignore());
             });
 
             //Compile Mapping after configuration to boost map speed
@@ -41,7 +43,7 @@ namespace Alsahab.Setting.WebFramework.CustomMapping
             // همان لایه 
             // Api
             // است
-            var entityAssembly = typeof(BaseEntity).Assembly;
+            var entityAssembly = typeof(BaseEntity<>).Assembly;
             var dataAssembly = typeof(BaseDL<,>).Assembly;
             // config.AddCustomMappingProfile(Assembly.GetEntryAssembly());
             config.AddCustomMappingProfile(entityAssembly, dataAssembly);

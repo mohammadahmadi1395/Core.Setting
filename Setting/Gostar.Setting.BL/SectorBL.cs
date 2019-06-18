@@ -8,7 +8,7 @@ using Gostar.Setting.DTO;
 
 namespace Gostar.Setting.BL
 {
-    public class SectorBL : BaseBusiness
+    public class SectorBL : BaseBL
     {
         SectorDA SectorDA = new SectorDA();
         private bool Validate(SectorDTO data)

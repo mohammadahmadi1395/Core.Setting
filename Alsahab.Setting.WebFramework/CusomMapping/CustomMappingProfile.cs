@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Alsahab.Setting.Entities.Common;
 using AutoMapper;
 
 namespace Alsahab.Setting.WebFramework.CustomMapping

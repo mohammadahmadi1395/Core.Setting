@@ -10,7 +10,7 @@ using Alyatim.Member.SC.Messages;
 
 namespace Gostar.Setting.BL
 {
-    public class BranchBL : BaseBusiness
+    public class BranchBL : BaseBL
     {
         private List<BranchDTO> TempAllBranch = new List<BranchDTO>();
         private long? _index = 1, _depth = 2;

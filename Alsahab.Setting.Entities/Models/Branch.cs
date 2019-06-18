@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Alsahab.Setting.DTO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Alsahab.Setting.Entities.Models
 {
-    public class Branch : BaseEntity
+    public class Branch : BaseEntity<BranchDTO>
     {
         public long? ParentId { get; set; }
         public long? BranchAddressId { get; set; }
@@ -23,10 +24,12 @@ namespace Alsahab.Setting.Entities.Models
         public long? Depth { get; set; }
         public string OldCode { get; set; }
 
-        public BranchAddress BranchAddress { get; set; }
+        //TODO
+        // public BranchAddress BranchAddress { get; set; }
         public Branch IdNavigation { get; set; }
         public Branch InverseIdNavigation { get; set; }
-        public ICollection<BranchRegionWork> BranchRegionWork { get; set; }
+        //TODO
+        // public ICollection<BranchRegionWork> BranchRegionWork { get; set; }
     }
 
 
@@ -44,7 +47,8 @@ namespace Alsahab.Setting.Entities.Models
             entity.Property(e => e.OldCode).HasMaxLength(50);
             entity.Property(e => e.ParentId).HasColumnName("ParentID");
             entity.Property(e => e.Title).IsRequired().HasMaxLength(50);
-            entity.HasOne(d => d.BranchAddress).WithMany(p => p.Branch).HasForeignKey(d => d.BranchAddressId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Branch_BranchAddress");
+            //TODO
+            // entity.HasOne(d => d.BranchAddress).WithMany(p => p.Branch).HasForeignKey(d => d.BranchAddressId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Branch_BranchAddress");
             entity.HasOne(d => d.IdNavigation).WithOne(p => p.InverseIdNavigation).HasForeignKey<Branch>(d => d.Id).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Branch_Branch");
         }
     }

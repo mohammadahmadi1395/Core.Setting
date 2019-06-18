@@ -2603,6 +2603,7 @@
       "Alsahab.Setting.Entities/1.0.0": {
         "dependencies": {
           "Alsahab.Setting.Common": "1.0.0",
+          "Alsahab.Setting.DTO": "1.0.0",
           "Microsoft.Extensions.Identity.Stores": "2.1.6"
         },
         "runtime": {

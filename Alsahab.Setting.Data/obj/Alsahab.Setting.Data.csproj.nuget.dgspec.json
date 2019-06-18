@@ -170,10 +170,6 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[2.1.6, )"
@@ -223,6 +219,9 @@
             "projectReferences": {
               "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj": {
                 "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj"
+              },
+              "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj": {
+                "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj"
               }
             }
           }
@@ -236,6 +235,10 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.Extensions.Identity.Stores": {
               "target": "Package",
               "version": "[2.1.6, )"

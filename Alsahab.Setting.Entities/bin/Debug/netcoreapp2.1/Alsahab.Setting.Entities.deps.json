@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "3936b0ea376d777f4ea98c8072e8007b8e7f337d"
+    "signature": "db70164ede29de980e02744bb13dc7db93a822c9"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,10 +9,24 @@
       "Alsahab.Setting.Entities/1.0.0": {
         "dependencies": {
           "Alsahab.Setting.Common": "1.0.0",
+          "Alsahab.Setting.DTO": "1.0.0",
+          "AutoMapper": "8.0.0",
           "Microsoft.Extensions.Identity.Stores": "2.1.6"
         },
         "runtime": {
           "Alsahab.Setting.Entities.dll": {}
+        }
+      },
+      "AutoMapper/8.0.0": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.5.0",
+          "System.Reflection.Emit": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.0.0"
+          }
         }
       },
       "FluentValidation/8.4.0": {
@@ -1965,6 +1979,15 @@
         "runtime": {
           "Alsahab.Setting.Common.dll": {}
         }
+      },
+      "Alsahab.Setting.DTO/1.0.0": {
+        "dependencies": {
+          "Alsahab.Setting.Common": "1.0.0",
+          "Microsoft.Extensions.Identity.Stores": "2.1.6"
+        },
+        "runtime": {
+          "Alsahab.Setting.DTO.dll": {}
+        }
       }
     }
   },
@@ -1973,6 +1996,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AutoMapper/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-px8ZMtIq84dxciB29V+ZYOtsRLZP4JlflDDMW13LyeRdwsnIInzlcSHSxpWmVD6U3bbOl2FeLlgomnVtm0jvXw==",
+      "path": "automapper/8.0.0",
+      "hashPath": "automapper.8.0.0.nupkg.sha512"
     },
     "FluentValidation/8.4.0": {
       "type": "package",
@@ -3193,6 +3223,11 @@
       "hashPath": "system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
     },
     "Alsahab.Setting.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Alsahab.Setting.DTO/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

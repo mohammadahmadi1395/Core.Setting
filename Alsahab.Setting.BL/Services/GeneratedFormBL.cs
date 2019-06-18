@@ -8,7 +8,7 @@
 
 // namespace Gostar.Setting.BL
 // {
-//     public class GeneratedFormBL : BaseBusiness
+//     public class GeneratedFormBL : BaseBL
 //     {
 //         GeneratedFormDA GeneratedFormDA = new GeneratedFormDA();
 //         private bool Validate(long FormTypeID)

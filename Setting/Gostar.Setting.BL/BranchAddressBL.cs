@@ -9,7 +9,7 @@ using Gostar.Setting.DTO;
 
 namespace Gostar.Setting.BL
 {
-    public class BranchAddressBL : BaseBusiness
+    public class BranchAddressBL : BaseBL
     {
         BranchAddressDA BranchAddressDA = new BranchAddressDA();
         /// <summary>

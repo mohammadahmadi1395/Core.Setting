@@ -1703,7 +1703,7 @@
         "Kind": "ITagHelper",
         "Name": "Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper",
         "AssemblyName": "Microsoft.AspNetCore.Mvc.TagHelpers",
-        "Documentation": null,
+        "Documentation": "\n            <summary>\n            <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" /> implementation targeting &lt;input&gt; elements with an <c>asp-for</c> attribute.\n            </summary>\n        ",
         "TagOutputHint": null,
         "TagMatchingRules": [
           {
@@ -1773,7 +1773,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            The name of the &lt;input&gt; element.\n            </summary>\n            <remarks>\n            Passed through to the generated HTML in all cases. Also used to determine whether <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper.For\" /> is\n            valid with an empty <see cref=\"P:Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression.Name\" />.\n            </remarks>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Name"
@@ -1787,7 +1787,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            The value of the &lt;input&gt; element.\n            </summary>\n            <remarks>\n            Passed through to the generated HTML in all cases. Also used to determine the generated \"checked\" attribute\n            if <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper.InputTypeName\" /> is \"radio\". Must not be <c>null</c> in that case.\n            </remarks>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Value"
@@ -1806,7 +1806,7 @@
         "Kind": "ITagHelper",
         "Name": "Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper",
         "AssemblyName": "Microsoft.AspNetCore.Mvc.TagHelpers",
-        "Documentation": null,
+        "Documentation": "\n            <summary>\n            <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" /> implementation targeting &lt;label&gt; elements with an <c>asp-for</c> attribute.\n            </summary>\n        ",
         "TagOutputHint": null,
         "TagMatchingRules": [
           {
@@ -1834,7 +1834,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            An expression to be evaluated against the current model.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "For"
@@ -1853,7 +1853,7 @@
         "Kind": "ITagHelper",
         "Name": "Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper",
         "AssemblyName": "Microsoft.AspNetCore.Mvc.TagHelpers",
-        "Documentation": null,
+        "Documentation": "\n            <summary>\n            <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" /> implementation targeting &lt;link&gt; elements that supports fallback href paths.\n            </summary>\n            <remarks>\n            The tag helper won't process for cases with just the 'href' attribute.\n            </remarks>\n        ",
         "TagOutputHint": null,
         "TagMatchingRules": [
           {
@@ -2009,7 +2009,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            Address of the linked resource.\n            </summary>\n            <remarks>\n            Passed through to the generated HTML in all cases.\n            </remarks>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Href"
@@ -2023,7 +2023,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            A comma separated list of globbed file patterns of CSS stylesheets to load.\n            The glob patterns are assessed relative to the application's 'webroot' setting.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "HrefInclude"
@@ -2037,7 +2037,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            A comma separated list of globbed file patterns of CSS stylesheets to exclude from loading.\n            The glob patterns are assessed relative to the application's 'webroot' setting.\n            Must be used in conjunction with <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.HrefInclude\" />.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "HrefExclude"
@@ -2051,7 +2051,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            The URL of a CSS stylesheet to fallback to in the case the primary one fails.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "FallbackHref"
@@ -2065,7 +2065,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            Value indicating if file version should be appended to the href urls.\n            </summary>\n            <remarks>\n            If <c>true</c> then a query string \"v\" with the encoded content of the file is added.\n            </remarks>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "AppendVersion"
@@ -2079,7 +2079,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            A comma separated list of globbed file patterns of CSS stylesheets to fallback to in the case the primary\n            one fails.\n            The glob patterns are assessed relative to the application's 'webroot' setting.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "FallbackHrefInclude"
@@ -2093,7 +2093,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            A comma separated list of globbed file patterns of CSS stylesheets to exclude from the fallback list, in\n            the case the primary one fails.\n            The glob patterns are assessed relative to the application's 'webroot' setting.\n            Must be used in conjunction with <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackHrefInclude\" />.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "FallbackHrefExclude"
@@ -2107,7 +2107,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            The class name defined in the stylesheet to use for the fallback test.\n            Must be used in conjunction with <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestProperty\" /> and <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestValue\" />,\n            and either <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackHref\" /> or <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackHrefInclude\" />.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "FallbackTestClass"
@@ -2121,7 +2121,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            The CSS property name to use for the fallback test.\n            Must be used in conjunction with <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestClass\" /> and <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestValue\" />,\n            and either <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackHref\" /> or <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackHrefInclude\" />.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "FallbackTestProperty"
@@ -2135,7 +2135,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            The CSS property value to use for the fallback test.\n            Must be used in conjunction with <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestClass\" /> and <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackTestProperty\" />,\n            and either <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackHref\" /> or <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.LinkTagHelper.FallbackHrefInclude\" />.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "FallbackTestValue"
@@ -2154,7 +2154,7 @@
         "Kind": "ITagHelper",
         "Name": "Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper",
         "AssemblyName": "Microsoft.AspNetCore.Mvc.TagHelpers",
-        "Documentation": null,
+        "Documentation": "\n            <summary>\n            <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" /> implementation targeting &lt;option&gt; elements.\n            </summary>\n            <remarks>\n            This <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" /> works in conjunction with <see cref=\"T:Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper\" />. It reads elements\n            content but does not modify that content. The only modification it makes is to add a <c>selected</c> attribute\n            in some cases.\n            </remarks>\n        ",
         "TagOutputHint": null,
         "TagMatchingRules": [
           {
@@ -2173,7 +2173,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            Specifies a value for the &lt;option&gt; element.\n            </summary>\n            <remarks>\n            Passed through to the generated HTML in all cases.\n            </remarks>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Value"
@@ -2220,7 +2220,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            The name or path of the partial view that is rendered to the response.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Name"
@@ -2234,7 +2234,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            An expression to be evaluated against the current model. Cannot be used together with <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper.Model\" />.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "For"
@@ -2248,7 +2248,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            The model to pass into the partial view. Cannot be used together with <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper.For\" />.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Model"
@@ -2262,7 +2262,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": "view-data-",
             "IndexerTypeName": "System.Object",
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            A <see cref=\"T:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary\" /> to pass into the partial view.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "ViewData"
@@ -2768,7 +2768,7 @@
         "Kind": "ITagHelper",
         "Name": "Microsoft.AspNetCore.SpaServices.Prerendering.PrerenderTagHelper",
         "AssemblyName": "Microsoft.AspNetCore.SpaServices",
-        "Documentation": null,
+        "Documentation": "\n            <summary>\n            A tag helper for prerendering JavaScript applications on the server.\n            </summary>\n        ",
         "TagOutputHint": null,
         "TagMatchingRules": [
           {
@@ -2796,7 +2796,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            Specifies the path to the JavaScript module containing prerendering code.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "ModuleName"
@@ -2810,7 +2810,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            If set, specifies the name of the CommonJS export that is the prerendering function to execute.\n            If not set, the JavaScript module's default CommonJS export must itself be the prerendering function.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "ExportName"
@@ -2824,7 +2824,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            An optional JSON-serializable parameter to be supplied to the prerendering code.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "CustomDataParameter"
@@ -2838,7 +2838,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            The maximum duration to wait for prerendering to complete.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "TimeoutMillisecondsParameter"
@@ -2856,6 +2856,6 @@
     ],
     "CSharpLanguageVersion": 703
   },
-  "RootNamespace": "Alsahab.Setting.MyAPI",
+  "RootNamespace": null,
   "Documents": []
 }
