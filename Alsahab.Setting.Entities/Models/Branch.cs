@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Alsahab.Setting.Entities.Models
 {
-    public class Branch : BaseEntity<BranchDTO>
+    public class Branch : BaseEntity<Branch, BranchDTO, long>
     {
         public long? ParentId { get; set; }
         public long? BranchAddressId { get; set; }
@@ -37,7 +37,7 @@ namespace Alsahab.Setting.Entities.Models
     {
         public void Configure(EntityTypeBuilder<Branch> entity)
         {
-            entity.Property(e => e.Id).HasColumnName("ID").ValueGeneratedOnAdd();
+            entity.Property(e => e.ID).HasColumnName("ID").ValueGeneratedOnAdd();
             entity.Property(e => e.BranchAddressId).HasColumnName("BranchAddressID");
             entity.Property(e => e.BranchEmail).HasMaxLength(50);
             entity.Property(e => e.BranchPhoneNo).HasMaxLength(50);
@@ -49,7 +49,7 @@ namespace Alsahab.Setting.Entities.Models
             entity.Property(e => e.Title).IsRequired().HasMaxLength(50);
             //TODO
             // entity.HasOne(d => d.BranchAddress).WithMany(p => p.Branch).HasForeignKey(d => d.BranchAddressId).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Branch_BranchAddress");
-            entity.HasOne(d => d.IdNavigation).WithOne(p => p.InverseIdNavigation).HasForeignKey<Branch>(d => d.Id).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Branch_Branch");
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.InverseIdNavigation).HasForeignKey<Branch>(d => d.ID).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Branch_Branch");
         }
     }
 }

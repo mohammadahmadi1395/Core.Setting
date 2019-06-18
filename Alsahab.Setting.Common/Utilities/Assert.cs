@@ -20,7 +20,7 @@ namespace Alsahab.Setting.Common.Utilities
                 throw new ArgumentNullException($"{name} : {typeof(T)}", message);
         }
 
-        public static void NotEmpty<T>(T obj, string name, string message = null, T defaultValue = null)
+        public static void IsEmpty<T>(T obj, string name, string message = null, T defaultValue = null)
         where T : class
         {
             if (obj == defaultValue

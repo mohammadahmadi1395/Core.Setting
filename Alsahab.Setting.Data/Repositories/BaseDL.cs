@@ -2,66 +2,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Alsahab.Common;
 using Alsahab.Setting.Common;
+using Alsahab.Setting.Common.Api;
+using Alsahab.Setting.Common.Exceptions;
 using Alsahab.Setting.Common.Utilities;
 using Alsahab.Setting.Data.Contracts;
 using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Alsahab.Setting.Data.Repositories
 {
-    public class BaseDL<TEntity, TDto> : IBaseDL<TEntity, TDto>
-        where TEntity : BaseEntity<TDto>, IEntity
-        where TDto : class
+    public class BaseDL<TEntity, TDto, TFilterDto> : IBaseDL<TEntity, TDto, TFilterDto>
+        where TEntity : BaseEntity<TEntity, TDto, long>, IEntity
+        where TDto : BaseDTO//class
+        where TFilterDto : TDto
     {
-        public BaseDL()
-        {
-            // AutoMapper.Mapper.Initialize(config =>
-            // {
-            //     config.AddCustomMappingProfile();
-            // });
-
-            // //Compile Mapping after configuration to boost map speed
-            // AutoMapper.Mapper.Configuration.CompileMappings();
-
-        }
-
-        public virtual async Task<TDto> AddAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
-        {
-            Assert.NotNull(dto, nameof(dto));
-
-            TEntity entity = AutoMapper.Mapper.Map<TDto, TEntity>(dto);
-            await Entities.AddAsync(entity, cancellationToken).ConfigureAwait(false);
-            if (saveNow)
-                await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-
-            return dto;
-        }
-
-        // public virtual async Task AddAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entity, nameof(entity));
-        //     await Entities.AddAsync(entity, cancellationToken).ConfigureAwait(false);
-        //     if (saveNow)
-        //         await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-        // }
-
-
-
-
-
-
-
-
-
-
-
-
 
         private readonly ApplicationDbContext DbContext;
         public DbSet<TEntity> Entities { get; }
@@ -78,10 +41,142 @@ namespace Alsahab.Setting.Data.Repositories
             ErrorMessage = "خطای پایگاه داده";
         }
 
+        public virtual async Task<TDto> AddAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
+        {
+            Assert.NotNull(dto, nameof(dto));
+
+            TEntity entity = BaseEntity<TEntity, TDto, long>.FromDto(dto); // AutoMapper.Mapper.Map<TDto, TEntity>(dto);
+            await Entities.AddAsync(entity, cancellationToken).ConfigureAwait(false);
+            if (saveNow)
+                await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            var resultDto = await TableNoTracking.ProjectTo<TDto>()
+                .SingleOrDefaultAsync(s => s.ID.Equals(entity.ID), cancellationToken);
+
+            return resultDto;
+        }
+
+        public virtual async Task<TDto> UpdateAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
+        {
+            Assert.NotNull(dto, nameof(dto));
+
+            var entity = await Entities.FindAsync(dto.ID);
+            if (entity == null)
+                throw new AppException(ApiResultStatusCode.NotFound, "not found entity.");
+
+            entity = entity.ToEntity(dto);
+            Entities.Update(entity);
+
+            if (saveNow)
+                await DbContext.SaveChangesAsync(cancellationToken);
+
+            var resultDto = await TableNoTracking.ProjectTo<TDto>()
+                .SingleOrDefaultAsync(q => q.ID.Equals(dto.ID), cancellationToken);
+
+            return resultDto;
+        }
+
+        public virtual async Task<TDto> DeleteAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
+        {
+            Assert.NotNull(dto, nameof(dto));
+            var entity = await Entities.FindAsync(dto.ID);
+            if (entity == null)
+                throw new AppException(ApiResultStatusCode.NotFound, "not found entity.");
+
+            entity = entity.ToEntity(dto);
+
+            Entities.Remove(entity);
+            if (saveNow)
+                await DbContext.SaveChangesAsync(cancellationToken);
+
+            return dto;
+        }
+
+        public virtual async Task<IList<TDto>> Get(TFilterDto filterDto, CancellationToken cancellationToken)
+        {
+            var query = TableNoTracking;
+            foreach (var prop in filterDto.GetType().GetProperties())
+            {
+                var type = prop.PropertyType;
+                var value = prop.GetValue(filterDto);
+                if ((prop.Name.Contains("Id") || prop.Name.Contains("ID")) && !prop.Name.Contains("List") && (long)value > 0)
+                {
+                    query = query.Where(s=> prop.GetValue(s) == prop.GetValue(filterDto));
+                }
+                else if (type == typeof(string) && !string.IsNullOrWhiteSpace(value.ToString()))
+                {
+                    query = query.Where(s => prop.GetValue(s).ToString().Contains(prop.GetValue(filterDto).ToString()));
+                }
+                else if ((type == typeof(DateTime) || type == typeof(DateTime?) || type == typeof(DateTimeOffset) || type == typeof(DateTimeOffset?)) && (DateTime)value > DateTime.MinValue)
+                {
+                    if (prop.Name.Contains("From"))
+                    {
+                        string filterProp = prop.Name.Replace("From", "");
+                        Type infoType = typeof(TFilterDto);
+                        PropertyInfo info = infoType.GetProperty(filterProp);
+                        // query = query.Where(s => Convert.ChangeType(prop.GetValue(s), Type.GetType("DateTime")) > Convert.ChangeType(info.GetValue(filterDto), Type.GetType("DateTime")));// (DateTime)info.GetValue(filterDto));
+                        query = query.Where(s => (DateTime)prop.GetValue(s) > (DateTime)info.GetValue(filterDto));
+                    }
+                    else if (prop.Name.Contains("To"))
+                    {
+                        string filterProp = prop.Name.Replace("To", "");
+                        Type infoType = typeof(TFilterDto);
+                        PropertyInfo info = infoType.GetProperty(filterProp);
+                        query = query.Where(s => (DateTime)prop.GetValue(s) < (DateTime)info.GetValue(filterDto));
+                    }
+                }
+                else if ((type == typeof(long) || type == typeof(long?)) && (long)value > 0)
+                {
+                    if (prop.Name.Contains("From"))
+                    {
+                        string filterProp = prop.Name.Replace("From", "");
+                        Type infoType = typeof(TFilterDto);
+                        PropertyInfo info = infoType.GetProperty(filterProp);
+                        query = query.Where(s => (long)prop.GetValue(s) > (long)info.GetValue(filterDto));
+                    }
+                    else if (prop.Name.Contains("To"))
+                    {
+                        string filterProp = prop.Name.Replace("To", "");
+                        Type infoType = typeof(TFilterDto);
+                        PropertyInfo info = infoType.GetProperty(filterProp);
+                        query = query.Where(s => (long)prop.GetValue(s) < (long)info.GetValue(filterDto));
+                    }
+                }
+                else if ((type== typeof(int) || type == typeof(int?)) && (int)value > 0)
+                {
+                    if (prop.Name.Contains("From"))
+                    {
+                        string filterProp = prop.Name.Replace("From", "");
+                        Type infoType = typeof(TFilterDto);
+                        PropertyInfo info = infoType.GetProperty(filterProp);
+                        query = query.Where(s => (int)prop.GetValue(s) > (int)info.GetValue(filterDto));
+                    }
+                    else if (prop.Name.Contains("To"))
+                    {
+                        string filterProp = prop.Name.Replace("To", "");
+                        Type infoType = typeof(TFilterDto);
+                        PropertyInfo info = infoType.GetProperty(filterProp);
+                        query = query.Where(s => (int)prop.GetValue(s) < (int)info.GetValue(filterDto));
+                    }
+                }
+            }
+            return await query.ProjectTo<TDto>()
+                .ToListAsync(cancellationToken);;
+        }
+
+        // public virtual async Task AddAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow = true)
+        // {
+        //     Assert.NotNull(entity, nameof(entity));
+        //     await Entities.AddAsync(entity, cancellationToken).ConfigureAwait(false);
+        //     if (saveNow)
+        //         await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+        // }
+
+
         // #region  Async Methods
         // public virtual Task<TEntity> GetByIdAsync(CancellationToken cancellationToken, params object[] ids)
         // {
-        //     return Entities.FindAsync(ids, cancellationToken);
+        //     return Entities.FindAsync(ids);
         // }
 
         // public virtual async Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true)
@@ -92,13 +187,6 @@ namespace Alsahab.Setting.Data.Repositories
         //         await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
         // }
 
-        // public virtual async Task UpdateAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entity, nameof(entity));
-        //     Entities.Update(entity);
-        //     if (saveNow)
-        //         await DbContext.SaveChangesAsync(cancellationToken);
-        // }
 
         // public virtual async Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true)
         // {
@@ -108,13 +196,6 @@ namespace Alsahab.Setting.Data.Repositories
         //         await DbContext.SaveChangesAsync(cancellationToken);
         // }
 
-        // public virtual async Task DeleteAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entity, nameof(entity));
-        //     Entities.Remove(entity);
-        //     if (saveNow)
-        //         await DbContext.SaveChangesAsync(cancellationToken);
-        // }
 
         // public virtual async Task DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true)
         // {

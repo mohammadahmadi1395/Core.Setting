@@ -1287,7 +1287,6 @@
         "dependencies": {
           "Alsahab.Setting.DTO": "1.0.0",
           "Alsahab.Setting.Entities": "1.0.0",
-          "AutoMapper": "8.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.1.6",
           "Microsoft.EntityFrameworkCore.Design": "2.1.1"
         },
@@ -1314,6 +1313,7 @@
         "dependencies": {
           "Alsahab.Setting.Common": "1.0.0",
           "Alsahab.Setting.DTO": "1.0.0",
+          "AutoMapper": "8.0.0",
           "Microsoft.Extensions.Identity.Stores": "2.1.6"
         },
         "runtime": {

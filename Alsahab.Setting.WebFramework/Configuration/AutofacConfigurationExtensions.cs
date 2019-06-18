@@ -26,7 +26,7 @@ namespace Alsahab.Setting.WebFramework.Configuration
             // builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
             
             // builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
-            builder.RegisterGeneric(typeof(BaseDL<,>)).As(typeof(IBaseDL<,>)).InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(BaseDL<,,>)).As(typeof(IBaseDL<,,>)).InstancePerLifetimeScope();
 
             //قابلیت‌هایی که اتوفک دارد، اما 
             // IOC

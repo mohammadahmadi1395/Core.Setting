@@ -4,14 +4,17 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Alsahab.Setting.Data.Contracts
 {
-    public interface IBaseDL<TEntity, TDto>
+    public interface IBaseDL<TEntity, TDto, TFilterDto>
         where TEntity : class, IEntity
         where TDto : class
+        where TFilterDto : TDto
     {
         Alsahab.Common.ResponseStatus ResponseStatus { get; set; }
         string ErrorMessage { get; set; }
@@ -21,11 +24,11 @@ namespace Alsahab.Setting.Data.Contracts
 
         // Task<TEntity> GetByIdAsync(CancellationToken cancellationToken, params object[] ids);
         Task<TDto> AddAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true);
-        // // Task AddAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow = true);
+        Task<TDto> UpdateAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true);
+        Task<TDto> DeleteAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true);
+        Task<IList<TDto>> Get(TFilterDto filterDto, CancellationToken cancellationToken);
         // Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true);
-        // Task UpdateAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow = true);
         // Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true);
-        // Task DeleteAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow = true);
         // Task DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true);
         // TEntity GetById(params object[] ids);
         // void Add(TEntity entity, bool saveNow = true);
@@ -41,5 +44,11 @@ namespace Alsahab.Setting.Data.Contracts
         // void LoadReference<TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> referenceProperty) where TProperty : class;
         // Task LoadReferenceAsync<TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> referenceProperty, CancellationToken cancellationToken) where TProperty : class;
 
+    }
+
+        public interface IBaseDL<TEntity, TDto> : IBaseDL<TEntity, TDto, TDto>
+        where TEntity : class, IEntity
+        where TDto : class
+    {
     }
 }

@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace Alsahab.Setting.BL
 {
-    public interface IBaseBL<TDto> : IScopedDependency
+    public interface IBaseBL<TDto, TFilterDto> : IScopedDependency
     {
         ResponseStatus ResponseStatus { get; set; }
         int? ResultCount { get; set; }
@@ -22,6 +22,7 @@ namespace Alsahab.Setting.BL
         CultureInfo Culture { get; set; }
         UserInfoDTO User { get; set; }
 
+        Task<IList<TDto>> Get(TFilterDto filter, CancellationToken cancellationToken);
         Task<TDto> InsertAsync(TDto data, CancellationToken cancellationToken);
         TDto Insert(TDto data);
         Task<List<TDto>> InsertListAsync(List<TDto> list, CancellationToken cancellationToken);
@@ -30,9 +31,14 @@ namespace Alsahab.Setting.BL
         TDto Update(TDto data);
         Task<List<TDto>> UpdateListAsync(List<TDto> list, CancellationToken cancellationToken);
         List<TDto> UpdateList(List<TDto> list);
-        Task<TDto> Delete(TDto data, CancellationToken cancellationToken);
+        Task<TDto> DeleteAsync(TDto data, CancellationToken cancellationToken);
         TDto Delete(TDto data);
         Task<List<TDto>> DeleteListAsync(List<TDto> list, CancellationToken cancellationToken);
         List<TDto> DeleteList(List<TDto> list);
     }
+
+    public interface IBaseBL<TDto> : IBaseBL<TDto, TDto>
+    {
+    }
+
 }

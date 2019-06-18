@@ -20,16 +20,16 @@ namespace Alsahab.Setting.Data
     // to be added
     // IdentityDbContext<User,Role,int> 
     {
-        // public ApplicationDbContext(DbContextOptions options) : base(options)
-        // {            
-        // }
-
-        // For Migrations
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Setting;Integrated Security=false; user id=sa; password=admin@123");
-            base.OnConfiguring(optionsBuilder);
+        public ApplicationDbContext(DbContextOptions options) : base(options)
+        {            
         }
+
+        // // For Migrations
+        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        // {
+        //     optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Setting;Integrated Security=false; user id=sa; password=admin@123");
+        //     base.OnConfiguring(optionsBuilder);
+        // }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -25,8 +25,8 @@ namespace Alsahab.Setting.WebFramework.CustomMapping
                 //     .ForMember(p => p.Author, opt => opt.Ignore())
                 //     .ForMember(p => p.Category, opt => opt.Ignore());
 
-                // config.AddCustomMappingProfile();
-                config.CreateMap<Branch, BranchDTO>().ReverseMap();
+                config.AddCustomMappingProfile();
+                // config.CreateMap<Branch, BranchDTO>().ReverseMap();
                     //TODO
                     // .ForMember(p=>p.BranchAddress, opt=>opt.Ignore())
                     // .ForMember(p=>p.BranchRegionWork, opt=>opt.Ignore());
@@ -43,10 +43,10 @@ namespace Alsahab.Setting.WebFramework.CustomMapping
             // همان لایه 
             // Api
             // است
-            var entityAssembly = typeof(BaseEntity<>).Assembly;
-            var dataAssembly = typeof(BaseDL<,>).Assembly;
+            var entityAssembly = typeof(BaseEntity<,,>).Assembly;
+            // var dataAssembly = typeof(BaseDL<,>).Assembly;
             // config.AddCustomMappingProfile(Assembly.GetEntryAssembly());
-            config.AddCustomMappingProfile(entityAssembly, dataAssembly);
+            config.AddCustomMappingProfile(entityAssembly);
         }
 
         public static void AddCustomMappingProfile(this IMapperConfigurationExpression config, params Assembly[] assemblies)

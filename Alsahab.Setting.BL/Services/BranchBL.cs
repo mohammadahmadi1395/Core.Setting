@@ -11,13 +11,13 @@ using Alsahab.Setting.Entities.Models;
 
 namespace Alsahab.Setting.BL
 {
-    public class BranchBL : BaseBL<BranchDTO>
+    public class BranchBL : BaseBL<BranchDTO, BranchFilterDTO>
     {
         // private readonly BranchDL _repository;
         private List<BranchDTO> TempAllBranch = new List<BranchDTO>();
         private long? _index = 1, _depth = 2;
-        private readonly IBaseDL<Branch, BranchDTO> _BranchDL;// = new IBaseDL<BranchDTO, Branch>();
-        public BranchBL(IBaseDL<Branch, BranchDTO> branchDL)
+        private readonly IBaseDL<Branch, BranchDTO, BranchFilterDTO> _BranchDL;// = new IBaseDL<BranchDTO, Branch>();
+        public BranchBL(IBaseDL<Branch, BranchDTO, BranchFilterDTO> branchDL)
         {
             _BranchDL = branchDL;
         }
@@ -210,6 +210,20 @@ namespace Alsahab.Setting.BL
         //     return Response;
         // }
 
+        public override async Task<IList<BranchDTO>> Get(BranchFilterDTO filter, CancellationToken cancellationToken)
+        {
+            return await _BranchDL.Get(filter, cancellationToken);
+        }
+
+        public override async Task<BranchDTO> UpdateAsync(BranchDTO data, CancellationToken cancellationToken)
+        {
+            return await _BranchDL.UpdateAsync(data, cancellationToken);
+        }
+
+        public override async Task<BranchDTO> DeleteAsync(BranchDTO data, CancellationToken cancellationToken)
+        {
+            return await _BranchDL.DeleteAsync(data, cancellationToken);
+        }
 
         public override async Task<BranchDTO> InsertAsync(BranchDTO data, CancellationToken cancellationToken)
         {
@@ -358,7 +372,7 @@ namespace Alsahab.Setting.BL
 
         #endregion
 
-        // public BranchDTO BranchDelete(BranchDTO data)
+        // public override async BranchDTO SoftDeleteAsync(BranchDTO data, CancellationToken cancellationToken)
         // {
         //     //Search For Use This Item Before Delete
         //     if (!DeletePermision(data))
@@ -550,7 +564,7 @@ namespace Alsahab.Setting.BL
         //     }
 
         //     TempAllBranch = GenerateNewCodes(TempAllBranch?.Where(s => s.ParentID == null && s.IsDeleted == false)?.ToList(), TempAllBranch?.Where(s => s.IsDeleted == false)?.ToList());
-            
+
         //     BranchDL.BranchUpdate(TempAllBranch);
         //     ResponseStatus = BranchDL.ResponseStatus;
         //     if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)

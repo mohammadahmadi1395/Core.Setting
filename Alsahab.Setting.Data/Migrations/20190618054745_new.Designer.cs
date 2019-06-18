@@ -4,14 +4,16 @@ using Alsahab.Setting.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Alsahab.Setting.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190618054745_new")]
+    partial class @new
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +23,7 @@ namespace Alsahab.Setting.Data.Migrations
 
             modelBuilder.Entity("Alsahab.Setting.Entities.Models.Branch", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -66,7 +68,7 @@ namespace Alsahab.Setting.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Branches");
                 });
@@ -75,7 +77,7 @@ namespace Alsahab.Setting.Data.Migrations
                 {
                     b.HasOne("Alsahab.Setting.Entities.Models.Branch", "IdNavigation")
                         .WithOne("InverseIdNavigation")
-                        .HasForeignKey("Alsahab.Setting.Entities.Models.Branch", "ID")
+                        .HasForeignKey("Alsahab.Setting.Entities.Models.Branch", "Id")
                         .HasConstraintName("FK_Branch_Branch");
                 });
 #pragma warning restore 612, 618

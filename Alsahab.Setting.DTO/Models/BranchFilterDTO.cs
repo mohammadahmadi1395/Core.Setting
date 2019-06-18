@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Alsahab.Setting.DTO
 {
-    public class BranchFilterDTO : BaseFilterDTO
+    public class BranchFilterDTO : BranchDTO//, BaseFilterDTO
     {
         public List<long?> IDList { get; set; }
         public bool IsLeafNode { get; set; } = true;

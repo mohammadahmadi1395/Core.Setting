@@ -8,11 +8,13 @@ using Alsahab.Common;
 using FluentValidation;
 using Alsahab.Setting.Common.Validation;
 using System.Threading;
+using Alsahab.Setting.Entities;
 
 namespace Alsahab.Setting.BL
 {
-    public class BaseBL<Dto> : IBaseBL<Dto>
+    public class BaseBL<Dto, FilterDto> : IBaseBL<Dto, FilterDto>
         where Dto : class
+        where FilterDto : Dto
     {
         public ResponseStatus ResponseStatus { get; set; }
         public int? ResultCount { get; set; }
@@ -20,6 +22,7 @@ namespace Alsahab.Setting.BL
         public string ErrorMessage { get; set; }
         public IList<FluentValidation.Results.ValidationFailure> ValidationErrors { get; set; }
         public CultureInfo Culture { get; set; }
+
         public BaseBL()
         {
             ResponseStatus = ResponseStatus.BusinessError;
@@ -94,7 +97,7 @@ namespace Alsahab.Setting.BL
             throw new NotImplementedException();
         }
 
-        public virtual Task<Dto> Delete(Dto data, CancellationToken cancellationToken)
+        public virtual Task<Dto> DeleteAsync(Dto data, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -113,5 +116,11 @@ namespace Alsahab.Setting.BL
         {
             throw new NotImplementedException();
         }
+
+        public virtual Task<IList<Dto>> Get(FilterDto filter, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
