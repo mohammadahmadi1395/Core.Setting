@@ -60,6 +60,34 @@
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "(, )"
+            },
+            "System.ServiceModel.Duplex": {
+              "target": "Package",
+              "version": "[4.5.3, )"
+            },
+            "System.ServiceModel.Http": {
+              "target": "Package",
+              "version": "[4.5.3, )"
+            },
+            "System.ServiceModel.NetTcp": {
+              "target": "Package",
+              "version": "[4.5.3, )"
+            },
+            "System.ServiceModel.Primitives": {
+              "target": "Package",
+              "version": "[4.5.3, )"
+            },
+            "System.ServiceModel.Security": {
+              "target": "Package",
+              "version": "[4.5.3, )"
+            },
+            "System.ServiceModel.Web": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Wcf.ChannelFactory.Helper": {
+              "target": "Package",
+              "version": "[1.0.4, )"
             }
           },
           "imports": [

@@ -9,10 +9,15 @@ using FluentValidation;
 using Alsahab.Setting.Common.Validation;
 using Alsahab.Setting.Common;
 using System.Threading;
+using Alsahab.Setting.DTO;
+using Alsahab.Setting.Entities;
 
 namespace Alsahab.Setting.BL
 {
-    public interface IBaseBL<TDto, TFilterDto> : IScopedDependency
+    public interface IBaseBL<TEntity, TDto, TFilterDto> : IScopedDependency
+    where TEntity : class, IEntity
+    where TDto : BaseDTO
+    where TFilterDto : TDto
     {
         ResponseStatus ResponseStatus { get; set; }
         int? ResultCount { get; set; }
@@ -22,7 +27,7 @@ namespace Alsahab.Setting.BL
         CultureInfo Culture { get; set; }
         UserInfoDTO User { get; set; }
 
-        Task<IList<TDto>> Get(TFilterDto filter, CancellationToken cancellationToken);
+        Task<IList<TDto>> GetAsync(TFilterDto filter, CancellationToken cancellationToken);
         Task<TDto> InsertAsync(TDto data, CancellationToken cancellationToken);
         TDto Insert(TDto data);
         Task<List<TDto>> InsertListAsync(List<TDto> list, CancellationToken cancellationToken);
@@ -37,7 +42,9 @@ namespace Alsahab.Setting.BL
         List<TDto> DeleteList(List<TDto> list);
     }
 
-    public interface IBaseBL<TDto> : IBaseBL<TDto, TDto>
+    public interface IBaseBL<TEntity, TDto> : IBaseBL<TEntity, TDto, TDto>
+    where TEntity : class, IEntity
+    where TDto : BaseDTO
     {
     }
 

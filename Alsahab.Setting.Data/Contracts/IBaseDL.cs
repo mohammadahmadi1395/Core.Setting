@@ -8,15 +8,16 @@ using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Alsahab.Common;
 
 namespace Alsahab.Setting.Data.Contracts
 {
     public interface IBaseDL<TEntity, TDto, TFilterDto>
         where TEntity : class, IEntity
-        where TDto : class
+        where TDto : BaseDTO
         where TFilterDto : TDto
-    {
-        Alsahab.Common.ResponseStatus ResponseStatus { get; set; }
+    {        
+        ResponseStatus ResponseStatus { get; set; }
         string ErrorMessage { get; set; }
         DbSet<TEntity> Entities { get; }
         IQueryable<TEntity> Table { get; }
@@ -26,7 +27,11 @@ namespace Alsahab.Setting.Data.Contracts
         Task<TDto> AddAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true);
         Task<TDto> UpdateAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true);
         Task<TDto> DeleteAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true);
-        Task<IList<TDto>> Get(TFilterDto filterDto, CancellationToken cancellationToken);
+        Task<IList<TDto>> GetAsync(TFilterDto filterDto, CancellationToken cancellationToken);
+        TDto Add(TDto dto, bool saveNow = true);
+        TDto Update(TDto dto, bool saveNow = true);
+        TDto Delete(TDto dto, bool saveNow = true);
+        List<TDto> Get(TFilterDto filterDto);
         // Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true);
         // Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true);
         // Task DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true);
@@ -48,7 +53,7 @@ namespace Alsahab.Setting.Data.Contracts
 
         public interface IBaseDL<TEntity, TDto> : IBaseDL<TEntity, TDto, TDto>
         where TEntity : class, IEntity
-        where TDto : class
+        where TDto : BaseDTO
     {
     }
 }

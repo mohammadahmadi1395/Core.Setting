@@ -1,7 +1,3 @@
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/obj/Debug/netcoreapp2.1/Alsahab.Setting.Entities.csprojAssemblyReference.cache
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/obj/Debug/netcoreapp2.1/Alsahab.Setting.Entities.csproj.CoreCompileInputs.cache
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/obj/Debug/netcoreapp2.1/Alsahab.Setting.Entities.AssemblyInfoInputs.cache
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/obj/Debug/netcoreapp2.1/Alsahab.Setting.Entities.AssemblyInfo.cs
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/bin/Debug/netcoreapp2.1/Alsahab.Setting.Entities.deps.json
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/bin/Debug/netcoreapp2.1/Alsahab.Setting.Entities.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/bin/Debug/netcoreapp2.1/Alsahab.Setting.Entities.pdb
@@ -9,6 +5,10 @@
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/bin/Debug/netcoreapp2.1/Alsahab.Setting.Common.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.pdb
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/obj/Debug/netcoreapp2.1/Alsahab.Setting.Entities.csprojAssemblyReference.cache
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/obj/Debug/netcoreapp2.1/Alsahab.Setting.Entities.csproj.CoreCompileInputs.cache
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/obj/Debug/netcoreapp2.1/Alsahab.Setting.Entities.AssemblyInfoInputs.cache
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/obj/Debug/netcoreapp2.1/Alsahab.Setting.Entities.AssemblyInfo.cs
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/obj/Debug/netcoreapp2.1/Alsahab.Setting.Entities.csproj.CopyComplete
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/obj/Debug/netcoreapp2.1/Alsahab.Setting.Entities.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/obj/Debug/netcoreapp2.1/Alsahab.Setting.Entities.pdb

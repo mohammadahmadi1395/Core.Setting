@@ -19,6 +19,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.6"/>
     <!-- <PackageReference Include="FluentValidation.AspNetCore" Version="8.4.0"/> -->
   </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <LangVersion>7.3</LangVersion>

@@ -10,6 +10,10 @@ using Alsahab.Setting.Data.Contracts;
 using Alsahab.Setting.Data.Repositories;
 using Alsahab.Setting.BL;
 using Alsahab.Setting.BL.Services;
+// using Alyatim.Member.SC;
+// using Alyatim.Member.DTO;
+// using UserManagement.SC;
+// using UserManagement.DTO;
 
 namespace Alsahab.Setting.WebFramework.Configuration
 {

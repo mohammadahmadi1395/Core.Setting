@@ -8,87 +8,102 @@ using Alsahab.Setting.Data.Contracts;
 using Alsahab.Setting.Data.Repositories;
 using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities.Models;
+using Alyatim.Member.SC.Messages;
+using Alsahab.Common;
+using Gostar.Common;
 
 namespace Alsahab.Setting.BL
 {
-    public class BranchBL : BaseBL<BranchDTO, BranchFilterDTO>
+    public class BranchBL : BaseBL<Branch, BranchDTO, BranchFilterDTO>
     {
-        // private readonly BranchDL _repository;
+        // private readonly _BranchDL _repository;
         private List<BranchDTO> TempAllBranch = new List<BranchDTO>();
         private long? _index = 1, _depth = 2;
         private readonly IBaseDL<Branch, BranchDTO, BranchFilterDTO> _BranchDL;// = new IBaseDL<BranchDTO, Branch>();
-        public BranchBL(IBaseDL<Branch, BranchDTO, BranchFilterDTO> branchDL)
+
+        public BranchBL(IBaseDL<Branch, BranchDTO, BranchFilterDTO> branchDL) : base(branchDL)
         {
             _BranchDL = branchDL;
         }
+
+
+        // public override List<BranchDTO> Get(BranchFilterDTO filter)
+        // {
+        //     return _BranchDL.Get(filter);
+        // }
+
+
+        public async override Task<IList<BranchDTO>> GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken)
+        {
+            var response = await _BranchDL.GetAsync(filter, cancellationToken);
+            ResponseStatus = _BranchDL.ResponseStatus;
+            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+            {
+                ErrorMessage += _BranchDL.ErrorMessage;
+                return null;
+            }
+
+            var memberResponse = ServiceUtility.CallMember(s => s.Person(new PersonRequest
+            {
+                ActionType = Gostar.Common.ActionType.Select,
+                User = new Gostar.Common.UserInfoDTO { UserID = 1 },
+                PersonFilter = new Alyatim.Member.DTO.PersonFilterDTO
+                {
+                    IDList = new List<long?> { 1, 2 }, //TODO : response?.Select(t => t.HeadPersonID)?.ToList(),
+                }
+            }))?.ResponseDtoList;
+            if (memberResponse?.Count > 0)
+            {
+                response = (from r in response
+                            join p in memberResponse on r.HeadPersonID equals p.ID into TempResult
+                            from x in TempResult.DefaultIfEmpty()
+                            select new BranchDTO
+                            {
+                                ID = r.ID,
+                                Code = r.Code,
+                                ParentID = r.ParentID,
+                                Title = r.Title,
+                                IsCentral = r.IsCentral,
+                                HeadPersonID = x?.ID,
+                                HeadMemberName = x?.FullName,
+                                HeadMemberPhoneNo = x?.MobileNo,
+                                BranchPhoneNo = r.BranchPhoneNo,
+                                BranchEmail = r.BranchEmail,
+                                BranchAddressID = r.BranchAddressID,
+                                BranchComment = r.BranchComment,
+                                CreateDate = r.CreateDate,
+                                IsDeleted = r.IsDeleted,
+                                RightIndex = r.RightIndex,
+                                LeftIndex = r.LeftIndex,
+                                Depth = r.Depth,
+                                OldCode = r.OldCode
+                            })?.ToList();
+            }
+            return response;
+        }
+
+        // public override async Task<IList<BranchDTO>> Get(BranchFilterDTO filter, CancellationToken cancellationToken)
+        // {
+        //     return await _BranchDL.Get(filter, cancellationToken);
+        // }
+
+
+
+
+
+
+
+
+
+
+
+
+
         private bool Validate(BranchDTO data)
         {
-            return true;
-            //TODO
-            // return Validate<BranchValidator, BranchDTO>(data ?? new BranchDTO());
-            //ValidatorOptions.LanguageManager = new Alsahab.Common.Validation.ErrorLanguageManager();
-            //ValidatorOptions.LanguageManager.Culture = Culture;
-
-            //var validator = new Validation.BranchValidator();
-            //ValidationResult result = validator.Validate(data ?? new BranchDTO());
-            //ValidationErrors = result.Errors;
-            //return result.IsValid;
-            //if (data?.IsCentral == true)
-            //{
-            //    var Branch = BranchGet(new BranchDTO { IsCentral = true });
-            //    if (Branch.Count > 0 && !(data.ID > 0 && data.ID == Branch.FirstOrDefault().Id))
-            //    {
-            //        ErrorMessage = "This Branch Can't Be Central,Because Central Branch Is Exist! \n";
-            //        return false;
-            //    }
-
-            //}
-
-
-
-            ////var Branchs = BranchGet(new BranchDTO { HeadPersonID = data?.HeadPersonID });
-            ////if (Branchs.Count > 0)
-            ////{
-            ////    ErrorMessage = "This person is the head of another branch \n";
-            ////    return false;
-            ////}
-
-            //var Branchs1 = BranchGet(new BranchDTO { });
-            //if (Branchs1.Where(s=>s.Title== data.Title).ToList().Count > 0)
-            //{
-            //    ErrorMessage = "This Branch Title Is Exist \n";
-            //    return false;
-            //}
-
-            //if (String.IsNullOrWhiteSpace(data?.Title))
-            //{
-            //    ErrorMessage = "Branch Title Not Entered\n";
-            //    return false;
-            //}
-
-            //if (String.IsNullOrWhiteSpace(data?.Code))
-            //{
-            //    ErrorMessage = "Branch Code Not Entered\n";
-            //    return false;
-            //}
-            //if (Branchs1.Where(s => s.Code == data.Code).ToList().Count > 0)
-            //{
-            //    ErrorMessage = "This Branch Code Is Exist \n";
-            //    return false;
-            //}
-            ////if (String.IsNullOrWhiteSpace(data?.HeadPersonID.ToString()))
-            ////{
-            ////    ErrorMessage = "Branch Head Not Selected\n";
-            ////    return false;
-            ////}
-
-            //if (data?.IsDeleted == true)
-            //{
-            //    ErrorMessage = "Branch Is Deleted \n";
-            //    return false;
-            //}
-            //return true;
+            return Validate<BranchValidator, BranchDTO>(data ?? new BranchDTO());
         }
+
         // private bool UpdateValidate(BranchDTO data)
         // {
         //     if (data?.IsCentral == true)
@@ -147,7 +162,7 @@ namespace Alsahab.Setting.BL
         //         return false;
         //     }
 
-        //     var deletingItem = BranchDL.BranchGet(new BranchDTO { ID = data.ID }, null)?.SingleOrDefault();
+        //     var deletingItem = _BranchDL.BranchGet(new BranchDTO { ID = data.ID }, null)?.SingleOrDefault();
         //     var myLeft = deletingItem.LeftIndex; var myRight = deletingItem.RightIndex;
         //     var AllZons = AllBranch;
         //     var deleteCount = AllZons.Where(i => i.LeftIndex >= myLeft && i.LeftIndex <= myRight && i.IsDeleted == false).Count();
@@ -159,71 +174,16 @@ namespace Alsahab.Setting.BL
         //     }
         //     return true;
         // }
-        // public List<BranchDTO> BranchGet(BranchDTO data, BranchFilterDTO filter = null)
+
+        // public override async Task<BranchDTO> UpdateAsync(BranchDTO data, CancellationToken cancellationToken)
         // {
-        //     // var Response = BranchDL.BranchGet(data, filter);
-        //     // ResponseStatus = BranchDL.ResponseStatus;
-        //     // if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-        //     // {
-        //     //     ErrorMessage += BranchDL.ErrorMessage;
-        //     //     return null;
-        //     // }
-
-        //     // var memberResponse = ServiceUtility.CallMember(s => s.Person(new PersonRequest
-        //     // {
-        //     //     ActionType = Common.ActionType.Select,
-        //     //     User = new Common.UserInfoDTO { UserID = 1},
-        //     //     //PersonFilter = new Alyatim.Member.DTO.PersonFilterDTO
-        //     //     //{
-        //     //     //    IDList = Response?.Select(t => t.HeadPersonID)?.ToList(),
-        //     //     //}
-        //     // }))?.ResponseDtoList;
-        //     // if (memberResponse?.Count > 0)
-        //     // {
-        //     //     Response = (from r in Response
-        //     //                 join p in memberResponse on r.HeadPersonID equals p.ID into TempResult
-        //     //                 from x in TempResult.DefaultIfEmpty()
-        //     //                 select new BranchDTO
-        //     //                 {
-        //     //                     ID = r.ID,
-        //     //                     Code = r.Code,
-        //     //                     ParentID = r.ParentID,
-        //     //                     Title = r.Title,
-        //     //                     IsCentral = r.IsCentral,
-        //     //                     HeadPersonID = x?.Id,
-        //     //                     HeadMemberName = x?.FullName,
-        //     //                     HeadMemberPhoneNo = x?.MobileNo,
-        //     //                     BranchPhoneNo = r.BranchPhoneNo,
-        //     //                     BranchEmail = r.BranchEmail,
-        //     //                     BranchAddressID = r.BranchAddressID,
-        //     //                     BranchComment = r.BranchComment,
-        //     //                     CreateDate = r.CreateDate,
-        //     //                     IsDeleted = r.IsDeleted,
-        //     //                     RightIndex = r.RightIndex,
-        //     //                     LeftIndex = r.LeftIndex,
-        //     //                     Depth = r.Depth,
-        //     //                     OldCode = r.OldCode
-        //     //                 })?.ToList();
-        //     // }
-        //     List<BranchDTO> Response = null;
-
-        //     return Response;
+        //     return await _BranchDL.UpdateAsync(data, cancellationToken);
         // }
 
-        public override async Task<IList<BranchDTO>> Get(BranchFilterDTO filter, CancellationToken cancellationToken)
-        {
-            return await _BranchDL.Get(filter, cancellationToken);
-        }
-
-        public override async Task<BranchDTO> UpdateAsync(BranchDTO data, CancellationToken cancellationToken)
-        {
-            return await _BranchDL.UpdateAsync(data, cancellationToken);
-        }
-
-        public override async Task<BranchDTO> DeleteAsync(BranchDTO data, CancellationToken cancellationToken)
-        {
-            return await _BranchDL.DeleteAsync(data, cancellationToken);
-        }
+        // public override async Task<BranchDTO> DeleteAsync(BranchDTO data, CancellationToken cancellationToken)
+        // {
+        //     return await _BranchDL.DeleteAsync(data, cancellationToken);
+        // }
 
         public override async Task<BranchDTO> InsertAsync(BranchDTO data, CancellationToken cancellationToken)
         {
@@ -237,20 +197,20 @@ namespace Alsahab.Setting.BL
             //TODO
             // data.Code = GenerateCode(data);
 
-            var Response = await _BranchDL.AddAsync(data, cancellationToken);//.BranchInsert(data);
+            var response = await _BranchDL.AddAsync(data, cancellationToken);//.BranchInsert(data);
 
             //TODO
-            // if (Response?.ID > 0)
+            // if (response?.ID > 0)
             // {
-            //     var resp = BranchGet(new BranchDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
+            //     var resp = BranchGet(new BranchDTO { ID = response?.ID ?? 0 })?.FirstOrDefault();
             //     Observers.ObserverStates.BranchAdd state = new Observers.ObserverStates.BranchAdd
             //     {
-            //         Branch = resp ?? Response,
+            //         Branch = resp ?? response,
             //         User = User,
             //     };
             //     Notify(state);
             //     if (resp != null)
-            //         Response = resp;
+            //         response = resp;
             // }
 
             ResponseStatus = _BranchDL.ResponseStatus;
@@ -260,7 +220,7 @@ namespace Alsahab.Setting.BL
                 return null;
             }
 
-            return Response;
+            return response;
         }
 
 
@@ -275,29 +235,29 @@ namespace Alsahab.Setting.BL
         //     data.CreateDate = DateTime.Now;
         //     data.Code = GenerateCode(data);
 
-        //     var Response = BranchDL.AddAsync(data, cancellationToken);//.BranchInsert(data);
+        //     var response = _BranchDL.AddAsync(data, cancellationToken);//.BranchInsert(data);
 
-        //     if (Response?.ID > 0)
+        //     if (response?.ID > 0)
         //     {
-        //         var resp = BranchGet(new BranchDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
+        //         var resp = BranchGet(new BranchDTO { ID = response?.ID ?? 0 })?.FirstOrDefault();
         //         Observers.ObserverStates.BranchAdd state = new Observers.ObserverStates.BranchAdd
         //         {
-        //             Branch = resp ?? Response,
+        //             Branch = resp ?? response,
         //             User = User,
         //         };
         //         Notify(state);
         //         if (resp != null)
-        //             Response = resp;
+        //             response = resp;
         //     }
 
-        //     ResponseStatus = BranchDL.ResponseStatus;
+        //     ResponseStatus = _BranchDL.ResponseStatus;
         //     if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
         //     {
-        //         ErrorMessage += BranchDL.ErrorMessage;
+        //         ErrorMessage += _BranchDL.ErrorMessage;
         //         return null;
         //     }
 
-        //     return Response;
+        //     return response;
         // }
         // public List<BranchDTO> BranchInsert(List<BranchDTO> data)
         // {
@@ -310,10 +270,10 @@ namespace Alsahab.Setting.BL
         //         }
         //         d.CreateDate = DateTime.Now;
         //     }
-        //     var Response = BranchDL.BranchInsert(data);
+        //     var response = _BranchDL.BranchInsert(data);
 
         //     List<BranchDTO> respList = new List<BranchDTO>();
-        //     foreach (var val in Response)
+        //     foreach (var val in response)
         //     {
         //         var resp = BranchGet(new BranchDTO { ID = val?.ID ?? 0 })?.FirstOrDefault();
         //         Observers.ObserverStates.BranchAdd state = new Observers.ObserverStates.BranchAdd
@@ -325,14 +285,14 @@ namespace Alsahab.Setting.BL
         //         respList.Add(resp);
         //     }
 
-        //     ResponseStatus = BranchDL.ResponseStatus;
+        //     ResponseStatus = _BranchDL.ResponseStatus;
         //     if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
         //     {
-        //         ErrorMessage += BranchDL.ErrorMessage;
+        //         ErrorMessage += _BranchDL.ErrorMessage;
         //         return null;
         //     }
 
-        //     return respList ?? Response;
+        //     return respList ?? response;
         // }
 
         #region Update
@@ -350,24 +310,24 @@ namespace Alsahab.Setting.BL
         //        ErrorMessage = "Entered Branch is Mistake";
         //        return null;
         //    }
-        //    var Response = BranchDL.BranchUpdate(data);
+        //    var response = _BranchDL.BranchUpdate(data);
 
-        //    var resp = BranchGet(new BranchDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
+        //    var resp = BranchGet(new BranchDTO { ID = response?.ID ?? 0 })?.FirstOrDefault();
         //    Observers.ObserverStates.BranchEdit state = new Observers.ObserverStates.BranchEdit
         //    {
-        //        Branch = resp ?? Response,
+        //        Branch = resp ?? response,
         //        User = User,
         //    };
         //    Notify(state);
 
-        //    ResponseStatus = BranchDL.ResponseStatus;
+        //    ResponseStatus = _BranchDL.ResponseStatus;
         //    if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
         //    {
-        //        ErrorMessage += BranchDL.ErrorMessage;
+        //        ErrorMessage += _BranchDL.ErrorMessage;
         //        return null;
         //    }
 
-        //    return resp ?? Response;
+        //    return resp ?? response;
         //}
 
         #endregion
@@ -381,23 +341,23 @@ namespace Alsahab.Setting.BL
         //         return null;
         //     }
         //     data.IsDeleted = true;
-        //     var Response = BranchDL.BranchUpdate(data);
+        //     var response = _BranchDL.BranchUpdate(data);
 
-        //     var resp = BranchGet(new BranchDTO { ID = Response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
+        //     var resp = BranchGet(new BranchDTO { ID = response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
         //     Observers.ObserverStates.BranchDelete state = new Observers.ObserverStates.BranchDelete
         //     {
-        //         Branch = resp ?? Response,
+        //         Branch = resp ?? response,
         //         User = User,
         //     };
         //     Notify(state);
 
-        //     ResponseStatus = BranchDL.ResponseStatus;
+        //     ResponseStatus = _BranchDL.ResponseStatus;
         //     if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
         //     {
-        //         ErrorMessage += BranchDL.ErrorMessage;
+        //         ErrorMessage += _BranchDL.ErrorMessage;
         //         return null;
         //     }
-        //     return resp ?? Response;
+        //     return resp ?? response;
         // }
         /////////////////////////////////////////////////////////////////////Allmi
 
@@ -449,7 +409,7 @@ namespace Alsahab.Setting.BL
         //         }
 
         //         AllBranchs.Remove(tempBranch);
-        //         BranchDL.BranchUpdate(AllBranchs);
+        //         _BranchDL.BranchUpdate(AllBranchs);
         //         response.LeftIndex = right;
         //         response.RightIndex = right + 1;
         //     }
@@ -470,7 +430,7 @@ namespace Alsahab.Setting.BL
         //                 Branch.ParentID = null;
         //         }
         //         AllBranchs.Remove(tempBranch);
-        //         BranchDL.BranchUpdate(AllBranchs);
+        //         _BranchDL.BranchUpdate(AllBranchs);
         //         response.LeftIndex = left + 1;
         //         response.RightIndex = left + 2;
         //     }
@@ -490,7 +450,7 @@ namespace Alsahab.Setting.BL
         //     get
         //     {
         //         if (!(_Branch.Count > 0))
-        //             _Branch = new BranchDL().AllBranchGet();
+        //             _Branch = new _BranchDL().AllBranchGet();
         //         return _Branch;
         //     }
         // }
@@ -508,7 +468,7 @@ namespace Alsahab.Setting.BL
         // }
         // public BranchDTO BranchUpdate(BranchDTO data)
         // {
-        //     var Response = data;
+        //     var response = data;
         //     if (data.ParentID == 0)
         //         data.ParentID = null;
         //     if (!(data.ID > 0))
@@ -519,12 +479,12 @@ namespace Alsahab.Setting.BL
         //     }
         //     //BranchDTO oldBranch = new BranchDTO();
 
-        //     var oldBranch = BranchGet(new BranchDTO { ID = Response?.ID ?? 0 }, null)?.FirstOrDefault();
-        //     Response = BranchDL.BranchUpdate(data);
+        //     var oldBranch = BranchGet(new BranchDTO { ID = response?.ID ?? 0 }, null)?.FirstOrDefault();
+        //     response = _BranchDL.BranchUpdate(data);
 
         //     Observers.ObserverStates.BranchEdit state = new Observers.ObserverStates.BranchEdit
         //     {
-        //         Branch = oldBranch ?? Response,
+        //         Branch = oldBranch ?? response,
         //         User = User,
         //     };
         //     Notify(state);
@@ -534,13 +494,13 @@ namespace Alsahab.Setting.BL
         //         UpdateAllBranch();
         //     }
 
-        //     ResponseStatus = BranchDL.ResponseStatus;
+        //     ResponseStatus = _BranchDL.ResponseStatus;
         //     if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
         //     {
-        //         ErrorMessage += BranchDL.ErrorMessage;
+        //         ErrorMessage += _BranchDL.ErrorMessage;
         //         return null;
         //     }
-        //     return oldBranch ?? Response;
+        //     return oldBranch ?? response;
         // }
         // public List<BranchDTO> UpdateAllBranch()
         // {
@@ -565,14 +525,14 @@ namespace Alsahab.Setting.BL
 
         //     TempAllBranch = GenerateNewCodes(TempAllBranch?.Where(s => s.ParentID == null && s.IsDeleted == false)?.ToList(), TempAllBranch?.Where(s => s.IsDeleted == false)?.ToList());
 
-        //     BranchDL.BranchUpdate(TempAllBranch);
-        //     ResponseStatus = BranchDL.ResponseStatus;
+        //     _BranchDL.BranchUpdate(TempAllBranch);
+        //     ResponseStatus = _BranchDL.ResponseStatus;
         //     if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
         //     {
-        //         ErrorMessage += BranchDL.ErrorMessage;
+        //         ErrorMessage += _BranchDL.ErrorMessage;
         //         return null;
         //     }
-        //     return BranchDL.AllBranchGet();
+        //     return _BranchDL.AllBranchGet();
         //     //            return result;
         // }
         // private void RecursiveUpdateAllBranch(BranchDTO BranchDLta)
@@ -602,11 +562,11 @@ namespace Alsahab.Setting.BL
         // }
         // public List<BranchDTO> BranchGet()
         // {
-        //     var response = BranchDL.AllBranchGet();
-        //     ResponseStatus = BranchDL.ResponseStatus;
+        //     var response = _BranchDL.AllBranchGet();
+        //     ResponseStatus = _BranchDL.ResponseStatus;
         //     if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
         //     {
-        //         ErrorMessage += BranchDL.ErrorMessage;
+        //         ErrorMessage += _BranchDL.ErrorMessage;
         //         return null;
         //     }
         //     return response;

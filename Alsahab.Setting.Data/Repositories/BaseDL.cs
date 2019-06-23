@@ -41,6 +41,40 @@ namespace Alsahab.Setting.Data.Repositories
             ErrorMessage = "خطای پایگاه داده";
         }
 
+
+        // public virtual async Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true)
+        // {
+        //     Assert.NotNull(entities, nameof(entities));
+        //     Entities.UpdateRange(entities);
+        //     if (saveNow)
+        //         await DbContext.SaveChangesAsync(cancellationToken);
+        // }
+
+
+        // public virtual async Task DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true)
+        // {
+        //     Assert.NotNull(entities, nameof(entities));
+        //     Entities.RemoveRange(entities);
+        //     if (saveNow)
+        //         await DbContext.SaveChangesAsync(cancellationToken);
+        // }
+
+        public virtual TDto Add(TDto dto, bool saveNow = true)
+        {
+            Assert.NotNull(dto, nameof(dto));
+
+            TEntity entity = BaseEntity<TEntity, TDto, long>.FromDto(dto); // AutoMapper.Mapper.Map<TDto, TEntity>(dto);
+
+            Entities.Add(entity);
+            if (saveNow)
+                DbContext.SaveChanges();
+
+            var resultDto = TableNoTracking.ProjectTo<TDto>()
+                .SingleOrDefault(s => s.ID.Equals(entity.ID));
+
+            return resultDto;
+        }
+
         public virtual async Task<TDto> AddAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
         {
             Assert.NotNull(dto, nameof(dto));
@@ -55,6 +89,81 @@ namespace Alsahab.Setting.Data.Repositories
 
             return resultDto;
         }
+
+        public virtual async Task<IEnumerable<TDto>> AddRangeAsync(IEnumerable<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
+        {
+            Assert.NotNull(dtoList, nameof(dtoList));
+
+            var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
+
+            await Entities.AddRangeAsync(entityList, cancellationToken).ConfigureAwait(false);
+
+            if (saveNow)
+                await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            var resultDto = await entityList.ProjectTo<TDto>().ToListAsync(cancellationToken);
+            return resultDto;
+        }
+
+        public virtual IEnumerable<TDto> AddRange(IEnumerable<TDto> dtoList, bool saveNow)
+        {
+            Assert.NotNull(dtoList, nameof(dtoList));
+
+            var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
+
+            Entities.AddRange(entityList);
+
+            if (saveNow)
+                DbContext.SaveChanges();
+
+            var resultDto = entityList.ProjectTo<TDto>().ToList();
+            return resultDto;
+        }
+
+        public virtual IEnumerable<TDto> UpdateRange(IEnumerable<TDto> dtoList, bool saveNow = true)
+        {
+            Assert.NotNull(dtoList, nameof(dtoList));
+
+            var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
+
+            Entities.UpdateRange(entityList);
+            if (saveNow)
+                DbContext.SaveChanges();
+
+            var resultDto = entityList.ProjectTo<TDto>().ToList();
+
+            return resultDto;
+        }
+
+
+        // public virtual void DeleteRange(IEnumerable<TEntity> entities, bool saveNow = true)
+        // {
+        //     Assert.NotNull(entities, nameof(entities));
+        //     Entities.RemoveRange(entities);
+        //     if (saveNow)
+        //         DbContext.SaveChanges();
+        // }
+
+        public virtual TDto Update(TDto dto, bool saveNow = true)
+        {
+            Assert.NotNull(dto, nameof(dto));
+
+            var entity = Entities.Find(dto.ID);
+            if (entity == null)
+                throw new AppException(ApiResultStatusCode.NotFound, "not found entity.");
+
+            entity = entity.ToEntity(dto);
+            Entities.Update(entity);
+
+            if (saveNow)
+                DbContext.SaveChanges();
+
+            var resultDto = TableNoTracking.ProjectTo<TDto>()
+                .SingleOrDefault(q => q.ID.Equals(dto.ID));
+
+            return resultDto;
+        }
+
 
         public virtual async Task<TDto> UpdateAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
         {
@@ -76,6 +185,22 @@ namespace Alsahab.Setting.Data.Repositories
             return resultDto;
         }
 
+        public virtual TDto Delete(TDto dto, bool saveNow = true)
+        {
+            Assert.NotNull(dto, nameof(dto));
+            var entity = Entities.Find(dto.ID);
+            if (entity == null)
+                throw new AppException(ApiResultStatusCode.NotFound, "not found entity.");
+
+            entity = entity.ToEntity(dto);
+
+            Entities.Remove(entity);
+            if (saveNow)
+                DbContext.SaveChanges();
+
+            return dto;
+        }
+
         public virtual async Task<TDto> DeleteAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
         {
             Assert.NotNull(dto, nameof(dto));
@@ -92,85 +217,87 @@ namespace Alsahab.Setting.Data.Repositories
             return dto;
         }
 
-        public virtual async Task<IList<TDto>> Get(TFilterDto filterDto, CancellationToken cancellationToken)
+        public virtual async Task<IList<TDto>> GetAsync(TFilterDto filterDto, CancellationToken cancellationToken)
         {
             var query = TableNoTracking;
-            foreach (var prop in filterDto.GetType().GetProperties())
-            {
-                var type = prop.PropertyType;
-                var value = prop.GetValue(filterDto);
-                if ((prop.Name.Contains("Id") || prop.Name.Contains("ID")) && !prop.Name.Contains("List") && (long)value > 0)
-                {
-                    query = query.Where(s=> prop.GetValue(s) == prop.GetValue(filterDto));
-                }
-                else if (type == typeof(string) && !string.IsNullOrWhiteSpace(value.ToString()))
-                {
-                    query = query.Where(s => prop.GetValue(s).ToString().Contains(prop.GetValue(filterDto).ToString()));
-                }
-                else if ((type == typeof(DateTime) || type == typeof(DateTime?) || type == typeof(DateTimeOffset) || type == typeof(DateTimeOffset?)) && (DateTime)value > DateTime.MinValue)
-                {
-                    if (prop.Name.Contains("From"))
-                    {
-                        string filterProp = prop.Name.Replace("From", "");
-                        Type infoType = typeof(TFilterDto);
-                        PropertyInfo info = infoType.GetProperty(filterProp);
-                        // query = query.Where(s => Convert.ChangeType(prop.GetValue(s), Type.GetType("DateTime")) > Convert.ChangeType(info.GetValue(filterDto), Type.GetType("DateTime")));// (DateTime)info.GetValue(filterDto));
-                        query = query.Where(s => (DateTime)prop.GetValue(s) > (DateTime)info.GetValue(filterDto));
-                    }
-                    else if (prop.Name.Contains("To"))
-                    {
-                        string filterProp = prop.Name.Replace("To", "");
-                        Type infoType = typeof(TFilterDto);
-                        PropertyInfo info = infoType.GetProperty(filterProp);
-                        query = query.Where(s => (DateTime)prop.GetValue(s) < (DateTime)info.GetValue(filterDto));
-                    }
-                }
-                else if ((type == typeof(long) || type == typeof(long?)) && (long)value > 0)
-                {
-                    if (prop.Name.Contains("From"))
-                    {
-                        string filterProp = prop.Name.Replace("From", "");
-                        Type infoType = typeof(TFilterDto);
-                        PropertyInfo info = infoType.GetProperty(filterProp);
-                        query = query.Where(s => (long)prop.GetValue(s) > (long)info.GetValue(filterDto));
-                    }
-                    else if (prop.Name.Contains("To"))
-                    {
-                        string filterProp = prop.Name.Replace("To", "");
-                        Type infoType = typeof(TFilterDto);
-                        PropertyInfo info = infoType.GetProperty(filterProp);
-                        query = query.Where(s => (long)prop.GetValue(s) < (long)info.GetValue(filterDto));
-                    }
-                }
-                else if ((type== typeof(int) || type == typeof(int?)) && (int)value > 0)
-                {
-                    if (prop.Name.Contains("From"))
-                    {
-                        string filterProp = prop.Name.Replace("From", "");
-                        Type infoType = typeof(TFilterDto);
-                        PropertyInfo info = infoType.GetProperty(filterProp);
-                        query = query.Where(s => (int)prop.GetValue(s) > (int)info.GetValue(filterDto));
-                    }
-                    else if (prop.Name.Contains("To"))
-                    {
-                        string filterProp = prop.Name.Replace("To", "");
-                        Type infoType = typeof(TFilterDto);
-                        PropertyInfo info = infoType.GetProperty(filterProp);
-                        query = query.Where(s => (int)prop.GetValue(s) < (int)info.GetValue(filterDto));
-                    }
-                }
-            }
-            return await query.ProjectTo<TDto>()
-                .ToListAsync(cancellationToken);;
+            var result = await query.ProjectTo<TDto>().ToListAsync(cancellationToken);
+            ErrorMessage = "";
+            ResponseStatus = ResponseStatus.Successful;
+            return result;
+            // foreach (var prop in filterDto.GetType().GetProperties())
+            // {
+            //     var type = prop.PropertyType;
+            //     var value = prop.GetValue(filterDto);
+            //     if ((prop.Name.Contains("Id") || prop.Name.Contains("ID")) && !prop.Name.Contains("List") && (long)value > 0)
+            //     {
+            //         query = query.Where(s => prop.GetValue(s) == prop.GetValue(filterDto));
+            //     }
+            //     else if (type == typeof(string) && !string.IsNullOrWhiteSpace(value.ToString()))
+            //     {
+            //         query = query.Where(s => prop.GetValue(s).ToString().Contains(prop.GetValue(filterDto).ToString()));
+            //     }
+            //     else if ((type == typeof(DateTime) || type == typeof(DateTime?) || type == typeof(DateTimeOffset) || type == typeof(DateTimeOffset?)) && (DateTime)value > DateTime.MinValue)
+            //     {
+            //         if (prop.Name.Contains("From"))
+            //         {
+            //             string filterProp = prop.Name.Replace("From", "");
+            //             Type infoType = typeof(TFilterDto);
+            //             PropertyInfo info = infoType.GetProperty(filterProp);
+            //             // query = query.Where(s => Convert.ChangeType(prop.GetValue(s), Type.GetType("DateTime")) > Convert.ChangeType(info.GetValue(filterDto), Type.GetType("DateTime")));// (DateTime)info.GetValue(filterDto));
+            //             query = query.Where(s => (DateTime)prop.GetValue(s) > (DateTime)info.GetValue(filterDto));
+            //         }
+            //         else if (prop.Name.Contains("To"))
+            //         {
+            //             string filterProp = prop.Name.Replace("To", "");
+            //             Type infoType = typeof(TFilterDto);
+            //             PropertyInfo info = infoType.GetProperty(filterProp);
+            //             query = query.Where(s => (DateTime)prop.GetValue(s) < (DateTime)info.GetValue(filterDto));
+            //         }
+            //     }
+            //     else if ((type == typeof(long) || type == typeof(long?)) && (long)value > 0)
+            //     {
+            //         if (prop.Name.Contains("From"))
+            //         {
+            //             string filterProp = prop.Name.Replace("From", "");
+            //             Type infoType = typeof(TFilterDto);
+            //             PropertyInfo info = infoType.GetProperty(filterProp);
+            //             query = query.Where(s => (long)prop.GetValue(s) > (long)info.GetValue(filterDto));
+            //         }
+            //         else if (prop.Name.Contains("To"))
+            //         {
+            //             string filterProp = prop.Name.Replace("To", "");
+            //             Type infoType = typeof(TFilterDto);
+            //             PropertyInfo info = infoType.GetProperty(filterProp);
+            //             query = query.Where(s => (long)prop.GetValue(s) < (long)info.GetValue(filterDto));
+            //         }
+            //     }
+            //     else if ((type == typeof(int) || type == typeof(int?)) && (int)value > 0)
+            //     {
+            //         if (prop.Name.Contains("From"))
+            //         {
+            //             string filterProp = prop.Name.Replace("From", "");
+            //             Type infoType = typeof(TFilterDto);
+            //             PropertyInfo info = infoType.GetProperty(filterProp);
+            //             query = query.Where(s => (int)prop.GetValue(s) > (int)info.GetValue(filterDto));
+            //         }
+            //         else if (prop.Name.Contains("To"))
+            //         {
+            //             string filterProp = prop.Name.Replace("To", "");
+            //             Type infoType = typeof(TFilterDto);
+            //             PropertyInfo info = infoType.GetProperty(filterProp);
+            //             query = query.Where(s => (int)prop.GetValue(s) < (int)info.GetValue(filterDto));
+            //         }
+            //     }
+            // }
+            // return await query.ProjectTo<TDto>()
+            //     .ToListAsync(cancellationToken); ;
         }
 
-        // public virtual async Task AddAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entity, nameof(entity));
-        //     await Entities.AddAsync(entity, cancellationToken).ConfigureAwait(false);
-        //     if (saveNow)
-        //         await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-        // }
+
+        public List<TDto> Get(TFilterDto filterDto)
+        {
+            throw new NotImplementedException();
+        }
 
 
         // #region  Async Methods
@@ -179,31 +306,6 @@ namespace Alsahab.Setting.Data.Repositories
         //     return Entities.FindAsync(ids);
         // }
 
-        // public virtual async Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entities, nameof(entities));
-        //     await Entities.AddRangeAsync(entities, cancellationToken).ConfigureAwait(false);
-        //     if (saveNow)
-        //         await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-        // }
-
-
-        // public virtual async Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entities, nameof(entities));
-        //     Entities.UpdateRange(entities);
-        //     if (saveNow)
-        //         await DbContext.SaveChangesAsync(cancellationToken);
-        // }
-
-
-        // public virtual async Task DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entities, nameof(entities));
-        //     Entities.RemoveRange(entities);
-        //     if (saveNow)
-        //         await DbContext.SaveChangesAsync(cancellationToken);
-        // }
         // #endregion
 
         // #region Sync Methods
@@ -212,53 +314,6 @@ namespace Alsahab.Setting.Data.Repositories
         //     return Entities.Find(ids);
         // }
 
-        // public virtual void Add(TEntity entity, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entity, nameof(entity));
-        //     Entities.Add(entity);
-        //     if (saveNow)
-        //         DbContext.SaveChanges();
-        // }
-
-        // public virtual void AddRange(IEnumerable<TEntity> entities, bool saveNow)
-        // {
-        //     Assert.NotNull(entities, nameof(entities));
-        //     Entities.AddRange(entities);
-        //     if (saveNow)
-        //         DbContext.SaveChanges();
-        // }
-
-        // public virtual void Update(TEntity entity, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entity, nameof(entity));
-        //     Entities.Update(entity);
-        //     if (saveNow)
-        //         DbContext.SaveChanges();
-        // }
-
-        // public virtual void UpdateRange(IEnumerable<TEntity> entities, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entities, nameof(entities));
-        //     Entities.UpdateRange(entities);
-        //     if (saveNow)
-        //         DbContext.SaveChanges();
-        // }
-
-        // public virtual void Delete(TEntity entity, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entity, nameof(entity));
-        //     Entities.Remove(entity);
-        //     if (saveNow)
-        //         DbContext.SaveChanges();
-        // }
-
-        // public virtual void DeleteRange(IEnumerable<TEntity> entities, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entities, nameof(entities));
-        //     Entities.RemoveRange(entities);
-        //     if (saveNow)
-        //         DbContext.SaveChanges();
-        // }
         // #endregion
 
         // #region Attach && Detach

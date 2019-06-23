@@ -200,6 +200,8 @@ namespace Gostar.Setting.BL
 
             return Response;
         }
+
+        
         public BranchDTO Insert(BranchDTO data)
         {
             if (!Validate(data))

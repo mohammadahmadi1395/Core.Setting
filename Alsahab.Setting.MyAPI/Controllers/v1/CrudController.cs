@@ -19,12 +19,14 @@ namespace Alsahab.Setting.WebFramework.Api
     [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")] // api/v1/post
     // public class BranchController : ControllerBase // BaseController
-    public class CrudController<TDto, TFilteDto> : ControllerBase
-        where TDto : class
+    public class CrudController<TEntity, TDto, TFilteDto> : ControllerBase
+        where TEntity : class, IEntity
+        where TDto : BaseDTO
         where TFilteDto : TDto
     {
-        private readonly IBaseBL<TDto, TFilteDto> _TBL;
-        public CrudController(IBaseBL<TDto, TFilteDto> tBL)
+        private readonly IBaseBL<TEntity, TDto, TFilteDto> _TBL;
+
+        public CrudController(IBaseBL<TEntity, TDto, TFilteDto> tBL)
         {
             _TBL = tBL;
         }
@@ -88,7 +90,7 @@ namespace Alsahab.Setting.WebFramework.Api
         [HttpPost]
         public virtual async Task<ApiResult<IList<TDto>>> Get(TFilteDto filter, CancellationToken cancellationToken)
         {
-            var result = await _TBL.Get(filter, cancellationToken);
+            var result = await _TBL.GetAsync(filter, cancellationToken);
             return Ok(result);
         }
 

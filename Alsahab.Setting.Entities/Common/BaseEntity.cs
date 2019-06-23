@@ -78,7 +78,7 @@ namespace Alsahab.Setting.Entities
 
     }
 
-    // public abstract class BaseEntity<TEntity, TDto> : BaseEntity<TEntity, TDto, long>
-    // {
-    // }
+    public abstract class BaseEntity<TEntity, TDto> : BaseEntity<TEntity, TDto, long>
+    {
+    }
 }

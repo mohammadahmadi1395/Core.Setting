@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "e75527d6da677e370e371a192ac6c27eb5fb79b8"
+    "signature": "e345175f9f7977e517fbc701364ab9e1843ea823"
   },
   "compilationOptions": {},
   "targets": {
@@ -2011,6 +2011,26 @@
           "System.Xml.XmlSerializer": "4.3.0"
         }
       },
+      "System.Private.ServiceModel/4.5.3": {
+        "dependencies": {
+          "System.Reflection.DispatchProxy": "4.5.0",
+          "System.Security.Principal.Windows": "4.5.0"
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netstandard2.0/System.Private.ServiceModel.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "4.5.0.3",
+            "fileVersion": "4.6.26720.1"
+          },
+          "runtimes/win/lib/netstandard2.0/System.Private.ServiceModel.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.5.0.3",
+            "fileVersion": "4.6.26720.1"
+          }
+        }
+      },
       "System.Reflection/4.3.0": {
         "dependencies": {
           "System.IO": "4.3.0",
@@ -2018,6 +2038,7 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "System.Reflection.DispatchProxy/4.5.0": {},
       "System.Reflection.Emit/4.3.0": {
         "dependencies": {
           "System.IO": "4.3.0",
@@ -2382,6 +2403,70 @@
           }
         }
       },
+      "System.ServiceModel.Duplex/4.5.3": {
+        "dependencies": {
+          "System.Private.ServiceModel": "4.5.3",
+          "System.ServiceModel.Primitives": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.ServiceModel.Duplex.dll": {
+            "assemblyVersion": "4.5.0.3",
+            "fileVersion": "4.6.26720.1"
+          }
+        }
+      },
+      "System.ServiceModel.Http/4.5.3": {
+        "dependencies": {
+          "System.Private.ServiceModel": "4.5.3",
+          "System.ServiceModel.Primitives": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.ServiceModel.Http.dll": {
+            "assemblyVersion": "4.5.0.3",
+            "fileVersion": "4.6.26720.1"
+          }
+        }
+      },
+      "System.ServiceModel.NetTcp/4.5.3": {
+        "dependencies": {
+          "System.Private.ServiceModel": "4.5.3",
+          "System.ServiceModel.Primitives": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.ServiceModel.NetTcp.dll": {
+            "assemblyVersion": "4.5.0.3",
+            "fileVersion": "4.6.26720.1"
+          }
+        }
+      },
+      "System.ServiceModel.Primitives/4.5.3": {
+        "dependencies": {
+          "System.Private.ServiceModel": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.ServiceModel.Primitives.dll": {
+            "assemblyVersion": "4.5.0.3",
+            "fileVersion": "4.6.26720.1"
+          },
+          "lib/netstandard2.0/System.ServiceModel.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.6.26720.1"
+          }
+        }
+      },
+      "System.ServiceModel.Security/4.5.3": {
+        "dependencies": {
+          "System.Private.ServiceModel": "4.5.3",
+          "System.ServiceModel.Primitives": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.ServiceModel.Security.dll": {
+            "assemblyVersion": "4.5.0.3",
+            "fileVersion": "4.6.26720.1"
+          }
+        }
+      },
+      "System.ServiceModel.Web/1.0.0": {},
       "System.Text.Encoding/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
@@ -2557,12 +2642,32 @@
           "System.Xml.XPath": "4.3.0"
         }
       },
+      "Wcf.ChannelFactory.Helper/1.0.4": {
+        "runtime": {
+          "lib/net45/Wcf.ChannelFactory.Helper.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Alsahab.Setting.BL/1.0.0": {
         "dependencies": {
           "Alsahab.Setting.Data": "1.0.0",
           "Microsoft.Extensions.Identity.Core": "2.1.6",
           "Microsoft.IdentityModel.Tokens": "5.4.0",
-          "System.IdentityModel.Tokens.Jwt": "5.4.0"
+          "System.IdentityModel.Tokens.Jwt": "5.4.0",
+          "System.ServiceModel.Duplex": "4.5.3",
+          "System.ServiceModel.Http": "4.5.3",
+          "System.ServiceModel.NetTcp": "4.5.3",
+          "System.ServiceModel.Primitives": "4.5.3",
+          "System.ServiceModel.Security": "4.5.3",
+          "System.ServiceModel.Web": "1.0.0",
+          "Wcf.ChannelFactory.Helper": "1.0.4",
+          "Alyatim.Member.DTO": "1.0.0.0",
+          "Alyatim.Member.SC": "1.0.0.0",
+          "UserManagement.SC": "1.0.0.0",
+          "Gostar.Common": "1.0.0.0",
+          "UserManagement.DTO": "1.0.0.0"
         },
         "runtime": {
           "Alsahab.Setting.BL.dll": {}
@@ -2608,6 +2713,46 @@
         },
         "runtime": {
           "Alsahab.Setting.Entities.dll": {}
+        }
+      },
+      "Alyatim.Member.DTO.Reference/1.0.0.0": {
+        "runtime": {
+          "Alyatim.Member.DTO.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Alyatim.Member.SC.Reference/1.0.0.0": {
+        "runtime": {
+          "Alyatim.Member.SC.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "UserManagement.SC.Reference/1.0.0.0": {
+        "runtime": {
+          "UserManagement.SC.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Gostar.Common.Reference/1.0.0.0": {
+        "runtime": {
+          "Gostar.Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "UserManagement.DTO.Reference/1.0.0.0": {
+        "runtime": {
+          "UserManagement.DTO.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
@@ -3808,12 +3953,26 @@
       "path": "system.private.datacontractserialization/4.3.0",
       "hashPath": "system.private.datacontractserialization.4.3.0.nupkg.sha512"
     },
+    "System.Private.ServiceModel/4.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ancrQgJagx+yC4SZbuE+eShiEAUIF0E1d21TRSoy1C/rTwafAVcBr/fKibkq5TQzyy9uNil2tx2/iaUxsy0S9g==",
+      "path": "system.private.servicemodel/4.5.3",
+      "hashPath": "system.private.servicemodel.4.5.3.nupkg.sha512"
+    },
     "System.Reflection/4.3.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-KMiAFoW7MfJGa9nDFNcfu+FpEdiHpWgTcS2HdMpDvt9saK3y/G4GwprPyzqjFH9NTaGPQeWNHU+iDlDILj96aQ==",
       "path": "system.reflection/4.3.0",
       "hashPath": "system.reflection.4.3.0.nupkg.sha512"
+    },
+    "System.Reflection.DispatchProxy/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+UW1hq11TNSeb+16rIk8hRQ02o339NFyzMc4ma/FqmxBzM30l1c2IherBB4ld1MNcenS48fz8tbt50OW4rVULA==",
+      "path": "system.reflection.dispatchproxy/4.5.0",
+      "hashPath": "system.reflection.dispatchproxy.4.5.0.nupkg.sha512"
     },
     "System.Reflection.Emit/4.3.0": {
       "type": "package",
@@ -4032,6 +4191,48 @@
       "path": "system.security.principal.windows/4.5.0",
       "hashPath": "system.security.principal.windows.4.5.0.nupkg.sha512"
     },
+    "System.ServiceModel.Duplex/4.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cXn6zfl2od9Au3sDpArjUXo7zmNPLw77sjOrAUqjrh3TsImy8SPMSC4/F58jJGJrxUiyPo0DDwalRaF5JXZqsQ==",
+      "path": "system.servicemodel.duplex/4.5.3",
+      "hashPath": "system.servicemodel.duplex.4.5.3.nupkg.sha512"
+    },
+    "System.ServiceModel.Http/4.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zxR4z6G/FFK/uAUbo7+3IJOqm0w4/lyfHSQDf+hhUHRTc7XSeReGS5iKQq95gyl1ighHEuayqOiB7iacrB6ZUg==",
+      "path": "system.servicemodel.http/4.5.3",
+      "hashPath": "system.servicemodel.http.4.5.3.nupkg.sha512"
+    },
+    "System.ServiceModel.NetTcp/4.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Bx4oVK4ApBvZ0C3J62A8p3j6U0XK54JjN0byK52Qw4EgK89Uc48XzbF+0m1Oysc2bnnbrur+SwFWw7J8co3jTQ==",
+      "path": "system.servicemodel.nettcp/4.5.3",
+      "hashPath": "system.servicemodel.nettcp.4.5.3.nupkg.sha512"
+    },
+    "System.ServiceModel.Primitives/4.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Wc9Hgg4Cmqi416zvEgq2sW1YYCGuhwWzspDclJWlFZqY6EGhFUPZU+kVpl5z9kAgrSOQP7/Uiik+PtSQtmq+5A==",
+      "path": "system.servicemodel.primitives/4.5.3",
+      "hashPath": "system.servicemodel.primitives.4.5.3.nupkg.sha512"
+    },
+    "System.ServiceModel.Security/4.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-e0c5f536zJ2qEp8sDbI88Tm+NLkx9eqGiXQbQx5fQEtCfQ/dqPOwluu/3aAj/9Bc5XdBAaQcElmr1kyjr2j3EA==",
+      "path": "system.servicemodel.security/4.5.3",
+      "hashPath": "system.servicemodel.security.4.5.3.nupkg.sha512"
+    },
+    "System.ServiceModel.Web/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8RbqIHCWiFyuOiMksjDOJ32dFWrmu/Ma2l7yF+Xx6eY3L95Si260WlIAmtY1GZ5bgyg9tDC1R83lhLT4gKMbEw==",
+      "path": "system.servicemodel.web/1.0.0",
+      "hashPath": "system.servicemodel.web.1.0.0.nupkg.sha512"
+    },
     "System.Text.Encoding/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -4151,6 +4352,13 @@
       "path": "system.xml.xpath.xdocument/4.3.0",
       "hashPath": "system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
     },
+    "Wcf.ChannelFactory.Helper/1.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Mi6u4E8AUFAZE73OU/COdEzo7ZMAjtaLx8qtDi1HqQOGIfgYO2uxFmTXR6OeXS9eXnC8ppQBVcN/xVQ+Dh+ucA==",
+      "path": "wcf.channelfactory.helper/1.0.4",
+      "hashPath": "wcf.channelfactory.helper.1.0.4.nupkg.sha512"
+    },
     "Alsahab.Setting.BL/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -4173,6 +4381,31 @@
     },
     "Alsahab.Setting.Entities/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Alyatim.Member.DTO.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Alyatim.Member.SC.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UserManagement.SC.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Gostar.Common.Reference/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UserManagement.DTO.Reference/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

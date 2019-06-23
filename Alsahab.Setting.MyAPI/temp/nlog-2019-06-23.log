@@ -1,0 +1,498 @@
+2019-06-23 16:37:21.8071 | WARN | The LINQ expression 'where __prop_0.GetValue([s]).ToString().Contains(__ToString_1)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:21.8213 | WARN | The LINQ expression 'where __prop_2.GetValue([s]).ToString().Contains(__ToString_3)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:21.8219 | WARN | The LINQ expression 'where __prop_4.GetValue([s]).ToString().Contains(__ToString_5)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:21.8219 | WARN | The LINQ expression 'where __prop_6.GetValue([s]).ToString().Contains(__ToString_7)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:21.8219 | WARN | The LINQ expression 'where __prop_8.GetValue([s]).ToString().Contains(__ToString_9)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:21.8219 | WARN | The LINQ expression 'where __prop_10.GetValue([s]).ToString().Contains(__ToString_11)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:21.8219 | WARN | The LINQ expression 'where __prop_12.GetValue([s]).ToString().Contains(__ToString_13)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:21.8219 | WARN | The LINQ expression 'where __prop_14.GetValue([s]).ToString().Contains(__ToString_15)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:21.8293 | WARN | The LINQ expression 'where (Convert(__8__locals2_prop_16.GetValue([s]), DateTime) > __GetValue_17)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:21.8301 | WARN | The LINQ expression 'where (Convert(__8__locals3_prop_18.GetValue([s]), DateTime) < __GetValue_19)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:22.3145 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at lambda_method(Closure , Branch )
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext() | System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at lambda_method(Closure , Branch )
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext() | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:26.7573 | WARN | The LINQ expression 'where __prop_0.GetValue([s]).ToString().Contains(__ToString_1)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:26.7624 | WARN | The LINQ expression 'where __prop_2.GetValue([s]).ToString().Contains(__ToString_3)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:26.7624 | WARN | The LINQ expression 'where __prop_4.GetValue([s]).ToString().Contains(__ToString_5)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:26.7624 | WARN | The LINQ expression 'where __prop_6.GetValue([s]).ToString().Contains(__ToString_7)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:26.7624 | WARN | The LINQ expression 'where __prop_8.GetValue([s]).ToString().Contains(__ToString_9)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:26.7624 | WARN | The LINQ expression 'where __prop_10.GetValue([s]).ToString().Contains(__ToString_11)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:26.7624 | WARN | The LINQ expression 'where __prop_12.GetValue([s]).ToString().Contains(__ToString_13)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:26.7657 | WARN | The LINQ expression 'where __prop_14.GetValue([s]).ToString().Contains(__ToString_15)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:26.7657 | WARN | The LINQ expression 'where (Convert(__8__locals2_prop_16.GetValue([s]), DateTime) > __GetValue_17)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:26.7657 | WARN | The LINQ expression 'where (Convert(__8__locals3_prop_18.GetValue([s]), DateTime) < __GetValue_19)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:26.9771 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at lambda_method(Closure , Branch )
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.WhereSelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken) | System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at lambda_method(Closure , Branch )
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.WhereSelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken) | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:37:28.2089 | ERROR | Object does not match target type. | System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at lambda_method(Closure , Branch )
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.WhereSelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.Aggregate_[TSource,TAccumulate,TResult](IAsyncEnumerable`1 source, TAccumulate seed, Func`3 accumulator, Func`2 resultSelector, CancellationToken cancellationToken)
+   at Alsahab.Setting.Data.Repositories.BaseDL`3.GetAsync(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 288
+   at Alsahab.Setting.BL.BaseBL`3.GetAsync(FilterDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 74
+   at Alsahab.Setting.WebFramework.Api.CrudController`3.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 93
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 46 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:41:11.6167 | WARN | The LINQ expression 'where __prop_0.GetValue([s]).ToString().Contains(__ToString_1)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:41:11.6286 | WARN | The LINQ expression 'where __prop_2.GetValue([s]).ToString().Contains(__ToString_3)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:41:11.6286 | WARN | The LINQ expression 'where __prop_4.GetValue([s]).ToString().Contains(__ToString_5)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:41:11.6300 | WARN | The LINQ expression 'where __prop_6.GetValue([s]).ToString().Contains(__ToString_7)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:41:11.6300 | WARN | The LINQ expression 'where __prop_8.GetValue([s]).ToString().Contains(__ToString_9)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:41:11.6300 | WARN | The LINQ expression 'where __prop_10.GetValue([s]).ToString().Contains(__ToString_11)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:41:11.6300 | WARN | The LINQ expression 'where __prop_12.GetValue([s]).ToString().Contains(__ToString_13)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:41:11.6300 | WARN | The LINQ expression 'where __prop_14.GetValue([s]).ToString().Contains(__ToString_15)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:41:11.6371 | WARN | The LINQ expression 'where (Convert(__8__locals2_prop_16.GetValue([s]), DateTime) > __GetValue_17)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:41:11.6379 | WARN | The LINQ expression 'where (Convert(__8__locals3_prop_18.GetValue([s]), DateTime) < __GetValue_19)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:41:11.9956 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at lambda_method(Closure , Branch )
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.WhereSelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken) | System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at lambda_method(Closure , Branch )
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.WhereSelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken) | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:41:12.9920 | ERROR | Object does not match target type. | System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at lambda_method(Closure , Branch )
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.WhereSelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.Aggregate_[TSource,TAccumulate,TResult](IAsyncEnumerable`1 source, TAccumulate seed, Func`3 accumulator, Func`2 resultSelector, CancellationToken cancellationToken)
+   at Alsahab.Setting.Data.Repositories.BaseDL`3.GetAsync(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 288
+   at Alsahab.Setting.BL.BaseBL`3.GetAsync(FilterDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 74
+   at Alsahab.Setting.WebFramework.Api.CrudController`3.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 93
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 46 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:46:58.5749 | WARN | The LINQ expression 'where __prop_0.GetValue([s]).ToString().Contains(__ToString_1)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:46:58.5835 | WARN | The LINQ expression 'where __prop_2.GetValue([s]).ToString().Contains(__ToString_3)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:46:58.5835 | WARN | The LINQ expression 'where __prop_4.GetValue([s]).ToString().Contains(__ToString_5)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:46:58.5835 | WARN | The LINQ expression 'where __prop_6.GetValue([s]).ToString().Contains(__ToString_7)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:46:58.5835 | WARN | The LINQ expression 'where __prop_8.GetValue([s]).ToString().Contains(__ToString_9)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:46:58.5856 | WARN | The LINQ expression 'where __prop_10.GetValue([s]).ToString().Contains(__ToString_11)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:46:58.5856 | WARN | The LINQ expression 'where __prop_12.GetValue([s]).ToString().Contains(__ToString_13)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:46:58.5856 | WARN | The LINQ expression 'where __prop_14.GetValue([s]).ToString().Contains(__ToString_15)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:46:58.5913 | WARN | The LINQ expression 'where (Convert(__8__locals2_prop_16.GetValue([s]), DateTime) > __GetValue_17)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:46:58.5913 | WARN | The LINQ expression 'where (Convert(__8__locals3_prop_18.GetValue([s]), DateTime) < __GetValue_19)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:46:58.8503 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at lambda_method(Closure , Branch )
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext() | System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at lambda_method(Closure , Branch )
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Utilities.<>c__DisplayClass1_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext() | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:47:00.4124 | WARN | The LINQ expression 'where __prop_0.GetValue([s]).ToString().Contains(__ToString_1)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:47:00.4173 | WARN | The LINQ expression 'where __prop_2.GetValue([s]).ToString().Contains(__ToString_3)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:47:00.4180 | WARN | The LINQ expression 'where __prop_4.GetValue([s]).ToString().Contains(__ToString_5)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:47:00.4180 | WARN | The LINQ expression 'where __prop_6.GetValue([s]).ToString().Contains(__ToString_7)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:47:00.4180 | WARN | The LINQ expression 'where __prop_8.GetValue([s]).ToString().Contains(__ToString_9)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:47:00.4180 | WARN | The LINQ expression 'where __prop_10.GetValue([s]).ToString().Contains(__ToString_11)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:47:00.4180 | WARN | The LINQ expression 'where __prop_12.GetValue([s]).ToString().Contains(__ToString_13)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:47:00.4180 | WARN | The LINQ expression 'where __prop_14.GetValue([s]).ToString().Contains(__ToString_15)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:47:00.4180 | WARN | The LINQ expression 'where (Convert(__8__locals2_prop_16.GetValue([s]), DateTime) > __GetValue_17)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:47:00.4217 | WARN | The LINQ expression 'where (Convert(__8__locals3_prop_18.GetValue([s]), DateTime) < __GetValue_19)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:47:00.6360 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at lambda_method(Closure , Branch )
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.WhereSelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken) | System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at lambda_method(Closure , Branch )
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.WhereSelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken) | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 16:47:02.1455 | ERROR | Object does not match target type. | System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at lambda_method(Closure , Branch )
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.<>c__DisplayClass468_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.AsyncEnumerable.WhereSelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.Aggregate_[TSource,TAccumulate,TResult](IAsyncEnumerable`1 source, TAccumulate seed, Func`3 accumulator, Func`2 resultSelector, CancellationToken cancellationToken)
+   at Alsahab.Setting.Data.Repositories.BaseDL`3.GetAsync(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 288
+   at Alsahab.Setting.BL.BranchBL.GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 38
+   at Alsahab.Setting.WebFramework.Api.CrudController`3.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 93
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 46 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 17:17:02.5772 | ERROR | Operation is not supported on this platform. | System.PlatformNotSupportedException: Operation is not supported on this platform.
+   at System.ServiceModel.ChannelFactory.InitializeEndpoint(String configurationName, EndpointAddress address)
+   at System.ServiceModel.ChannelFactory`1..ctor(String endpointConfigurationName, EndpointAddress remoteAddress)
+   at Alsahab.Setting.BL.ServiceUtility.CallMember[T](Func`2 work) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/ServiceUtility.cs:line 63
+   at Alsahab.Setting.BL.BranchBL.GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 46
+   at Alsahab.Setting.WebFramework.Api.CrudController`3.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 93
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 46 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 17:18:59.7348 | ERROR | Operation is not supported on this platform. | System.PlatformNotSupportedException: Operation is not supported on this platform.
+   at System.ServiceModel.ChannelFactory.InitializeEndpoint(String configurationName, EndpointAddress address)
+   at System.ServiceModel.ChannelFactory`1..ctor(String endpointConfigurationName, EndpointAddress remoteAddress)
+   at Alsahab.Setting.BL.ServiceUtility.CallMember[T](Func`2 work) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/ServiceUtility.cs:line 63
+   at Alsahab.Setting.BL.BranchBL.GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 46
+   at Alsahab.Setting.WebFramework.Api.CrudController`3.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 93
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 46 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 17:21:06.1252 | ERROR | An error occurred while loading attribute 'OperationContractAttribute' on method 'Company' in type 'IRestMemberService'.  Please see InnerException for more details. | System.InvalidOperationException: An error occurred while loading attribute 'OperationContractAttribute' on method 'Company' in type 'IRestMemberService'.  Please see InnerException for more details. ---> System.TypeLoadException: Could not load type 'System.ServiceModel.Web.WebInvokeAttribute' from assembly 'System.ServiceModel.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'.
+   at System.ModuleHandle.ResolveType(RuntimeModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   at System.ModuleHandle.ResolveTypeHandleInternal(RuntimeModule module, Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   at System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   at System.Reflection.CustomAttribute.FilterCustomAttributeRecord(CustomAttributeRecord caRecord, MetadataImport scope, Assembly& lastAptcaOkAssembly, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, Object[] attributes, IList derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctor, Boolean& ctorHasParameters, Boolean& isVarArg)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType, Boolean mustBeInheritable, IList derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeMethodInfo method, RuntimeType caType, Boolean inherit)
+   at System.ServiceModel.Description.ServiceReflector.GetCustomAttributes(ICustomAttributeProvider attrProvider, Type attrType, Boolean inherit)
+   --- End of inner exception stack trace ---
+   at System.ServiceModel.Description.ServiceReflector.GetCustomAttributes(ICustomAttributeProvider attrProvider, Type attrType, Boolean inherit)
+   at System.ServiceModel.Description.ServiceReflector.GetSingleAttribute[T](ICustomAttributeProvider attrProvider)
+   at System.ServiceModel.Description.TypeLoader.CreateOperationDescription(ContractDescription contractDescription, MethodInfo methodInfo, MessageDirection direction, ContractReflectionInfo reflectionInfo, ContractDescription declaringContract)
+   at System.ServiceModel.Description.TypeLoader.CreateOperationDescriptions(ContractDescription contractDescription, ContractReflectionInfo reflectionInfo, Type contractToGetMethodsFrom, ContractDescription declaringContract, MessageDirection direction)
+   at System.ServiceModel.Description.TypeLoader.CreateContractDescription(ServiceContractAttribute contractAttr, Type contractType, Type serviceType, ContractReflectionInfo& reflectionInfo, Object serviceImplementation)
+   at System.ServiceModel.Description.TypeLoader.LoadContractDescriptionHelper(Type contractType, Type serviceType, Object serviceImplementation)
+   at System.ServiceModel.ChannelFactory`1.CreateDescription()
+   at System.ServiceModel.ChannelFactory.InitializeEndpoint(String configurationName, EndpointAddress address)
+   at System.ServiceModel.ChannelFactory`1..ctor(String endpointConfigurationName, EndpointAddress remoteAddress)
+   at Alsahab.Setting.BL.ServiceUtility.CallMember[T](Func`2 work) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/ServiceUtility.cs:line 63
+   at Alsahab.Setting.BL.BranchBL.GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 46
+   at Alsahab.Setting.WebFramework.Api.CrudController`3.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 93
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 46 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 17:31:07.3345 | ERROR | An error occurred while loading attribute 'OperationContractAttribute' on method 'Company' in type 'IRestMemberService'.  Please see InnerException for more details. | System.InvalidOperationException: An error occurred while loading attribute 'OperationContractAttribute' on method 'Company' in type 'IRestMemberService'.  Please see InnerException for more details. ---> System.TypeLoadException: Could not load type 'System.ServiceModel.Web.WebInvokeAttribute' from assembly 'System.ServiceModel.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'.
+   at System.ModuleHandle.ResolveType(RuntimeModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   at System.ModuleHandle.ResolveTypeHandleInternal(RuntimeModule module, Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   at System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   at System.Reflection.CustomAttribute.FilterCustomAttributeRecord(CustomAttributeRecord caRecord, MetadataImport scope, Assembly& lastAptcaOkAssembly, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, Object[] attributes, IList derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctor, Boolean& ctorHasParameters, Boolean& isVarArg)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType, Boolean mustBeInheritable, IList derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeMethodInfo method, RuntimeType caType, Boolean inherit)
+   at System.ServiceModel.Description.ServiceReflector.GetCustomAttributes(ICustomAttributeProvider attrProvider, Type attrType, Boolean inherit)
+   --- End of inner exception stack trace ---
+   at System.ServiceModel.Description.ServiceReflector.GetCustomAttributes(ICustomAttributeProvider attrProvider, Type attrType, Boolean inherit)
+   at System.ServiceModel.Description.ServiceReflector.GetSingleAttribute[T](ICustomAttributeProvider attrProvider)
+   at System.ServiceModel.Description.TypeLoader.CreateOperationDescription(ContractDescription contractDescription, MethodInfo methodInfo, MessageDirection direction, ContractReflectionInfo reflectionInfo, ContractDescription declaringContract)
+   at System.ServiceModel.Description.TypeLoader.CreateOperationDescriptions(ContractDescription contractDescription, ContractReflectionInfo reflectionInfo, Type contractToGetMethodsFrom, ContractDescription declaringContract, MessageDirection direction)
+   at System.ServiceModel.Description.TypeLoader.CreateContractDescription(ServiceContractAttribute contractAttr, Type contractType, Type serviceType, ContractReflectionInfo& reflectionInfo, Object serviceImplementation)
+   at System.ServiceModel.Description.TypeLoader.LoadContractDescriptionHelper(Type contractType, Type serviceType, Object serviceImplementation)
+   at System.ServiceModel.ChannelFactory`1.CreateDescription()
+   at System.ServiceModel.ChannelFactory.InitializeEndpoint(String configurationName, EndpointAddress address)
+   at System.ServiceModel.ChannelFactory`1..ctor(String endpointConfigurationName, EndpointAddress remoteAddress)
+   at Alsahab.Setting.BL.ServiceUtility.CallMember[T](Func`2 work) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/ServiceUtility.cs:line 63
+   at Alsahab.Setting.BL.BranchBL.GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 46
+   at Alsahab.Setting.WebFramework.Api.CrudController`3.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 93
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 46 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Branch/Get | action: Get
+2019-06-23 17:37:19.1604 | ERROR | An error occurred while loading attribute 'OperationContractAttribute' on method 'Company' in type 'IRestMemberService'.  Please see InnerException for more details. | System.InvalidOperationException: An error occurred while loading attribute 'OperationContractAttribute' on method 'Company' in type 'IRestMemberService'.  Please see InnerException for more details. ---> System.TypeLoadException: Could not load type 'System.ServiceModel.Web.WebInvokeAttribute' from assembly 'System.ServiceModel.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'.
+   at System.ModuleHandle.ResolveType(RuntimeModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   at System.ModuleHandle.ResolveTypeHandleInternal(RuntimeModule module, Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   at System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   at System.Reflection.CustomAttribute.FilterCustomAttributeRecord(CustomAttributeRecord caRecord, MetadataImport scope, Assembly& lastAptcaOkAssembly, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, Object[] attributes, IList derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctor, Boolean& ctorHasParameters, Boolean& isVarArg)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType, Boolean mustBeInheritable, IList derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeMethodInfo method, RuntimeType caType, Boolean inherit)
+   at System.ServiceModel.Description.ServiceReflector.GetCustomAttributes(ICustomAttributeProvider attrProvider, Type attrType, Boolean inherit)
+   --- End of inner exception stack trace ---
+   at System.ServiceModel.Description.ServiceReflector.GetCustomAttributes(ICustomAttributeProvider attrProvider, Type attrType, Boolean inherit)
+   at System.ServiceModel.Description.ServiceReflector.GetSingleAttribute[T](ICustomAttributeProvider attrProvider)
+   at System.ServiceModel.Description.TypeLoader.CreateOperationDescription(ContractDescription contractDescription, MethodInfo methodInfo, MessageDirection direction, ContractReflectionInfo reflectionInfo, ContractDescription declaringContract)
+   at System.ServiceModel.Description.TypeLoader.CreateOperationDescriptions(ContractDescription contractDescription, ContractReflectionInfo reflectionInfo, Type contractToGetMethodsFrom, ContractDescription declaringContract, MessageDirection direction)
+   at System.ServiceModel.Description.TypeLoader.CreateContractDescription(ServiceContractAttribute contractAttr, Type contractType, Type serviceType, ContractReflectionInfo& reflectionInfo, Object serviceImplementation)
+   at System.ServiceModel.Description.TypeLoader.LoadContractDescriptionHelper(Type contractType, Type serviceType, Object serviceImplementation)
+   at System.ServiceModel.ChannelFactory`1.CreateDescription()
+   at System.ServiceModel.ChannelFactory.InitializeEndpoint(Binding binding, EndpointAddress address)
+   at System.ServiceModel.ChannelFactory`1..ctor(Binding binding, EndpointAddress remoteAddress)
+   at Alsahab.Setting.BL.ServiceUtility.CallMember[T](Func`2 work) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/ServiceUtility.cs:line 62
+   at Alsahab.Setting.BL.BranchBL.GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 46
+   at Alsahab.Setting.WebFramework.Api.CrudController`3.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 93
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 46 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Branch/Get | action: Get

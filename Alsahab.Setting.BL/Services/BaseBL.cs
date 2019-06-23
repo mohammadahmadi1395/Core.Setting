@@ -9,11 +9,18 @@ using FluentValidation;
 using Alsahab.Setting.Common.Validation;
 using System.Threading;
 using Alsahab.Setting.Entities;
+using Alsahab.Setting.Common.Utilities;
+using Alsahab.Setting.Common.Exceptions;
+using Alsahab.Setting.Common.Api;
+using Alsahab.Setting.DTO;
+using Alsahab.Setting.Data.Contracts;
+using FluentValidation.Results;
 
 namespace Alsahab.Setting.BL
 {
-    public class BaseBL<Dto, FilterDto> : IBaseBL<Dto, FilterDto>
-        where Dto : class
+    public class BaseBL<TEntity, Dto, FilterDto> : IBaseBL<TEntity, Dto, FilterDto>
+        where TEntity : class, IEntity//BaseEntity<TEntity, Dto>
+        where Dto : BaseDTO
         where FilterDto : Dto
     {
         public ResponseStatus ResponseStatus { get; set; }
@@ -22,9 +29,14 @@ namespace Alsahab.Setting.BL
         public string ErrorMessage { get; set; }
         public IList<FluentValidation.Results.ValidationFailure> ValidationErrors { get; set; }
         public CultureInfo Culture { get; set; }
+        private readonly IBaseDL<TEntity, Dto, FilterDto> _BaseDL;// = new IBaseDL<BranchDTO, Branch>();
+        // public BranchBL()
+        // {
+        // }
 
-        public BaseBL()
+        public BaseBL(IBaseDL<TEntity, Dto, FilterDto> baseDL)
         {
+            _BaseDL = baseDL;
             ResponseStatus = ResponseStatus.BusinessError;
             ValidatorOptions.LanguageManager = new ErrorLanguageManager();
             // ValidatorOptions.LanguageManager = new FluentValidation.Resources.LanguageManager();
@@ -57,10 +69,58 @@ namespace Alsahab.Setting.BL
             return result.IsValid;
         }
 
-        public virtual Task<Dto> InsertAsync(Dto data, CancellationToken cancellationToken)
+        public virtual async Task<IList<Dto>> GetAsync(FilterDto filter, CancellationToken cancellationToken = new CancellationToken())
         {
-            throw new NotImplementedException();
+            return await _BaseDL.GetAsync(filter, cancellationToken);
         }
+
+        public virtual async Task<Dto> UpdateAsync(Dto data, CancellationToken cancellationToken)
+        {
+            return await _BaseDL.UpdateAsync(data, cancellationToken);
+        }
+
+        public virtual async Task<Dto> DeleteAsync(Dto data, CancellationToken cancellationToken)
+        {
+            return await _BaseDL.DeleteAsync(data, cancellationToken);
+        }
+
+
+        public virtual async Task<Dto> InsertAsync(Dto data, CancellationToken cancellationToken)
+        {
+            Assert.NotNull(data, nameof(data));
+            if (!Validate<AbstractValidator<Dto>, Dto>(data))
+                throw new AppException(ApiResultStatusCode.LogicError, "Validation error");
+
+            data.CreateDate = DateTime.Now;
+            //TODO
+            // data.Code = GenerateCode(data);
+
+            var response = await _BaseDL.AddAsync(data, cancellationToken);//.BranchInsert(data);
+
+            //TODO
+            // if (Response?.ID > 0)
+            // {
+            //     var resp = BranchGet(new BranchDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
+            //     Observers.ObserverStates.BranchAdd state = new Observers.ObserverStates.BranchAdd
+            //     {
+            //         Branch = resp ?? Response,
+            //         User = User,
+            //     };
+            //     Notify(state);
+            //     if (resp != null)
+            //         Response = resp;
+            // }
+
+            ResponseStatus = _BaseDL.ResponseStatus;
+            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+            {
+                ErrorMessage += _BaseDL.ErrorMessage;
+                return null;
+            }
+
+            return response;
+        }
+
 
         public virtual Dto Insert(Dto data)
         {
@@ -73,11 +133,6 @@ namespace Alsahab.Setting.BL
         }
 
         public virtual List<Dto> InsertList(List<Dto> list)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual Task<Dto> UpdateAsync(Dto data, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -97,11 +152,6 @@ namespace Alsahab.Setting.BL
             throw new NotImplementedException();
         }
 
-        public virtual Task<Dto> DeleteAsync(Dto data, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
         public virtual Dto Delete(Dto data)
         {
             throw new NotImplementedException();
@@ -117,10 +167,19 @@ namespace Alsahab.Setting.BL
             throw new NotImplementedException();
         }
 
-        public virtual Task<IList<Dto>> Get(FilterDto filter, CancellationToken cancellationToken)
+        public virtual List<Dto> Get(FilterDto filter)
         {
             throw new NotImplementedException();
         }
 
+    }
+
+    public class BaseBL<TEntity, Dto> : BaseBL<TEntity, Dto, Dto>
+    where TEntity : class, IEntity//BaseEntity<TEntity, Dto>
+    where Dto : BaseDTO
+    {
+        public BaseBL(IBaseDL<TEntity, Dto, Dto> baseDL) : base(baseDL)
+        {
+        }
     }
 }

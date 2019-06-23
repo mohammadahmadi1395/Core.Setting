@@ -11,4 +11,11 @@
     <PackageReference Include="Pluralize.NET" Version="0.1.84"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4"/>
   </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Gostar.Common">
+      <HintPath>..\Dlls\Gostar.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
