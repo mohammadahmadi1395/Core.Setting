@@ -10,22 +10,33 @@ using Alsahab.Setting.BL;
 using Alsahab.Setting.DTO;
 using Alsahab.Setting.WebFramework.Filter;
 using Microsoft.AspNetCore.Authorization;
+using Alsahab.Setting.MyAPI;
+using Alsahab.Setting.Common.Exceptions;
 
 namespace Alsahab.Setting.WebFramework.Api
 {
+    ///
+    /// کنترلر پایه که می‌تواند توسط همه کنترلرها ارث‌بری شود
+    /// 
     [ApiController]
     [ApiResultFilter]
     [AllowAnonymous]
     [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")] // api/v1/post
-    // public class BranchController : ControllerBase // BaseController
     public class CrudController<TEntity, TDto, TFilteDto> : ControllerBase
-        where TEntity : class, IEntity
-        where TDto : BaseDTO
+        where TEntity : BaseEntity<TEntity, TDto, long>, IEntity
+        where TDto : BaseDTO//class
         where TFilteDto : TDto
+        // where TEntity : class, IEntity
+        // where TDto : BaseDTO
+        // where TFilteDto : TDto
     {
         private readonly IBaseBL<TEntity, TDto, TFilteDto> _TBL;
 
+        /// <summary>
+        /// تابع سازنده کنترلر پایه
+        /// </summary>
+        /// <param name="tBL"></param>
         public CrudController(IBaseBL<TEntity, TDto, TFilteDto> tBL)
         {
             _TBL = tBL;
@@ -76,11 +87,14 @@ namespace Alsahab.Setting.WebFramework.Api
         //     return Mapper.Map(CastToDerivedClass(this), entity);
         // }
 
+        [Route("Create")]
         [HttpPost]
-        public virtual async Task<ApiResult<TDto>> Create(TDto dto, CancellationToken cancellationToken)
+        public virtual async Task<ApiResult<TDto>> Create(BaseRequest<TDto> request, CancellationToken cancellationToken)//TDto dto, CancellationToken cancellationToken)
         {
+            if (request.ActionType != Alsahab.Common.ActionType.Insert)
+                throw new AppException(Common.Api.ApiResultStatusCode.BadRequest, "ActionType of Request is not valid");
             // var entity = dto.ToEntity();
-            var resultDto = await _TBL.InsertAsync(dto, cancellationToken);
+            var resultDto = await _TBL.InsertAsync(request.RequestDto, cancellationToken);
             // var resultDto = await _repository.TableNoTracking.ProjectTo<TDto>()
             //     .SingleOrDefaultAsync(s => s.Id.Equals(entity.Id), cancellationToken);
             return resultDto;
@@ -88,22 +102,56 @@ namespace Alsahab.Setting.WebFramework.Api
 
         [Route("Get")]
         [HttpPost]
-        public virtual async Task<ApiResult<IList<TDto>>> Get(TFilteDto filter, CancellationToken cancellationToken)
+        public virtual async Task<ApiResult<IList<TDto>>> Get(BaseRequest<TDto, TFilteDto> request, CancellationToken cancellationToken)
         {
-            var result = await _TBL.GetAsync(filter, cancellationToken);
+            if (request.ActionType != Alsahab.Common.ActionType.Select)
+                throw new BadRequestException("ActionType of Request is not valid");
+            IList<TDto> result;
+            if (request.RequestFilterDto == null)
+                result = await _TBL.GetAllAsync(cancellationToken);
+            else
+                result = await _TBL.GetAsync(request.RequestFilterDto, cancellationToken);
             return Ok(result);
         }
 
-        [HttpPut]
-        public virtual async Task<ApiResult<TDto>> Update(TDto dto, CancellationToken cancellationToken)
+        [Route("GetByFilter")]
+        [HttpPost]
+        public virtual async Task<ApiResult<IList<TDto>>> Get(BaseRequest<TFilteDto> request, CancellationToken cancellationToken)
         {
-            return await _TBL.UpdateAsync(dto, cancellationToken);
+            if (request.ActionType != Alsahab.Common.ActionType.Select)
+                throw new BadRequestException("ActionType of Request is not valid");
+            IList<TDto> result;
+            if (request.RequestFilterDto == null)
+                result = await _TBL.GetAllAsync(cancellationToken);
+            else
+                result = await _TBL.GetAsync(request.RequestFilterDto, cancellationToken);
+            return Ok(result);
         }
 
-        [HttpDelete]
-        public virtual async Task<ApiResult<TDto>> Delete(TDto dto, CancellationToken cancellationToken)
+        [Route("Update")]
+        // [HttpPut]
+        [HttpPost]
+        public virtual async Task<ApiResult<TDto>> Update(BaseRequest<TDto> request, CancellationToken cancellationToken)//TDto dto, CancellationToken cancellationToken)
         {
-            return await _TBL.DeleteAsync(dto, cancellationToken);
+            if (request.ActionType != Alsahab.Common.ActionType.Update)
+                throw new BadRequestException("ActionType of Request is not valid");
+            return await _TBL.UpdateAsync(request.RequestDto, cancellationToken);
+        }
+
+        [Route("Delete")]
+        // [HttpDelete]
+        [HttpPost]
+        public virtual async Task<ApiResult<TDto>> Delete(BaseRequest<TDto> request, CancellationToken cancellationToken)//TDto dto, CancellationToken cancellationToken)
+        {
+            if (request.ActionType != Alsahab.Common.ActionType.Delete)
+                throw new BadRequestException("ActionType of Request is not valid");
+            TDto data = Activator.CreateInstance(typeof(TDto), new object[] { null, null }) as TDto;
+            if (request.RequestID > 0)
+                data.ID = request.RequestID;
+            else 
+                data = request.RequestDto;
+            data.IsDeleted = true;
+            return await _TBL.UpdateAsync(request.RequestDto, cancellationToken);
         }
 
         // [HttpDelete("{id:guid}")]

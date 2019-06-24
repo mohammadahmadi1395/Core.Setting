@@ -12,8 +12,8 @@
 //         public string PrivateCode { get; set; }
 //         public long SubsystemId { get; set; }
 //         public long UniqeCode { get; set; }
-//         public DateTime CreateDate { get; set; }
-//         public bool IsDeleted { get; set; }
+//         //public DateTime CreateDate { get; set; }
+//         //public bool IsDeleted { get; set; }
 //     }
 
 //     public class GeneratedFormConfiguration : IEntityTypeConfiguration<GeneratedForm>

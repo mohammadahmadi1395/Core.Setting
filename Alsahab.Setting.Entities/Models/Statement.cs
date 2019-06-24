@@ -12,8 +12,8 @@
 //         public string PersianText { get; set; }
 //         public string EnglishText { get; set; }
 //         public string ArabicText { get; set; }
-//         public bool? IsDeleted { get; set; }
-//         public DateTime? CreateDate { get; set; }
+//         //public bool? IsDeleted { get; set; }
+//         //public DateTime? CreateDate { get; set; }
 
 //         public ICollection<StatementSubsystem> StatementSubsystem { get; set; }
 //     }

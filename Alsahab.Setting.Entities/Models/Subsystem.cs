@@ -10,8 +10,8 @@
 //         // public long Id { get; set; }
 //         public string Name { get; set; }
 //         public string ShortName { get; set; }
-//         public DateTime? CreateDate { get; set; }
-//         public bool? IsDeleted { get; set; }
+//         //public DateTime? CreateDate { get; set; }
+//         //public bool? IsDeleted { get; set; }
 //         public string Description { get; set; }
 //         public bool? IsSystem { get; set; }
 //         public bool? IsActive { get; set; }

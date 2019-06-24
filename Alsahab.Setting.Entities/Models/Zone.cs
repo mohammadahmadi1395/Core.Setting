@@ -13,8 +13,8 @@
 //         public string Title { get; set; }
 //         public int Type { get; set; }
 //         public string Comment { get; set; }
-//         public DateTime CreateDate { get; set; }
-//         public bool IsDeleted { get; set; }
+//         //public DateTime CreateDate { get; set; }
+//         //public bool IsDeleted { get; set; }
 //         public long? LeftIndex { get; set; }
 //         public long? RightIndex { get; set; }
 //         public long? Depth { get; set; }

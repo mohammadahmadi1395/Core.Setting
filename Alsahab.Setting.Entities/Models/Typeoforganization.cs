@@ -9,8 +9,8 @@
 //     {
 //         // public long Id { get; set; }
 //         public string Title { get; set; }
-//         public bool IsDeleted { get; set; }
-//         public DateTime CreateDate { get; set; }
+//         //public bool IsDeleted { get; set; }
+//         //public DateTime CreateDate { get; set; }
 //     }
 
 //     public class TypeoforganizationConfiguration : IEntityTypeConfiguration<Typeoforganization>

@@ -13,6 +13,8 @@
 
 //         public Statement Statement { get; set; }
 //         public Subsystem Subsystem { get; set; }
+//         public bool IsDeleted {get;set;}
+//         public DateTime CreateDate {get;set;}
 //     }
 
 //     public class StatementSubsystemConfiguration : IEntityTypeConfiguration<StatementSubsystem>

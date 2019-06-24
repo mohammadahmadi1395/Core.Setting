@@ -28,10 +28,15 @@ namespace Alsahab.Setting.Data.Repositories
 
         private readonly ApplicationDbContext DbContext;
         public DbSet<TEntity> Entities { get; }
-        public virtual IQueryable<TEntity> Table => Entities;
-        public virtual IQueryable<TEntity> TableNoTracking => Entities.AsNoTracking();
+        public virtual IQueryable<TEntity> TableAllData => Entities;
+        public virtual IQueryable<TEntity> TableNoTrackingAllData => Entities.AsNoTracking();
+        public virtual IQueryable<TEntity> TableNoTrackingNotDeleted => Entities.Where(s => s.IsDeleted == false).AsNoTracking();
         public ResponseStatus ResponseStatus { get; set; }
         public string ErrorMessage { get; set; }
+
+        public IQueryable<TEntity> Table => throw new NotImplementedException();
+
+        public IQueryable<TEntity> TableNoTracking => throw new NotImplementedException();
 
         public BaseDL(ApplicationDbContext dbContext)
         {
@@ -42,14 +47,6 @@ namespace Alsahab.Setting.Data.Repositories
         }
 
 
-        // public virtual async Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entities, nameof(entities));
-        //     Entities.UpdateRange(entities);
-        //     if (saveNow)
-        //         await DbContext.SaveChangesAsync(cancellationToken);
-        // }
-
 
         // public virtual async Task DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true)
         // {
@@ -59,7 +56,7 @@ namespace Alsahab.Setting.Data.Repositories
         //         await DbContext.SaveChangesAsync(cancellationToken);
         // }
 
-        public virtual TDto Add(TDto dto, bool saveNow = true)
+        public virtual TDto Insert(TDto dto, bool saveNow = true)
         {
             Assert.NotNull(dto, nameof(dto));
 
@@ -69,13 +66,13 @@ namespace Alsahab.Setting.Data.Repositories
             if (saveNow)
                 DbContext.SaveChanges();
 
-            var resultDto = TableNoTracking.ProjectTo<TDto>()
+            var resultDto = TableNoTrackingNotDeleted.ProjectTo<TDto>()
                 .SingleOrDefault(s => s.ID.Equals(entity.ID));
 
             return resultDto;
         }
 
-        public virtual async Task<TDto> AddAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
+        public virtual async Task<TDto> InsertAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
         {
             Assert.NotNull(dto, nameof(dto));
 
@@ -84,13 +81,13 @@ namespace Alsahab.Setting.Data.Repositories
             if (saveNow)
                 await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
-            var resultDto = await TableNoTracking.ProjectTo<TDto>()
+            var resultDto = await TableNoTrackingNotDeleted.ProjectTo<TDto>()
                 .SingleOrDefaultAsync(s => s.ID.Equals(entity.ID), cancellationToken);
 
             return resultDto;
         }
 
-        public virtual async Task<IEnumerable<TDto>> AddRangeAsync(IEnumerable<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
+        public virtual async Task<IList<TDto>> InsertListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
         {
             Assert.NotNull(dtoList, nameof(dtoList));
 
@@ -105,7 +102,7 @@ namespace Alsahab.Setting.Data.Repositories
             return resultDto;
         }
 
-        public virtual IEnumerable<TDto> AddRange(IEnumerable<TDto> dtoList, bool saveNow)
+        public virtual IList<TDto> InsertList(IList<TDto> dtoList, bool saveNow)
         {
             Assert.NotNull(dtoList, nameof(dtoList));
 
@@ -120,7 +117,7 @@ namespace Alsahab.Setting.Data.Repositories
             return resultDto;
         }
 
-        public virtual IEnumerable<TDto> UpdateRange(IEnumerable<TDto> dtoList, bool saveNow = true)
+        public virtual IList<TDto> UpdateList(IList<TDto> dtoList, bool saveNow = true)
         {
             Assert.NotNull(dtoList, nameof(dtoList));
 
@@ -136,13 +133,36 @@ namespace Alsahab.Setting.Data.Repositories
         }
 
 
-        // public virtual void DeleteRange(IEnumerable<TEntity> entities, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entities, nameof(entities));
-        //     Entities.RemoveRange(entities);
-        //     if (saveNow)
-        //         DbContext.SaveChanges();
-        // }
+        public virtual async Task<List<TDto>> UpdateListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
+        {
+            Assert.NotNull(dtoList, nameof(dtoList));
+            
+            var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
+            
+            Entities.UpdateRange(entityList);
+
+            if (saveNow)
+                await DbContext.SaveChangesAsync(cancellationToken);
+            
+            var resultDto = entityList.ProjectTo<TDto>().ToList();
+            
+            return resultDto;
+        }
+
+        public virtual List<TDto> DeleteRange(IList<TDto> dtoList, bool saveNow = true)
+        {
+            Assert.NotNull(dtoList, nameof(dtoList));
+            var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
+            
+            Entities.RemoveRange(entityList);
+
+            if (saveNow)
+                DbContext.SaveChanges();
+
+            var resultDto = entityList.ProjectTo<TDto>().ToList();
+            
+            return resultDto;
+        }
 
         public virtual TDto Update(TDto dto, bool saveNow = true)
         {
@@ -158,7 +178,7 @@ namespace Alsahab.Setting.Data.Repositories
             if (saveNow)
                 DbContext.SaveChanges();
 
-            var resultDto = TableNoTracking.ProjectTo<TDto>()
+            var resultDto = TableNoTrackingNotDeleted.ProjectTo<TDto>()
                 .SingleOrDefault(q => q.ID.Equals(dto.ID));
 
             return resultDto;
@@ -179,7 +199,7 @@ namespace Alsahab.Setting.Data.Repositories
             if (saveNow)
                 await DbContext.SaveChangesAsync(cancellationToken);
 
-            var resultDto = await TableNoTracking.ProjectTo<TDto>()
+            var resultDto = await TableNoTrackingNotDeleted.ProjectTo<TDto>()
                 .SingleOrDefaultAsync(q => q.ID.Equals(dto.ID), cancellationToken);
 
             return resultDto;
@@ -217,13 +237,39 @@ namespace Alsahab.Setting.Data.Repositories
             return dto;
         }
 
+        public virtual async Task<IList<TDto>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            var result = await TableNoTrackingNotDeleted.ProjectTo<TDto>().ToListAsync(cancellationToken);
+            ErrorMessage = "";
+            ResponseStatus = ResponseStatus.Successful;
+            return result;
+        }
+        public List<TDto> Get(TFilterDto filterDto)
+        {
+            var query = TableNoTrackingNotDeleted;
+            var result = query.ProjectTo<TDto>().ToList();
+            ErrorMessage = "";
+            ResponseStatus = ResponseStatus.Successful;
+            return result;
+            //TODO:
+            // اگر تابع ای‌سینک بالا کامل شد، در اینجا هم بیاید
+        }
+
+        public virtual IList<TDto> GetAll()
+        {
+            var result = TableNoTrackingNotDeleted.ProjectTo<TDto>().ToList();
+            ErrorMessage = "";
+            ResponseStatus = ResponseStatus.Successful;
+            return result;
+        }
         public virtual async Task<IList<TDto>> GetAsync(TFilterDto filterDto, CancellationToken cancellationToken)
         {
-            var query = TableNoTracking;
+            var query = TableNoTrackingNotDeleted;
             var result = await query.ProjectTo<TDto>().ToListAsync(cancellationToken);
             ErrorMessage = "";
             ResponseStatus = ResponseStatus.Successful;
             return result;
+            //TODO:
             // foreach (var prop in filterDto.GetType().GetProperties())
             // {
             //     var type = prop.PropertyType;
@@ -293,11 +339,21 @@ namespace Alsahab.Setting.Data.Repositories
             //     .ToListAsync(cancellationToken); ;
         }
 
-
-        public List<TDto> Get(TFilterDto filterDto)
+        Task<IList<TDto>> IBaseDL<TEntity, TDto, TFilterDto>.UpdateListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow)
         {
             throw new NotImplementedException();
         }
+
+        public Task<IList<TDto>> DeleteListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<TDto> DeleteList(IList<TDto> dtoList, bool saveNow = true)
+        {
+            throw new NotImplementedException();
+        }
+
 
 
         // #region  Async Methods

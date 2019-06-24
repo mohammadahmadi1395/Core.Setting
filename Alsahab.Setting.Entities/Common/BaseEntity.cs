@@ -30,6 +30,8 @@ namespace Alsahab.Setting.Entities
     public abstract class BaseEntity<TEntity, TDto, TKey> : IEntity, IHaveCustomMapping
     {
         public TKey ID { get; set; }
+        public bool IsDeleted {get;set;}
+        public DateTime CreateDate {get;set;}        
 
         private TEntity CastToDerivedClass(BaseEntity<TEntity, TDto, TKey> baseInstance)
         {

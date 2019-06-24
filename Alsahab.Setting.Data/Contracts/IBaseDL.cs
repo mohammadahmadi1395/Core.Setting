@@ -24,31 +24,29 @@ namespace Alsahab.Setting.Data.Contracts
         IQueryable<TEntity> TableNoTracking { get; }
 
         // Task<TEntity> GetByIdAsync(CancellationToken cancellationToken, params object[] ids);
-        Task<TDto> AddAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true);
+        Task<TDto> InsertAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true);
         Task<TDto> UpdateAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true);
         Task<TDto> DeleteAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true);
         Task<IList<TDto>> GetAsync(TFilterDto filterDto, CancellationToken cancellationToken);
-        TDto Add(TDto dto, bool saveNow = true);
+        Task<IList<TDto>> GetAllAsync(CancellationToken cancellationToken);
+        IList<TDto> GetAll();
+        TDto Insert(TDto dto, bool saveNow = true);
         TDto Update(TDto dto, bool saveNow = true);
         TDto Delete(TDto dto, bool saveNow = true);
         List<TDto> Get(TFilterDto filterDto);
-        // Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true);
-        // Task UpdateRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true);
-        // Task DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true);
+        Task<IList<TDto>> InsertListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true);
+        Task<IList<TDto>> UpdateListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true);
+        Task<IList<TDto>> DeleteListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true);
         // TEntity GetById(params object[] ids);
-        // void Add(TEntity entity, bool saveNow = true);
-        // void AddRange(IEnumerable<TEntity> entities, bool saveNow);
-        // void Update(TEntity entity, bool saveNow = true);
-        // void UpdateRange(IEnumerable<TEntity> entities, bool saveNow = true);
-        // void Delete(TEntity entity, bool saveNow = true);
-        // void DeleteRange(IEnumerable<TEntity> entities, bool saveNow = true);
+        IList<TDto> InsertList(IList<TDto> dtoList, bool saveNow);
+        IList<TDto> UpdateList(IList<TDto> dtoList, bool saveNow = true);
+        IList<TDto> DeleteList(IList<TDto> dtoList, bool saveNow = true);
         // void Attach(TEntity entity);
         // void Detach(TEntity entity);
         // Task LoadCollectionAsync<TProperty>(TEntity entity, Expression<Func<TEntity, IEnumerable<TProperty>>> collectionProperty, CancellationToken cancellationToken) where TProperty : class;
         // void LoadCollection<TProperty>(TEntity entity, Expression<Func<TEntity, IEnumerable<TProperty>>> collectionProperty) where TProperty : class;
         // void LoadReference<TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> referenceProperty) where TProperty : class;
         // Task LoadReferenceAsync<TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> referenceProperty, CancellationToken cancellationToken) where TProperty : class;
-
     }
 
         public interface IBaseDL<TEntity, TDto> : IBaseDL<TEntity, TDto, TDto>

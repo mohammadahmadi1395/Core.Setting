@@ -15,8 +15,8 @@
 //         public DateTime? EndDate { get; set; }
 //         public double? Latitude { get; set; }
 //         public double? Longitude { get; set; }
-//         public DateTime CreateDate { get; set; }
-//         public bool IsDeleted { get; set; }
+//         //public DateTime CreateDate { get; set; }
+//         //public bool IsDeleted { get; set; }
 
 //         public Zone Zone { get; set; }
 //         public ICollection<Branch> Branch { get; set; }

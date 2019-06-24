@@ -10,6 +10,7 @@ using Alsahab.Setting.Data.Contracts;
 using Alsahab.Setting.Data.Repositories;
 using Alsahab.Setting.BL;
 using Alsahab.Setting.BL.Services;
+using Alsahab.Setting.DTO;
 // using Alyatim.Member.SC;
 // using Alyatim.Member.DTO;
 // using UserManagement.SC;
@@ -45,17 +46,18 @@ namespace Alsahab.Setting.WebFramework.Configuration
             var EntityAssembly = typeof(IEntity).Assembly;
             // To be added
             // var serviceAssembly = typeof(JwtService).Assembly;
-            var serviceAssembly = typeof(BranchBL).Assembly;
+            var serviceAssembly = typeof(BaseBL<,,>).Assembly;
+            var dtoAssembly = typeof(BaseDTO).Assembly;
 
-            builder.RegisterAssemblyTypes(commonAssembly, DataAssembly, EntityAssembly, serviceAssembly)
+            builder.RegisterAssemblyTypes(commonAssembly, DataAssembly, EntityAssembly, serviceAssembly, dtoAssembly)
                 .AssignableTo<IScopedDependency>()
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
-            builder.RegisterAssemblyTypes(commonAssembly, DataAssembly, EntityAssembly, serviceAssembly)
+            builder.RegisterAssemblyTypes(commonAssembly, DataAssembly, EntityAssembly, serviceAssembly, dtoAssembly)
                 .AssignableTo<ITransientDependency>()
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
-            builder.RegisterAssemblyTypes(commonAssembly, DataAssembly, EntityAssembly, serviceAssembly)
+            builder.RegisterAssemblyTypes(commonAssembly, DataAssembly, EntityAssembly, serviceAssembly, dtoAssembly)
                 .AssignableTo<ISingletonDependency>()
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();

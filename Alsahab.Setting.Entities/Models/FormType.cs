@@ -12,8 +12,8 @@
 //         public long SubSystemId { get; set; }
 //         public string PublicCode { get; set; }
 //         public string Coment { get; set; }
-//         public bool IsDeleted { get; set; }
-//         public DateTime CreateDate { get; set; }
+//         //public bool IsDeleted { get; set; }
+//         //public DateTime CreateDate { get; set; }
 
 //         public Subsystem SubSystem { get; set; }
 //         public ICollection<RuleTag> RuleTag { get; set; }

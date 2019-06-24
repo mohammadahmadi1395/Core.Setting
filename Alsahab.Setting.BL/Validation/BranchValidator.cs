@@ -3,14 +3,15 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Alsahab.Setting.DTO;
+using Alsahab.Setting.Entities.Models;
 using FluentValidation;
 
 namespace Alsahab.Setting.BL.Validation
 {
-    internal class BranchValidator : Alsahab.Setting.DTO.BranchValidator
+    internal class BranchValidator : BaseValidator<BranchDTO>//Alsahab.Setting.DTO.BranchValidator
     {
-        private readonly BranchBL BranchBL;
-        public BranchValidator(BranchBL _branchBL)
+        private readonly IBaseBL<Branch, BranchDTO> BranchBL;//BranchBL BranchBL;
+        public BranchValidator(IBaseBL<Branch, BranchDTO> _branchBL)
         {
             BranchBL = _branchBL;
         }

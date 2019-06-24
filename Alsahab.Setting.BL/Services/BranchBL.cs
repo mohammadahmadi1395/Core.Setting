@@ -16,12 +16,12 @@ namespace Alsahab.Setting.BL
 {
     public class BranchBL : BaseBL<Branch, BranchDTO, BranchFilterDTO>
     {
-        // private readonly _BranchDL _repository;
         private List<BranchDTO> TempAllBranch = new List<BranchDTO>();
         private long? _index = 1, _depth = 2;
-        private readonly IBaseDL<Branch, BranchDTO, BranchFilterDTO> _BranchDL;// = new IBaseDL<BranchDTO, Branch>();
+        private readonly IBaseDL<Branch, BranchDTO, BranchFilterDTO> _BranchDL;
 
-        public BranchBL(IBaseDL<Branch, BranchDTO, BranchFilterDTO> branchDL) : base(branchDL)
+        public BranchBL(IBaseDL<Branch, BranchDTO, BranchFilterDTO> branchDL)
+            : base(branchDL)
         {
             _BranchDL = branchDL;
         }
@@ -31,8 +31,6 @@ namespace Alsahab.Setting.BL
         // {
         //     return _BranchDL.Get(filter);
         // }
-
-
         public async override Task<IList<BranchDTO>> GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken)
         {
             var response = await _BranchDL.GetAsync(filter, cancellationToken);
@@ -88,21 +86,11 @@ namespace Alsahab.Setting.BL
         // }
 
 
-
-
-
-
-
-
-
-
-
-
-
         private bool Validate(BranchDTO data)
         {
-            return Validate<BranchValidator, BranchDTO>(data ?? new BranchDTO());
+            return Validate(data ?? new BranchDTO());
         }
+
 
         // private bool UpdateValidate(BranchDTO data)
         // {
@@ -197,7 +185,7 @@ namespace Alsahab.Setting.BL
             //TODO
             // data.Code = GenerateCode(data);
 
-            var response = await _BranchDL.AddAsync(data, cancellationToken);//.BranchInsert(data);
+            var response = await _BranchDL.InsertAsync(data, cancellationToken);//.BranchInsert(data);
 
             //TODO
             // if (response?.ID > 0)

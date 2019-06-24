@@ -15,36 +15,44 @@ using Alsahab.Setting.Entities;
 namespace Alsahab.Setting.BL
 {
     public interface IBaseBL<TEntity, TDto, TFilterDto> : IScopedDependency
-    where TEntity : class, IEntity
-    where TDto : BaseDTO
-    where TFilterDto : TDto
+        where TEntity : BaseEntity<TEntity, TDto, long>, IEntity
+        where TDto : BaseDTO//class
+        where TFilterDto : TDto
+    // where TEntity : class, IEntity
+    // where TDto : BaseDTO
+    // where TFilterDto : TDto
     {
         ResponseStatus ResponseStatus { get; set; }
         int? ResultCount { get; set; }
-        PagingInfoDTO PagingInfo { get; set; }
+        // PagingInfoDTO PagingInfo { get; set; }
         string ErrorMessage { get; set; }
         IList<FluentValidation.Results.ValidationFailure> ValidationErrors { get; set; }
-        CultureInfo Culture { get; set; }
-        UserInfoDTO User { get; set; }
+        // CultureInfo Culture { get; set; }
+        // UserInfoDTO User { get; set; }
 
+        Task<IList<TDto>> GetAllAsync(CancellationToken cancellationToken);
+        IList<TDto> GetAll();
+        IList<TDto> Get(TFilterDto filter);
         Task<IList<TDto>> GetAsync(TFilterDto filter, CancellationToken cancellationToken);
         Task<TDto> InsertAsync(TDto data, CancellationToken cancellationToken);
         TDto Insert(TDto data);
-        Task<List<TDto>> InsertListAsync(List<TDto> list, CancellationToken cancellationToken);
-        List<TDto> InsertList(List<TDto> list);
+        Task<IList<TDto>> InsertListAsync(IList<TDto> list, CancellationToken cancellationToken);
+        IList<TDto> InsertList(IList<TDto> list);
         Task<TDto> UpdateAsync(TDto data, CancellationToken cancellationToken);
         TDto Update(TDto data);
-        Task<List<TDto>> UpdateListAsync(List<TDto> list, CancellationToken cancellationToken);
-        List<TDto> UpdateList(List<TDto> list);
+        Task<IList<TDto>> UpdateListAsync(IList<TDto> list, CancellationToken cancellationToken);
+        IList<TDto> UpdateList(IList<TDto> list);
         Task<TDto> DeleteAsync(TDto data, CancellationToken cancellationToken);
         TDto Delete(TDto data);
-        Task<List<TDto>> DeleteListAsync(List<TDto> list, CancellationToken cancellationToken);
-        List<TDto> DeleteList(List<TDto> list);
+        Task<IList<TDto>> DeleteListAsync(IList<TDto> list, CancellationToken cancellationToken);
+        IList<TDto> DeleteList(IList<TDto> list);
     }
 
     public interface IBaseBL<TEntity, TDto> : IBaseBL<TEntity, TDto, TDto>
-    where TEntity : class, IEntity
-    where TDto : BaseDTO
+        where TEntity : BaseEntity<TEntity, TDto, long>, IEntity
+        where TDto : BaseDTO//class
+    // where TEntity : class, IEntity
+    // where TDto : BaseDTO
     {
     }
 

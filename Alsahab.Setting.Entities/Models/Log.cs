@@ -9,7 +9,8 @@
 //     {
 //         // public long Id { get; set; }
 //         public long UserId { get; set; }
-//         public DateTime CreateDate { get; set; }
+//         //public DateTime CreateDate { get; set; }
+//         //public bool IsDeleted {get;set;}
 //         public int EntityId { get; set; }
 //         public int ActionTypeId { get; set; }
 //         public long? RecordId { get; set; }

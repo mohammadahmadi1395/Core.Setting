@@ -17,8 +17,8 @@ namespace Alsahab.Setting.Entities.Models
         public string BranchEmail { get; set; }
         public bool IsCentral { get; set; }
         public string Comment { get; set; }
-        public DateTime CreateDate { get; set; }
-        public bool? IsDeleted { get; set; }
+        // public DateTime CreateDate { get; set; }
+        // public bool? IsDeleted { get; set; }
         public long? LeftIndex { get; set; }
         public long? RightIndex { get; set; }
         public long? Depth { get; set; }

@@ -11,8 +11,8 @@
 //         public string Title { get; set; }
 //         public string Description { get; set; }
 //         public int Type { get; set; }
-//         public bool IsDeleted { get; set; }
-//         public DateTime CreateDate { get; set; }
+//         //public bool IsDeleted { get; set; }
+//         //public DateTime CreateDate { get; set; }
 
 //         public ICollection<RuleTag> RuleTag { get; set; }
 //     }

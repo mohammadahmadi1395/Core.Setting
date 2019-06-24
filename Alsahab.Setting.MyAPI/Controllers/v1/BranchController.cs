@@ -7,14 +7,22 @@ using Alsahab.Setting.Entities.Models;
 
 namespace Alsahab.Setting.WebFramework.Api
 {
+    /// <summary>
+    /// کنترلر مربوط به شعبه‌ها
+    /// </summary>
     [ApiController]
     [ApiResultFilter]
     [AllowAnonymous]
     [ApiVersion("1")]
-    [Route("api/v{version:apiVersion}/[controller]")] // api/v1/post
-    // public class BranchController : ControllerBase // BaseController
+    [Route("api/v{version:apiVersion}/[controller]")]
+    // public class BranchController : ControllerBase
     public class BranchController : CrudController<Branch, BranchDTO, BranchFilterDTO>
     {
+        /// <summary>
+        /// سازنده کنترلر شعبه‌ها
+        /// </summary>
+        /// <param name="tBL"></param>
+        /// <returns></returns>
         public BranchController(IBaseBL<Branch, BranchDTO, BranchFilterDTO> tBL) : base(tBL)
         {
         }

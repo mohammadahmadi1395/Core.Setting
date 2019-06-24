@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using Alsahab.Common;
@@ -18,25 +16,30 @@ using FluentValidation.Results;
 
 namespace Alsahab.Setting.BL
 {
-    public class BaseBL<TEntity, Dto, FilterDto> : IBaseBL<TEntity, Dto, FilterDto>
-        where TEntity : class, IEntity//BaseEntity<TEntity, Dto>
-        where Dto : BaseDTO
+    public class BaseBL<TEntity, Dto, FilterDto> : IBaseBL<TEntity, Dto, FilterDto> 
+        where TEntity : BaseEntity<TEntity, Dto, long>, IEntity
+        where Dto : BaseDTO//class
         where FilterDto : Dto
+        // where TEntity : class, IEntity//BaseEntity<TEntity, Dto>
+        // where Dto : BaseDTO
+        // where FilterDto : Dto
     {
         public ResponseStatus ResponseStatus { get; set; }
         public int? ResultCount { get; set; }
-        public PagingInfoDTO PagingInfo { get; set; }
+        private PagingInfoDTO PagingInfo { get; set; }
         public string ErrorMessage { get; set; }
         public IList<FluentValidation.Results.ValidationFailure> ValidationErrors { get; set; }
-        public CultureInfo Culture { get; set; }
+        private CultureInfo Culture { get; set; }
         private readonly IBaseDL<TEntity, Dto, FilterDto> _BaseDL;// = new IBaseDL<BranchDTO, Branch>();
+        // private readonly IBaseValidator<Dto> _BaseValidator;
         // public BranchBL()
         // {
         // }
 
-        public BaseBL(IBaseDL<TEntity, Dto, FilterDto> baseDL)
+        public BaseBL(IBaseDL<TEntity, Dto, FilterDto> baseDL)//, IBaseValidator<Dto> baseValidator)
         {
             _BaseDL = baseDL;
+            // _BaseValidator = baseValidator;
             ResponseStatus = ResponseStatus.BusinessError;
             ValidatorOptions.LanguageManager = new ErrorLanguageManager();
             // ValidatorOptions.LanguageManager = new FluentValidation.Resources.LanguageManager();
@@ -45,7 +48,8 @@ namespace Alsahab.Setting.BL
             _observers.Add(new Observers.LogObserver());
         }
         readonly List<Observers.ObserverBase> _observers;
-        public UserInfoDTO User { get; set; }
+        private UserInfoDTO User { get; set; }
+        public CascadeMode CascadeMode { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         //public long? TeamID { get; set; }
         protected void Notify<TObserverState>(TObserverState stateInfo) where TObserverState : Observers.ObserverStates.ObserverStateBase
@@ -56,20 +60,43 @@ namespace Alsahab.Setting.BL
                 observer.Notify(stateInfo);
             }
         }
-        protected bool Validate<TValidator, TObject>(TObject data) where TValidator : AbstractValidator<TObject>
+        // protected bool Validate<TValidator, TObject>(TObject data) where TValidator : AbstractValidator<TObject>
+        // {
+        //     //Set Custom Translation
+        //     ValidatorOptions.LanguageManager = new Gostar.Common.Validation.ErrorLanguageManager();    
+        //     //Create Instance From Validator    
+        //     var validator = Activator.CreateInstance(typeof(TValidator));
+        //     //Set Culture To Translate
+        //     ValidatorOptions.LanguageManager.Culture = Culture;
+        //     var result = ((AbstractValidator<TObject>)validator).Validate(data);
+        //     ValidationErrors = result.Errors;
+        //     return result.IsValid;
+        // }
+
+        protected bool Validate<T, Dto>(Dto data)
+            where T : AbstractValidator<Dto>
         {
             //Set Custom Translation
             ValidatorOptions.LanguageManager = new ErrorLanguageManager();
             //Create Instance From Validator    
-            var validator = Activator.CreateInstance(typeof(TValidator));
+            var validator = Activator.CreateInstance(typeof(T));
             //Set Culture To Translate
             ValidatorOptions.LanguageManager.Culture = Culture;
-            var result = ((AbstractValidator<TObject>)validator).Validate(data);
+            var a = (AbstractValidator<Dto>)validator;
+            var result = a.Validate(data);
             ValidationErrors = result.Errors;
             return result.IsValid;
         }
 
-        public virtual async Task<IList<Dto>> GetAsync(FilterDto filter, CancellationToken cancellationToken = new CancellationToken())
+        public virtual async Task<IList<Dto>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            return await _BaseDL.GetAllAsync(cancellationToken);
+        }
+        public virtual IList<Dto> GetAll()
+        {
+            return _BaseDL.GetAll();
+        }
+        public virtual async Task<IList<Dto>> GetAsync(FilterDto filter, CancellationToken cancellationToken)// = new CancellationToken())
         {
             return await _BaseDL.GetAsync(filter, cancellationToken);
         }
@@ -84,18 +111,17 @@ namespace Alsahab.Setting.BL
             return await _BaseDL.DeleteAsync(data, cancellationToken);
         }
 
-
         public virtual async Task<Dto> InsertAsync(Dto data, CancellationToken cancellationToken)
         {
             Assert.NotNull(data, nameof(data));
-            if (!Validate<AbstractValidator<Dto>, Dto>(data))
-                throw new AppException(ApiResultStatusCode.LogicError, "Validation error");
+            // if (!Validate<BaseValidator<Dto>, Dto>(data))
+            //     throw new AppException(ApiResultStatusCode.LogicError, "Validation error");
 
             data.CreateDate = DateTime.Now;
             //TODO
             // data.Code = GenerateCode(data);
 
-            var response = await _BaseDL.AddAsync(data, cancellationToken);//.BranchInsert(data);
+            var response = await _BaseDL.InsertAsync(data, cancellationToken);//.BranchInsert(data);
 
             //TODO
             // if (Response?.ID > 0)
@@ -124,61 +150,70 @@ namespace Alsahab.Setting.BL
 
         public virtual Dto Insert(Dto data)
         {
-            throw new NotImplementedException();
+            data.CreateDate = DateTime.Now;
+            //TODO
+            // data.Code = GenerateCode(data);
+
+            return _BaseDL.Insert(data);
         }
 
-        public virtual Task<List<Dto>> InsertListAsync(List<Dto> list, CancellationToken cancellationToken)
+        public virtual Task<IList<Dto>> InsertListAsync(IList<Dto> list, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public virtual List<Dto> InsertList(List<Dto> list)
+        public virtual IList<Dto> InsertList(IList<Dto> list)
         {
             throw new NotImplementedException();
         }
 
         public virtual Dto Update(Dto data)
         {
-            throw new NotImplementedException();
+            Assert.NotNull(data, nameof(data));
+
+            return _BaseDL.Update(data);
         }
 
-        public virtual Task<List<Dto>> UpdateListAsync(List<Dto> list, CancellationToken cancellationToken)
+        public virtual Task<IList<Dto>> UpdateListAsync(IList<Dto> list, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public virtual List<Dto> UpdateList(List<Dto> list)
+        public virtual IList<Dto> UpdateList(IList<Dto> list)
         {
             throw new NotImplementedException();
         }
 
         public virtual Dto Delete(Dto data)
         {
-            throw new NotImplementedException();
+            Assert.NotNull(data, nameof(data));
+
+            return _BaseDL.Delete(data);
         }
 
-        public virtual Task<List<Dto>> DeleteListAsync(List<Dto> list, CancellationToken cancellationToken)
+        public virtual Task<IList<Dto>> DeleteListAsync(IList<Dto> list, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public virtual List<Dto> DeleteList(List<Dto> list)
+        public virtual IList<Dto> DeleteList(IList<Dto> list)
         {
-            throw new NotImplementedException();
+            return _BaseDL.DeleteList(list);
         }
 
-        public virtual List<Dto> Get(FilterDto filter)
+        public virtual IList<Dto> Get(FilterDto filter)
         {
-            throw new NotImplementedException();
+            return _BaseDL.Get(filter);
         }
-
     }
 
     public class BaseBL<TEntity, Dto> : BaseBL<TEntity, Dto, Dto>
-    where TEntity : class, IEntity//BaseEntity<TEntity, Dto>
-    where Dto : BaseDTO
+        where TEntity : BaseEntity<TEntity, Dto, long>, IEntity
+        where Dto : BaseDTO//class
+    // where TEntity : class, IEntity//BaseEntity<TEntity, Dto>
+    // where Dto : BaseDTO
     {
-        public BaseBL(IBaseDL<TEntity, Dto, Dto> baseDL) : base(baseDL)
+        public BaseBL(IBaseDL<TEntity, Dto, Dto> baseDL):base(baseDL)
         {
         }
     }
