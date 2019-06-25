@@ -8,7 +8,7 @@ using Gostar.Common.Validation;
 
 namespace Gostar.Setting.BL.Validation
 {
-  internal   class BranchValidator : Gostar.Setting.DTO.Validation.BranchValidator
+    internal class BranchValidator : Gostar.Setting.DTO.Validation.BranchValidator
     {
         BranchBL BranchBL = new BranchBL();
 
@@ -40,6 +40,7 @@ namespace Gostar.Setting.BL.Validation
             }
             return true;
         }
+
         private bool Notcentral(bool? isCental,long id)
         {
             if (!isCental.HasValue)

@@ -33,7 +33,7 @@ namespace Alsahab.Setting.Data.Contracts
         TDto Insert(TDto dto, bool saveNow = true);
         TDto Update(TDto dto, bool saveNow = true);
         TDto Delete(TDto dto, bool saveNow = true);
-        List<TDto> Get(TFilterDto filterDto);
+        IList<TDto> Get(TFilterDto filterDto);
         Task<IList<TDto>> InsertListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true);
         Task<IList<TDto>> UpdateListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true);
         Task<IList<TDto>> DeleteListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true);

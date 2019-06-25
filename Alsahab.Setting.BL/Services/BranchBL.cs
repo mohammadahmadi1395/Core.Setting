@@ -11,6 +11,8 @@ using Alsahab.Setting.Entities.Models;
 using Alyatim.Member.SC.Messages;
 using Alsahab.Common;
 using Gostar.Common;
+using Alsahab.Setting.Common.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Alsahab.Setting.BL
 {
@@ -36,10 +38,7 @@ namespace Alsahab.Setting.BL
             var response = await _BranchDL.GetAsync(filter, cancellationToken);
             ResponseStatus = _BranchDL.ResponseStatus;
             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += _BranchDL.ErrorMessage;
-                return null;
-            }
+                throw new AppException(Common.Api.ApiResultStatusCode.LogicError, ErrorMessage);
 
             var memberResponse = ServiceUtility.CallMember(s => s.Person(new PersonRequest
             {
@@ -47,7 +46,7 @@ namespace Alsahab.Setting.BL
                 User = new Gostar.Common.UserInfoDTO { UserID = 1 },
                 PersonFilter = new Alyatim.Member.DTO.PersonFilterDTO
                 {
-                    IDList = new List<long?> { 1, 2 }, //TODO : response?.Select(t => t.HeadPersonID)?.ToList(),
+                    IDList = response?.Select(t => t.HeadPersonID)?.ToList(),
                 }
             }))?.ResponseDtoList;
             if (memberResponse?.Count > 0)
@@ -88,7 +87,8 @@ namespace Alsahab.Setting.BL
 
         private bool Validate(BranchDTO data)
         {
-            return Validate(data ?? new BranchDTO());
+            // return Validate<Validation.BranchValidator, BranchDTO>(data ?? new BranchDTO());
+            return Validate<BranchValidator, BranchDTO>(data ?? new BranchDTO());
         }
 
 
@@ -177,29 +177,36 @@ namespace Alsahab.Setting.BL
         {
             if (!Validate(data))
             {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
+                string error = "";
+                foreach (var verror in ValidationErrors)
+                    error = error + "\n" + verror.ErrorMessage;
+
+                throw new BadRequestException(error);
+                // ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
+                // ErrorMessage = "Business Error (Validation Error)";
+                // return null;
             }
 
             data.CreateDate = DateTime.Now;
-            //TODO
-            // data.Code = GenerateCode(data);
+
+            data.Code = GenerateCode(data);
 
             var response = await _BranchDL.InsertAsync(data, cancellationToken);//.BranchInsert(data);
+            if (_BranchDL?.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+                throw new AppException(Common.Api.ApiResultStatusCode.ServerError, _BranchDL.ErrorMessage);
 
-            //TODO
-            // if (response?.ID > 0)
-            // {
-            //     var resp = BranchGet(new BranchDTO { ID = response?.ID ?? 0 })?.FirstOrDefault();
-            //     Observers.ObserverStates.BranchAdd state = new Observers.ObserverStates.BranchAdd
-            //     {
-            //         Branch = resp ?? response,
-            //         User = User,
-            //     };
-            //     Notify(state);
-            //     if (resp != null)
-            //         response = resp;
-            // }
+            if (response?.ID > 0)
+            {
+                var resp = await GetAsync(new BranchFilterDTO { ID = response?.ID ?? 0 }, cancellationToken)?.FirstOrDefaultAsync();
+                Observers.ObserverStates.BranchAdd state = new Observers.ObserverStates.BranchAdd
+                {
+                    Branch = resp ?? response,
+                    User = User,
+                };
+                Notify(state);
+                if (resp != null)
+                    response = resp;
+            }
 
             ResponseStatus = _BranchDL.ResponseStatus;
             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
@@ -560,20 +567,20 @@ namespace Alsahab.Setting.BL
         //     return response;
         // }
 
+        private String GenerateCode(BranchDTO data)
+        {
+            var list = Get(new BranchFilterDTO());
+            if (data?.ParentID == null)
+            {
+                return (list?.Where(s => s.ParentID == null)?.ToList()?.Count + 1).ToString();
+            }
+            else
+            {
+                var r = list?.Where(s => s.ParentID == data?.ParentID)?.ToList()?.Count;
+                return String.Format("{0}-{1}", list?.FirstOrDefault(s => s.ID == data?.ParentID)?.Code, (r + 1)?.ToString());
+            }
+        }
 
-        // private String GenerateCode(BranchDTO data)
-        // {
-        //     var list = BranchGet(new BranchDTO(), null);
-        //     if (data?.ParentID == null)
-        //     {
-        //         return (list?.Where(s => s.ParentID == null)?.ToList()?.Count + 1).ToString();
-        //     }
-        //     else
-        //     {
-        //         var r = list?.Where(s => s.ParentID == data?.ParentID)?.ToList()?.Count;
-        //         return String.Format("{0}-{1}", list?.Where(s => s.ID == data?.ParentID)?.FirstOrDefault()?.Code, (r + 1).ToString());
-        //     }
-        // }
         // private List<BranchDTO> GenerateNewCodes(List<BranchDTO> data, List<BranchDTO> All)
         // {
         //     List<BranchDTO> res = new List<BranchDTO>();

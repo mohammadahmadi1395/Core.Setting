@@ -97,7 +97,7 @@ namespace Alsahab.Setting.WebFramework.Api
             var resultDto = await _TBL.InsertAsync(request.RequestDto, cancellationToken);
             // var resultDto = await _repository.TableNoTracking.ProjectTo<TDto>()
             //     .SingleOrDefaultAsync(s => s.Id.Equals(entity.Id), cancellationToken);
-            return resultDto;
+            return Ok(resultDto);
         }
 
         [Route("Get")]

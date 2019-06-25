@@ -29,14 +29,11 @@ namespace Alsahab.Setting.Data.Repositories
         private readonly ApplicationDbContext DbContext;
         public DbSet<TEntity> Entities { get; }
         public virtual IQueryable<TEntity> TableAllData => Entities;
+        public virtual IQueryable<TEntity> Table => Entities.Where(s=>s.IsDeleted  == false).AsNoTracking();
         public virtual IQueryable<TEntity> TableNoTrackingAllData => Entities.AsNoTracking();
-        public virtual IQueryable<TEntity> TableNoTrackingNotDeleted => Entities.Where(s => s.IsDeleted == false).AsNoTracking();
+        public virtual IQueryable<TEntity> TableNoTracking => Entities.Where(s => s.IsDeleted == false).AsNoTracking();
         public ResponseStatus ResponseStatus { get; set; }
         public string ErrorMessage { get; set; }
-
-        public IQueryable<TEntity> Table => throw new NotImplementedException();
-
-        public IQueryable<TEntity> TableNoTracking => throw new NotImplementedException();
 
         public BaseDL(ApplicationDbContext dbContext)
         {
@@ -66,7 +63,7 @@ namespace Alsahab.Setting.Data.Repositories
             if (saveNow)
                 DbContext.SaveChanges();
 
-            var resultDto = TableNoTrackingNotDeleted.ProjectTo<TDto>()
+            var resultDto = TableNoTracking.ProjectTo<TDto>()
                 .SingleOrDefault(s => s.ID.Equals(entity.ID));
 
             return resultDto;
@@ -81,7 +78,7 @@ namespace Alsahab.Setting.Data.Repositories
             if (saveNow)
                 await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
-            var resultDto = await TableNoTrackingNotDeleted.ProjectTo<TDto>()
+            var resultDto = await TableNoTracking.ProjectTo<TDto>()
                 .SingleOrDefaultAsync(s => s.ID.Equals(entity.ID), cancellationToken);
 
             return resultDto;
@@ -178,7 +175,7 @@ namespace Alsahab.Setting.Data.Repositories
             if (saveNow)
                 DbContext.SaveChanges();
 
-            var resultDto = TableNoTrackingNotDeleted.ProjectTo<TDto>()
+            var resultDto = TableNoTracking.ProjectTo<TDto>()
                 .SingleOrDefault(q => q.ID.Equals(dto.ID));
 
             return resultDto;
@@ -199,7 +196,7 @@ namespace Alsahab.Setting.Data.Repositories
             if (saveNow)
                 await DbContext.SaveChangesAsync(cancellationToken);
 
-            var resultDto = await TableNoTrackingNotDeleted.ProjectTo<TDto>()
+            var resultDto = await TableNoTracking.ProjectTo<TDto>()
                 .SingleOrDefaultAsync(q => q.ID.Equals(dto.ID), cancellationToken);
 
             return resultDto;
@@ -239,14 +236,14 @@ namespace Alsahab.Setting.Data.Repositories
 
         public virtual async Task<IList<TDto>> GetAllAsync(CancellationToken cancellationToken)
         {
-            var result = await TableNoTrackingNotDeleted.ProjectTo<TDto>().ToListAsync(cancellationToken);
+            var result = await TableNoTracking.ProjectTo<TDto>().ToListAsync(cancellationToken);
             ErrorMessage = "";
             ResponseStatus = ResponseStatus.Successful;
             return result;
         }
-        public List<TDto> Get(TFilterDto filterDto)
+        public virtual IList<TDto> Get(TFilterDto filterDto)
         {
-            var query = TableNoTrackingNotDeleted;
+            var query = TableNoTracking;
             var result = query.ProjectTo<TDto>().ToList();
             ErrorMessage = "";
             ResponseStatus = ResponseStatus.Successful;
@@ -257,14 +254,14 @@ namespace Alsahab.Setting.Data.Repositories
 
         public virtual IList<TDto> GetAll()
         {
-            var result = TableNoTrackingNotDeleted.ProjectTo<TDto>().ToList();
+            var result = TableNoTracking.ProjectTo<TDto>().ToList();
             ErrorMessage = "";
             ResponseStatus = ResponseStatus.Successful;
             return result;
         }
         public virtual async Task<IList<TDto>> GetAsync(TFilterDto filterDto, CancellationToken cancellationToken)
         {
-            var query = TableNoTrackingNotDeleted;
+            var query = TableNoTracking;
             var result = await query.ProjectTo<TDto>().ToListAsync(cancellationToken);
             ErrorMessage = "";
             ResponseStatus = ResponseStatus.Successful;

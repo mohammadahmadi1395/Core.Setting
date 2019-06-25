@@ -73,18 +73,22 @@ namespace Alsahab.Setting.BL
         //     return result.IsValid;
         // }
 
-        protected bool Validate<T, Dto>(Dto data)
-            where T : AbstractValidator<Dto>
+        protected bool Validate<T, TObject>(TObject data)
+            where T : AbstractValidator<TObject>
         {
             //Set Custom Translation
             ValidatorOptions.LanguageManager = new ErrorLanguageManager();
             //Create Instance From Validator    
-            var validator = Activator.CreateInstance(typeof(T));
+            var validator = Activator.CreateInstance(typeof(T), _BaseDL);
             //Set Culture To Translate
             ValidatorOptions.LanguageManager.Culture = Culture;
-            var a = (AbstractValidator<Dto>)validator;
-            var result = a.Validate(data);
+            var result = ((AbstractValidator<TObject>)validator).Validate(data);
             ValidationErrors = result.Errors;
+            if (!result.IsValid)            
+            {
+                ErrorMessage = "Validation error in business layer";
+                ResponseStatus = ResponseStatus.BusinessError;
+            }
             return result.IsValid;
         }
 
