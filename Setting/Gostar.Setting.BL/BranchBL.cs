@@ -197,7 +197,6 @@ namespace Gostar.Setting.BL
                                 OldCode = r.OldCode
                             })?.ToList();
             }
-
             return Response;
         }
 

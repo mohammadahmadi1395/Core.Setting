@@ -11,8 +11,6 @@
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/Alsahab.Setting.Entities.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/Alyatim.Member.DTO.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/Alyatim.Member.SC.dll
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/FileManagement.DTO.dll
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/FileManagement.SC.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/Gostar.Common.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/UserManagement.DTO.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/UserManagement.SC.dll

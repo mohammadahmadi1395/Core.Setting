@@ -51,7 +51,7 @@ namespace Alsahab.Setting.MyAPI
         /// </summary>
         /// <value></value>
         [DataMember]
-        public Language? Language { get; set; }
+        public Language Language { get; set; }
         /// <summary>
         /// اطلاعات صفحه‌بندی
         /// </summary>

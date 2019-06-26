@@ -22,15 +22,17 @@ namespace Alsahab.Setting.BL//.Validation
         private readonly IBaseDL<Branch, BranchDTO, BranchFilterDTO> _BranchDL;
         public BranchValidator(IBaseDL<Branch, BranchDTO, BranchFilterDTO> _branchDL) : base()
         {
-           _BranchDL = _branchDL;
-            RuleFor(x => x.Title).Must(TitleNotExist).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("NotExist"));
-            RuleFor(x => x.Code).Must(CodeNotExist).When(x => !string.IsNullOrWhiteSpace(x.Code)).WithMessage(ValidatorOptions.LanguageManager.GetString("NotExist"));
-            RuleFor(x => x.IsCentral).Must((DTO, IsCentral) => Notcentral(IsCentral, DTO.ID ?? 0)).When(x => x.IsCentral.HasValue && x.IsCentral == true).WithMessage(ValidatorOptions.LanguageManager.GetString("NotCentral"));
+            _BranchDL = _branchDL;
+            RuleFor(x => x.Title).Must(UniqueTitleCondition).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("AlreadyIsExists"));
+            RuleFor(x => x.Code).Must(UniqueCodeCondition).When(x => !string.IsNullOrWhiteSpace(x.Code)).WithMessage(ValidatorOptions.LanguageManager.GetString("AlreadyIsExists"));
+            RuleFor(x => x.IsCentral).Must((DTO, IsCentral) => OnlyOneCentralCondition(IsCentral, DTO.ID ?? 0)).When(x => x.IsCentral.HasValue && x.IsCentral == true).WithMessage(ValidatorOptions.LanguageManager.GetString("NotCentral"));
+            //TODO: باید بررسی شود که آیا چنین محدودیتی داریم یا خیر؟
+            // RuleFor(x => x.HeadPersonID).Must((DTO,HeadPersonID) => UniqueHeadPersonID(HeadPersonID ?? 0, DTO.ID ?? 0)).When(x => x.HeadPersonID > 0).WithMessage(ValidatorOptions.LanguageManager.GetString("AlreadyIsExists"));
         }
 
-        private bool TitleNotExist(string title)
+        private bool UniqueTitleCondition(string title)
         {
-            var result =  _BranchDL.Get(new BranchFilterDTO { Title = title });
+            var result = _BranchDL.Get(new BranchFilterDTO { Title = title });
             var Count = result?.Where(s => s.Title.Equals(title))?.Count();
             if (Count > 0)
             {
@@ -39,7 +41,7 @@ namespace Alsahab.Setting.BL//.Validation
             return true;
         }
 
-        private bool CodeNotExist(string code)
+        private bool UniqueCodeCondition(string code)
         {
             var result = _BranchDL.Get(new BranchFilterDTO { Code = code });
             var Count = result?.Where(s => s.Code.Equals(code))?.Count();
@@ -50,7 +52,7 @@ namespace Alsahab.Setting.BL//.Validation
             return true;
         }
 
-        private bool Notcentral(bool? isCental, long id)
+        private bool OnlyOneCentralCondition(bool? isCental, long id)
         {
             if (!isCental.HasValue)
                 return true;
@@ -62,5 +64,10 @@ namespace Alsahab.Setting.BL//.Validation
             return true;
         }
 
+        private bool UniqueHeadPersonID(long personHeadId, long id)
+        {
+            var branch = _BranchDL.Get(new BranchFilterDTO { HeadPersonID = personHeadId });
+            return !(branch.Count > 0 && !(id > 0 && id == branch.FirstOrDefault().ID));
+        }
     }
 }

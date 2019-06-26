@@ -84,10 +84,6 @@
             "System.ServiceModel.Web": {
               "target": "Package",
               "version": "[1.0.0, )"
-            },
-            "Wcf.ChannelFactory.Helper": {
-              "target": "Package",
-              "version": "[1.0.4, )"
             }
           },
           "imports": [

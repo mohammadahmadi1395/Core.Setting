@@ -95,9 +95,9 @@ namespace Alsahab.Setting.Common.Validation
 
             #region Custom
             // زمانی که قیلد وارد شده باید منخصر به قرد باشد و تکراری نداشته باشد
-            AddTranslation("en", "NotExist", "'{PropertyName}' is exist");
-            AddTranslation("fa", "NotExist", "وجود دارد'{PropertyName}'");
-            AddTranslation("ar", "NotExist", "هذا البند موجود'{PropertyName}'");
+            AddTranslation("en", "AlreadyIsExists", "'{PropertyName}' is exist");
+            AddTranslation("fa", "AlreadyIsExists", "وجود دارد'{PropertyName}'");
+            AddTranslation("ar", "AlreadyIsExists", "هذا البند موجود'{PropertyName}'");
             //زمانی که فیلد وارد شده دیفالت است و در جدول هنوز رکوردی داریم که مقدار دیفالت آن ست شده است
             AddTranslation("en", "Default", " The default value is already there.");
             AddTranslation("fa", "Default", "مقدار پیش فرض در حال حاضر وجود دارد.");

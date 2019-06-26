@@ -18,17 +18,15 @@ namespace Alsahab.Setting.BL
         where TEntity : BaseEntity<TEntity, TDto, long>, IEntity
         where TDto : BaseDTO//class
         where TFilterDto : TDto
-    // where TEntity : class, IEntity
-    // where TDto : BaseDTO
-    // where TFilterDto : TDto
     {
+        UserInfoDTO User { get; set; }
+        Language Language { get; set; }
         ResponseStatus ResponseStatus { get; set; }
         int? ResultCount { get; set; }
-        // PagingInfoDTO PagingInfo { get; set; }
+        PagingInfoDTO PagingInfo { get; set; }
         string ErrorMessage { get; set; }
         IList<FluentValidation.Results.ValidationFailure> ValidationErrors { get; set; }
         // CultureInfo Culture { get; set; }
-        // UserInfoDTO User { get; set; }
 
         Task<IList<TDto>> GetAllAsync(CancellationToken cancellationToken);
         IList<TDto> GetAll();
@@ -46,13 +44,13 @@ namespace Alsahab.Setting.BL
         TDto Delete(TDto data);
         Task<IList<TDto>> DeleteListAsync(IList<TDto> list, CancellationToken cancellationToken);
         IList<TDto> DeleteList(IList<TDto> list);
+        Task<TDto> SoftDeleteAsync(TDto data, CancellationToken cancellationToken);
+        TDto SoftDelete(TDto data);
     }
 
     public interface IBaseBL<TEntity, TDto> : IBaseBL<TEntity, TDto, TDto>
         where TEntity : BaseEntity<TEntity, TDto, long>, IEntity
-        where TDto : BaseDTO//class
-    // where TEntity : class, IEntity
-    // where TDto : BaseDTO
+        where TDto : BaseDTO
     {
     }
 

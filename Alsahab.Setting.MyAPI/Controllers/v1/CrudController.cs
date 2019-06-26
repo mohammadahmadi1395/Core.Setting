@@ -93,10 +93,9 @@ namespace Alsahab.Setting.WebFramework.Api
         {
             if (request.ActionType != Alsahab.Common.ActionType.Insert)
                 throw new AppException(Common.Api.ApiResultStatusCode.BadRequest, "ActionType of Request is not valid");
-            // var entity = dto.ToEntity();
-            var resultDto = await _TBL.InsertAsync(request.RequestDto, cancellationToken);
-            // var resultDto = await _repository.TableNoTracking.ProjectTo<TDto>()
-            //     .SingleOrDefaultAsync(s => s.Id.Equals(entity.Id), cancellationToken);
+
+            var resultDto = await _TBL.CallBL(b => b.InsertAsync(request.RequestDto, cancellationToken), request.User, request.PagingInfo, request.Language);
+
             return Ok(resultDto);
         }
 
@@ -108,9 +107,9 @@ namespace Alsahab.Setting.WebFramework.Api
                 throw new BadRequestException("ActionType of Request is not valid");
             IList<TDto> result;
             if (request.RequestFilterDto == null)
-                result = await _TBL.GetAllAsync(cancellationToken);
+                result = await _TBL.CallBL(b => b.GetAllAsync(cancellationToken), request.User, request.PagingInfo, request.Language);
             else
-                result = await _TBL.GetAsync(request.RequestFilterDto, cancellationToken);
+                result = await _TBL.CallBL(b => b.GetAsync(request.RequestFilterDto, cancellationToken), request.User, request.PagingInfo, request.Language);
             return Ok(result);
         }
 
@@ -120,11 +119,12 @@ namespace Alsahab.Setting.WebFramework.Api
         {
             if (request.ActionType != Alsahab.Common.ActionType.Select)
                 throw new BadRequestException("ActionType of Request is not valid");
+
             IList<TDto> result;
             if (request.RequestFilterDto == null)
-                result = await _TBL.GetAllAsync(cancellationToken);
+                result = await _TBL.CallBL(b => b.GetAllAsync(cancellationToken), request.User, request.PagingInfo, request.Language);
             else
-                result = await _TBL.GetAsync(request.RequestFilterDto, cancellationToken);
+                result = await _TBL.CallBL(b => b.GetAsync(request.RequestFilterDto, cancellationToken), request.User, request.PagingInfo, request.Language);
             return Ok(result);
         }
 
@@ -135,7 +135,8 @@ namespace Alsahab.Setting.WebFramework.Api
         {
             if (request.ActionType != Alsahab.Common.ActionType.Update)
                 throw new BadRequestException("ActionType of Request is not valid");
-            return await _TBL.UpdateAsync(request.RequestDto, cancellationToken);
+
+            return await _TBL.CallBL(b => b.UpdateAsync(request.RequestDto, cancellationToken), request.User, request.PagingInfo, request.Language);
         }
 
         [Route("Delete")]
@@ -148,10 +149,10 @@ namespace Alsahab.Setting.WebFramework.Api
             TDto data = Activator.CreateInstance(typeof(TDto), new object[] { null, null }) as TDto;
             if (request.RequestID > 0)
                 data.ID = request.RequestID;
-            else 
+            else
                 data = request.RequestDto;
             data.IsDeleted = true;
-            return await _TBL.UpdateAsync(request.RequestDto, cancellationToken);
+            return await _TBL.CallBL(b => b.SoftDeleteAsync(request.RequestDto, cancellationToken), request.User, request.PagingInfo, request.Language);
         }
 
         // [HttpDelete("{id:guid}")]

@@ -16,7 +16,7 @@ using FluentValidation.Results;
 
 namespace Alsahab.Setting.BL
 {
-    public class BaseBL<TEntity, Dto, FilterDto> : IBaseBL<TEntity, Dto, FilterDto> 
+    public class BaseBL<TEntity, Dto, FilterDto> : IBaseBL<TEntity, Dto, FilterDto>
         where TEntity : BaseEntity<TEntity, Dto, long>, IEntity
         where Dto : BaseDTO//class
         where FilterDto : Dto
@@ -24,13 +24,17 @@ namespace Alsahab.Setting.BL
         // where Dto : BaseDTO
         // where FilterDto : Dto
     {
+        public UserInfoDTO User { get; set; }
+        public Language Language { get; set; }
         public ResponseStatus ResponseStatus { get; set; }
         public int? ResultCount { get; set; }
-        private PagingInfoDTO PagingInfo { get; set; }
+        public PagingInfoDTO PagingInfo { get; set; }
         public string ErrorMessage { get; set; }
+        public CascadeMode CascadeMode { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public IList<FluentValidation.Results.ValidationFailure> ValidationErrors { get; set; }
         private CultureInfo Culture { get; set; }
         private readonly IBaseDL<TEntity, Dto, FilterDto> _BaseDL;// = new IBaseDL<BranchDTO, Branch>();
+        readonly List<Observers.ObserverBase> _observers;
         // private readonly IBaseValidator<Dto> _BaseValidator;
         // public BranchBL()
         // {
@@ -47,9 +51,6 @@ namespace Alsahab.Setting.BL
             _observers = new List<Observers.ObserverBase>();
             _observers.Add(new Observers.LogObserver());
         }
-        readonly List<Observers.ObserverBase> _observers;
-        private UserInfoDTO User { get; set; }
-        public CascadeMode CascadeMode { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         //public long? TeamID { get; set; }
         protected void Notify<TObserverState>(TObserverState stateInfo) where TObserverState : Observers.ObserverStates.ObserverStateBase
@@ -60,18 +61,6 @@ namespace Alsahab.Setting.BL
                 observer.Notify(stateInfo);
             }
         }
-        // protected bool Validate<TValidator, TObject>(TObject data) where TValidator : AbstractValidator<TObject>
-        // {
-        //     //Set Custom Translation
-        //     ValidatorOptions.LanguageManager = new Gostar.Common.Validation.ErrorLanguageManager();    
-        //     //Create Instance From Validator    
-        //     var validator = Activator.CreateInstance(typeof(TValidator));
-        //     //Set Culture To Translate
-        //     ValidatorOptions.LanguageManager.Culture = Culture;
-        //     var result = ((AbstractValidator<TObject>)validator).Validate(data);
-        //     ValidationErrors = result.Errors;
-        //     return result.IsValid;
-        // }
 
         protected bool Validate<T, TObject>(TObject data)
             where T : AbstractValidator<TObject>
@@ -84,12 +73,14 @@ namespace Alsahab.Setting.BL
             ValidatorOptions.LanguageManager.Culture = Culture;
             var result = ((AbstractValidator<TObject>)validator).Validate(data);
             ValidationErrors = result.Errors;
-            if (!result.IsValid)            
-            {
-                ErrorMessage = "Validation error in business layer";
-                ResponseStatus = ResponseStatus.BusinessError;
-            }
-            return result.IsValid;
+
+            string error = string.Empty;
+            foreach (var verror in ValidationErrors)
+                error += "\n" + verror.ErrorMessage;
+
+            if (!result.IsValid)
+                throw new AppException(ApiResultStatusCode.LogicError, error);
+            return true;
         }
 
         public virtual async Task<IList<Dto>> GetAllAsync(CancellationToken cancellationToken)
@@ -118,8 +109,6 @@ namespace Alsahab.Setting.BL
         public virtual async Task<Dto> InsertAsync(Dto data, CancellationToken cancellationToken)
         {
             Assert.NotNull(data, nameof(data));
-            // if (!Validate<BaseValidator<Dto>, Dto>(data))
-            //     throw new AppException(ApiResultStatusCode.LogicError, "Validation error");
 
             data.CreateDate = DateTime.Now;
             //TODO
@@ -143,10 +132,11 @@ namespace Alsahab.Setting.BL
 
             ResponseStatus = _BaseDL.ResponseStatus;
             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += _BaseDL.ErrorMessage;
-                return null;
-            }
+                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+            // {
+            //     ErrorMessage += _BaseDL.ErrorMessage;
+            //     return null;
+            // }
 
             return response;
         }
@@ -158,7 +148,12 @@ namespace Alsahab.Setting.BL
             //TODO
             // data.Code = GenerateCode(data);
 
-            return _BaseDL.Insert(data);
+            var response = _BaseDL.Insert(data);
+            ResponseStatus = _BaseDL.ResponseStatus;
+            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+
+            return response;
         }
 
         public virtual Task<IList<Dto>> InsertListAsync(IList<Dto> list, CancellationToken cancellationToken)
@@ -175,7 +170,35 @@ namespace Alsahab.Setting.BL
         {
             Assert.NotNull(data, nameof(data));
 
-            return _BaseDL.Update(data);
+            var response = _BaseDL.Update(data);
+            ResponseStatus = _BaseDL.ResponseStatus;
+            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+            return response;
+        }
+
+        public async virtual Task<Dto> SoftDeleteAsync(Dto data, CancellationToken cancellationToken)
+        {
+            Assert.NotNull(data, nameof(data));
+            data.IsDeleted = true;
+
+            var response = await _BaseDL.UpdateAsync(data, cancellationToken);
+            ResponseStatus = _BaseDL.ResponseStatus;
+            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+            return response;
+        }
+
+        public virtual Dto SoftDelete(Dto data)
+        {
+            Assert.NotNull(data, nameof(data));
+            data.IsDeleted = true;
+            var response = _BaseDL.Update(data);
+
+            ResponseStatus = _BaseDL.ResponseStatus;
+            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+            return response;
         }
 
         public virtual Task<IList<Dto>> UpdateListAsync(IList<Dto> list, CancellationToken cancellationToken)
@@ -192,7 +215,12 @@ namespace Alsahab.Setting.BL
         {
             Assert.NotNull(data, nameof(data));
 
-            return _BaseDL.Delete(data);
+            var response = _BaseDL.Delete(data);
+            ResponseStatus = _BaseDL.ResponseStatus;
+            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+            return response;
+
         }
 
         public virtual Task<IList<Dto>> DeleteListAsync(IList<Dto> list, CancellationToken cancellationToken)
@@ -202,22 +230,32 @@ namespace Alsahab.Setting.BL
 
         public virtual IList<Dto> DeleteList(IList<Dto> list)
         {
-            return _BaseDL.DeleteList(list);
+            var response = _BaseDL.DeleteList(list);
+            ResponseStatus = _BaseDL.ResponseStatus;
+            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+            return response;
+
         }
 
         public virtual IList<Dto> Get(FilterDto filter)
         {
-            return _BaseDL.Get(filter);
+            var response = _BaseDL.Get(filter);
+            ResponseStatus = _BaseDL.ResponseStatus;
+            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+            return response;
+
         }
     }
 
     public class BaseBL<TEntity, Dto> : BaseBL<TEntity, Dto, Dto>
         where TEntity : BaseEntity<TEntity, Dto, long>, IEntity
         where Dto : BaseDTO//class
-    // where TEntity : class, IEntity//BaseEntity<TEntity, Dto>
-    // where Dto : BaseDTO
+                           // where TEntity : class, IEntity//BaseEntity<TEntity, Dto>
+                           // where Dto : BaseDTO
     {
-        public BaseBL(IBaseDL<TEntity, Dto, Dto> baseDL):base(baseDL)
+        public BaseBL(IBaseDL<TEntity, Dto, Dto> baseDL) : base(baseDL)
         {
         }
     }
