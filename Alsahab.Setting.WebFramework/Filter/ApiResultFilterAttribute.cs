@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
-using Alsahab.Setting.Common.Api;
+using Alsahab.Common;
+using Alsahab.Common.Api;
 using Alsahab.Setting.WebFramework.Api;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -13,12 +14,12 @@ namespace Alsahab.Setting.WebFramework.Filter
         {
             if (context.Result is OkObjectResult okObjectResult)
             {
-                var apiResult = new ApiResult<Object>(true, ApiResultStatusCode.Success, okObjectResult.Value);
+                var apiResult = new ApiResult<Object>(true, ResponseStatus.Successful, okObjectResult.Value);
                 context.Result = new JsonResult(apiResult);
             }
             else if (context.Result is OkResult okResult)
             {
-                var apiResult = new ApiResult(true, ApiResultStatusCode.Success);
+                var apiResult = new ApiResult(true, ResponseStatus.Successful);
                 context.Result = new JsonResult(apiResult);
             }
             else if (context.Result is BadRequestObjectResult badRequestObjectResult)
@@ -29,32 +30,32 @@ namespace Alsahab.Setting.WebFramework.Filter
                     var errorMessages = error.SelectMany(p=>(string[])p.Value).Distinct();
                     message = string.Join(" | ", errorMessages);
                 }
-                var apiResult = new ApiResult<Object>(false, ApiResultStatusCode.BadRequest, message);
+                var apiResult = new ApiResult<Object>(false, ResponseStatus.BadRequest, message);
                 context.Result = new JsonResult(apiResult);
             }
             else if (context.Result is BadRequestResult badRequestResult)
             {
-                var apiResult = new ApiResult(false, ApiResultStatusCode.BadRequest);
+                var apiResult = new ApiResult(false, ResponseStatus.BadRequest);
                 context.Result = new JsonResult(apiResult);
             }
             else if (context.Result is ContentResult contentResult)
             {
-                var apiResult = new ApiResult(true, ApiResultStatusCode.Success);
+                var apiResult = new ApiResult(true, ResponseStatus.Successful);
                 context.Result = new JsonResult(apiResult);
             }
             else if (context.Result is NotFoundResult notFoundResult)
             {
-                var apiResult = new ApiResult(false, ApiResultStatusCode.NotFound);
+                var apiResult = new ApiResult(false, ResponseStatus.NotFound);
                 context.Result = new JsonResult(apiResult);
             }
             else if (context.Result is NotFoundObjectResult notFoundObjectResult)
             {
-                var apiResult = new ApiResult<Object>(false, ApiResultStatusCode.NotFound, notFoundObjectResult.Value);
+                var apiResult = new ApiResult<Object>(false, ResponseStatus.NotFound, notFoundObjectResult.Value);
                 context.Result = new JsonResult(apiResult);
             }
             else if (context.Result is ObjectResult objectResult && objectResult.StatusCode == null && !(objectResult.Value is ApiResult))
             {
-                var apiResult = new ApiResult<Object>(true, ApiResultStatusCode.Success, objectResult.Value);
+                var apiResult = new ApiResult<Object>(true, ResponseStatus.Successful, objectResult.Value);
                 context.Result = new JsonResult(apiResult);
             }
             base.OnResultExecuting(context);

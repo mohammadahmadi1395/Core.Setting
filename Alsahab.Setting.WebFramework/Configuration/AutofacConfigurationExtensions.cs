@@ -1,7 +1,7 @@
 using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Alsahab.Setting.Common;
+using Alsahab.Common;
 using Alsahab.Setting.Data;
 using Alsahab.Setting.Entities;
 using Alsahab.Setting.Services.Services;

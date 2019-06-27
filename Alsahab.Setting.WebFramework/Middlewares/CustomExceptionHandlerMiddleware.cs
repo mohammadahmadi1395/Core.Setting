@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using Alsahab.Setting.Common.Api;
-using Alsahab.Setting.Common.Exceptions;
+using Alsahab.Common;
+using Alsahab.Common.Api;
+using Alsahab.Common.Exceptions;
 using Alsahab.Setting.WebFramework.Api;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,7 +41,7 @@ namespace Alsahab.Setting.WebFramework.Middlewares
         {
             string message = null;
             HttpStatusCode httpStatusCode = HttpStatusCode.InternalServerError;
-            ApiResultStatusCode apiStatusCode = ApiResultStatusCode.ServerError;
+            ResponseStatus apiStatusCode = ResponseStatus.ServerError;
             try
             {
                 await _next.Invoke(context);
@@ -130,7 +131,7 @@ namespace Alsahab.Setting.WebFramework.Middlewares
             void SetUnAuthorizeResponse(Exception exception)
             {
                 httpStatusCode = HttpStatusCode.Unauthorized;
-                apiStatusCode = ApiResultStatusCode.Unauthorized;
+                apiStatusCode = ResponseStatus.Unauthorized;
 
                 if (_env.IsDevelopment())
                 {

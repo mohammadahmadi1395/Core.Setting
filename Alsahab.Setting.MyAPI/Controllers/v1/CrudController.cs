@@ -11,7 +11,10 @@ using Alsahab.Setting.DTO;
 using Alsahab.Setting.WebFramework.Filter;
 using Microsoft.AspNetCore.Authorization;
 using Alsahab.Setting.MyAPI;
-using Alsahab.Setting.Common.Exceptions;
+using Alsahab.Common.Exceptions;
+using Alsahab.Common;
+using System.Reflection;
+using System.Globalization;
 
 namespace Alsahab.Setting.WebFramework.Api
 {
@@ -92,7 +95,7 @@ namespace Alsahab.Setting.WebFramework.Api
         public virtual async Task<ApiResult<TDto>> Create(BaseRequest<TDto> request, CancellationToken cancellationToken)//TDto dto, CancellationToken cancellationToken)
         {
             if (request.ActionType != Alsahab.Common.ActionType.Insert)
-                throw new AppException(Common.Api.ApiResultStatusCode.BadRequest, "ActionType of Request is not valid");
+                throw new AppException(ResponseStatus.BadRequest, "ActionType of Request is not valid");
 
             var resultDto = await _TBL.CallBL(b => b.InsertAsync(request.RequestDto, cancellationToken), request.User, request.PagingInfo, request.Language);
 
@@ -146,7 +149,12 @@ namespace Alsahab.Setting.WebFramework.Api
         {
             if (request.ActionType != Alsahab.Common.ActionType.Delete)
                 throw new BadRequestException("ActionType of Request is not valid");
-            TDto data = Activator.CreateInstance(typeof(TDto), new object[] { null, null }) as TDto;
+            
+            TDto data =  (TDto)Activator.CreateInstance(typeof(TDto), new object[] { });
+            // BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
+            // CultureInfo culture = null; // use InvariantCulture or other if you prefer
+            // TDto data = Activator.CreateInstance(typeof(TDto), flags, null, new object[] {}, culture) as TDto;
+            // TDto data = Activator.CreateInstance(typeof(TDto), new object[] { null, null }) as TDto;
             if (request.RequestID > 0)
                 data.ID = request.RequestID;
             else

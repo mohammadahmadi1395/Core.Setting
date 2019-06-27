@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Threading;
 using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities;
+using Alsahab.Common.Exceptions;
 
 namespace Alsahab.Setting.BL
 {
@@ -27,9 +28,9 @@ namespace Alsahab.Setting.BL
                 bl.Language = Language;
                 response = work(bl);
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
-
+                throw new AppException(ResponseStatus.ServerError, "Error in server connection.");
             }
             return response;
         }

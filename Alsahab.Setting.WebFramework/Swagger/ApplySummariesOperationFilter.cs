@@ -1,4 +1,4 @@
-﻿using Alsahab.Setting.Common.Utilities;
+﻿using Alsahab.Common.Utilities;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Pluralize.NET;
 using Swashbuckle.AspNetCore.Swagger;

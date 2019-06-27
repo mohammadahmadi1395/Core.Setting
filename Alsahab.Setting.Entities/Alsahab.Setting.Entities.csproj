@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\Alsahab.Setting.Common\Alsahab.Setting.Common.csproj"/>
+    <ProjectReference Include="..\Alsahab.Common\Alsahab.Common.csproj"/>
     <ProjectReference Include="..\Alsahab.Setting.DTO\Alsahab.Setting.DTO.csproj"/>
   </ItemGroup>
   <ItemGroup>

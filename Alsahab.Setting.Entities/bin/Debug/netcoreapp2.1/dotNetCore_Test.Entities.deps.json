@@ -9,7 +9,7 @@
       "Alsahab.Setting.Entities/1.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Identity.Stores": "2.1.6",
-          "Alsahab.Setting.Common": "1.0.0"
+          "Alsahab.Common": "1.0.0"
         },
         "runtime": {
           "Alsahab.Setting.Entities.dll": {}
@@ -561,14 +561,14 @@
           "System.Runtime": "4.1.0"
         }
       },
-      "Alsahab.Setting.Common/1.0.0": {
+      "Alsahab.Common/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "2.1.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
           "Pluralize.NET": "0.1.84"
         },
         "runtime": {
-          "Alsahab.Setting.Common.dll": {}
+          "Alsahab.Common.dll": {}
         }
       }
     }
@@ -985,7 +985,7 @@
       "path": "system.threading.tasks/4.0.11",
       "hashPath": "system.threading.tasks.4.0.11.nupkg.sha512"
     },
-    "Alsahab.Setting.Common/1.0.0": {
+    "Alsahab.Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

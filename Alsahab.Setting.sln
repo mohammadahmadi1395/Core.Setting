@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alsahab.Setting.Common", "Alsahab.Setting.Common\Alsahab.Setting.Common.csproj", "{B92A757F-052C-4160-95A0-8AD024ED245E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alsahab.Common", "Alsahab.Common\Alsahab.Common.csproj", "{B92A757F-052C-4160-95A0-8AD024ED245E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alsahab.Setting.Data", "Alsahab.Setting.Data\Alsahab.Setting.Data.csproj", "{32B0C79D-E4CD-4788-BED3-861C82933AC4}"
 EndProject

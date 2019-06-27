@@ -1,21 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Alsahab.Common;
-using Alsahab.Setting.Common;
-using Alsahab.Setting.Common.Api;
-using Alsahab.Setting.Common.Exceptions;
-using Alsahab.Setting.Common.Utilities;
+using Alsahab.Common.Exceptions;
+using Alsahab.Common.Utilities;
 using Alsahab.Setting.Data.Contracts;
 using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Alsahab.Setting.Data.Repositories
@@ -25,7 +20,6 @@ namespace Alsahab.Setting.Data.Repositories
         where TDto : BaseDTO//class
         where TFilterDto : TDto
     {
-
         private readonly ApplicationDbContext DbContext;
         public DbSet<TEntity> Entities { get; }
         public virtual IQueryable<TEntity> TableAllData => Entities;
@@ -34,12 +28,14 @@ namespace Alsahab.Setting.Data.Repositories
         public virtual IQueryable<TEntity> TableNoTracking => Entities.Where(s => s.IsDeleted == false).AsNoTracking();
         public ResponseStatus ResponseStatus { get; set; }
         public string ErrorMessage { get; set; }
+        public int ResultCount { get; set; }
         public BaseDL(ApplicationDbContext dbContext)
         {
             DbContext = dbContext;
             Entities = DbContext.Set<TEntity>();
             ResponseStatus = ResponseStatus.DatabaseError;
             ErrorMessage = "خطای پایگاه داده";
+            ResultCount = 0;
         }
         // public virtual async Task DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true)
         // {
@@ -59,7 +55,7 @@ namespace Alsahab.Setting.Data.Repositories
                 DbContext.SaveChanges();
 
             var resultDto = TableNoTracking.ProjectTo<TDto>()
-                .SingleOrDefault(s => s.ID.Equals(entity.ID));
+                .SingleOrDefault(s => s.ID == entity.ID);
 
             return resultDto;
         }
@@ -73,7 +69,7 @@ namespace Alsahab.Setting.Data.Repositories
                 await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
             var resultDto = await TableNoTracking.ProjectTo<TDto>()
-                .SingleOrDefaultAsync(s => s.ID.Equals(entity.ID), cancellationToken);
+                .SingleOrDefaultAsync(s => s.ID == entity.ID, cancellationToken);
 
             return resultDto;
         }
@@ -109,15 +105,32 @@ namespace Alsahab.Setting.Data.Repositories
         {
             Assert.NotNull(dtoList, nameof(dtoList));
 
-            var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
+            IList<TDto> resultList = new List<TDto>();
+            foreach (var dto in dtoList)
+            {
+                resultList.Add(Update(dto));
+            }
+            return resultList;
+            // List<TEntity> tempList = new List<TEntity>();
 
-            Entities.UpdateRange(entityList);
-            if (saveNow)
-                DbContext.SaveChanges();
+            // foreach (var dto in dtoList)
+            // {
+            //     TEntity entity = (TEntity)Activator.CreateInstance(typeof(TEntity), new object[] { });
+            //     tempList.Add(entity.ToEntity(dto)); // AutoMapper.Mapper.Map<TDto, TEntity>(dto);
+            // }
+            // // var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
+            // // var entityList = tempList.AsQueryable();
 
-            var resultDto = entityList.ProjectTo<TDto>().ToList();
+            // foreach (var temp in tempList)
+            //     Entities.Update(temp);
+            // // Entities.UpdateRange(tempList);
+            // if (saveNow)
+            //     DbContext.SaveChanges();
 
-            return resultDto;
+            // // var resultDto = entityList.Select(s=>Mapper.Map<TDto>(s))?.ToList();// await entityList.ProjectTo<TDto>().ToListAsync(cancellationToken);
+            // var resultDto = tempList.AsQueryable().ProjectTo<TDto>().ToList();
+
+            // return resultDto;
         }
         public virtual async Task<List<TDto>> UpdateListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
         {
@@ -154,7 +167,7 @@ namespace Alsahab.Setting.Data.Repositories
 
             var entity = Entities.Find(dto.ID);
             if (entity == null)
-                throw new AppException(ApiResultStatusCode.NotFound, "not found entity.");
+                throw new AppException(ResponseStatus.NotFound, "not found entity.");
 
             entity = entity.ToEntity(dto);
             Entities.Update(entity);
@@ -162,7 +175,7 @@ namespace Alsahab.Setting.Data.Repositories
             if (saveNow)
                 DbContext.SaveChanges();
 
-            var resultDto = TableNoTracking.ProjectTo<TDto>()
+            var resultDto = TableNoTrackingAllData.ProjectTo<TDto>()
                 .SingleOrDefault(q => q.ID.Equals(dto.ID));
 
             return resultDto;
@@ -173,7 +186,7 @@ namespace Alsahab.Setting.Data.Repositories
 
             var entity = await Entities.FindAsync(dto.ID);
             if (entity == null)
-                throw new AppException(ApiResultStatusCode.NotFound, "not found entity.");
+                throw new AppException(ResponseStatus.NotFound, "not found entity.");
 
             entity = entity.ToEntity(dto);
             Entities.Update(entity);
@@ -182,7 +195,7 @@ namespace Alsahab.Setting.Data.Repositories
                 await DbContext.SaveChangesAsync(cancellationToken);
 
             var resultDto = await TableNoTracking.ProjectTo<TDto>()
-                .SingleOrDefaultAsync(q => q.ID.Equals(dto.ID), cancellationToken);
+                .SingleOrDefaultAsync(q => q.ID == dto.ID, cancellationToken);
 
             return resultDto;
         }
@@ -191,7 +204,7 @@ namespace Alsahab.Setting.Data.Repositories
             Assert.NotNull(dto, nameof(dto));
             var entity = Entities.Find(dto.ID);
             if (entity == null)
-                throw new AppException(ApiResultStatusCode.NotFound, "not found entity.");
+                throw new AppException(ResponseStatus.NotFound, "not found entity.");
 
             entity = entity.ToEntity(dto);
 
@@ -206,7 +219,7 @@ namespace Alsahab.Setting.Data.Repositories
             Assert.NotNull(dto, nameof(dto));
             var entity = await Entities.FindAsync(dto.ID);
             if (entity == null)
-                throw new AppException(ApiResultStatusCode.NotFound, "not found entity.");
+                throw new AppException(ResponseStatus.NotFound, "not found entity.");
 
             entity = entity.ToEntity(dto);
 
@@ -216,16 +229,29 @@ namespace Alsahab.Setting.Data.Repositories
 
             return dto;
         }
-        public virtual async Task<IList<TDto>> GetAllAsync(CancellationToken cancellationToken)
+        public virtual async Task<IList<TDto>> GetAllAsync(CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
-            var result = await TableNoTracking.ProjectTo<TDto>().ToListAsync(cancellationToken);
+            var query = TableNoTracking;
+            ResultCount = query.Count();
+            if (paging?.IsPaging == true)
+            {
+                int skip = (paging.Index - 1) * paging.Size;
+                query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
+            }
+            var result = await query.ProjectTo<TDto>().ToListAsync(cancellationToken);
             ErrorMessage = "";
             ResponseStatus = ResponseStatus.Successful;
             return result;
         }
-        public virtual IList<TDto> Get(TFilterDto filterDto)
+        public virtual IList<TDto> Get(TFilterDto filterDto, PagingInfoDTO paging = null)
         {
             var query = TableNoTracking;
+            ResultCount = query.Count();
+            if (paging?.IsPaging == true)
+            {
+                int skip = (paging.Index - 1) * paging.Size;
+                query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
+            }
             var result = query.ProjectTo<TDto>().ToList();
             ErrorMessage = "";
             ResponseStatus = ResponseStatus.Successful;
@@ -233,16 +259,29 @@ namespace Alsahab.Setting.Data.Repositories
             //TODO:
             // اگر تابع ای‌سینک بالا کامل شد، در اینجا هم بیاید
         }
-        public virtual IList<TDto> GetAll()
+        public virtual IList<TDto> GetAll(PagingInfoDTO paging = null)
         {
-            var result = TableNoTracking.ProjectTo<TDto>().ToList();
+            var query = TableNoTracking;
+            ResultCount = query.Count();
+            if (paging?.IsPaging == true)
+            {
+                int skip = (paging.Index - 1) * paging.Size;
+                query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
+            }
+            var result = query.ProjectTo<TDto>().ToList();
             ErrorMessage = "";
             ResponseStatus = ResponseStatus.Successful;
             return result;
         }
-        public virtual async Task<IList<TDto>> GetAsync(TFilterDto filterDto, CancellationToken cancellationToken)
+        public virtual async Task<IList<TDto>> GetAsync(TFilterDto filterDto, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
             var query = TableNoTracking;
+            ResultCount = query.Count();
+            if (paging?.IsPaging == true)
+            {
+                int skip = (paging.Index - 1) * paging.Size;
+                query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
+            }
             var result = await query.ProjectTo<TDto>().ToListAsync(cancellationToken);
             ErrorMessage = "";
             ResponseStatus = ResponseStatus.Successful;
@@ -335,7 +374,7 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual TDto GetById(long id)
         {
-            return TableNoTracking.ProjectTo<TDto>().SingleOrDefault(q=>q.ID.Equals(id));
+            return TableNoTracking.ProjectTo<TDto>().SingleOrDefault(q => q.ID.Equals(id));
         }
         public virtual async Task<IList<TDto>> GetByIdListAsync(CancellationToken cancellationToken, IList<long> idList)
         {

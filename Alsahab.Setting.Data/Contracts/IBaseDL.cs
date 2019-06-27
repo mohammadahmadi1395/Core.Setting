@@ -16,9 +16,10 @@ namespace Alsahab.Setting.Data.Contracts
         where TEntity : class, IEntity
         where TDto : BaseDTO
         where TFilterDto : TDto
-    {        
+    {
         ResponseStatus ResponseStatus { get; set; }
         string ErrorMessage { get; set; }
+        int ResultCount { get; set; }
         DbSet<TEntity> Entities { get; }
         IQueryable<TEntity> Table { get; }
         IQueryable<TEntity> TableNoTracking { get; }
@@ -27,13 +28,13 @@ namespace Alsahab.Setting.Data.Contracts
         Task<TDto> InsertAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true);
         Task<TDto> UpdateAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true);
         Task<TDto> DeleteAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true);
-        Task<IList<TDto>> GetAsync(TFilterDto filterDto, CancellationToken cancellationToken);
-        Task<IList<TDto>> GetAllAsync(CancellationToken cancellationToken);
-        IList<TDto> GetAll();
+        Task<IList<TDto>> GetAsync(TFilterDto filterDto, CancellationToken cancellationToken, PagingInfoDTO paging = null);
+        Task<IList<TDto>> GetAllAsync(CancellationToken cancellationToken, PagingInfoDTO paging = null);
+        IList<TDto> GetAll(PagingInfoDTO paging = null);
         TDto Insert(TDto dto, bool saveNow = true);
         TDto Update(TDto dto, bool saveNow = true);
         TDto Delete(TDto dto, bool saveNow = true);
-        IList<TDto> Get(TFilterDto filterDto);
+        IList<TDto> Get(TFilterDto filterDto, PagingInfoDTO paging = null);
         Task<IList<TDto>> InsertListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true);
         Task<IList<TDto>> UpdateListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true);
         Task<IList<TDto>> DeleteListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true);
@@ -53,9 +54,9 @@ namespace Alsahab.Setting.Data.Contracts
         // Task LoadReferenceAsync<TProperty>(TEntity entity, Expression<Func<TEntity, TProperty>> referenceProperty, CancellationToken cancellationToken) where TProperty : class;
     }
 
-        public interface IBaseDL<TEntity, TDto> : IBaseDL<TEntity, TDto, TDto>
-        where TEntity : class, IEntity
-        where TDto : BaseDTO
+    public interface IBaseDL<TEntity, TDto> : IBaseDL<TEntity, TDto, TDto>
+    where TEntity : class, IEntity
+    where TDto : BaseDTO
     {
     }
 }

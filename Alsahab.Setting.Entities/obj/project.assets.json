@@ -2749,7 +2749,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
-      "Alsahab.Setting.Common/1.0.0": {
+      "Alsahab.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
@@ -2759,17 +2759,17 @@
           "Pluralize.NET": "0.1.84"
         },
         "compile": {
-          "bin/placeholder/Alsahab.Setting.Common.dll": {}
+          "bin/placeholder/Alsahab.Common.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Alsahab.Setting.Common.dll": {}
+          "bin/placeholder/Alsahab.Common.dll": {}
         }
       },
       "Alsahab.Setting.DTO/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
-          "Alsahab.Setting.Common": "1.0.0",
+          "Alsahab.Common": "1.0.0",
           "Microsoft.Extensions.Identity.Stores": "2.1.6"
         },
         "compile": {
@@ -8357,10 +8357,10 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
-    "Alsahab.Setting.Common/1.0.0": {
+    "Alsahab.Common/1.0.0": {
       "type": "project",
-      "path": "../Alsahab.Setting.Common/Alsahab.Setting.Common.csproj",
-      "msbuildProject": "../Alsahab.Setting.Common/Alsahab.Setting.Common.csproj"
+      "path": "../Alsahab.Common/Alsahab.Common.csproj",
+      "msbuildProject": "../Alsahab.Common/Alsahab.Common.csproj"
     },
     "Alsahab.Setting.DTO/1.0.0": {
       "type": "project",
@@ -8370,7 +8370,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "Alsahab.Setting.Common >= 1.0.0",
+      "Alsahab.Common >= 1.0.0",
       "Alsahab.Setting.DTO >= 1.0.0",
       "AutoMapper >= 8.0.0",
       "Microsoft.Extensions.Identity.Stores >= 2.1.6",
@@ -8405,8 +8405,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj": {
-              "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj"
+            "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/Alsahab.Common.csproj": {
+              "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/Alsahab.Common.csproj"
             },
             "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj": {
               "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DTO/Alsahab.Setting.DTO.csproj"

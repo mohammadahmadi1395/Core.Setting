@@ -9,12 +9,15 @@ namespace Alsahab.Setting.DTO
 {
     public class BranchDTO : BaseDTO//<BranchDTO, Branch, long>
     {
-        public long? ParentID { get; set; }
+        public BranchDTO()
+        {            
+        }
+        public long? ParentId { get; set; }
         public String Title { get; set; }
         public String Code { get; set; }
         public long? HeadPersonID { get; set; }
         public String HeadMemberName { get; set; }
-        public String HeadMemberPhoneNo { get; set; }
+        public String HeadMemberPhoneNo { get; set; }                
         public String BranchPhoneNo { get; set; }
         public String BranchEmail { get; set; }
         public long? BranchAddressID { get; set; }

@@ -10,16 +10,18 @@ using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities.Models;
 using Alyatim.Member.SC.Messages;
 using Alsahab.Common;
-using Gostar.Common;
-using Alsahab.Setting.Common.Exceptions;
+// using Gostar.Common;
+using Alsahab.Common.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using Alsahab.Common.Utilities;
+using System.Reflection;
 
 namespace Alsahab.Setting.BL
 {
     public class BranchBL : BaseBL<Branch, BranchDTO, BranchFilterDTO>
     {
         private List<BranchDTO> TreeNodes = new List<BranchDTO>();
-        private long? _index = 1, _depth = 2;
+        private long? _index = 0, _depth = 2;
         private readonly IBaseDL<Branch, BranchDTO, BranchFilterDTO> _BranchDL;
         public BranchBL(IBaseDL<Branch, BranchDTO, BranchFilterDTO> branchDL)
             : base(branchDL)
@@ -27,14 +29,14 @@ namespace Alsahab.Setting.BL
             _BranchDL = branchDL;
         }
 
-        private IList<BranchDTO> _Branch = new List<BranchDTO>();
+        private IList<BranchDTO> _AllBranch;// = new List<BranchDTO>();
         private IList<BranchDTO> AllBranch
         {
             get
             {
-                if (!(_Branch.Count > 0))
-                    _Branch = _BranchDL.GetAll();
-                return _Branch;
+                if (!(_AllBranch?.Count > 0))
+                    _AllBranch = _BranchDL.GetAll();
+                return _AllBranch;
             }
         }
 
@@ -44,8 +46,8 @@ namespace Alsahab.Setting.BL
             var response = await _BranchDL.GetAsync(filter, cancellationToken);
             ResponseStatus = _BranchDL.ResponseStatus;
             ErrorMessage = _BranchDL.ErrorMessage;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(Common.Api.ApiResultStatusCode.LogicError, ErrorMessage);
+            if (ResponseStatus != ResponseStatus.Successful)
+                throw new AppException(ResponseStatus.ServerError, ErrorMessage);
 
             if (!(response.Count > 0))
                 return response;
@@ -69,7 +71,7 @@ namespace Alsahab.Setting.BL
                             {
                                 ID = r.ID,
                                 Code = r.Code,
-                                ParentID = r.ParentID,
+                                ParentId = r.ParentId,
                                 Title = r.Title,
                                 IsCentral = r.IsCentral,
                                 HeadPersonID = x?.ID,
@@ -128,27 +130,33 @@ namespace Alsahab.Setting.BL
             }
             return respList ?? response;
         }
-
         public override async Task<BranchDTO> UpdateAsync(BranchDTO data, CancellationToken cancellationToken)
         {
-            Validate(data);
-            // if (!Validate(data))
-            // {
-            //     ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-            //     return null;
-            // }
-            if (!(data.ID > 0))
+            Assert.NotNull(data, nameof(data));
+            //داده‌های قبلی را می‌گیرد و تنها داده‌های جدید دارای مقدار را آپدیت می‌کند
+            var old_data = await _BranchDL.GetByIdAsync(cancellationToken, data.ID ?? 0);
+            Assert.NotNull(old_data, nameof(old_data));
+            foreach (var propery in data.GetType().GetProperties())
             {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                ErrorMessage = "Entered node is Mistake";
-                return null;
+                var value = propery.GetValue(data);
+                if (value != null)
+                    propery.SetValue(old_data, value, null);
             }
-            var response = await _BranchDL.UpdateAsync(data, cancellationToken);
+            data = old_data;
 
-            var resp = (await GetAsync(new BranchFilterDTO { ID = response?.ID ?? 0 }, cancellationToken))?.FirstOrDefault();
+            Validate(data);
+
+            var response = await _BranchDL.UpdateAsync(data, cancellationToken);
+            if (_BranchDL?.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+                throw new AppException(ResponseStatus.ServerError, _BranchDL.ErrorMessage);
+
+            UpdateTreeIndicesAndCodes();
+
+            response = await _BranchDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
+
             Observers.ObserverStates.BranchEdit state = new Observers.ObserverStates.BranchEdit
             {
-                Branch = resp ?? response,
+                Branch = response,
                 User = User,
             };
             Notify(state);
@@ -159,10 +167,8 @@ namespace Alsahab.Setting.BL
                 ErrorMessage += _BranchDL.ErrorMessage;
                 return null;
             }
-            return resp ?? response;
+            return response;
         }
-
-
         // public async Task<BranchDTO> BranchUpdateAsync(BranchDTO data, CancellationToken cancellationToken)
         // {
         //     if (!UpdateValidate(data))
@@ -191,27 +197,19 @@ namespace Alsahab.Setting.BL
         //         await UpdateTreeIndicesAndCodesAsync(cancellationToken);
         //     return oldBranch ?? response;
         // }
-
         public async override Task<BranchDTO> InsertAsync(BranchDTO data, CancellationToken cancellationToken)
         {
             Validate(data);
-            // if (!Validate(data))
-            // {
-            //     string error = "";
-            //     foreach (var verror in ValidationErrors)
-            //         error = error + "\n" + verror.ErrorMessage;
-
-            //     throw new BadRequestException(error);
-            // }
 
             data.CreateDate = DateTime.Now;
-            data.Code = GenerateCodeInInsert(data);
 
-            var response = await _BranchDL.InsertAsync(data, cancellationToken);//.BranchInsert(data);
+            var response = await _BranchDL.InsertAsync(data, cancellationToken);//.BranchInsert(data);            
             if (_BranchDL?.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(Common.Api.ApiResultStatusCode.ServerError, _BranchDL.ErrorMessage);
+                throw new AppException(ResponseStatus.ServerError, _BranchDL.ErrorMessage);
 
-            await UpdateTreeIndicesAndCodesAsync(cancellationToken);
+            UpdateTreeIndicesAndCodes();
+
+            response = await _BranchDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
 
             Observers.ObserverStates.BranchAdd state = new Observers.ObserverStates.BranchAdd
             {
@@ -222,19 +220,19 @@ namespace Alsahab.Setting.BL
 
             return response;
         }
-
-
         public override async Task<BranchDTO> SoftDeleteAsync(BranchDTO data, CancellationToken cancellationToken)
         {
             //Search For Use This Item Before Delete
             if (!DeletePermision(data))
             {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
+                ResponseStatus = Alsahab.Common.ResponseStatus.ServerError;
                 return null;
             }
             data = await _BranchDL.GetByIdAsync(cancellationToken, data.ID ?? 0);
             data.IsDeleted = true;
-            var response = _BranchDL.Update(data);
+            var response = await _BranchDL.UpdateAsync(data, cancellationToken);
+
+            UpdateTreeIndicesAndCodes();
 
             Observers.ObserverStates.BranchDelete state = new Observers.ObserverStates.BranchDelete
             {
@@ -246,6 +244,7 @@ namespace Alsahab.Setting.BL
             return response;
         }
         #endregion Async methods
+
 
         #region Validation
         private bool Validate(BranchDTO data)
@@ -282,9 +281,11 @@ namespace Alsahab.Setting.BL
         }
         #endregion Validation
 
-        private async Task<IList<BranchDTO>> UpdateTreeIndicesAndCodesAsync(CancellationToken cancellationToken)
+        private IList<BranchDTO> UpdateTreeIndicesAndCodes()
         {
-            foreach (var node in AllBranch)
+            _AllBranch = null;
+            var branches = AllBranch;
+            foreach (var node in branches)
             {
                 node.LeftIndex = null;
                 node.RightIndex = null;
@@ -293,7 +294,7 @@ namespace Alsahab.Setting.BL
                 TreeNodes.Add(node);
             }
 
-            List<BranchDTO> rootList = TreeNodes.Where(i => !(i.ParentID > 0))?.ToList();
+            List<BranchDTO> rootList = TreeNodes.Where(i => !(i.ParentId > 0))?.ToList();
             foreach (var root in rootList)
                 if (root?.ID > 0)
                 {
@@ -303,14 +304,44 @@ namespace Alsahab.Setting.BL
 
             GenerateNewCodeList(rootList);
 
-            var result = await _BranchDL.UpdateListAsync(TreeNodes, cancellationToken);
+            var result = _BranchDL.UpdateList(TreeNodes);
 
             ResponseStatus = _BranchDL.ResponseStatus;
             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(Common.Api.ApiResultStatusCode.LogicError, _BranchDL.ErrorMessage);
+                throw new AppException(ResponseStatus.ServerError, _BranchDL.ErrorMessage);
 
             return result;
         }
+        // private async Task<IList<BranchDTO>> UpdateTreeIndicesAndCodesAsync(CancellationToken cancellationToken)
+        // {
+        //     var branches  = AllBranch;
+        //     foreach (var node in branches)
+        //     {
+        //         node.LeftIndex = null;
+        //         node.RightIndex = null;
+        //         node.Depth = null;
+        //         node.Code = null;
+        //         TreeNodes.Add(node);
+        //     }
+
+        //     List<BranchDTO> rootList = TreeNodes.Where(i => !(i.ParentID > 0))?.ToList();
+        //     foreach (var root in rootList)
+        //         if (root?.ID > 0)
+        //         {
+        //             _depth = 2;
+        //             RecursiveUpdateAllBranchIndices(root);
+        //         }
+
+        //     GenerateNewCodeList(rootList);
+
+        //     var result = await _BranchDL.UpdateListAsync(TreeNodes, cancellationToken);
+
+        //     ResponseStatus = _BranchDL.ResponseStatus;
+        //     if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+        //         throw new AppException(ResponseStatus.ServerError, _BranchDL.ErrorMessage);
+
+        //     return result;
+        // }
 
         // مراحل:
         // ۱- ابتدا اندیس چپ را تنظیم می‌کند
@@ -341,18 +372,17 @@ namespace Alsahab.Setting.BL
             else
                 _depth--;
         }
-
         private String GenerateCodeInInsert(BranchDTO data)
         {
-            if (data?.ParentID == null)
-                return (AllBranch?.Where(s => s.ParentID == null)?.ToList()?.Count + 1).ToString();
+            if (!(data?.ParentId > 0))
+                return (AllBranch?.Where(s => s.ParentId == null)?.ToList()?.Count + 1).ToString();
             else
             {
-                var r = AllBranch?.Where(s => s.ParentID == data?.ParentID)?.ToList()?.Count;
-                return String.Format("{0}-{1}", AllBranch?.FirstOrDefault(s => s.ID == data?.ParentID)?.Code, (r + 1)?.ToString());
+                var r = AllBranch?.Where(s => s.ParentId == data?.ParentId)?.ToList()?.Count;
+                var parentCode = AllBranch?.FirstOrDefault(s => s.ID == data?.ParentId)?.Code;
+                return String.Format("{0}-{1}", parentCode, (r + 1)?.ToString());
             }
         }
-
         private List<BranchDTO> GenerateNewCodeList(List<BranchDTO> data)
         {
             List<BranchDTO> res = new List<BranchDTO>();
@@ -365,41 +395,37 @@ namespace Alsahab.Setting.BL
 
                 res.Add(data[thisBranch]);
 
-                var childs = AllBranch?.Where(s => s.ParentID == data[thisBranch]?.ID)?.ToList();
+                var childs = AllBranch?.Where(s => s.ParentId == data[thisBranch]?.ID)?.ToList();
 
                 for (int child = 0; child < childs?.Count; child++)
                 {
                     childs[child].Code = string.Format("{0}-{1}", data[thisBranch].Code, (child + 1));
                     res.Add(childs[child]);
-                    res.AddRange(GenerateNewCodeList(AllBranch?.Where(s => s.ParentID == childs[child]?.ID)?.ToList()));
+                    res.AddRange(GenerateNewCodeList(AllBranch?.Where(s => s.ParentId == childs[child]?.ID)?.ToList()));
                 }
             }
             return res;
         }
-
         private BranchDTO GetNotIndexedBrother(BranchDTO node)
         {
-            if (!(node.ParentID > 0))
+            if (!(node.ParentId > 0))
                 return null;
-            var parent = TreeNodes.FirstOrDefault(i => i.ID == node.ParentID);
+            var parent = TreeNodes.FirstOrDefault(i => i.ID == node.ParentId);
             var brother = GetNotIndexedChild(parent);
             return brother?.ID > 0 ? brother : null;
         }
-
         private BranchDTO GetNotIndexedChild(BranchDTO node)
         {
-            return TreeNodes.FirstOrDefault(i => i.ParentID == node.ID && !(i.LeftIndex > 0));
+            return TreeNodes.FirstOrDefault(i => i.ParentId == node.ID && !(i.LeftIndex > 0));
         }
-
-
         private BranchDTO GetParent(BranchDTO data)
         {
-            return AllBranch?.FirstOrDefault(s => s.ID == data?.ParentID);
+            return AllBranch?.FirstOrDefault(s => s.ID == data?.ParentId);
         }
 
 
 
-                // private bool UpdateValidate(BranchDTO data)
+        // private bool UpdateValidate(BranchDTO data)
         // {
         //     if (data?.IsCentral == true)
         //     {

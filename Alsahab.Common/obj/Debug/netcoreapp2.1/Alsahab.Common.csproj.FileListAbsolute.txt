@@ -1,0 +1,11 @@
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/bin/Debug/netcoreapp2.1/Alsahab.Common.deps.json
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/bin/Debug/netcoreapp2.1/Alsahab.Common.dll
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/bin/Debug/netcoreapp2.1/Alsahab.Common.pdb
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/bin/Debug/netcoreapp2.1/Gostar.Common.dll
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/obj/Debug/netcoreapp2.1/Alsahab.Common.csprojAssemblyReference.cache
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/obj/Debug/netcoreapp2.1/Alsahab.Common.csproj.CoreCompileInputs.cache
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/obj/Debug/netcoreapp2.1/Alsahab.Common.AssemblyInfoInputs.cache
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/obj/Debug/netcoreapp2.1/Alsahab.Common.AssemblyInfo.cs
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/obj/Debug/netcoreapp2.1/Alsahab.Common.csproj.CopyComplete
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/obj/Debug/netcoreapp2.1/Alsahab.Common.dll
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/obj/Debug/netcoreapp2.1/Alsahab.Common.pdb

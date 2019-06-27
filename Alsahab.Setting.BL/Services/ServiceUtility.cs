@@ -8,6 +8,7 @@ using Alyatim.Member.SC;
 using Alyatim.Member.DTO;
 using UserManagement.SC;
 using UserManagement.DTO;
+using Alsahab.Common.Exceptions;
 
 namespace Alsahab.Setting.BL
 {
@@ -46,9 +47,10 @@ namespace Alsahab.Setting.BL
                 client.Close();
                 return result;
             }
-            catch (Exception ex)
+            catch //(Exception ex)
             {
                 client.Abort();
+                throw new AppException(Common.ResponseStatus.ServerError, "Error in connect to user management service.");
                 //FormAction.ShowMessage("خطا در ارتباط با سرور", MessageBoxButtons.OK, MessageType.Error);
                 return default(T);
             }
@@ -61,7 +63,7 @@ namespace Alsahab.Setting.BL
             // var serviceClient = channelFactory.CreateChannel();
             // var result = serviceClient.Ping("Ping");
             // channelFactory.Close();
-            var client = new ChannelFactory<IMemberService>(binding,endpoint);
+            var client = new ChannelFactory<IMemberService>(binding, endpoint);
             if (client == null)
                 return default(T);
             try
@@ -74,8 +76,9 @@ namespace Alsahab.Setting.BL
             catch (Exception ex)
             {
                 client.Abort();
+                throw new AppException(Common.ResponseStatus.ServerError, "Error in connect to member service.");
                 //FormAction.ShowMessage("خطا در ارتباط با سرور", MessageBoxButtons.OK, MessageType.Error);
-                return default(T);
+                // return default(T);
             }
         }
     }

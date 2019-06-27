@@ -30,6 +30,14 @@ namespace Alsahab.Setting.Entities.Models
         public Branch InverseIdNavigation { get; set; }
         //TODO
         // public ICollection<BranchRegionWork> BranchRegionWork { get; set; }
+
+        // public override void CustomMappings(AutoMapper.IMappingExpression<BranchDTO, Branch> mapping)
+        // {
+        //     // mapping.ForMember(
+        //     //     dest => dest.ParentId,
+        //     //     config => config.MapFrom(src => $"{src.ParentID} ({src.Category.Name})")
+        //     // );
+        // }
     }
 
 

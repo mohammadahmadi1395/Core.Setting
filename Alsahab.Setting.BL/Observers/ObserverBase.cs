@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Alsahab.Setting.Common.Exceptions;
+using Alsahab.Common;
+using Alsahab.Common.Exceptions;
 using Newtonsoft.Json;
 
 namespace Alsahab.Setting.BL.Observers
@@ -21,9 +22,9 @@ namespace Alsahab.Setting.BL.Observers
                 {
                     observerResult = DoNotify(stateInfo);
                 }
-                catch (Exception ex)
+                catch// (Exception ex)
                 {
-                    throw new AppException(Common.Api.ApiResultStatusCode.LogicError, "Error in log registration.");
+                    throw new AppException(ResponseStatus.ServerError, "Error in log registration.");
                     // Logger.SaveLog($"Error in observer {this.GetType().FullName}, state={JsonConvert.SerializeObject(stateInfo)}", LogType.Error, ex);
                 }
             }

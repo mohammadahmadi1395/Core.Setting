@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Alsahab.Setting.WebFramework.Middlewares;
 using Alsahab.Setting.WebFramework.Configuration;
-using Alsahab.Setting.Common;
+using Alsahab.Common;
 using Alsahab.Setting.WebFramework.CustomMapping;
 using Alsahab.Setting.WebFramework.Swagger;
 using Alsahab.Setting.BL;

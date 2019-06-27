@@ -1,14 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Alsahab.Setting.Common;
-using Alsahab.Setting.Common.Utilities;
-using Alsahab.Setting.Data.Contracts;
+using Alsahab.Common;
 using Alsahab.Setting.DTO;
-using Alsahab.Setting.Entities;
 using Alsahab.Setting.Entities.Models;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +18,7 @@ namespace Alsahab.Setting.Data.Repositories
         {
         }
 
-        public override async Task<IList<BranchDTO>> GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken)
+        public override async Task<IList<BranchDTO>> GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
             var query = TableNoTracking;
             if (filter == null)
@@ -34,8 +30,8 @@ namespace Alsahab.Setting.Data.Repositories
 
             if (filter?.ID > 0)
                 query = query.Where(s => s.ID == filter.ID);
-            if (filter?.ParentID > 0)
-                query = query.Where(s => s.ParentId == filter.ParentID);
+            if (filter?.ParentId > 0)
+                query = query.Where(s => s.ParentId == filter.ParentId);
             if (filter?.CreateDateFrom > DateTime.MinValue)
                 query = query.Where(s => s.CreateDate >= filter.CreateDateFrom);
             if (filter?.CreateDateTo > DateTime.MinValue)
@@ -70,12 +66,19 @@ namespace Alsahab.Setting.Data.Repositories
             else
                 query = query.Where(s => s.IsDeleted == false);
 
+            ResultCount = query.Count();
+            if (paging?.IsPaging == true)
+            {
+                int skip = (paging.Index - 1) * paging.Size;
+                query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
+            }
+
             ResponseStatus = Alsahab.Common.ResponseStatus.Successful;
             ErrorMessage = "";
             return await query.ProjectTo<BranchDTO>().ToListAsync(cancellationToken);
         }
 
-        public override IList<BranchDTO> Get(BranchFilterDTO filter)
+        public override IList<BranchDTO> Get(BranchFilterDTO filter, PagingInfoDTO paging = null)
         {
             var query = TableNoTracking;
             if (filter == null)
@@ -87,8 +90,8 @@ namespace Alsahab.Setting.Data.Repositories
 
             if (filter?.ID > 0)
                 query = query.Where(s => s.ID == filter.ID);
-            if (filter?.ParentID > 0)
-                query = query.Where(s => s.ParentId == filter.ParentID);
+            if (filter?.ParentId > 0)
+                query = query.Where(s => s.ParentId == filter.ParentId);
             if (filter?.CreateDateFrom > DateTime.MinValue)
                 query = query.Where(s => s.CreateDate >= filter.CreateDateFrom);
             if (filter?.CreateDateTo > DateTime.MinValue)
@@ -122,6 +125,13 @@ namespace Alsahab.Setting.Data.Repositories
                 query = query.Where(s => s.IsDeleted == filter.IsDeleted);
             else
                 query = query.Where(s => s.IsDeleted == false);
+
+            ResultCount = query.Count();
+            if (paging?.IsPaging == true)
+            {
+                int skip = (paging.Index - 1) * paging.Size;
+                query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
+            }
 
             ResponseStatus = Alsahab.Common.ResponseStatus.Successful;
             ErrorMessage = "";

@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Alsahab.Setting.DTO
 {
-    public class BaseDTO
+    public abstract class BaseDTO
     {
         public long? ID { get; set; }
         public bool? IsDeleted { get; set; }

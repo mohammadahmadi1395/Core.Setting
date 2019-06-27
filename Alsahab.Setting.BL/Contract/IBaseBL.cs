@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Globalization;
 using Alsahab.Common;
-using FluentValidation;
-using Alsahab.Setting.Common.Validation;
-using Alsahab.Setting.Common;
 using System.Threading;
 using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities;

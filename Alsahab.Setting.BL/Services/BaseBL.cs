@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 using System.Globalization;
 using Alsahab.Common;
 using FluentValidation;
-using Alsahab.Setting.Common.Validation;
+using Alsahab.Common.Validation;
 using System.Threading;
 using Alsahab.Setting.Entities;
-using Alsahab.Setting.Common.Utilities;
-using Alsahab.Setting.Common.Exceptions;
-using Alsahab.Setting.Common.Api;
+using Alsahab.Common.Utilities;
+using Alsahab.Common.Exceptions;
+using Alsahab.Common.Api;
 using Alsahab.Setting.DTO;
 using Alsahab.Setting.Data.Contracts;
 using FluentValidation.Results;
@@ -44,7 +44,7 @@ namespace Alsahab.Setting.BL
         {
             _BaseDL = baseDL;
             // _BaseValidator = baseValidator;
-            ResponseStatus = ResponseStatus.BusinessError;
+            ResponseStatus = ResponseStatus.ServerError;
             ValidatorOptions.LanguageManager = new ErrorLanguageManager();
             // ValidatorOptions.LanguageManager = new FluentValidation.Resources.LanguageManager();
             ValidatorOptions.LanguageManager.Culture = Culture;
@@ -79,7 +79,7 @@ namespace Alsahab.Setting.BL
                 error += "\n" + verror.ErrorMessage;
 
             if (!result.IsValid)
-                throw new AppException(ApiResultStatusCode.LogicError, error);
+                throw new AppException(ResponseStatus.ServerError, error);
             return true;
         }
 
@@ -98,6 +98,22 @@ namespace Alsahab.Setting.BL
 
         public virtual async Task<Dto> UpdateAsync(Dto data, CancellationToken cancellationToken)
         {
+            Assert.NotNull(data, nameof(data));
+
+            // فیلدهای خالی را با مقادیر قبلی پر می‌کند
+            var old_data = await _BaseDL.GetByIdAsync(cancellationToken, data.ID ?? 0);
+            if (old_data == null)
+                throw new AppException(ResponseStatus.NotFound, "not found entity.");
+
+            foreach (var propery in data.GetType().GetProperties())
+            {
+                var value = propery.GetValue(data);
+                if (value != null)
+                    propery.SetValue(old_data, value, null);
+            }
+
+            data = old_data;
+
             return await _BaseDL.UpdateAsync(data, cancellationToken);
         }
 
@@ -132,7 +148,7 @@ namespace Alsahab.Setting.BL
 
             ResponseStatus = _BaseDL.ResponseStatus;
             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+                throw new AppException(ResponseStatus.ServerError, _BaseDL.ErrorMessage);
             // {
             //     ErrorMessage += _BaseDL.ErrorMessage;
             //     return null;
@@ -151,7 +167,7 @@ namespace Alsahab.Setting.BL
             var response = _BaseDL.Insert(data);
             ResponseStatus = _BaseDL.ResponseStatus;
             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+                throw new AppException(ResponseStatus.ServerError, _BaseDL.ErrorMessage);
 
             return response;
         }
@@ -173,7 +189,7 @@ namespace Alsahab.Setting.BL
             var response = _BaseDL.Update(data);
             ResponseStatus = _BaseDL.ResponseStatus;
             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+                throw new AppException(ResponseStatus.ServerError, _BaseDL.ErrorMessage);
             return response;
         }
 
@@ -185,7 +201,7 @@ namespace Alsahab.Setting.BL
             var response = await _BaseDL.UpdateAsync(data, cancellationToken);
             ResponseStatus = _BaseDL.ResponseStatus;
             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+                throw new AppException(ResponseStatus.ServerError, _BaseDL.ErrorMessage);
             return response;
         }
 
@@ -197,7 +213,7 @@ namespace Alsahab.Setting.BL
 
             ResponseStatus = _BaseDL.ResponseStatus;
             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+                throw new AppException(ResponseStatus.ServerError, _BaseDL.ErrorMessage);
             return response;
         }
 
@@ -218,7 +234,7 @@ namespace Alsahab.Setting.BL
             var response = _BaseDL.Delete(data);
             ResponseStatus = _BaseDL.ResponseStatus;
             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+                throw new AppException(ResponseStatus.ServerError, _BaseDL.ErrorMessage);
             return response;
 
         }
@@ -233,7 +249,7 @@ namespace Alsahab.Setting.BL
             var response = _BaseDL.DeleteList(list);
             ResponseStatus = _BaseDL.ResponseStatus;
             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+                throw new AppException(ResponseStatus.ServerError, _BaseDL.ErrorMessage);
             return response;
 
         }
@@ -243,7 +259,7 @@ namespace Alsahab.Setting.BL
             var response = _BaseDL.Get(filter);
             ResponseStatus = _BaseDL.ResponseStatus;
             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ApiResultStatusCode.ServerError, _BaseDL.ErrorMessage);
+                throw new AppException(ResponseStatus.ServerError, _BaseDL.ErrorMessage);
             return response;
 
         }

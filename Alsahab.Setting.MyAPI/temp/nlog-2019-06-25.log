@@ -309,7 +309,7 @@
    at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 46 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Branch/Create | action: Create
-2019-06-25 13:18:02.4955 | ERROR | Exception of type 'Alsahab.Setting.Common.Exceptions.BadRequestException' was thrown. | Alsahab.Setting.Common.Exceptions.BadRequestException: Exception of type 'Alsahab.Setting.Common.Exceptions.BadRequestException' was thrown.
+2019-06-25 13:18:02.4955 | ERROR | Exception of type 'Alsahab.Common.Exceptions.BadRequestException' was thrown. | Alsahab.Common.Exceptions.BadRequestException: Exception of type 'Alsahab.Common.Exceptions.BadRequestException' was thrown.
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 188
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 97
    at lambda_method(Closure , Object )
@@ -331,7 +331,7 @@
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 46 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Branch/Create | action: Create
 2019-06-25 13:29:21.8286 | ERROR | 
-'Is Deleted' must not be equal to 'True'. | Alsahab.Setting.Common.Exceptions.BadRequestException: 
+'Is Deleted' must not be equal to 'True'. | Alsahab.Common.Exceptions.BadRequestException: 
 'Is Deleted' must not be equal to 'True'.
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 192
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 97

@@ -4,14 +4,14 @@
     "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Entities/Alsahab.Setting.Entities.csproj": {}
   },
   "projects": {
-    "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj": {
+    "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/Alsahab.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj",
-        "projectName": "Alsahab.Setting.Common",
-        "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj",
+        "projectUniqueName": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/Alsahab.Common.csproj",
+        "projectName": "Alsahab.Common",
+        "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/Alsahab.Common.csproj",
         "packagesPath": "/home/mohammad/.nuget/packages/",
-        "outputPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/obj/",
+        "outputPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/share/dotnet/sdk/NuGetFallbackFolder"
@@ -90,8 +90,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj": {
-                "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Common/Alsahab.Setting.Common.csproj"
+              "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/Alsahab.Common.csproj": {
+                "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/Alsahab.Common.csproj"
               }
             }
           }
