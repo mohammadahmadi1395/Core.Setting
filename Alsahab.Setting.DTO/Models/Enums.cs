@@ -518,13 +518,13 @@ namespace Alsahab.Setting.DTO
 
             [EnumMember]
             [Description("افزودن نوع سازمان")]
-            TypeoforganizationAdd = 61,
+            OrganizationTypeAdd = 61,
             [EnumMember]
             [Description("ویرایش نوع سازمان")]
-            TypeoforganizationEdit = 62,
+            OrganizationTypeEdit = 62,
             [EnumMember]
             [Description("حذف نوع سازمان")]
-            TypeoforganizationDelete = 63,
+            OrganizationTypeDelete = 63,
 
             [EnumMember]
             [Description("ZoneAdd")]

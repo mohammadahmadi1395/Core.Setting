@@ -7,7 +7,7 @@
 
 // namespace Alsahab.Setting.DTO
 // {
-//     public class LogFilterDTO : BaseFilterDTO
+//     public class LogFilterDTO : LogDTO
 //     {
 //         public DateTime? FromDate { set; get; }
 //         public DateTime? ToDate { set; get; }

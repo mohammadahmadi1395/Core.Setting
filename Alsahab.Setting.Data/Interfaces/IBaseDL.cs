@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Alsahab.Common;
 
-namespace Alsahab.Setting.Data.Contracts
+namespace Alsahab.Setting.Data.Interfaces
 {
     public interface IBaseDL<TEntity, TDto, TFilterDto>
         where TEntity : class, IEntity
@@ -38,8 +38,8 @@ namespace Alsahab.Setting.Data.Contracts
         Task<IList<TDto>> InsertListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true);
         Task<IList<TDto>> UpdateListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true);
         Task<IList<TDto>> DeleteListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true);
-        Task<TDto> GetByIdAsync(CancellationToken cancellationToken, long id);
-        TDto GetById(long id);
+        Task<TDto> GetByIdAsync(CancellationToken cancellationToken, long? id);
+        TDto GetById(long? id);
         Task<IList<TDto>> GetByIdListAsync(CancellationToken cancellationToken, IList<long> idList);
         IList<TDto> GetByIdList(IList<long> idList);
 

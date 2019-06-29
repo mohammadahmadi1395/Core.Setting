@@ -13,8 +13,7 @@ namespace Alsahab.Setting.Data.Repositories
 {
     public class BranchDL : BaseDL<Branch, BranchDTO, BranchFilterDTO>, IScopedDependency// , IBaseDL<Branch, BranchDTO>,
     {
-        public BranchDL(ApplicationDbContext dbContext)
-            : base(dbContext)
+        public BranchDL(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
 
@@ -31,7 +30,7 @@ namespace Alsahab.Setting.Data.Repositories
             if (filter?.ID > 0)
                 query = query.Where(s => s.ID == filter.ID);
             if (filter?.ParentId > 0)
-                query = query.Where(s => s.ParentId == filter.ParentId);
+                query = query.Where(s => s.ParentID == filter.ParentId);
             if (filter?.CreateDateFrom > DateTime.MinValue)
                 query = query.Where(s => s.CreateDate >= filter.CreateDateFrom);
             if (filter?.CreateDateTo > DateTime.MinValue)
@@ -50,13 +49,13 @@ namespace Alsahab.Setting.Data.Repositories
             if (!string.IsNullOrWhiteSpace(filter.Title))
                 query = query.Where(s => s.Title.Contains(filter.Title));
             if (filter.HeadPersonID > 0)
-                query = query.Where(s => s.HeadPersonId == filter.HeadPersonID);
+                query = query.Where(s => s.HeadPersonID == filter.HeadPersonID);
             if (!string.IsNullOrWhiteSpace(filter.BranchPhoneNo))
                 query = query.Where(s => s.BranchPhoneNo.Contains(filter.BranchPhoneNo));
             if (!string.IsNullOrWhiteSpace(filter.BranchEmail))
                 query = query.Where(s => s.BranchEmail.Contains(filter.BranchEmail));
             if (!string.IsNullOrWhiteSpace(filter.BranchAddressID.ToString()))
-                query = query.Where(s => s.BranchAddressId == filter.BranchAddressID);
+                query = query.Where(s => s.BranchAddressID == filter.BranchAddressID);
             if (!string.IsNullOrWhiteSpace(filter.CreateDate.ToString()))
                 query = query.Where(s => s.CreateDate.ToString().Contains(filter.CreateDate.ToString()));
             if (filter.IsCentral == true)
@@ -91,7 +90,7 @@ namespace Alsahab.Setting.Data.Repositories
             if (filter?.ID > 0)
                 query = query.Where(s => s.ID == filter.ID);
             if (filter?.ParentId > 0)
-                query = query.Where(s => s.ParentId == filter.ParentId);
+                query = query.Where(s => s.ParentID == filter.ParentId);
             if (filter?.CreateDateFrom > DateTime.MinValue)
                 query = query.Where(s => s.CreateDate >= filter.CreateDateFrom);
             if (filter?.CreateDateTo > DateTime.MinValue)
@@ -110,13 +109,13 @@ namespace Alsahab.Setting.Data.Repositories
             if (!string.IsNullOrWhiteSpace(filter.Title))
                 query = query.Where(s => s.Title.Contains(filter.Title));
             if (filter.HeadPersonID > 0)
-                query = query.Where(s => s.HeadPersonId == filter.HeadPersonID);
+                query = query.Where(s => s.HeadPersonID == filter.HeadPersonID);
             if (!string.IsNullOrWhiteSpace(filter.BranchPhoneNo))
                 query = query.Where(s => s.BranchPhoneNo.Contains(filter.BranchPhoneNo));
             if (!string.IsNullOrWhiteSpace(filter.BranchEmail))
                 query = query.Where(s => s.BranchEmail.Contains(filter.BranchEmail));
             if (!string.IsNullOrWhiteSpace(filter.BranchAddressID.ToString()))
-                query = query.Where(s => s.BranchAddressId == filter.BranchAddressID);
+                query = query.Where(s => s.BranchAddressID == filter.BranchAddressID);
             if (!string.IsNullOrWhiteSpace(filter.CreateDate.ToString()))
                 query = query.Where(s => s.CreateDate.ToString().Contains(filter.CreateDate.ToString()));
             if (filter.IsCentral == true)

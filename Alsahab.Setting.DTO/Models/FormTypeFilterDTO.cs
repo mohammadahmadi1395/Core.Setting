@@ -1,13 +1,13 @@
-﻿// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Text;
-// using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-// namespace Alsahab.Setting.DTO
-// {
-//     public class FormTypeFilterDTO : BaseFilterDTO 
-//     {
-//         public List<Enums.RequestType> RequestTypelist { get; set; }
-//     }
-// }
+namespace Alsahab.Setting.DTO
+{
+    public class FormTypeFilterDTO : FormTypeDTO 
+    {
+        public List<Enums.RequestType> RequestTypelist { get; set; }
+    }
+}

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Alsahab.Common;
 using Alsahab.Common.Exceptions;
 using Alsahab.Common.Utilities;
-using Alsahab.Setting.Data.Contracts;
+using Alsahab.Setting.Data.Interfaces;
 using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities;
 using AutoMapper;
@@ -369,11 +369,17 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual async Task<TDto> GetByIdAsync(CancellationToken cancellationToken, long id)
         {
+            if (!(id > 0))
+                throw new AppException(ResponseStatus.BadRequest, "id must specified.");
+
             return await TableNoTracking.ProjectTo<TDto>()
                 .SingleOrDefaultAsync(q => q.ID.Equals(id), cancellationToken);
         }
         public virtual TDto GetById(long id)
         {
+            if (!(id > 0))
+                throw new AppException(ResponseStatus.BadRequest, "id must specified.");
+
             return TableNoTracking.ProjectTo<TDto>().SingleOrDefault(q => q.ID.Equals(id));
         }
         public virtual async Task<IList<TDto>> GetByIdListAsync(CancellationToken cancellationToken, IList<long> idList)

@@ -6,7 +6,7 @@ using Alsahab.Setting.Data;
 using Alsahab.Setting.Entities;
 using Alsahab.Setting.Services.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Alsahab.Setting.Data.Contracts;
+using Alsahab.Setting.Data.Interfaces;
 using Alsahab.Setting.Data.Repositories;
 using Alsahab.Setting.BL;
 using Alsahab.Setting.BL.Services;

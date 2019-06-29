@@ -1,16 +1,24 @@
-﻿// using System;
+﻿//TODO:
+// using System;
 // using System.Collections.Generic;
 // using System.Linq;
 // using System.Text;
 // using System.Threading.Tasks;
-// using Gostar.Setting.DTO;
-// using Gostar.Setting.DA;
+// using Alsahab.Setting.DTO;
+// using Alsahab.Setting.BL;
+// using Alsahab.Setting.Entities.Models;
+// using Alsahab.Setting.Data.Interfaces;
 
-// namespace Gostar.Setting.BL
+// namespace Alsahab.Setting.BL
 // {
-//     public class GeneratedFormBL : BaseBL
+//     public class GeneratedFormBL: BaseBL<GeneratedForm, GeneratedFormDTO, GeneratedFormFilterDTO>
 //     {
-//         GeneratedFormDA GeneratedFormDA = new GeneratedFormDA();
+//         private IBaseDL<GeneratedForm, GeneratedFormDTO, GeneratedFormFilterDTO> _GeneratedFormDL;
+//         public GeneratedFormBL(IBaseDL<GeneratedForm, GeneratedFormDTO, GeneratedFormFilterDTO> generateFormDL) : base(generateFormDL)
+//         {
+//             _GeneratedFormDL = generateFormDL;
+//         }
+        
 //         private bool Validate(long FormTypeID)
 //         {
 //             if(!(FormTypeID > 0))
@@ -38,7 +46,7 @@
 //             var Response = GeneratedFormDA.GeneratedFormGet(data);
 
 //             ResponseStatus = GeneratedFormDA.ResponseStatus;
-//             if (ResponseStatus != Gostar.Common.ResponseStatus.Successful)
+//             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
 //             {
 //                 ErrorMessage += GeneratedFormDA.ErrorMessage;
 //                 return null;
@@ -50,13 +58,13 @@
 //         {
 //             if (!Validate(FormTypeID))
 //             {
-//                 ResponseStatus = Gostar.Common.ResponseStatus.BusinessError;
+//                 ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
 //                 return null;
 //             }
 //             var Response = GeneratedFormDA.GenerateForm(new FormTypeDTO {ID=FormTypeID });
 
 //             ResponseStatus = GeneratedFormDA.ResponseStatus;
-//             if (ResponseStatus != Gostar.Common.ResponseStatus.Successful)
+//             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
 //             {
 //                 ErrorMessage += GeneratedFormDA.ErrorMessage;
 //                 return null;

@@ -1,197 +1,137 @@
-﻿// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Text;
-// using System.Threading.Tasks;
-// using Gostar.Setting.DTO;
-// using Gostar.Setting.DA;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Alsahab.Setting.DTO;
+using Alsahab.Setting.Data;
+using Alsahab.Setting.Entities.Models;
+using Alsahab.Setting.BL.Validation;
+using Alsahab.Setting.Data.Interfaces;
+using System.Threading;
+using Alsahab.Common.Exceptions;
+using Alsahab.Common;
 
-// namespace Gostar.Setting.BL
-// {
-//     public class FormTypeBL : BaseBL
-//     {
-//         FormTypeDA FormTypeDL = new FormTypeDA();
-//         private bool Validate(FormTypeDTO data)
-//         {
+namespace Alsahab.Setting.BL
+{
+    public class FormTypeBL : BaseBL<FormType, FormTypeDTO, FormTypeFilterDTO>
+    {
+        private readonly IBaseDL<FormType, FormTypeDTO, FormTypeFilterDTO> _FormTypeDL;
+        public FormTypeBL(IBaseDL<FormType, FormTypeDTO, FormTypeFilterDTO> formTypeDL) : base(formTypeDL)
+        {
+            _FormTypeDL = formTypeDL;
+        }
 
+        private bool Validate(FormTypeDTO data)
+        {
+            return Validate<BLFormTypeValidator, FormTypeDTO>(data ?? new FormTypeDTO());
+        }
+        
+        private bool CheckDeletePermision(FormTypeDTO data)
+        {
+            if (!(data?.ID > 0))
+                throw new AppException(ResponseStatus.BadRequest, "Id is empty");
 
-//             return Validate<Validation.FormTypeValidator,FormTypeDTO>(data ?? new FormTypeDTO());
-//             //    if (String.IsNullOrWhiteSpace(data?.Title))
-//             //    {
-//             //        ErrorMessage = "FormType Title is Empty \n";
-//             //        return false;
-//             //    }
-//             //    if (!(data?.SubSystemID > 0))
-//             //    {
-//             //        ErrorMessage = "FormType Sub System is Incorrect \n";
-//             //        return false;
-//             //    }
+            if (_FormTypeDL.GetById(data.ID).Enum != null)
+                throw new AppException(ResponseStatus.LoginError, "This Type Is Non Deleteable");
 
+            return true;
+        }
 
+        public override async Task<IList<FormTypeDTO>> GetAsync(FormTypeFilterDTO filter, CancellationToken cancellationToken)
+        {
+            var response = await _FormTypeDL.GetAsync(filter, cancellationToken);
+            if (_FormTypeDL.ResponseStatus != ResponseStatus.Successful)
+                throw new AppException(ResponseStatus.DatabaseError, _FormTypeDL.ErrorMessage);
+            return response;
+        }
 
-//             //    var res = FormTypeGet(new FormTypeDTO { PublicCode = data?.PublicCode, SubSystemID = data?.SubSystemID }, null).Count;
-//             //    if (res > 0)
-//             //    {
-//             //        ErrorMessage = "This FormType Is Exist \n";
-//             //        return false;
-//             //    }
+        public async override Task<FormTypeDTO> InsertAsync(FormTypeDTO data, CancellationToken cancellationToken)
+        {
+            Validate(data);
 
-//             //    return true;
+            data.CreateDate = DateTime.Now;
 
-//         }
-//         private bool DeletePermision(FormTypeDTO data)
-//         {
-//             if (!(data?.ID > 0))
-//             {
-//                 ErrorMessage += "Mistake Date\n";
-//                 return false;
-//             }
-//             var formtype = FormTypeGet(data)?.FirstOrDefault();
-//             if (formtype?.Enum != null)
-//             {
-//                 ErrorMessage += "This Type Is Non Deleteable\n";
-//                 return false;
-//             }
+            var response = await _FormTypeDL.InsertAsync(data, cancellationToken);
 
-//             return true;
-//         } 
-//         public List<FormTypeDTO> FormTypeGet(FormTypeDTO data, FormTypeFilterDTO filter = null)
-//         {
-//             var Response = FormTypeDL.FormTypeGet(data, filter);
+            if (_FormTypeDL?.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+                throw new AppException(ResponseStatus.DatabaseError, _FormTypeDL.ErrorMessage);
 
-//             ResponseStatus = FormTypeDL.ResponseStatus;
-//             if (ResponseStatus != Gostar.Common.ResponseStatus.Successful)
-//             {
-//                 ErrorMessage += FormTypeDL.ErrorMessage;
-//                 return null;
-//             }
-//             return Response;
-//         }
-//         public FormTypeDTO FormTypeInsert(FormTypeDTO data)
-//         {
-//             if (!Validate(data))
-//             {
-//                 ResponseStatus = Gostar.Common.ResponseStatus.BusinessError;
-//                 return null;
-//             }
-//             data.CreateDate = DateTime.Now;
-//             var Response = FormTypeDL.FormTypeInsert(data);
+            response = await _FormTypeDL.GetByIdAsync(cancellationToken, response?.ID);
 
-//             if (Response?.ID > 0)
-//             {
-//                 var resp = FormTypeGet(new FormTypeDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
-//                 Observers.ObserverStates.FormTypeAdd state = new Observers.ObserverStates.FormTypeAdd
-//                 {
-//                     FormType = resp ?? Response,
-//                     User = User,
-//                 };
-//                 Notify(state);
-//                 if (resp != null)
-//                     Response = resp;
-//             }
+            Observers.ObserverStates.FormTypeAdd state = new Observers.ObserverStates.FormTypeAdd
+            {
+                FormType = response,
+                User = User,
+            };
+            Notify(state);
 
-//             ResponseStatus = FormTypeDL.ResponseStatus;
-//             if (ResponseStatus != Gostar.Common.ResponseStatus.Successful)
-//             {
-//                 ErrorMessage += FormTypeDL.ErrorMessage;
-//                 return null;
-//             }
-//             return Response;
-//         }
-//         public List<FormTypeDTO> FormTypeInsert(List<FormTypeDTO> data)
-//         {
-//             foreach (var d in data)
-//             {
-//                 if (!Validate(d))
-//                 {
-//                     ResponseStatus = Gostar.Common.ResponseStatus.BusinessError;
-//                     return null;
-//                 }
-//                 d.CreateDate = DateTime.Now;
-//             }
-//             var Response = FormTypeDL.FormTypeInsert(data);
+            return response;
+        }
+        public async override Task<IList<FormTypeDTO>> InsertListAsync(IList<FormTypeDTO> data, CancellationToken cancellationToken)
+        {
+            foreach (var d in data)
+            {
+                Validate(d);
+                d.CreateDate = DateTime.Now;
+            }
 
-//             List<FormTypeDTO> respList = new List<FormTypeDTO>();
-//             foreach (var val in Response)
-//             {
-//                 var resp = FormTypeGet(new FormTypeDTO { ID = val?.ID ?? 0 })?.FirstOrDefault();
-//                 Observers.ObserverStates.FormTypeAdd state = new Observers.ObserverStates.FormTypeAdd
-//                 {
-//                     FormType = resp ?? val,
-//                     User = User,
-//                 };
-//                 Notify(state);
-//                 respList.Add(resp);
-//             }
+            var response = await _FormTypeDL.InsertListAsync(data, cancellationToken);
+            if (_FormTypeDL.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+                throw new AppException(ResponseStatus.DatabaseError, _FormTypeDL.ErrorMessage);
 
-//             ResponseStatus = FormTypeDL.ResponseStatus;
-//             if (ResponseStatus != Gostar.Common.ResponseStatus.Successful)
-//             {
-//                 ErrorMessage += FormTypeDL.ErrorMessage;
-//                 return null;
-//             }
-//             return respList ?? Response;
+            List<FormTypeDTO> respList = new List<FormTypeDTO>();
+            foreach (var val in response)
+            {
+                var resp = await _FormTypeDL.GetByIdAsync(cancellationToken, val.ID);
+                Observers.ObserverStates.FormTypeAdd state = new Observers.ObserverStates.FormTypeAdd
+                {
+                    FormType = resp ?? val,
+                    User = User,
+                };
+                Notify(state);
+                respList.Add(resp);
+            }
 
-//         }
-//         public FormTypeDTO FormTypeUpdate(FormTypeDTO data)
-//         {
-//             if (!(data.ID > 0))
-//             {
-//                 ResponseStatus = Gostar.Common.ResponseStatus.BusinessError;
-//                 ErrorMessage = "Entered FormType is Mistake";
-//                 return null;
-//             }
-//             var res = FormTypeGet(new FormTypeDTO { PublicCode = data?.PublicCode, SubSystemID = data?.SubSystemID }, null).Count;
-//             if (res > 0)
-//             {
-//                 ResponseStatus = Gostar.Common.ResponseStatus.BusinessError;
-//                 ErrorMessage = "This Public Code Is Exist \n";
-//                 return null;
-//             }
-//             var Response = FormTypeDL.FormTypeUpdate(data);
+            return respList;
+        }
+        
+        public async override Task<FormTypeDTO> UpdateAsync(FormTypeDTO data, CancellationToken cancellationToken)
+        {
+            data = await MergeNewAndOldDataForUpdate(data, cancellationToken);
 
-//             var resp = FormTypeGet(new FormTypeDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
-//             Observers.ObserverStates.FormTypeEdit state = new Observers.ObserverStates.FormTypeEdit
-//             {
-//                 FormType = resp ?? Response,
-//                 User = User,
-//             };
-//             Notify(state);
+            Validate(data);
 
-//             ResponseStatus = FormTypeDL.ResponseStatus;
-//             if (ResponseStatus != Gostar.Common.ResponseStatus.Successful)
-//             {
-//                 ErrorMessage += FormTypeDL.ErrorMessage;
-//                 return null;
-//             }
-//             return resp ?? Response;
-//         }
-//         public FormTypeDTO FormTypeDelete(FormTypeDTO data)
-//         {
-//             //Search For Use This Item Before Delete
-//             if (!DeletePermision(data))
-//             {
-//                 ResponseStatus = Gostar.Common.ResponseStatus.BusinessError;
-//                 return null;
-//             }
-//             data.IsDeleted = true;
-//             var Response = FormTypeDL.FormTypeUpdate(data);
+            var response = await _FormTypeDL.UpdateAsync(data, cancellationToken);
+            if (_FormTypeDL?.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+                throw new AppException(ResponseStatus.DatabaseError, _FormTypeDL.ErrorMessage);
 
-//             var resp = FormTypeGet(new FormTypeDTO { ID = Response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
-//             Observers.ObserverStates.FormTypeDelete state = new Observers.ObserverStates.FormTypeDelete
-//             {
-//                 FormType = resp ?? Response,
-//                 User = User,
-//             };
-//             Notify(state);
+            response = await _FormTypeDL.GetByIdAsync(cancellationToken, response?.ID);
 
-//             ResponseStatus = FormTypeDL.ResponseStatus;
-//             if (ResponseStatus != Gostar.Common.ResponseStatus.Successful)
-//             {
-//                 ErrorMessage += FormTypeDL.ErrorMessage;
-//                 return null;
-//             }
-//             return resp ?? Response;
-//         }
-//     }
-// }
+            Observers.ObserverStates.FormTypeEdit state = new Observers.ObserverStates.FormTypeEdit
+            {
+                FormType = response,
+                User = User,
+            };
+            Notify(state);
+
+            return response;
+        }
+        public async override Task<FormTypeDTO> SoftDeleteAsync(FormTypeDTO data, CancellationToken cancellationToken)
+        {
+            CheckDeletePermision(data);
+
+            data.IsDeleted = true;
+            var response = await _FormTypeDL.UpdateAsync(data, cancellationToken);
+
+            Observers.ObserverStates.FormTypeDelete state = new Observers.ObserverStates.FormTypeDelete
+            {
+                FormType = response,
+                User = User,
+            };
+            Notify(state);
+
+            return response;
+        }
+    }
+}

@@ -11,7 +11,7 @@ using Alsahab.Common.Utilities;
 using Alsahab.Common.Exceptions;
 using Alsahab.Common.Api;
 using Alsahab.Setting.DTO;
-using Alsahab.Setting.Data.Contracts;
+using Alsahab.Setting.Data.Interfaces;
 using FluentValidation.Results;
 
 namespace Alsahab.Setting.BL
@@ -60,6 +60,22 @@ namespace Alsahab.Setting.BL
             {
                 observer.Notify(stateInfo);
             }
+        }
+
+        protected async Task<Dto> MergeNewAndOldDataForUpdate(Dto data, CancellationToken cancellationToken)
+        {
+            Assert.NotNull(data, nameof(data));
+            //داده‌های قبلی را می‌گیرد و تنها داده‌های جدید دارای مقدار را آپدیت می‌کند
+            var old_data = await _BaseDL.GetByIdAsync(cancellationToken, data.ID ?? 0);
+            Assert.NotNull(old_data, nameof(old_data));
+            foreach (var propery in data.GetType().GetProperties())
+            {
+                var value = propery.GetValue(data);
+                if (value != null)
+                    propery.SetValue(old_data, value, null);
+            }
+            data = old_data;
+            return data;
         }
 
         protected bool Validate<T, TObject>(TObject data)

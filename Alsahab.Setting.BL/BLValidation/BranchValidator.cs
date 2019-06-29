@@ -4,23 +4,22 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Alsahab.Common;
-using Alsahab.Setting.Data.Contracts;
+using Alsahab.Setting.Data.Interfaces;
 using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities.Models;
 using FluentValidation;
 using FluentValidation.Results;
 
-namespace Alsahab.Setting.BL//.Validation
+namespace Alsahab.Setting.BL.Validation
 {
-    // internal
-    internal class BranchValidator : Alsahab.Setting.DTO.BranchValidator
+    internal class BLBranchValidator : Alsahab.Setting.DTO.BranchValidator
     {
         // private readonly IBaseDL<Branch, BranchDTO, BranchFilterDTO> _BranchDL;
         // public BranchValidator()
         // {
         // }
         private readonly IBaseDL<Branch, BranchDTO, BranchFilterDTO> _BranchDL;
-        public BranchValidator(IBaseDL<Branch, BranchDTO, BranchFilterDTO> _branchDL) : base()
+        public BLBranchValidator(IBaseDL<Branch, BranchDTO, BranchFilterDTO> _branchDL) : base()
         {
             _BranchDL = _branchDL;
             RuleFor(x => x.Title).Must((DTO, title) => UniqueTitleCondition(title, DTO.ID ?? 0)).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("AlreadyIsExists"));
