@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 // using Alsahab.Common;
 using System.Runtime.Serialization;
 using FluentValidation;
+using Alsahab.Common;
 
 namespace Alsahab.Setting.DTO
 {

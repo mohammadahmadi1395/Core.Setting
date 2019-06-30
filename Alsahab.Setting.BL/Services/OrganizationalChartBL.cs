@@ -4,16 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Alsahab.Setting.DTO;
-using Alsahab.Setting.DA;
+using Alsahab.Setting.Data;
 using Alsahab.Setting.Entities.Models;
+using Alsahab.Setting.Data.Interfaces;
+using Alsahab.Setting.BL.Validation;
+using System.Threading;
 
 namespace Alsahab.Setting.BL
 {
     public class OrganizationalChartBL : BaseBL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO>
     {
+        #region properties
+        private IList<OrganizationalChartDTO> _AllOrgChart;
+        private IList<OrganizationalChartDTO> AllOrgChart
+        {
+            get
+            {
+                if (!(_AllOrgChart?.Count > 0))
+                    _AllOrgChart = _OrganizationalChartDL.GetAll();
+                return _AllOrgChart;
+            }
+        }
+        private List<OrganizationalChartDTO> TreeNodes = new List<OrganizationalChartDTO>();
+        private long? _index = 0, _depth = 2;
+        #endregion properties
+
+        #region dependency injection
+        private readonly IBaseDL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO> _OrganizationalChartDL;
+        public OrganizationalChartBL(IBaseDL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO> organizationalChartDL)
+            : base(organizationalChartDL)
+        {
+            _OrganizationalChartDL = organizationalChartDL;
+        }
+        #endregion dependency injection
+
         private List<DTO.OrganizationalChartDTO> TempAllOrganizationalChart = new List<DTO.OrganizationalChartDTO>();
-        private long? _index = 1, _depth = 2;
-        OrganizationalChartDA OrganizationalChartDA = new OrganizationalChartDA();
+
         /// <summary>
         /// Check Data For Insert
         /// </summary>
@@ -21,114 +47,77 @@ namespace Alsahab.Setting.BL
         /// <returns></returns>
         private bool Validate(DTO.OrganizationalChartDTO data)
         {
-            if (string.IsNullOrWhiteSpace(data.Title))
-            {
-                ErrorMessage += "OrganizationalChart Title Not Entered\n";
-                return false;
-            }
-           
-            if (data.IsDeleted == true)
-            {
-                ErrorMessage += "OrganizationalChart Not yet Save in Database\n";
-                return false;
-            }
-            var OrganizationalChartList = OrganizationalChartGet(new DTO.OrganizationalChartDTO { Title = data.Title }, null)?.ToList();
-            var CheckOrganizationalChart = OrganizationalChartList.Where(s => s.Title == data?.Title).Count();
-            if (CheckOrganizationalChart > 0)
-            {
-                ErrorMessage += "This OrganizationalChart Is Exist\n";
-                return false;
-            }
-
-            return true;
+            return Validate<BLOrganizationalChartValidator, OrganizationalChartDTO>(data);
         }
+
         /// <summary>
         /// Get List of OrganizationalChart 
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public List<DTO.OrganizationalChartDTO> OrganizationalChartGet(DTO.OrganizationalChartDTO data, OrganizationalChartFilterDTO filter = null)
+        public async override Task<IList<DTO.OrganizationalChartDTO>> GetAsync(DTO.OrganizationalChartFilterDTO filter, CancellationToken cancellationToken)
         {
-            var Response = OrganizationalChartDA.OrganizationalChartGet(data, filter);
-
-            ResponseStatus = OrganizationalChartDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += OrganizationalChartDA.ErrorMessage;
-                return null;
-            }
-            return Response;
+            return await _OrganizationalChartDL.GetAsync(filter, cancellationToken);
         }
+
         /// <summary>
         /// Check Data For Delete
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        private bool DeletePermission(DTO.OrganizationalChartDTO data)
+        private bool CheckDeletePermission(DTO.OrganizationalChartDTO data)
         {
-           return true;
+            //TODO: باید بررسی شود
+            return true;
         }
         /// <summary>
         /// Insert OrganizationalChart in Database
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public DTO.OrganizationalChartDTO Insert(DTO.OrganizationalChartDTO data)
+        public async override Task<DTO.OrganizationalChartDTO> InsertAsync(DTO.OrganizationalChartDTO data, CancellationToken cancellationToken)
         {
-            if (!Validate(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
+            Validate(data);
 
             data.CreateDate = DateTime.Now;
-            var Response = OrganizationalChartDA.OrganizationalChartInsert(data);
+            var response = await _OrganizationalChartDL.InsertAsync(data, cancellationToken);
 
-            if (Response?.ID > 0)
-            {
-                var resp = OrganizationalChartGet(new DTO.OrganizationalChartDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
-                //Observers.ObserverStates.AddOrganizationalChart state = new Observers.ObserverStates.AddOrganizationalChart
-                //{
-                //    OrganizationalChart = resp ?? Response,
-                //    User = User,
-                //};
-                //Notify(state);
-                if (resp != null)
-                    Response = resp;
-            }
+            UpdateTreeIndicesAndCodes();
 
-            ResponseStatus = OrganizationalChartDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += OrganizationalChartDA.ErrorMessage;
-                return null;
-            }
+            response = await _OrganizationalChartDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
+            //TODO:
+            //Observers.ObserverStates.AddOrganizationalChart state = new Observers.ObserverStates.AddOrganizationalChart
+            //{
+            //    OrganizationalChart = resp ?? Response,
+            //    User = User,
+            //};
+            //Notify(state);
 
-            return Response;
+            return response;
         }
+
         /// <summary>
         /// Insert List of OrganizationalChart In Database
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public List<DTO.OrganizationalChartDTO> OrganizationalChartInsert(List<DTO.OrganizationalChartDTO> data)
+        public async override Task<IList<DTO.OrganizationalChartDTO>> InsertListAsync(IList<DTO.OrganizationalChartDTO> data, CancellationToken cancellationToken)
         {
             foreach (var d in data)
             {
-                if (!Validate(d))
-                {
-                    ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                    return null;
-                }
+                Validate(d);
                 d.CreateDate = DateTime.Now;
-
             }
-            var Response = OrganizationalChartDA.OrganizationalChartInsert(data);
+
+            var response = await _OrganizationalChartDL.InsertListAsync(data, cancellationToken);
+
+            UpdateTreeIndicesAndCodes();
 
             List<DTO.OrganizationalChartDTO> respList = new List<DTO.OrganizationalChartDTO>();
-            foreach (var val in Response)
+            foreach (var val in response)
             {
-                var resp = OrganizationalChartGet(new DTO.OrganizationalChartDTO { ID = val?.ID ?? 0 })?.FirstOrDefault();
+                var resp = await _OrganizationalChartDL.GetByIdAsync(cancellationToken, val?.ID ?? 0);
+                //TODO:
                 //Observers.ObserverStates.AddOrganizationalChart state = new Observers.ObserverStates.AddOrganizationalChart
                 //{
                 //    OrganizationalChart = resp ?? val,
@@ -138,14 +127,7 @@ namespace Alsahab.Setting.BL
                 respList.Add(resp);
             }
 
-            ResponseStatus = OrganizationalChartDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += OrganizationalChartDA.ErrorMessage;
-                return null;
-            }
-
-            return respList ?? Response;
+            return respList ?? response;
         }
         /// <summary>
         /// Update OrganizationalChart
@@ -153,7 +135,7 @@ namespace Alsahab.Setting.BL
         /// <param name="data"></param>
         /// <returns></returns>
 
-        #region Upodate
+        #region Update
         //public DTO.OrganizationalChartDTO OrganizationalChartUpdate(DTO.OrganizationalChartDTO data)
         //{
         //    if (!(data.ID > 0))
@@ -183,7 +165,7 @@ namespace Alsahab.Setting.BL
         //}
         #endregion
         /// <summary>
-        /// Delete Logicly
+        /// Delete Logically
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -396,7 +378,7 @@ namespace Alsahab.Setting.BL
             {
                 UpdateAllOrganizationalChart();
 
-               // UpdateCode(oldOrganizationalChart);
+                // UpdateCode(oldOrganizationalChart);
             }
 
             ResponseStatus = OrganizationalChartDA.ResponseStatus;

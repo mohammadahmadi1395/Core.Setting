@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Alsahab.Common;
+using FluentValidation;
 
 namespace Alsahab.Setting.DTO
 {

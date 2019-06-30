@@ -55,9 +55,19 @@ namespace Alsahab.Common
         public int ID { get; set; }
     }
 
-    public class LogDTO
+    public abstract class BaseDTO
     {
-        public long ID { get; set; }
+        public long? ID { get; set; }
+        public bool? IsDeleted { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? CreateDateFrom { get; set; }
+        public DateTime? CreateDateTo { get; set; }
+    }
+
+
+
+    public class LogDTO : BaseDTO
+    {
         public string Time
         {
             get
@@ -90,13 +100,10 @@ namespace Alsahab.Common
         public long RecordID { get; set; }
         public long? BranchID { get; set; }
         public string BranchTitle { get; set; }
-        public DateTime? CreateDate { get; set; }
-        public bool? IsDeleted { get; set; } = false;
     }
 
-    public class LogFilterDTO
+    public class LogFilterDTO : LogDTO
     {
-        public long ID { get; set; }
         public DateTime? FromDate { set; get; }
         public DateTime? ToDate { set; get; }
         //public TimeSpan FromTime { set; get; }
@@ -109,9 +116,6 @@ namespace Alsahab.Common
         public List<long> GroupIDs { set; get; }
         public string FullName { set; get; }
         public List<int> UserRoleTypes { get; set; }
-        public DateTime? CreateDate { get; set; }
-        public DateTime? FromCreateDate { get; set; }
-        public DateTime? ToCreateDate { get; set; }
     }
 
     public class AddressDTO

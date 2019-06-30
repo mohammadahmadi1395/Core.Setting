@@ -48,15 +48,13 @@ namespace Alsahab.Setting.BL
         {
             var response = await _BranchDL.GetAsync(filter, cancellationToken);
 
-            if (_BranchDL.ResponseStatus != ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.DatabaseError, _BranchDL.ErrorMessage);
-
             if (!(response.Count > 0))
                 return response;
 
             var memberResponse = ServiceUtility.CallMember(s => s.Person(new PersonRequest
             {
                 ActionType = Gostar.Common.ActionType.Select,
+                //TODO:
                 User = new Gostar.Common.UserInfoDTO { UserID = 1 },
                 PersonFilter = new Alyatim.Member.DTO.PersonFilterDTO
                 {
@@ -99,8 +97,6 @@ namespace Alsahab.Setting.BL
             data.CreateDate = DateTime.Now;
 
             var response = await _BranchDL.InsertAsync(data, cancellationToken);//.BranchInsert(data);            
-            if (_BranchDL?.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.DatabaseError, _BranchDL.ErrorMessage);
 
             UpdateTreeIndicesAndCodes();
 
@@ -124,8 +120,6 @@ namespace Alsahab.Setting.BL
             }
 
             var response = await _BranchDL.InsertListAsync(data, cancellationToken);
-            if (_BranchDL.ResponseStatus != ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.DatabaseError, _BranchDL.ErrorMessage);
 
             UpdateTreeIndicesAndCodes();
 
@@ -151,8 +145,6 @@ namespace Alsahab.Setting.BL
             Validate(data);
 
             var response = await _BranchDL.UpdateAsync(data, cancellationToken);
-            if (_BranchDL?.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.DatabaseError, _BranchDL.ErrorMessage);
 
             UpdateTreeIndicesAndCodes();
 
@@ -239,10 +231,6 @@ namespace Alsahab.Setting.BL
             var codedBranches = GenerateNewCodeList(rootList);
 
             var result = _BranchDL.UpdateList(codedBranches);
-
-            ResponseStatus = _BranchDL.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.DatabaseError, _BranchDL.ErrorMessage);
 
             return result;
         }

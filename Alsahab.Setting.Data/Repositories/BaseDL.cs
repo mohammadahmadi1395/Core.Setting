@@ -367,7 +367,7 @@ namespace Alsahab.Setting.Data.Repositories
         {
             throw new NotImplementedException();
         }
-        public virtual async Task<TDto> GetByIdAsync(CancellationToken cancellationToken, long id)
+        public virtual async Task<TDto> GetByIdAsync(CancellationToken cancellationToken, long? id)
         {
             if (!(id > 0))
                 throw new AppException(ResponseStatus.BadRequest, "id must specified.");
@@ -375,7 +375,7 @@ namespace Alsahab.Setting.Data.Repositories
             return await TableNoTracking.ProjectTo<TDto>()
                 .SingleOrDefaultAsync(q => q.ID.Equals(id), cancellationToken);
         }
-        public virtual TDto GetById(long id)
+        public virtual TDto GetById(long? id)
         {
             if (!(id > 0))
                 throw new AppException(ResponseStatus.BadRequest, "id must specified.");

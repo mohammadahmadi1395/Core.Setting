@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Alsahab.Common;
+using FluentValidation;
 
 namespace Alsahab.Setting.DTO
 {
@@ -19,4 +21,16 @@ namespace Alsahab.Setting.DTO
         public Nullable<long> Depth { get; set; }
         public string OldCode { get; set; }
     }
+
+        public class OrganizationalChartValidator : AbstractValidator<OrganizationalChartDTO>
+    {
+
+        public OrganizationalChartValidator()
+        {
+            RuleFor(x => x.Title).NotEmpty();
+            RuleFor(x => x.IsDeleted).NotEqual(true);
+        }
+
+    }
+
 }

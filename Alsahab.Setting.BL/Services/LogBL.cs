@@ -6,41 +6,43 @@ using System.Threading;
 using System.Threading.Tasks;
 using Alsahab.Common;
 using Alsahab.Setting.Data.Interfaces;
-using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities.Models;
+using Gostar.Common;
 
 namespace Alsahab.Setting.BL
 {
-    public class LogBL : BaseBL<Log, LogDTO, LogFilterDTO>
+    public class LogBL : BaseBL<Log, Alsahab.Common.LogDTO, Alsahab.Common.LogFilterDTO>
     {
         // private LogDA logDA;
         // private LogDA _LogDA => logDA ?? (logDA = new LogDA());
-        private readonly IBaseDL<Log, LogDTO, LogFilterDTO> _LogDL;
-        public LogBL(IBaseDL<Log, LogDTO, LogFilterDTO> logDL) : base(logDL)
+        private readonly IBaseDL<Log, Alsahab.Common.LogDTO, Alsahab.Common.LogFilterDTO> _LogDL;
+        public LogBL(IBaseDL<Log, Alsahab.Common.LogDTO, Alsahab.Common.LogFilterDTO> logDL) : base(logDL)
         {
             _LogDL = logDL;
         }
-        
+
         public async override Task<IList<Alsahab.Common.LogDTO>> GetAsync(Alsahab.Common.LogFilterDTO data, CancellationToken cancellationToken)
         {
             var result = await _LogDL.GetAsync(data, cancellationToken);
             if (result != null)
             {
+                //TODO: این کارها باید در واسط کاربری انجام شوند یا اگر در سرویس انجام میشوند باید کش شوند
                 var users = ServiceUtility.CallUserManagement(s => s.User(new UserManagement.SC.Messages.UserRequest
                 {
-                    ActionType = Common.ActionType.Select,
-                    User = User,
+                    ActionType = Gostar.Common.ActionType.Select,
+                    //TODO: (Gostar.Common.UserInfoDTO) User,
+                    User = new Gostar.Common.UserInfoDTO { UserID = 1 },
                     Filter = new UserManagement.DTO.UserFilterDTO
                     {
                         IDList = result?.Select(t => t?.UserID)?.ToList(),
                     }
                 }))?.ResponseDtoList;
 
-
                 var member = ServiceUtility.CallUserManagement(s => s.Member(new UserManagement.SC.Messages.MemberRequest
                 {
-                    ActionType = Common.ActionType.Select,
-                    User = User,
+                    ActionType = Gostar.Common.ActionType.Select,
+                    //TODO:
+                    User = new Gostar.Common.UserInfoDTO { UserID = 1 },
                     RequestDto = new UserManagement.DTO.MemberDTO
                     {
                         IDList = users?.Select(g => g.MemberID)?.ToList(),
@@ -50,8 +52,9 @@ namespace Alsahab.Setting.BL
 
                 var persons = ServiceUtility.CallMember(s => s.Person(new Alyatim.Member.SC.Messages.PersonRequest
                 {
-                    ActionType = Common.ActionType.Select,
-                    User = User,
+                    ActionType = Gostar.Common.ActionType.Select,
+                    //TODO:
+                    User = new Gostar.Common.UserInfoDTO { UserID = 1 },
                     PersonFilter = new Alyatim.Member.DTO.PersonFilterDTO
                     {
                         IDList = member?.Select(t => t.PersonID)?.ToList(),
@@ -76,7 +79,8 @@ namespace Alsahab.Setting.BL
                               RegistrantPersonFullName = p.FullName,
                               RegistrantPersonID = p.ID,
                               UserID = u.ID ?? 0,
-                              UserRoleType = u.GroupRoleType ?? Common.RoleType.SingleUser,
+                              //TODO:
+                              UserRoleType = ((Alsahab.Common.RoleType?)((int)(u.GroupRoleType))) ?? Alsahab.Common.RoleType.SingleUser,
                               BranchID = u.GroupBranchID,
                               BranchTitle = u.GroupBranchTitle,
 
@@ -93,31 +97,30 @@ namespace Alsahab.Setting.BL
                     result = result?.Where(s => data.UserRoleTypes.Contains((int)s.UserRoleType))?.ToList();
                 foreach (var d in result)
                 {
-                    try
-                    {
-                        var obj = BL.Observers.ActionDTO.ActionBaseDTO.CreateInstance((Enums.SettingEntity)d.EntityID, d.MessageStr);
+                    //TODO: فعلا کامنت میشود تا خطاها مشخص شود
+                    // try
+                    // {
+                        var obj = BL.Observers.ActionDTO.ActionBaseDTO.CreateInstance((Alsahab.Setting.DTO.Enums.SettingEntity)d.EntityID, d.MessageStr);
                         d.MessageStr = obj.DisplayMessage;
-                    }
-                    catch (Exception e)
-                    { }
+                    // }
+                    // catch (Exception e)
+                    // { }
                 }
                 if (!string.IsNullOrWhiteSpace(data?.Message))
                     result = result?.Where(s => s.MessageStr.Contains(data.Message ?? ""))?.ToList();
             }
             ResultCount = result.Count;
 
-            if (PagingInfo != null)
+            if (PagingInfo?.IsPaging == true)
             {
-                if (PagingInfo.IsPaging)
-                {
-                    int skip = (PagingInfo.Index - 1) * PagingInfo.Size;
-                    result = result.OrderBy(s => s.ID).Skip(skip).Take(PagingInfo.Size).ToList();
-                }
+                int skip = (PagingInfo.Index - 1) * PagingInfo.Size;
+                result = result.OrderBy(s => s.ID).Skip(skip).Take(PagingInfo.Size).ToList();
             }
-            ResponseStatus = _LogDA.ResponseStatus;
+
+            ResponseStatus = _LogDL.ResponseStatus;
             if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
             {
-                ErrorMessage += _LogDA.ErrorMessage;
+                ErrorMessage += _LogDL.ErrorMessage;
                 return null;
             }
             return result;

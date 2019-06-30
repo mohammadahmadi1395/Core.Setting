@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Alsahab.Common;
 using FluentValidation;
 
 namespace Alsahab.Setting.DTO
 {
-    public class BranchRegionWorkDTO : BaseDTO//<BranchRegionWorkDTO, BranchRegionWork, long>
+    public class BranchRegionWorkDTO : BaseDTO
     {
         public long? BranchID { get; set; }
         public long? ZoneID { get; set; }
