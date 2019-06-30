@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
-using Gostar.Setting.BL;
 using Alsahab.Setting.Data.Interfaces;
 using Alsahab.Setting.Entities.Models;
 

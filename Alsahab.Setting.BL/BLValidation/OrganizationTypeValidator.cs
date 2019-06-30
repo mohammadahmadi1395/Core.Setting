@@ -11,17 +11,18 @@ using FluentValidation;
 
 namespace Alsahab.Setting.BL.Validation
 {
-    internal class BLZoneValidator : Alsahab.Setting.DTO.ZoneValidator
+    internal class BLOrganizationTypeValidator : Alsahab.Setting.DTO.OrganizationTypeValidator
     {
-        private readonly IBaseDL<Zone, ZoneDTO, ZoneFilterDTO> _ZoneDL;
-        public BLZoneValidator(IBaseDL<Zone, ZoneDTO, ZoneFilterDTO> zoneDL) : base()
+        private readonly IBaseDL<OrganizationType, OrganizationTypeDTO, OrganizationTypeFilterDTO> _OrganizationTypeDL;
+        public BLOrganizationTypeValidator(IBaseDL<OrganizationType, OrganizationTypeDTO, OrganizationTypeFilterDTO> organizationType) : base()
         {
-            _ZoneDL = zoneDL;
+            _OrganizationTypeDL = organizationType;
             RuleFor(x => x.Title).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("NotExist"));
         }
+
         private bool NotExist(string title)
-        {
-            var result = _ZoneDL.Get(new ZoneFilterDTO { Title = title });
+        {            
+            var result = _OrganizationTypeDL.Get(new OrganizationTypeFilterDTO { Title = title })?.ToList();
             var Count = result.Where(s => s.Title == title)?.Count();
             return !(Count > 0);
         }

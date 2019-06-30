@@ -3,116 +3,75 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Gostar.Setting.DTO;
-using Gostar.Setting.DA;
+using Alsahab.Setting.DTO;
+using Alsahab.Setting.Data;
 using Alsahab.Setting.BL;
 using System.Data;
-using Alsahab.Setting.DTO;
+using Alsahab.Setting.Data.Interfaces;
+using Alsahab.Setting.Entities.Models;
+using System.Threading;
+using Alsahab.Common;
 
-namespace Gostar.Setting.BL
+namespace Alsahab.Setting.BL
 {
-    public class RuleBL : BaseBL<Rule, RuleDTO, RuleFilterDTO>
+    public class RuleBL : BaseBL<Alsahab.Setting.Entities.Models.Rule, RuleDTO, RuleFilterDTO>
     {
-        RuleDA RuleDL = new RuleDA();
-        RuleTagBL RuleTag = new RuleTagBL();
-        RuleTagBL Rtb = new RuleTagBL();  
+        private readonly IBaseDL<Alsahab.Setting.Entities.Models.Rule, RuleDTO, RuleFilterDTO> _RuleDL;
+        private readonly IBaseDL<RuleTag, RuleTagDTO, RuleTagFilterDTO> _RuleTagDL;
+        public RuleBL(IBaseDL<Alsahab.Setting.Entities.Models.Rule, RuleDTO, RuleFilterDTO> ruleDL,
+            IBaseDL<RuleTag, RuleTagDTO, RuleTagFilterDTO> ruleTagDL) : base(ruleDL)
+        {
+            _RuleDL = ruleDL;
+            _RuleTagDL = ruleTagDL;
+        }
+        
         private bool Validate(RuleDTO data)
         {
-
-            return Validate<Validation.RuleValidator,RuleDTO>(data ?? new RuleDTO());
-            //if (String.IsNullOrWhiteSpace(data?.Description))
-            //{
-            //    ErrorMessage = "Rule Description is Empty \n";
-            //    return false;
-            //}
-            //if (String.IsNullOrWhiteSpace(data?.Type.ToString()))
-            //{
-            //    ErrorMessage = "Rule Type is Empty \n";
-            //    return false;
-            //}
-            //if (String.IsNullOrWhiteSpace(data?.Title))
-            //{
-            //    ErrorMessage = "Rule Title is Empty \n";
-            //    return false;
-            //}
-       
-
-            //var res = RuleGet(new RuleDTO { Type = data.Type , Description = data.Description }, null).Count;
-            //if (res > 0)
-            //{
-            //    ErrorMessage = "This Rule Is Exist \n";
-            //    return false;
-            //}
-
-            //return true;
-
+            return Validate<Validation.BLRuleValidator, RuleDTO>(data ?? new RuleDTO());
         }
-        private bool DeletePermision(RuleDTO data)
+        private bool CheckDeletePermision(RuleDTO data)
         {
-            
-
+            //TODO:
             return true;
         }
-        public List<RuleDTO> RuleGet(RuleDTO data, RuleFilterDTO filter = null)
+        public async override Task<IList<RuleDTO>> GetAsync(RuleFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
-            var Response = RuleDL.RuleGet(data, filter,PagingInfo);
-            ResultCount = RuleDL.ResultCount;
-            ResponseStatus = RuleDL.ResponseStatus;
-            if (ResponseStatus != Gostar.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += RuleDL.ErrorMessage;
-                return null;
-            }
-            return Response;
+            var response = await _RuleDL.GetAsync(filter, cancellationToken, paging);
+            ResultCount = _RuleDL.ResultCount;
+            return response;
         }
-        public RuleDTO RuleInsert(RuleDTO data)
+        public async override Task<RuleDTO> InsertAsync(RuleDTO data, CancellationToken cancellationToken)
         {
-            if (!Validate(data))
-            {
-                ResponseStatus = Gostar.Common.ResponseStatus.BusinessError;
-                return null;
-            }
+            Validate(data);
+
             data.CreateDate = DateTime.Now;
-            var Response = RuleDL.RuleInsert(data);
+            var response = await _RuleDL.InsertAsync(data, cancellationToken);
 
-            if (Response?.ID > 0)
+            response = await _RuleDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
+            Observers.ObserverStates.RuleAdd state = new Observers.ObserverStates.RuleAdd
             {
-                var resp = RuleGet(new RuleDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
-                Observers.ObserverStates.RuleAdd state = new Observers.ObserverStates.RuleAdd
-                {
-                    Rule = resp ?? Response,
-                    User = User,
-                };
-                Notify(state);
-                if (resp != null)
-                    Response = resp;
-            }
+                Rule = response,
+                User = User,
+            };
+            Notify(state);
 
-            ResponseStatus = RuleDL.ResponseStatus;
-            if (ResponseStatus != Gostar.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += RuleDL.ErrorMessage;
-                return null;
-            }
-            return Response;
+            return response;
         }
-        public List<RuleDTO> RuleInsert(List<RuleDTO> data)
+
+        public async override Task<IList<RuleDTO>> InsertListAsync(IList<RuleDTO> data, CancellationToken cancellationToken)
         {
             foreach (var d in data)
             {
-                if (!Validate(d))
-                {
-                    ResponseStatus = Gostar.Common.ResponseStatus.BusinessError;
-                    return null;
-                }
+                Validate(d);
                 d.CreateDate = DateTime.Now;
             }
-            var Response = RuleDL.RuleInsert(data);
 
-            List<RuleDTO> respList = new List<RuleDTO>();
-            foreach (var val in Response)
+            var response = await _RuleDL.InsertListAsync(data, cancellationToken);
+
+            var respList = new List<RuleDTO>();
+            foreach (var val in response)
             {
-                var resp = RuleGet(new RuleDTO { ID = val?.ID ?? 0 })?.FirstOrDefault();
+                var resp = await _RuleDL.GetByIdAsync(cancellationToken, val?.ID ?? 0);
                 Observers.ObserverStates.RuleAdd state = new Observers.ObserverStates.RuleAdd
                 {
                     Rule = resp ?? val,
@@ -121,69 +80,45 @@ namespace Gostar.Setting.BL
                 Notify(state);
                 respList.Add(resp);
             }
-            
-            ResponseStatus = RuleDL.ResponseStatus;
-            if (ResponseStatus != Gostar.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += RuleDL.ErrorMessage;
-                return null;
-            }
-            return respList ?? Response;
 
+            return respList ?? response;
         }
-        public RuleDTO RuleUpdate(RuleDTO data)
-        {
-            if (!(data.ID > 0))
-            {
-                ResponseStatus = Gostar.Common.ResponseStatus.BusinessError;
-                ErrorMessage = "Entered Rule is Mistake";
-                return null;
-            }
-            var Response = RuleDL.RuleUpdate(data);
 
-            var resp = RuleGet(new RuleDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
+        public async override Task<RuleDTO> UpdateAsync(RuleDTO data, CancellationToken cancellationToken)
+        {
+            data = await MergeNewAndOldDataForUpdate(data, cancellationToken);
+
+            Validate(data);
+
+            var response = await _RuleDL.UpdateAsync(data, cancellationToken);
+
+            response = await _RuleDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
+
             Observers.ObserverStates.RuleEdit state = new Observers.ObserverStates.RuleEdit
             {
-                Rule = resp ?? Response,
+                Rule = response,
                 User = User,
             };
             Notify(state);
-            
-            ResponseStatus = RuleDL.ResponseStatus;
-            if (ResponseStatus != Gostar.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += RuleDL.ErrorMessage;
-                return null;
-            }
-            return resp ?? Response;
-        }
-        public RuleDTO RuleDelete(RuleDTO data)
-        {
-            //Search For Use This Item Before Delete
-            if (!DeletePermision(data))
-            {
-                ResponseStatus = Gostar.Common.ResponseStatus.BusinessError;
-                return null;
-            }
-            data.IsDeleted = true;
-            var Response = RuleDL.RuleUpdate(data);
 
-            var resp = RuleGet(new RuleDTO { ID = Response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
+            return response;
+        }
+
+        public async override Task<RuleDTO> SoftDeleteAsync(RuleDTO data, CancellationToken cancellationToken)
+        {
+            CheckDeletePermision(data);
+
+            data.IsDeleted = true;
+            var response = await _RuleDL.UpdateAsync(data, cancellationToken);
+
             Observers.ObserverStates.RuleDelete state = new Observers.ObserverStates.RuleDelete
             {
-                Rule = resp ?? Response,
+                Rule = response,
                 User = User,
             };
             Notify(state);
 
-            ResponseStatus = RuleDL.ResponseStatus;
-            if (ResponseStatus != Gostar.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += RuleDL.ErrorMessage;
-                return null;
-            }
-            var Res = Rtb.RuleTagAllDelete(Response.ID??0);
-            return resp ?? Response;
+            return response;
         }
     }
 }

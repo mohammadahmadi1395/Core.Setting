@@ -9,6 +9,8 @@ using Alsahab.Setting.Entities.Models;
 using Alsahab.Setting.Data.Interfaces;
 using Alsahab.Setting.BL.Validation;
 using System.Threading;
+using Alsahab.Common.Exceptions;
+using Alsahab.Common;
 
 namespace Alsahab.Setting.BL
 {
@@ -40,24 +42,17 @@ namespace Alsahab.Setting.BL
 
         private List<DTO.OrganizationalChartDTO> TempAllOrganizationalChart = new List<DTO.OrganizationalChartDTO>();
 
-        /// <summary>
-        /// Check Data For Insert
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        private bool Validate(DTO.OrganizationalChartDTO data)
-        {
-            return Validate<BLOrganizationalChartValidator, OrganizationalChartDTO>(data);
-        }
 
         /// <summary>
         /// Get List of OrganizationalChart 
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public async override Task<IList<DTO.OrganizationalChartDTO>> GetAsync(DTO.OrganizationalChartFilterDTO filter, CancellationToken cancellationToken)
+        public async override Task<IList<DTO.OrganizationalChartDTO>> GetAsync(DTO.OrganizationalChartFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
-            return await _OrganizationalChartDL.GetAsync(filter, cancellationToken);
+            var result = await _OrganizationalChartDL.GetAsync(filter, cancellationToken, paging);
+            ResultCount = _OrganizationalChartDL.ResultCount;
+            return result;
         }
 
         /// <summary>
@@ -169,18 +164,16 @@ namespace Alsahab.Setting.BL
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public DTO.OrganizationalChartDTO OrganizationalChartDelete(DTO.OrganizationalChartDTO data)
+        public async override Task<DTO.OrganizationalChartDTO> SoftDeleteAsync(DTO.OrganizationalChartDTO data, CancellationToken cancellationToken)
         {
-            // Search For Use This Item Before Delete
-            if (!DeletePermission(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
+            CheckDeletePermission(data);
+
             data.IsDeleted = true;
-            var Response = OrganizationalChartDA.OrganizationalChartUpdate(data);
-            ResponseStatus = OrganizationalChartDA.ResponseStatus;
-            var resp = OrganizationalChartGet(new DTO.OrganizationalChartDTO { ID = Response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
+            var response = await _OrganizationalChartDL.UpdateAsync(data, cancellationToken);
+
+            UpdateTreeIndicesAndCodes();
+
+            //TODO:
             //Observers.ObserverStates.DeleteOrganizationalChart state = new Observers.ObserverStates.DeleteOrganizationalChart
             //{
             //    OrganizationalChart = resp ?? Response,
@@ -188,24 +181,21 @@ namespace Alsahab.Setting.BL
             //};
             //Notify(state);
 
-            return resp ?? Response;
+            return response;
         }
+
         /// <summary>
         /// Delete physically
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public DTO.OrganizationalChartDTO OrganizationalChartDeleteComplete(DTO.OrganizationalChartDTO data)
+        public async override Task<DTO.OrganizationalChartDTO> DeleteAsync(DTO.OrganizationalChartDTO data, CancellationToken cancellationToken)
         {
+            CheckDeletePermission(data);
 
-            if (!DeletePermission(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
-            var Response = OrganizationalChartDA.OrganizationalChartDelete(data);
+            var response = await _OrganizationalChartDL.DeleteAsync(data, cancellationToken);
 
-            var resp = OrganizationalChartGet(new DTO.OrganizationalChartDTO { ID = Response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
+            //TODO:
             //Observers.ObserverStates.DeleteOrganizationalChart state = new Observers.ObserverStates.DeleteOrganizationalChart
             //{
             //    OrganizationalChart = resp ?? Response,
@@ -213,298 +203,168 @@ namespace Alsahab.Setting.BL
             //};
             //Notify(state);
 
-            ResponseStatus = OrganizationalChartDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += OrganizationalChartDA.ErrorMessage;
-                return null;
-            }
-
-            return resp ?? Response;
-        }
-
-
-        /////////////////////////////////////////////////////////////////////Allmi
-
-
-        public DTO.OrganizationalChartDTO OrganizationalChartInsert(DTO.OrganizationalChartDTO data)
-        {
-            if (!Validate(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
-
-            UpdateAllOrganizationalChart();
-            var response = data;
-            var AllOrganizationalCharts = AllDeth;
-
-            DTO.OrganizationalChartDTO tempOrganizationalChart = new DTO.OrganizationalChartDTO
-            {
-                ID = 0,
-                Depth = 1,
-                ParentID = -1,
-                LeftIndex = 1,
-                RightIndex = (AllOrganizationalCharts.Count + 1) * 2
-            };
-
-            if (response.ParentID == null)
-                response.ParentID = 0;
-            AllOrganizationalCharts.Add(tempOrganizationalChart);
-            foreach (var item in AllOrganizationalCharts)
-            {
-                if (item.ParentID == null)
-                    item.ParentID = 0;
-            }
-
-            var childs = AllOrganizationalCharts.Where(c => c.ParentID == response.ParentID).Count();
-            if (childs > 0)
-            {
-                long? right = 0;
-                if (AllOrganizationalCharts.Count > 0)
-                    right = AllOrganizationalCharts.SingleOrDefault(z => z.ID == response.ParentID)?.RightIndex;
-                foreach (var zItem in AllDeth)
-                {
-                    if (zItem.RightIndex >= right) zItem.RightIndex += 2;
-                    if (zItem.LeftIndex > right) zItem.LeftIndex += 2;
-                }
-
-                foreach (var death in AllOrganizationalCharts)
-                {
-                    if (death.ParentID == 0)
-                        death.ParentID = null;
-                }
-
-                AllOrganizationalCharts.Remove(tempOrganizationalChart);
-                OrganizationalChartDA.OrganizationalChartUpdate(AllOrganizationalCharts);
-                response.LeftIndex = right;
-                response.RightIndex = right + 1;
-            }
-            else
-            {
-                long? left = 0;
-                if (AllOrganizationalCharts.Count > 0)
-                    left = AllOrganizationalCharts?.SingleOrDefault(z => z.ID == response.ParentID)?.LeftIndex;
-                foreach (var zItem in AllDeth)
-                {
-                    if (zItem.RightIndex > left) zItem.RightIndex += 2;
-                    if (zItem.LeftIndex > left) zItem.LeftIndex += 2;
-                }
-
-                foreach (var OrganizationalChart in AllOrganizationalCharts)
-                {
-                    if (OrganizationalChart.ParentID == 0)
-                        OrganizationalChart.ParentID = null;
-                }
-                AllOrganizationalCharts.Remove(tempOrganizationalChart);
-                OrganizationalChartDA.OrganizationalChartUpdate(AllOrganizationalCharts);
-                response.LeftIndex = left + 1;
-                response.RightIndex = left + 2;
-            }
-
-            long? parentDepth = 1;
-            if (response.ParentID == 0)
-                response.ParentID = null;
-            else
-                parentDepth = AllOrganizationalCharts.SingleOrDefault(d => d.ID == response.ParentID).Depth;
-            response.Depth = parentDepth + 1;
-
-            return Insert(response);
-        }
-        private List<DTO.OrganizationalChartDTO> _deth = new List<DTO.OrganizationalChartDTO>();
-        private List<DTO.OrganizationalChartDTO> AllDeth
-        {
-            get
-            {
-                if (!(_deth.Count > 0))
-                    _deth = new OrganizationalChartDA().AllOrganizationalChartGet();
-                return _deth;
-            }
-        }
-        //private DTO.OrganizationalChartDTO DeleteOrganizationalCharts(DTO.OrganizationalChartDTO deleteDTO)
-        //{
-        //    var deletingItem = OrganizationalChartDA.OrganizationalChartGet(new DTO.OrganizationalChartDTO { ID = deleteDTO.ID }, null)?.SingleOrDefault();
-        //    var myLeft = deletingItem.LeftIndex; var myRight = deletingItem.RightIndex; //var myWidth = myRight - myLeft + 1;
-        //    var AllOrganizationalCharts = AllDeth;
-        //    foreach (var item in AllOrganizationalCharts)
-        //    {
-        //        if (item.LeftIndex >= myLeft && item.LeftIndex <= myRight)
-        //            item.IsDeleted = true;
-        //    }
-        //    OrganizationalChartDA.OrganizationalChartUpdate(AllOrganizationalCharts);
-        //    ResponseStatus = OrganizationalChartDA.ResponseStatus;
-        //    if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-        //    {
-        //        ErrorMessage += OrganizationalChartDA.ErrorMessage;
-        //    }
-        //    return deletingItem;
-        //}
-        private DTO.OrganizationalChartDTO GetChild(DTO.OrganizationalChartDTO OrganizationalChart)
-        {
-            return TempAllOrganizationalChart.FirstOrDefault(i => i.ParentID == OrganizationalChart.ID && !(i.LeftIndex > 0));
-        }
-        private DTO.OrganizationalChartDTO GetBrother(DTO.OrganizationalChartDTO OrganizationalChart)
-        {
-            if (!(OrganizationalChart.ParentID > 0))
-                return null;
-            var parent = TempAllOrganizationalChart.FirstOrDefault(i => i.ID == OrganizationalChart.ParentID);
-            var brother = GetChild(parent);
-            return brother?.ID > 0 ? brother : null;
-        }
-        public DTO.OrganizationalChartDTO OrganizationalChartUpdate(DTO.OrganizationalChartDTO data)
-        {
-            var Response = data;
-            if (data.ParentID == 0)
-                data.ParentID = null;
-            if (!(data.ID > 0))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                ErrorMessage = "Entered OrganizationalChart is Mistake";
-                return null;
-            }
-            //DTO.OrganizationalChartDTO oldOrganizationalChart = new DTO.OrganizationalChartDTO();
-            //var oldOrganizationalChart = OrganizationalChartGet(new DTO.OrganizationalChartDTO { ID = data.ID }, null)?.FirstOrDefault();
-            var oldOrganizationalChart = OrganizationalChartGet(new DTO.OrganizationalChartDTO { ID = Response?.ID ?? 0 }, null)?.FirstOrDefault();
-            Response = OrganizationalChartDA.OrganizationalChartUpdate(data);
-
-            //Observers.ObserverStates.EditOrganizationalChart state = new Observers.ObserverStates.EditOrganizationalChart
-            //{
-            //    OrganizationalChart = oldOrganizationalChart ?? Response,
-            //    User = User,
-            //};
-            //Notify(state);
-
-            if (data.ParentID != oldOrganizationalChart.ParentID)
-            {
-                UpdateAllOrganizationalChart();
-
-                // UpdateCode(oldOrganizationalChart);
-            }
-
-            ResponseStatus = OrganizationalChartDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += OrganizationalChartDA.ErrorMessage;
-                return null;
-            }
-            return oldOrganizationalChart ?? Response;
-        }
-        public List<DTO.OrganizationalChartDTO> UpdateAllOrganizationalChart()//DTO.OrganizationalChartDTO OrganizationalChartData)
-        {
-            var allZons = OrganizationalChartGet();
-            foreach (var OrganizationalChart in allZons)
-            {
-                OrganizationalChart.LeftIndex = null;
-                OrganizationalChart.RightIndex = null;
-                OrganizationalChart.Depth = null;
-                TempAllOrganizationalChart.Add(OrganizationalChart);
-            }
-
-            List<DTO.OrganizationalChartDTO> rootList = TempAllOrganizationalChart.Where(i => !(i.ParentID > 0))?.ToList();
-            foreach (var root in rootList)
-            {
-                if (root?.ID > 0)
-                {
-                    _depth = 2;
-                    RecursiveUpdateAllOrganizationalChart(root);
-                }
-            }
-
-            TempAllOrganizationalChart = GenerateNewCodes(TempAllOrganizationalChart?.Where(s => s.ParentID == null && s.IsDeleted == false)?.ToList(), TempAllOrganizationalChart?.Where(s => s.IsDeleted == false)?.ToList());
-
-
-            OrganizationalChartDA.OrganizationalChartUpdate(TempAllOrganizationalChart);
-            ResponseStatus = OrganizationalChartDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += OrganizationalChartDA.ErrorMessage;
-                return null;
-            }
-            return OrganizationalChartDA.AllOrganizationalChartGet();
-            //            return result;
-        }
-        private void RecursiveUpdateAllOrganizationalChart(DTO.OrganizationalChartDTO OrganizationalChartData)
-        {
-            if (!(OrganizationalChartData?.ID > 0) || !(TempAllOrganizationalChart?.Count > 0))
-                return;
-
-            TempAllOrganizationalChart.FirstOrDefault(i => i.ID == OrganizationalChartData.ID).LeftIndex = ++_index;
-            TempAllOrganizationalChart.FirstOrDefault(i => i.ID == OrganizationalChartData.ID).Depth = _depth;
-            //   var aa = TempAllOrganizationalChart.FirstOrDefault(i => i.ID == OrganizationalChartData.ID);
-
-
-            var tempChild = GetChild(OrganizationalChartData);
-            if (tempChild?.ID > 0)
-            {
-                _depth++;
-                RecursiveUpdateAllOrganizationalChart(tempChild);
-            }
-
-            TempAllOrganizationalChart.FirstOrDefault(i => i.ID == OrganizationalChartData.ID).RightIndex = ++_index;
-            var tempBrother = GetBrother(OrganizationalChartData);
-
-            if (tempBrother?.ID > 0)
-                RecursiveUpdateAllOrganizationalChart(tempBrother);
-            else
-                _depth--;
-        }
-        public List<DTO.OrganizationalChartDTO> OrganizationalChartGet()
-        {
-            var response = OrganizationalChartDA.AllOrganizationalChartGet();
-            ResponseStatus = OrganizationalChartDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += OrganizationalChartDA.ErrorMessage;
-                return null;
-            }
             return response;
         }
 
-
-        private String GenerateCode(OrganizationalChartDTO data)
+        #region Validation
+        /// <summary>
+        /// Check Data For Insert
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private bool Validate(DTO.OrganizationalChartDTO data)
         {
-            var list = OrganizationalChartGet(new OrganizationalChartDTO(), null);
-            if (data?.ParentID == null)
-            {
-                return (list?.Where(s => s.ParentID == null)?.ToList()?.Count + 1).ToString();
-            }
-            else
-            {
-                var r = list?.Where(s => s.ParentID == data?.ParentID)?.ToList()?.Count;
-                return String.Format("{0}-{1}", list?.Where(s => s.ID == data?.ParentID)?.FirstOrDefault()?.Code, (r + 1).ToString());
-            }
+            return Validate<BLOrganizationalChartValidator, OrganizationalChartDTO>(data);
         }
-        private List<OrganizationalChartDTO> GenerateNewCodes(List<OrganizationalChartDTO> data, List<OrganizationalChartDTO> All)
+
+        private async Task<bool> CheckDeletePermision(BranchDTO data, CancellationToken cancellationToken)
+        {
+            if (!(data?.ID > 0))
+                throw new AppException(ResponseStatus.BadRequest, "node Entered Is Mistake.");
+            //TODO:
+            //وابستگی‌های بیشتر در جداول دیگر مشخص شوند
+            var deletingItem = await _OrganizationalChartDL.GetByIdAsync(cancellationToken, data.ID);
+            var myLeft = deletingItem.LeftIndex; 
+            var myRight = deletingItem.RightIndex;
+            var deleteCount = AllOrgChart.Where(i => i.LeftIndex >= myLeft && i.LeftIndex <= myRight && i.IsDeleted == false).Count();
+            if (deleteCount > 1)
+                throw new AppException(ResponseStatus.LoginError, "You can't delete this node. this node has child");
+
+            return true;
+        }
+        #endregion Validation
+
+        #region related to tree
+        private IList<OrganizationalChartDTO> UpdateTreeIndicesAndCodes()
+        {
+            _AllOrgChart = null;
+            var organCharts = AllOrgChart;
+            foreach (var node in organCharts)
+            {
+                node.LeftIndex = null;
+                node.RightIndex = null;
+                node.Depth = null;
+                node.Code = null;
+                TreeNodes.Add(node);
+            }
+
+            List<OrganizationalChartDTO> rootList = TreeNodes.Where(i => !(i.ParentID > 0))?.ToList();
+            foreach (var root in rootList)
+                if (root?.ID > 0)
+                {
+                    _depth = 2;
+                    RecursiveUpdateAllOrgChartIndices(root);
+                }
+
+            var codedOrganizationalChart = GenerateNewCodeList(rootList);
+
+            var result = _OrganizationalChartDL.UpdateList(codedOrganizationalChart);
+
+            return result;
+        }
+        // private async Task<IList<BranchDTO>> UpdateTreeIndicesAndCodesAsync(CancellationToken cancellationToken)
+        // {
+        //     var branches  = AllBranch;
+        //     foreach (var node in branches)
+        //     {
+        //         node.LeftIndex = null;
+        //         node.RightIndex = null;
+        //         node.Depth = null;
+        //         node.Code = null;
+        //         TreeNodes.Add(node);
+        //     }
+
+        //     List<BranchDTO> rootList = TreeNodes.Where(i => !(i.ParentID > 0))?.ToList();
+        //     foreach (var root in rootList)
+        //         if (root?.ID > 0)
+        //         {
+        //             _depth = 2;
+        //             RecursiveUpdateAllOrgChartIndices(root);
+        //         }
+
+        //     GenerateNewCodeList(rootList);
+
+        //     var result = await _BranchDL.UpdateListAsync(TreeNodes, cancellationToken);
+
+        //     ResponseStatus = _BranchDL.ResponseStatus;
+        //     if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+        //         throw new AppException(ResponseStatus.DatabaseError, _BranchDL.ErrorMessage);
+
+        //     return result;
+        // }
+
+        // مراحل:
+        // ۱- ابتدا اندیس چپ را تنظیم می‌کند
+        // ۲- سپس عمق را تنظیم می‌کند
+        // ۳- اندیس چپ و عمق را برای فرزندش در صورت وجود تنظیم می‌کند
+        // ۴- در صورت عدم وجود فرزند، اندیس راست را تنظیم می‌کند
+        // ۵- به سراغ برادر (در صورت وجود) می‌رود و مراحل اول تا چهارم را برای آن انجام می‌دهد
+        private void RecursiveUpdateAllOrgChartIndices(OrganizationalChartDTO dto)
+        {
+            if (!(dto?.ID > 0) || !(TreeNodes?.Count > 0))
+                return;
+
+            TreeNodes.FirstOrDefault(i => i.ID == dto.ID).LeftIndex = ++_index;
+            TreeNodes.FirstOrDefault(i => i.ID == dto.ID).Depth = _depth;
+
+            var tempChild = GetNotIndexedChild(dto);
+            if (tempChild?.ID > 0)
+            {
+                _depth++;
+                RecursiveUpdateAllOrgChartIndices(tempChild);
+            }
+
+            TreeNodes.FirstOrDefault(i => i.ID == dto.ID).RightIndex = ++_index;
+            var tempBrother = GetNotIndexedBrother(dto);
+
+            if (tempBrother?.ID > 0)
+                RecursiveUpdateAllOrgChartIndices(tempBrother);
+            else
+                _depth--;
+        }
+
+        private List<OrganizationalChartDTO> GenerateNewCodeList(List<OrganizationalChartDTO> data)
         {
             List<OrganizationalChartDTO> res = new List<OrganizationalChartDTO>();
-            for (int thisOrganizationalChart = 0; thisOrganizationalChart < data?.Count; thisOrganizationalChart++)
+            for (int thisOrgChart = 0; thisOrgChart < data?.Count; thisOrgChart++)
             {
-                var parent = GetParent(data[thisOrganizationalChart], All);
-                if (parent == null) // root
-                {
-                    data[thisOrganizationalChart].Code = string.Format("{0}", (thisOrganizationalChart + 1));
-                    res.Add(data[thisOrganizationalChart]);
-                }
-                else
-                {
-                    data[thisOrganizationalChart].Code = string.Format("{0}-{1}", parent?.Code, (thisOrganizationalChart + 1));
-                    res.Add(data[thisOrganizationalChart]);
-                }
-                var childs = All?.Where(s => s.ParentID == data[thisOrganizationalChart]?.ID)?.ToList();
+                var parent = GetParent(data[thisOrgChart]);
+                data[thisOrgChart].Code = (parent == null) ?
+                    string.Format("{0}", (thisOrgChart + 1)) :
+                    string.Format("{0}-{1}", parent?.Code, (thisOrgChart + 1));
+
+                res.Add(data[thisOrgChart]);
+
+                var childs = AllOrgChart?.Where(s => s.ParentID == data[thisOrgChart]?.ID)?.ToList();
 
                 for (int child = 0; child < childs?.Count; child++)
                 {
-                    childs[child].Code = string.Format("{0}-{1}", data[thisOrganizationalChart].Code, (child + 1));
+                    childs[child].Code = string.Format("{0}-{1}", data[thisOrgChart].Code, (child + 1));
                     res.Add(childs[child]);
-                    res.AddRange(GenerateNewCodes(All?.Where(s => s.ParentID == childs[child]?.ID)?.ToList(), All));
+                    res.AddRange(GenerateNewCodeList(AllOrgChart?.Where(s => s.ParentID == childs[child]?.ID)?.ToList()));
                 }
             }
             return res;
         }
-        private OrganizationalChartDTO GetParent(OrganizationalChartDTO data, List<OrganizationalChartDTO> all)
+        private OrganizationalChartDTO GetNotIndexedBrother(OrganizationalChartDTO node)
         {
-            return all?.Where(s => s.ID == data?.ParentID)?.ToList()?.FirstOrDefault();
+            if (!(node.ParentID > 0))
+                return null;
+            var parent = TreeNodes.FirstOrDefault(i => i.ID == node.ParentID);
+            var brother = GetNotIndexedChild(parent);
+            return brother?.ID > 0 ? brother : null;
         }
+        private OrganizationalChartDTO GetNotIndexedChild(OrganizationalChartDTO node)
+        {
+            return TreeNodes.FirstOrDefault(i => i.ParentID == node.ID && !(i.LeftIndex > 0));
+        }
+        private OrganizationalChartDTO GetParent(OrganizationalChartDTO data)
+        {
+            return AllOrgChart?.FirstOrDefault(s => s.ID == data?.ParentID);
+        }
+        #endregion related to tree
+
 
     }
+
 }

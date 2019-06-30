@@ -62,17 +62,16 @@ namespace Alsahab.Setting.BL
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public override async Task<IList<BranchAddressDTO>> GetAsync(BranchAddressFilterDTO filter, CancellationToken cancellationToken)
+        public override async Task<IList<BranchAddressDTO>> GetAsync(BranchAddressFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
             // zbl.User = User;
-            var responseAddress = await _BranchAddressDL.GetAsync(filter, cancellationToken);
+            var responseAddress = await _BranchAddressDL.GetAsync(filter, cancellationToken, paging);
+            ResultCount = _BranchAddressDL.ResultCount;
+
             var allZone = await _ZoneDL.GetAllAsync(cancellationToken);
 
             foreach (var val in responseAddress)
                 val.ZoneDTO.ZoneAddress = allZone.FirstOrDefault(s => s.ID == val.ZoneDTO.ID)?.ZoneAddress;
-
-            if (_BranchAddressDL.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.DatabaseError, _BranchAddressDL.ErrorMessage);
 
             return responseAddress;
         }
@@ -143,8 +142,6 @@ namespace Alsahab.Setting.BL
             Validate(data);
 
             var response = await _BranchAddressDL.UpdateAsync(data, cancellationToken);
-            if (_BranchAddressDL?.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.DatabaseError, _BranchDL.ErrorMessage);
 
             response = await _BranchAddressDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
 

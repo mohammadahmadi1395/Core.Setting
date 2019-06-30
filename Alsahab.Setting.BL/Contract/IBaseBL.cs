@@ -21,10 +21,10 @@ namespace Alsahab.Setting.BL
         IList<FluentValidation.Results.ValidationFailure> ValidationErrors { get; set; }
         // CultureInfo Culture { get; set; }
 
-        Task<IList<TDto>> GetAllAsync(CancellationToken cancellationToken);
-        IList<TDto> GetAll();
-        IList<TDto> Get(TFilterDto filter);
-        Task<IList<TDto>> GetAsync(TFilterDto filter, CancellationToken cancellationToken);
+        Task<IList<TDto>> GetAllAsync(CancellationToken cancellationToken, PagingInfoDTO paging = null);
+        IList<TDto> GetAll(PagingInfoDTO paging = null);
+        IList<TDto> Get(TFilterDto filter, PagingInfoDTO paging = null);
+        Task<IList<TDto>> GetAsync(TFilterDto filter, CancellationToken cancellationToken, PagingInfoDTO paging = null);
         Task<TDto> InsertAsync(TDto data, CancellationToken cancellationToken);
         TDto Insert(TDto data);
         Task<IList<TDto>> InsertListAsync(IList<TDto> list, CancellationToken cancellationToken);

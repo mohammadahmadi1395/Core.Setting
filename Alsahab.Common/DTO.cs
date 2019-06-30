@@ -12,9 +12,8 @@ namespace Alsahab.Common
         public int Size { get; set; }
         public int Index { get; set; }
     }
-    public class StatementDTO
+    public class StatementDTO : BaseDTO
     {
-        public int ID { get; set; }
         public string TagName { get; set; }
         public long? FilterSubsystemID { get; set; }
         public List<long?> SubsystemIDList { get; set; }
@@ -24,10 +23,6 @@ namespace Alsahab.Common
         public string PersianText { get; set; }
         public string EnglishText { get; set; }
         public string ArabicText { get; set; }
-        public DateTime? CreateDate { get; set; }
-        public DateTime? FromCreateDate { get; set; }
-        public DateTime? ToCreateDate { get; set; }
-        public bool? IsDeleted { get; set; } = false;
     }
 
     public class UserInfoDTO

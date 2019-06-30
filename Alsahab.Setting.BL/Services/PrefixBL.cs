@@ -4,122 +4,69 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Alsahab.Setting.DTO;
-using Alsahab.Setting.DA;
+using Alsahab.Setting.Data;
 using Alsahab.Setting.Entities.Models;
+using Alsahab.Setting.Data.Interfaces;
+using System.Threading;
+using Alsahab.Common;
 
 namespace Alsahab.Setting.BL
 {
     public class PrefixBL : BaseBL<Prefix, PrefixDTO, PrefixFilterDTO>
     {
-        PrefixDA PrefixDA = new PrefixDA();
+        private readonly IBaseDL<Prefix, PrefixDTO, PrefixFilterDTO> _PrefixDL;
+        public PrefixBL(IBaseDL<Prefix, PrefixDTO, PrefixFilterDTO> prefixDL) : base(prefixDL)
+        {
+            _PrefixDL = prefixDL;
+        }
         private bool Validate(PrefixDTO data)
         {
-
-            return Validate<Validation.PrefixValidator,PrefixDTO>(data?? new PrefixDTO());
-          //  var validator = new Validation.PrefixValidator();
-            //return  Validate(new Validation.PrefixValidator(), data ?? new PrefixDTO());
-
-
-            //ValidationResult result = validator.Validate(data ?? new PrefixDTO());
-            //ValidationErrors = result.Errors;
-            //return result.IsValid;
-
-            //if (String.IsNullOrWhiteSpace(data?.Title))
-            //{
-            //    ErrorMessage += "Prefix Title Is Empty !";
-            //    return false;
-            //}
-            //if (String.IsNullOrWhiteSpace(data?.IsDefault?.ToString()))
-            //{
-            //    ErrorMessage += "Prefix Is Default Is Empty !";
-            //    return false;
-            //}
-            //if (data?.IsDefault == true)
-            //{
-            //    var Count = PrefixGet(new PrefixDTO { IsDefault = true })?.Count();
-            //    if(Count>0)
-            //    {
-            //        ErrorMessage += "Default Prefix Is Exist !";
-            //        return false;
-            //    }
-            //}
-            //if (!(data?.ID > 0))
-            //{
-            //    var Count1 = PrefixGet(new PrefixDTO { Title = data?.Title })?.Count();
-            //    if (Count1 > 0)
-            //    {
-            //        ErrorMessage += "This Prefix Is Exist !";
-            //        return false;
-            //    }
-            //}
-
-            //return true;
+            return Validate<Validation.BLPrefixValidator, PrefixDTO>(data ?? new PrefixDTO());
         }
-        private bool DeletePermision(PrefixDTO data)
+
+        private bool CheckDeletePermision(PrefixDTO data)
         {
-        
+            //TODO:
             return true;
         }
-        public List<PrefixDTO> PrefixGet(PrefixDTO data, PrefixFilterDTO filter = null)
+
+        public async override Task<IList<PrefixDTO>> GetAsync(PrefixFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
-            var Response = PrefixDA.GetPrefixs(data, filter,PagingInfo);
-            ResultCount = PrefixDA.ResultCount;
-            ResponseStatus = PrefixDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += PrefixDA.ErrorMessage;
-                return null;
-            }
-            return Response;
+            var response = await _PrefixDL.GetAsync(filter, cancellationToken, paging);
+            ResultCount = _PrefixDL.ResultCount;
+            return response;
         }
-        public PrefixDTO PrefixInsert(PrefixDTO data)
+        public async override Task<PrefixDTO> InsertAsync(PrefixDTO data, CancellationToken cancellationToken)
         {
-            if (!Validate(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
+            Validate(data);
+
             data.CreateDate = DateTime.Now;
-            var Response = PrefixDA.PrefixInsert(data);
+            var response = await _PrefixDL.InsertAsync(data, cancellationToken);
 
-            if (Response?.ID > 0)
+            response = await _PrefixDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
+            Observers.ObserverStates.PrefixAdd state = new Observers.ObserverStates.PrefixAdd
             {
-                var resp = PrefixGet(new PrefixDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
-                Observers.ObserverStates.PrefixAdd state = new Observers.ObserverStates.PrefixAdd
-                {
-                    Prefix = resp ?? Response,
-                    User = User,
-                };
-                Notify(state);
-                if (resp != null)
-                    Response = resp;
-            }
+                Prefix = response,
+                User = User,
+            };
+            Notify(state);
 
-            ResponseStatus = PrefixDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += PrefixDA.ErrorMessage;
-                return null;
-            }
-            return Response;
+            return response;
         }
-        public List<PrefixDTO> PrefixInsert(List<PrefixDTO> data)
+        
+        public async override Task<IList<PrefixDTO>> InsertListAsync(IList<PrefixDTO> data, CancellationToken cancellationToken)
         {
             foreach (var d in data)
             {
-                if (!Validate(d))
-                {
-                    ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                    return null;
-                }
+                Validate(d);
                 d.CreateDate = DateTime.Now;
             }
-            var Response = PrefixDA.PrefixInsert(data);
+            var response = await _PrefixDL.InsertListAsync(data, cancellationToken);
 
-            List<PrefixDTO> respList = new List<PrefixDTO>();
-            foreach (var val in Response)
+            IList<PrefixDTO> respList = new List<PrefixDTO>();
+            foreach (var val in response)
             {
-                var resp = PrefixGet(new PrefixDTO { ID = val?.ID ?? 0 })?.FirstOrDefault();
+                var resp = await _PrefixDL.GetByIdAsync(cancellationToken, val?.ID ?? 0);
                 Observers.ObserverStates.PrefixAdd state = new Observers.ObserverStates.PrefixAdd
                 {
                     Prefix = resp ?? val,
@@ -129,72 +76,44 @@ namespace Alsahab.Setting.BL
                 respList.Add(resp);
             }
             
-            ResponseStatus = PrefixDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += PrefixDA.ErrorMessage;
-                return null;
-            }
-            return respList ?? Response;
-
+            return respList ?? response;
         }
-        public PrefixDTO PrefixUpdate(PrefixDTO data)
+        
+        public async override Task<PrefixDTO> UpdateAsync(PrefixDTO data, CancellationToken cancellationToken)
         {
-            if (!(data.ID > 0))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                ErrorMessage = "Entered Prefix is Mistake";
-                return null;
-            }
-            if (!Validate(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
-            var Response = PrefixDA.PrefixUpdate(data);
+            data = await MergeNewAndOldDataForUpdate(data, cancellationToken);
+            
+            Validate(data);
 
-            var resp = PrefixGet(new PrefixDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
+            var response = await _PrefixDL.UpdateAsync(data, cancellationToken);
+
+            response = await _PrefixDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
+            
             Observers.ObserverStates.PrefixEdit state = new Observers.ObserverStates.PrefixEdit
             {
-                Prefix = resp ?? Response,
+                Prefix = response,
                 User = User,
             };
             Notify(state);
-            
-            ResponseStatus = PrefixDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += PrefixDA.ErrorMessage;
-                return null;
-            }
-            return resp ?? Response;
-        }
-        public PrefixDTO PrefixDelete(PrefixDTO data)
-        {
-            //Search For Use This Ithem Before Delete
-            if (!DeletePermision(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
-            data.IsDeleted = true;
-            var Response = PrefixDA.PrefixUpdate(data);
 
-            var resp = PrefixGet(new PrefixDTO { ID = Response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
+            return response;
+        }
+
+        public async override Task<PrefixDTO> SoftDeleteAsync(PrefixDTO data, CancellationToken cancellationToken)
+        {
+            CheckDeletePermision(data);
+
+            data.IsDeleted = true;
+            var response = await _PrefixDL.UpdateAsync(data, cancellationToken);
+
             Observers.ObserverStates.PrefixDelete state = new Observers.ObserverStates.PrefixDelete
             {
-                Prefix = resp ?? Response,
+                Prefix = response,
                 User = User,
             };
             Notify(state);
 
-            ResponseStatus = PrefixDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += PrefixDA.ErrorMessage;
-                return null;
-            }
-            return resp ?? Response;
+            return response;
         }
     }
 }

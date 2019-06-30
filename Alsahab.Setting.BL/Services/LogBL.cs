@@ -21,9 +21,10 @@ namespace Alsahab.Setting.BL
             _LogDL = logDL;
         }
 
-        public async override Task<IList<Alsahab.Common.LogDTO>> GetAsync(Alsahab.Common.LogFilterDTO data, CancellationToken cancellationToken)
+        public async override Task<IList<Alsahab.Common.LogDTO>> GetAsync(Alsahab.Common.LogFilterDTO data, CancellationToken cancellationToken, Alsahab.Common.PagingInfoDTO paging = null)
         {
-            var result = await _LogDL.GetAsync(data, cancellationToken);
+            var result = await _LogDL.GetAsync(data, cancellationToken, paging);
+            ResultCount = _LogDL.ResultCount;
             if (result != null)
             {
                 //TODO: این کارها باید در واسط کاربری انجام شوند یا اگر در سرویس انجام میشوند باید کش شوند
@@ -109,20 +110,20 @@ namespace Alsahab.Setting.BL
                 if (!string.IsNullOrWhiteSpace(data?.Message))
                     result = result?.Where(s => s.MessageStr.Contains(data.Message ?? ""))?.ToList();
             }
-            ResultCount = result.Count;
+            // ResultCount = result.Count;
 
-            if (PagingInfo?.IsPaging == true)
-            {
-                int skip = (PagingInfo.Index - 1) * PagingInfo.Size;
-                result = result.OrderBy(s => s.ID).Skip(skip).Take(PagingInfo.Size).ToList();
-            }
+            // if (PagingInfo?.IsPaging == true)
+            // {
+            //     int skip = (PagingInfo.Index - 1) * PagingInfo.Size;
+            //     result = result.OrderBy(s => s.ID).Skip(skip).Take(PagingInfo.Size).ToList();
+            // }
 
-            ResponseStatus = _LogDL.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += _LogDL.ErrorMessage;
-                return null;
-            }
+            // ResponseStatus = _LogDL.ResponseStatus;
+            // if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+            // {
+            //     ErrorMessage += _LogDL.ErrorMessage;
+            //     return null;
+            // }
             return result;
         }
     }

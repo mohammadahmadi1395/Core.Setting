@@ -38,11 +38,10 @@ namespace Alsahab.Setting.BL
             return true;
         }
 
-        public override async Task<IList<FormTypeDTO>> GetAsync(FormTypeFilterDTO filter, CancellationToken cancellationToken)
+        public override async Task<IList<FormTypeDTO>> GetAsync(FormTypeFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
-            var response = await _FormTypeDL.GetAsync(filter, cancellationToken);
-            if (_FormTypeDL.ResponseStatus != ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.DatabaseError, _FormTypeDL.ErrorMessage);
+            var response = await _FormTypeDL.GetAsync(filter, cancellationToken, paging);
+            ResultCount = _FormTypeDL.ResultCount;
             return response;
         }
 

@@ -7,7 +7,7 @@ using Alsahab.Common.Validation;
 
 namespace Alsahab.Setting.BL.Validation
 {
-    internal class BLStatementValidator : Alsahab.Setting.DTO.Validation.StatementValidator
+    internal class BLStatementValidator : Alsahab.Setting.DTO.StatementValidator
     {
         public BLStatementValidator() : base()
         {

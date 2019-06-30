@@ -99,17 +99,23 @@ namespace Alsahab.Setting.BL
             return true;
         }
 
-        public virtual async Task<IList<Dto>> GetAllAsync(CancellationToken cancellationToken)
+        public virtual async Task<IList<Dto>> GetAllAsync(CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
-            return await _BaseDL.GetAllAsync(cancellationToken);
+            var result = await _BaseDL.GetAllAsync(cancellationToken);
+            ResultCount = _BaseDL.ResultCount;
+            return result;
         }
-        public virtual IList<Dto> GetAll()
+        public virtual IList<Dto> GetAll(PagingInfoDTO paging = null)
         {
-            return _BaseDL.GetAll();
+            var result = _BaseDL.GetAll(paging);
+            ResultCount = _BaseDL.ResultCount;
+            return result;
         }
-        public virtual async Task<IList<Dto>> GetAsync(FilterDto filter, CancellationToken cancellationToken)// = new CancellationToken())
+        public virtual async Task<IList<Dto>> GetAsync(FilterDto filter, CancellationToken cancellationToken, PagingInfoDTO paging = null)// = new CancellationToken())
         {
-            return await _BaseDL.GetAsync(filter, cancellationToken);
+            var result = await _BaseDL.GetAsync(filter, cancellationToken, paging);
+            ResultCount = _BaseDL.ResultCount;
+            return result;
         }
 
         public virtual async Task<Dto> UpdateAsync(Dto data, CancellationToken cancellationToken)
@@ -270,12 +276,10 @@ namespace Alsahab.Setting.BL
 
         }
 
-        public virtual IList<Dto> Get(FilterDto filter)
+        public virtual IList<Dto> Get(FilterDto filter, PagingInfoDTO paging = null)
         {
-            var response = _BaseDL.Get(filter);
-            ResponseStatus = _BaseDL.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.ServerError, _BaseDL.ErrorMessage);
+            var response = _BaseDL.Get(filter, paging);
+            ResultCount = _BaseDL.ResultCount;
             return response;
 
         }

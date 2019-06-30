@@ -30,15 +30,14 @@ namespace Alsahab.Setting.BL
             return Validate<BLBranchRegionWorkValidator, BranchRegionWorkDTO>(data ?? new BranchRegionWorkDTO());
         }
 
-        public override async Task<IList<BranchRegionWorkDTO>> GetAsync(BranchRegionWorkFilterDTO filter, CancellationToken cancellationToken)
+        public override async Task<IList<BranchRegionWorkDTO>> GetAsync(BranchRegionWorkFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO pagine = null)
         {
-            var response = await _BranchRegionWorkDL.GetAsync(filter, cancellationToken);
-            if (_BranchRegionWorkDL.ResponseStatus != ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.LoginError, _BranchRegionWorkDL.ErrorMessage);
+            var response = await _BranchRegionWorkDL.GetAsync(filter, cancellationToken, pagine);
 
             var responseZone = await _ZoneDL.GetAllAsync(cancellationToken);
-            if (_ZoneDL.ResponseStatus != ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.LoginError, _ZoneDL.ErrorMessage);
+
+            if (!(responseZone?.Count > 0))
+                throw new NotFoundException("Zone table is empty.");
 
             var result = (from Rw in response
                           join Zone in responseZone on Rw.ZoneID equals Zone.ID

@@ -44,9 +44,9 @@ namespace Alsahab.Setting.BL
         #endregion dependency injection
 
         #region Async methods
-        public async override Task<IList<BranchDTO>> GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken)
+        public async override Task<IList<BranchDTO>> GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
-            var response = await _BranchDL.GetAsync(filter, cancellationToken);
+            var response = await _BranchDL.GetAsync(filter, cancellationToken, paging);
 
             if (!(response.Count > 0))
                 return response;
@@ -70,7 +70,7 @@ namespace Alsahab.Setting.BL
                             {
                                 ID = r.ID,
                                 Code = r.Code,
-                                ParentId = r.ParentId,
+                                ParentID = r.ParentID,
                                 Title = r.Title,
                                 IsCentral = r.IsCentral,
                                 HeadPersonID = x?.ID,
@@ -197,8 +197,7 @@ namespace Alsahab.Setting.BL
             var deletingItem = await _BranchDL.GetByIdAsync(cancellationToken, data.ID);
             var myLeft = deletingItem.LeftIndex; 
             var myRight = deletingItem.RightIndex;
-            var AllZons = AllBranch;
-            var deleteCount = AllZons.Where(i => i.LeftIndex >= myLeft && i.LeftIndex <= myRight && i.IsDeleted == false).Count();
+            var deleteCount = AllBranch.Where(i => i.LeftIndex >= myLeft && i.LeftIndex <= myRight && i.IsDeleted == false).Count();
             if (deleteCount > 1)
                 throw new AppException(ResponseStatus.LoginError, "You can't delete this node. this node has child");
 
@@ -220,7 +219,7 @@ namespace Alsahab.Setting.BL
                 TreeNodes.Add(node);
             }
 
-            List<BranchDTO> rootList = TreeNodes.Where(i => !(i.ParentId > 0))?.ToList();
+            List<BranchDTO> rootList = TreeNodes.Where(i => !(i.ParentID > 0))?.ToList();
             foreach (var root in rootList)
                 if (root?.ID > 0)
                 {
@@ -296,12 +295,12 @@ namespace Alsahab.Setting.BL
         }
         // private String GenerateCodeInInsert(BranchDTO data)
         // {
-        //     if (!(data?.ParentId > 0))
-        //         return (AllBranch?.Where(s => s.ParentId == null)?.ToList()?.Count + 1).ToString();
+        //     if (!(data?.ParentID > 0))
+        //         return (AllBranch?.Where(s => s.ParentID == null)?.ToList()?.Count + 1).ToString();
         //     else
         //     {
-        //         var r = AllBranch?.Where(s => s.ParentId == data?.ParentId)?.ToList()?.Count;
-        //         var parentCode = AllBranch?.FirstOrDefault(s => s.ID == data?.ParentId)?.Code;
+        //         var r = AllBranch?.Where(s => s.ParentID == data?.ParentID)?.ToList()?.Count;
+        //         var parentCode = AllBranch?.FirstOrDefault(s => s.ID == data?.ParentID)?.Code;
         //         return String.Format("{0}-{1}", parentCode, (r + 1)?.ToString());
         //     }
         // }
@@ -317,32 +316,32 @@ namespace Alsahab.Setting.BL
 
                 res.Add(data[thisBranch]);
 
-                var childs = AllBranch?.Where(s => s.ParentId == data[thisBranch]?.ID)?.ToList();
+                var childs = AllBranch?.Where(s => s.ParentID == data[thisBranch]?.ID)?.ToList();
 
                 for (int child = 0; child < childs?.Count; child++)
                 {
                     childs[child].Code = string.Format("{0}-{1}", data[thisBranch].Code, (child + 1));
                     res.Add(childs[child]);
-                    res.AddRange(GenerateNewCodeList(AllBranch?.Where(s => s.ParentId == childs[child]?.ID)?.ToList()));
+                    res.AddRange(GenerateNewCodeList(AllBranch?.Where(s => s.ParentID == childs[child]?.ID)?.ToList()));
                 }
             }
             return res;
         }
         private BranchDTO GetNotIndexedBrother(BranchDTO node)
         {
-            if (!(node.ParentId > 0))
+            if (!(node.ParentID > 0))
                 return null;
-            var parent = TreeNodes.FirstOrDefault(i => i.ID == node.ParentId);
+            var parent = TreeNodes.FirstOrDefault(i => i.ID == node.ParentID);
             var brother = GetNotIndexedChild(parent);
             return brother?.ID > 0 ? brother : null;
         }
         private BranchDTO GetNotIndexedChild(BranchDTO node)
         {
-            return TreeNodes.FirstOrDefault(i => i.ParentId == node.ID && !(i.LeftIndex > 0));
+            return TreeNodes.FirstOrDefault(i => i.ParentID == node.ID && !(i.LeftIndex > 0));
         }
         private BranchDTO GetParent(BranchDTO data)
         {
-            return AllBranch?.FirstOrDefault(s => s.ID == data?.ParentId);
+            return AllBranch?.FirstOrDefault(s => s.ID == data?.ParentID);
         }
         #endregion related to tree
     }

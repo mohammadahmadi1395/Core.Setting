@@ -16,9 +16,9 @@ namespace Alsahab.Setting.BL.Validation
     internal class BLOrganizationalChartValidator : Alsahab.Setting.DTO.OrganizationalChartValidator
     {
         private readonly IBaseDL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO> _OrganizationalChartDL;
-
-        public BLOrganizationalChartValidator() : base()
+        public BLOrganizationalChartValidator(IBaseDL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO> organizationalChartDL) : base()
         {
+            _OrganizationalChartDL = organizationalChartDL;
             RuleFor(x => x.Title).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("NotExist"));
         }
         private bool NotExist(string title)

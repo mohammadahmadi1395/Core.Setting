@@ -29,8 +29,8 @@ namespace Alsahab.Setting.Data.Repositories
 
             if (filter?.ID > 0)
                 query = query.Where(s => s.ID == filter.ID);
-            if (filter?.ParentId > 0)
-                query = query.Where(s => s.ParentID == filter.ParentId);
+            if (filter?.ParentID > 0)
+                query = query.Where(s => s.ParentID == filter.ParentID);
             if (filter?.CreateDateFrom > DateTime.MinValue)
                 query = query.Where(s => s.CreateDate >= filter.CreateDateFrom);
             if (filter?.CreateDateTo > DateTime.MinValue)
@@ -89,8 +89,8 @@ namespace Alsahab.Setting.Data.Repositories
 
             if (filter?.ID > 0)
                 query = query.Where(s => s.ID == filter.ID);
-            if (filter?.ParentId > 0)
-                query = query.Where(s => s.ParentID == filter.ParentId);
+            if (filter?.ParentID > 0)
+                query = query.Where(s => s.ParentID == filter.ParentID);
             if (filter?.CreateDateFrom > DateTime.MinValue)
                 query = query.Where(s => s.CreateDate >= filter.CreateDateFrom);
             if (filter?.CreateDateTo > DateTime.MinValue)

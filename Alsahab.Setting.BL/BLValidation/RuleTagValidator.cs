@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Alsahab.Setting.BL.Validation
 {
-    internal class BLRuleTagValidator : Alsahab.Setting.DTO.Validation.RuleTagValidator
+    internal class BLRuleTagValidator : Alsahab.Setting.DTO.RuleTagValidator
     {
         public BLRuleTagValidator() : base()
         {

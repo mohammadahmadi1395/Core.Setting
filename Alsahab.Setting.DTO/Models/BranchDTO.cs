@@ -13,7 +13,7 @@ namespace Alsahab.Setting.DTO
         public BranchDTO()
         {            
         }
-        public long? ParentId { get; set; }
+        public long? ParentID { get; set; }
         public String Title { get; set; }
         public String Code { get; set; }
         public long? HeadPersonID { get; set; }
