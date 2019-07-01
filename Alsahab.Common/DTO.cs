@@ -12,18 +12,19 @@ namespace Alsahab.Common
         public int Size { get; set; }
         public int Index { get; set; }
     }
-    public class StatementDTO : BaseDTO
-    {
-        public string TagName { get; set; }
-        public long? FilterSubsystemID { get; set; }
-        public List<long?> SubsystemIDList { get; set; }
-        public List<string> SubsystemNameList { get; set; }
-        //public StatementTypes TypeID { get; set; }
-        //public string TypeTitle { get { return ((StatementTypes)TypeID).GetDescription(); } }
-        public string PersianText { get; set; }
-        public string EnglishText { get; set; }
-        public string ArabicText { get; set; }
-    }
+    
+    // public class StatementDTO : BaseDTO
+    // {
+    //     public string TagName { get; set; }
+    //     public long? FilterSubsystemID { get; set; }
+    //     public List<long?> SubsystemIDList { get; set; }
+    //     public List<string> SubsystemNameList { get; set; }
+    //     //public StatementTypes TypeID { get; set; }
+    //     //public string TypeTitle { get { return ((StatementTypes)TypeID).GetDescription(); } }
+    //     public string PersianText { get; set; }
+    //     public string EnglishText { get; set; }
+    //     public string ArabicText { get; set; }
+    // }
 
     public class UserInfoDTO
     {
@@ -57,6 +58,7 @@ namespace Alsahab.Common
         public DateTime? CreateDate { get; set; }
         public DateTime? CreateDateFrom { get; set; }
         public DateTime? CreateDateTo { get; set; }
+        public List<long?> IDList {get;set;}
     }
 
 
