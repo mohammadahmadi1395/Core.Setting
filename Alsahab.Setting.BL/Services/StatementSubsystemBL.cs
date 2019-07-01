@@ -396,3 +396,49 @@
 //         }
 //     }
 // }
+
+
+
+//         private async override Task<IList<StatementSubsystemDTO>> StatementSubsystemDelete(StatementSubsystemDTO data)
+//         {
+//             if (!(data.ID > 0) && !(data?.StatementID > 0))
+//             {
+//                 ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
+//                 ErrorMessage = "Entered Statement is Mistake";
+//                 return null;
+//             }
+//             var subsystems = StatementDA.StatementSubsystemGet(data);
+
+//             foreach (var val in subsystems)
+//             {
+//                 var response = StatementDA.StatementSubsystemDelete(val);
+//                 Observers.ObserverStates.StatementSubsystemDelete state = new Observers.ObserverStates.StatementSubsystemDelete
+//                 {
+//                     StatementSubsystem = response,
+//                     User = User,
+
+//                 };
+//                 Notify(state);
+//             }
+//             return subsystems;
+//         }
+       
+//         private List<StatementSubsystemDTO> StatementSubsystemInsert(DTO.StatementDTO data)
+//         {
+//             var response = new List<StatementSubsystemDTO>();
+//             var statementSubsystems = data?.SubsystemList?.Select(s => new StatementSubsystemDTO { ID = 0, SubsystemID = s.ID, StatementID = data?.ID })?.ToList();
+
+//             foreach (var val in statementSubsystems)
+//             {
+//                 var res = StatementDA.StatementSubsystemInsert(val);
+//                 response.Add(res);
+//                 Observers.ObserverStates.StatementSubsystemAdd state = new Observers.ObserverStates.StatementSubsystemAdd
+//                 {
+//                     StatementSubsystem = res,
+//                     User = User,
+
+//                 };
+//                 Notify(state);
+//             }
+//             return response;
+//         }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Alsahab.Setting.Entities.Models
 {
-    public class Statement : BaseEntity<Statement, StatementDTO, long>
+    public class Statement : BaseEntity<Statement, DTO.StatementDTO, long>
     {
         public string TagName { get; set; }
         public string PersianText { get; set; }

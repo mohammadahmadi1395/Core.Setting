@@ -144,7 +144,7 @@ namespace Alsahab.Setting.BL
 
             return statementResponse;
         }
-        
+
         /// <summary>
         /// Insert List of Statement In Database
         /// </summary>
@@ -152,233 +152,122 @@ namespace Alsahab.Setting.BL
         /// <returns></returns>
         public async override Task<IList<StatementDTO>> InsertListAsync(IList<StatementDTO> data, CancellationToken cancellationToken)
         {
+            var result = new List<StatementDTO>();
             foreach (var d in data)
-            {
-                Validate(d);
-                d.CreateDate = DateTime.Now;
-            }
-
-            var StatementList = StatementGet(new DTO.StatementDTO { });
-            for (int i = 0; i < data.Count; i++)
-            {
-                var Count = StatementList?.Where(s => s.TagName == data[i].TagName)?.ToList().Count;
-                if (Count > 0) // Statement Is Exist
-                {
-                    var Statement = StatementList?.Where(s => s.TagName == data[i].TagName)?.FirstOrDefault();
-                    data[i].ID = Statement?.ID;
-                    if (Statement.SubsystemList.Select(s => s.ID).ToList().Contains(data[i]?.SubsystemList?.FirstOrDefault()?.ID))
-                    {
-                        data[i].SubsystemList.Clear();
-                    }
-                    data[i].SubsystemList.AddRange(Statement.SubsystemList);
-                    //Statement.EnglishText = String.IsNullOrWhiteSpace(data[i]?.EnglishText) ? Statement?.EnglishText : data[i]?.EnglishText;
-                    //Statement.ArabicText = String.IsNullOrWhiteSpace(data[i]?.ArabicText) ? Statement?.ArabicText : data[i]?.ArabicText;
-                    //Statement.PersianText = String.IsNullOrWhiteSpace(data[i]?.PersianText) ? Statement?.PersianText : data[i]?.PersianText;
-
-                    StatementUpdate(data[i]);
-                }
-            }
-            var Response = StatementDA.StatementInsert(data);
-
-            List<DTO.StatementDTO> respList = new List<DTO.StatementDTO>();
-            foreach (var val in Response)
-            {
-                var resp = StatementGet(new DTO.StatementDTO { ID = val?.ID ?? 0 })?.FirstOrDefault();
-                Observers.ObserverStates.StatementAdd state = new Observers.ObserverStates.StatementAdd
-                {
-                    Statement = resp ?? val,
-                    User = User,
-                };
-                Notify(state);
-                respList.Add(resp);
-            }
-
-            ResponseStatus = StatementDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += StatementDA.ErrorMessage;
-                return null;
-            }
-
-            return respList ?? Response;
-
+                result.Add(await InsertAsync(d, cancellationToken));
+            return result;
         }
+
         /// <summary>
         /// StatementUpdate
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public DTO.StatementDTO StatementUpdate(DTO.StatementDTO data)
+        public async override Task<StatementDTO> UpdateAsync(StatementDTO data, CancellationToken cancellationToken)
         {
-            if (!(data.ID > 0))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                ErrorMessage = "Entered Statement is Mistake";
-                return null;
-            }
+            var temp = await MergeNewAndOldDataForUpdate(data, cancellationToken);
+            temp.SubsystemIDList = data.SubsystemIDList;
+            data = temp;
 
-            DTO.StatementDTO Statementdto = new DTO.StatementDTO();
-            Statementdto = StatementGet(new DTO.StatementDTO { ID = data.ID })?.FirstOrDefault();
-            Statementdto = new DTO.StatementDTO
-            {
-                ID = data.ID,
-                TagName = !string.IsNullOrWhiteSpace(data?.TagName) ? data?.TagName : Statementdto.TagName,
-                ArabicText = !string.IsNullOrWhiteSpace(data.ArabicText) ? data.ArabicText : Statementdto.ArabicText,
-                EnglishText = !string.IsNullOrWhiteSpace(data.EnglishText) ? data.EnglishText : Statementdto.EnglishText,
-                PersianText = !string.IsNullOrWhiteSpace(data.PersianText) ? data.PersianText : Statementdto.PersianText,
-                CreateDate = data?.CreateDate > DateTime.MinValue ? data?.CreateDate : Statementdto.CreateDate,
-                IsDeleted = data.IsDeleted,
-            };
+            Validate(data);
 
-            var Response = StatementDA.StatementUpdate(Statementdto);
-            ResponseStatus = StatementDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+            var statementResponse = await _StatementDL.UpdateAsync(data, cancellationToken);
+            Observers.ObserverStates.StatementAdd state = new Observers.ObserverStates.StatementAdd
             {
-                ErrorMessage += StatementDA.ErrorMessage;
-                return null;
-            }
-
-            if (data?.SubsystemList?.Count > 0)
-            {
-                var subsystemRes = StatementSubsystemDelete(new StatementSubsystemDTO { StatementID = data?.ID });
-                ResponseStatus = StatementDA.ResponseStatus;
-                if (ResponseStatus != ResponseStatus.Successful)
-                {
-                    ErrorMessage += StatementDA.ErrorMessage;
-                    return null;
-                }
-                subsystemRes = StatementSubsystemInsert(data);
-                ResponseStatus = StatementDA.ResponseStatus;
-                if (ResponseStatus != ResponseStatus.Successful)
-                {
-                    ErrorMessage += StatementDA.ErrorMessage;
-                    return null;
-                }
-            }
-            var resp = StatementGet(new DTO.StatementDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
-            Observers.ObserverStates.StatementEdit state = new Observers.ObserverStates.StatementEdit
-            {
-                Statement = resp ?? Response,
+                Statement = statementResponse,
                 User = User,
             };
             Notify(state);
-            return resp ?? Response;
-        }
-        private List<StatementSubsystemDTO> StatementSubsystemDelete(StatementSubsystemDTO data)
-        {
-            if (!(data.ID > 0) && !(data?.StatementID > 0))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                ErrorMessage = "Entered Statement is Mistake";
-                return null;
-            }
-            var subsystems = StatementDA.StatementSubsystemGet(data);
 
-            foreach (var val in subsystems)
+            // لیست زیرسیستم‌های قبلی آن را می‌آورد، 
+            var statementSubsystemList = await _StatementSubsystemDL.GetAsync(new StatementSubsystemFilterDTO { StatementID = data.ID }, cancellationToken);
+            var oldSubsystemIdList = statementSubsystemList?.Select(s => s.SubsystemID)?.ToList();
+
+            // اگر از قبل عبارت وجود داشته باشد، فقط زیرسیستم‌های جدید را برای این عبارت استخراج می‌کند تا درج شوند
+            foreach (var val in oldSubsystemIdList)
+                data.SubsystemIDList.Remove(val);
+
+            // ساختن شیء از زیرسیستم‌های عبارت برای درج در دیتابیس
+            var newStatementSubsystemList = new List<StatementSubsystemDTO>();
+            foreach (var val in data.SubsystemIDList)
+                newStatementSubsystemList.Add(new StatementSubsystemDTO { StatementID = statementResponse?.ID, SubsystemID = val });
+
+            var statementSubsystemResponse = await _StatementSubsystemDL.InsertListAsync(newStatementSubsystemList, cancellationToken);
+
+            foreach (var val in statementSubsystemResponse)
             {
-                var response = StatementDA.StatementSubsystemDelete(val);
-                Observers.ObserverStates.StatementSubsystemDelete state = new Observers.ObserverStates.StatementSubsystemDelete
+                Observers.ObserverStates.StatementSubsystemAdd newState = new Observers.ObserverStates.StatementSubsystemAdd
                 {
-                    StatementSubsystem = response,
+                    StatementSubsystem = val,
                     User = User,
-
                 };
-                Notify(state);
+                Notify(newState);
             }
-            return subsystems;
+            return statementResponse;
         }
-        private List<StatementSubsystemDTO> StatementSubsystemInsert(DTO.StatementDTO data)
-        {
-            var response = new List<StatementSubsystemDTO>();
-            var statementSubsystems = data?.SubsystemList?.Select(s => new StatementSubsystemDTO { ID = 0, SubsystemID = s.ID, StatementID = data?.ID })?.ToList();
 
-            foreach (var val in statementSubsystems)
-            {
-                var res = StatementDA.StatementSubsystemInsert(val);
-                response.Add(res);
-                Observers.ObserverStates.StatementSubsystemAdd state = new Observers.ObserverStates.StatementSubsystemAdd
-                {
-                    StatementSubsystem = res,
-                    User = User,
-
-                };
-                Notify(state);
-            }
-            return response;
-        }
         /// <summary>
         /// Delete Logicly
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public DTO.StatementDTO StatementDelete(DTO.StatementDTO data)
+        public async override Task<StatementDTO> SoftDeleteAsync(StatementDTO data, CancellationToken cancellationToken)
         {
-            //Search For Use This Item Before Delete
-            if (!DeletePermission(data))
+            CheckDeletePermission(data);
+
+            var statementSubsystemList = await _StatementSubsystemDL.GetAsync(new StatementSubsystemFilterDTO { StatementID = data.ID }, cancellationToken);
+            foreach (var val in statementSubsystemList)
             {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
+                val.IsDeleted = true;
+                var statementSubsystemResponse = await _StatementSubsystemDL.UpdateAsync(val, cancellationToken);
+                var statesubstate = new Observers.ObserverStates.StatementSubsystemDelete
+                {
+                    StatementSubsystem = statementSubsystemResponse,
+                    User = User,
+                };
+                Notify(statesubstate);
             }
 
-            var statementSubsystemResponse = StatementSubsystemDelete(new StatementSubsystemDTO { StatementID = data?.ID });
-
-            if (StatementDA.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += StatementDA.ErrorMessage;
-                return null;
-            }
-
-            data = StatementGet(data)?.FirstOrDefault();
+            data = await _StatementDL.GetByIdAsync(cancellationToken, data.ID);
             data.IsDeleted = true;
-            var Response = StatementDA.StatementUpdate(data);
+            var response = await _StatementDL.UpdateAsync(data, cancellationToken);
 
-            var resp = StatementGet(new DTO.StatementDTO { ID = Response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
             Observers.ObserverStates.StatementDelete state = new Observers.ObserverStates.StatementDelete
             {
-                Statement = resp ?? Response,
+                Statement = response,
                 User = User,
             };
             Notify(state);
 
-            ResponseStatus = StatementDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += StatementDA.ErrorMessage;
-                return null;
-            }
-
-            return resp ?? Response;
+            return response;
         }
-        /// <summary>
-        /// Delete physically
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public DTO.StatementDTO StatementDeleteComplete(DTO.StatementDTO data)
-        {
-            if (!DeletePermission(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
-            var Response = StatementDA.StatementDelete(data);
 
-            var resp = StatementGet(new DTO.StatementDTO { ID = Response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
-            Observers.ObserverStates.StatementDelete state = new Observers.ObserverStates.StatementDelete
-            {
-                Statement = resp ?? Response,
-                User = User,
-            };
-            Notify(state);
+        // /// <summary>
+        // /// Delete physically
+        // /// </summary>
+        // /// <param name="data"></param>
+        // /// <returns></returns>
+        // public async override Task<StatementDTO> DeleteAsync(StatementDTO data, CancellationToken cancellationToken)
+        // {
+        //     CheckDeletePermission(data);
+        //     var response = _StatementDL.StatementDelete(data);
 
-            ResponseStatus = StatementDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += StatementDA.ErrorMessage;
-                return null;
-            }
+        //     var resp = StatementGet(new DTO.StatementDTO { ID = Response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
+        //     Observers.ObserverStates.StatementDelete state = new Observers.ObserverStates.StatementDelete
+        //     {
+        //         Statement = resp ?? Response,
+        //         User = User,
+        //     };
+        //     Notify(state);
 
-            return resp ?? Response;
-        }
+        //     ResponseStatus = StatementDA.ResponseStatus;
+        //     if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+        //     {
+        //         ErrorMessage += StatementDA.ErrorMessage;
+        //         return null;
+        //     }
+
+        //     return resp ?? Response;
+        // }
     }
 }
