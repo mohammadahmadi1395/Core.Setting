@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Alsahab.Common;
+using FluentValidation;
 
 namespace Alsahab.Setting.DTO
 {
@@ -21,4 +22,12 @@ namespace Alsahab.Setting.DTO
         public string EnglishText { get; set; }
         public string ArabicText { get; set; }
     }
+        public class StatementSubsystemValidator : AbstractValidator<StatementSubsystemDTO>
+    {
+        public StatementSubsystemValidator()
+        {
+            //TODO:
+        }
+    }
+
 }

@@ -9,7 +9,6 @@ using Alsahab.Setting.Entities.Models;
 using Alyatim.Member.SC.Messages;
 using Alsahab.Common;
 using Alsahab.Common.Exceptions;
-using Alsahab.Common.Utilities;
 using Alsahab.Setting.BL.Validation;
 
 namespace Alsahab.Setting.BL
@@ -126,7 +125,7 @@ namespace Alsahab.Setting.BL
             List<BranchDTO> respList = new List<BranchDTO>();
             foreach (var val in response)
             {
-                var resp = (await GetAsync(new BranchFilterDTO { ID = val?.ID ?? 0 }, cancellationToken))?.FirstOrDefault();
+                var resp = await _BranchDL.GetByIdAsync(cancellationToken, val?.ID);
                 Observers.ObserverStates.BranchAdd state = new Observers.ObserverStates.BranchAdd
                 {
                     Branch = resp ?? val,

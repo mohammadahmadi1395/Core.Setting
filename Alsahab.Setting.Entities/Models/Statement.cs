@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Alsahab.Common;
+using Alsahab.Setting.DTO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Alsahab.Setting.Entities.Models
 {
-    public class Statement : BaseEntity<Statement, DTO.StatementDTO, long>
+    public class Statement : BaseEntity<Statement, StatementDTO, long>
     {
         public string TagName { get; set; }
         public string PersianText { get; set; }

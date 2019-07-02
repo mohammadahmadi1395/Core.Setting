@@ -4,55 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Alsahab.Setting.DTO;
-using Alsahab.Setting.DA;
-using Alsahab.Setting.DA.Entities;
 using Alsahab.Common;
+using Alsahab.Setting.Data.Interfaces;
+using Alsahab.Setting.Entities.Models;
+using System.Threading;
 
 namespace Alsahab.Setting.BL
 {
-    public class SubpartBL : BaseBL<SubpartBL, SubpartDTO, SubpartFilterDTO>
+    public class SubpartBL : BaseBL<Subpart, SubpartDTO, SubpartFilterDTO>
     {
-        SubpartDA SubpartDA = new SubpartDA();
+        private readonly IBaseDL<Subpart, SubpartDTO, SubpartFilterDTO> _SubpartDL;
+        public SubpartBL(IBaseDL<Subpart, SubpartDTO, SubpartFilterDTO> subpartDL) : base(subpartDL)
+        {
+            _SubpartDL = subpartDL;
+        }
         private bool Validate(SubpartDTO data)
         {
-
-            return Validate<Validation.SubpartValidator,SubpartDTO>(data ?? new SubpartDTO());
-            //if (!(data?.SubsystemID >0 ))
-            //{
-            //    ErrorMessage = "Select SubSystem First\n";
-            //    return false;
-            //}
-            //if (string.IsNullOrWhiteSpace(data.Name))
-            //{
-            //    ErrorMessage = "Subpart Name Not Entered\n";
-            //    return false;
-            //}
-            //if (data.IsDeleted == true)
-            //{
-            //    ErrorMessage = "Subpart is not saved in database before.\n";
-            //    return false;
-            //}
-            //var SubpartList = SubpartGet(new SubpartDTO())?.ToList();
-            //var CheckSubpart = SubpartList.Where(s => s.Name == data?.Name)?.Count();
-            //if (CheckSubpart > 0)
-            //{
-            //    ErrorMessage = "This Subpart Is Exist\n";
-            //    return false;
-            //}
-            //return true;
+            return Validate<Validation.BLSubpartValidator, SubpartDTO>(data);
         }
+
         /// <summary>
         /// Check Data For Delete
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        private bool DeletePermission(SubpartDTO data)
+        private bool CheckDeletePermission(SubpartDTO data)
         {
             if (!(data.ID > 0))
             {
                 ErrorMessage = "Entered Subpart is Mistake";
                 return false;
             }
+            //TODO:
             //SubsystemDA SubsystemDA = new SubsystemDA();
             //var SubsystemIDCheck = SubsystemDA.SubsystemGet(new DTO.SubsystemDTO { ID = data.SubsystemID }).Count();
             //if ((SubsystemIDCheck > 0))
@@ -62,79 +45,56 @@ namespace Alsahab.Setting.BL
             //}
             return true;
         }
-        public List<SubpartDTO> SubpartGet(SubpartDTO data)
+
+        public async override Task<IList<SubpartDTO>> GetAsync(SubpartFilterDTO data, CancellationToken cancellationToken, PagingInfoDTO paging)
         {
-            var Response = SubpartDA.SubpartGet(data);
-
-            ResponseStatus = SubpartDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += SubpartDA.ErrorMessage;
-                return null;
-            }
-
-            return Response;
+            var result = await _SubpartDL.GetAsync(data, cancellationToken, paging);
+            ResultCount = _SubpartDL.ResultCount;
+            return result;
         }
+
         /// <summary>
         /// Insert Subpart In Database
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public SubpartDTO SubpartInsert(SubpartDTO data)
+        public async override Task<SubpartDTO> InsertAsync(SubpartDTO data, CancellationToken cancellationToken)
         {
-            //validate data
-            if (!Validate(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
+            Validate(data);
+
             data.CreateDate = DateTime.Now;
-            var Response = SubpartDA.SubpartInsert(data);
 
-            if (Response?.ID > 0)
-            {
-                var resp = SubpartGet(new SubpartDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
-                Observers.ObserverStates.SubpartAdd state = new Observers.ObserverStates.SubpartAdd
-                {
-                    Subpart = resp ?? Response,
-                    User = User,
-                };
-                Notify(state);
-                if (resp != null)
-                    Response = resp;
-            }
+            var response = await _SubpartDL.InsertAsync(data, cancellationToken);
 
-            ResponseStatus = SubpartDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+            response = await _SubpartDL.GetByIdAsync(cancellationToken, response?.ID);
+            Observers.ObserverStates.SubpartAdd state = new Observers.ObserverStates.SubpartAdd
             {
-                ErrorMessage += SubpartDA.ErrorMessage;
-                return null;
-            }
-            return Response;
+                Subpart = response,
+                User = User,
+            };
+            Notify(state);
+            return response;
         }
+
         /// <summary>
         /// Insert List of Subpart In Database
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public List<SubpartDTO> SubpartInsert(List<SubpartDTO> data)
+        public async override Task<IList<SubpartDTO>> InsertListAsync(IList<SubpartDTO> data, CancellationToken cancellationToken)
         {
             foreach (var d in data)
             {
-                if (!Validate(d))
-                {
-                    ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-
-                    return null;
-                }
+                Validate(d);
                 d.CreateDate = DateTime.Now;
             }
-            var Response = SubpartDA.SubpartInsert(data);
+            
+            var response = await _SubpartDL.InsertListAsync(data, cancellationToken);
 
-            List<SubpartDTO> respList = new List<SubpartDTO>();
-            foreach (var val in Response)
+            var respList = new List<SubpartDTO>();
+            foreach (var val in response)
             {
-                var resp = SubpartGet(new SubpartDTO { ID = val?.ID ?? 0 })?.FirstOrDefault();
+                var resp = await _SubpartDL.GetByIdAsync(cancellationToken, val?.ID);
                 Observers.ObserverStates.SubpartAdd state = new Observers.ObserverStates.SubpartAdd
                 {
                     Subpart = resp ?? val,
@@ -144,14 +104,7 @@ namespace Alsahab.Setting.BL
                 respList.Add(resp);
             }
 
-            ResponseStatus = SubpartDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += SubpartDA.ErrorMessage;
-                return null;
-            }
-            
-            return respList ?? Response;
+            return respList ?? response;
 
         }
         /// <summary>
@@ -159,95 +112,68 @@ namespace Alsahab.Setting.BL
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public SubpartDTO SubpartUpdate(SubpartDTO data)
+        public async override Task<SubpartDTO> UpdateAsync(SubpartDTO data, CancellationToken cancellationToken)
         {
-            if (!(data.ID > 0))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                ErrorMessage = "Entered Subpart is Mistake";
-                return null;
-            }
-            var Response = SubpartDA.SubpartUpdate(data);
+            data = await MergeNewAndOldDataForUpdate(data, cancellationToken);
+            
+            Validate(data);
 
-            var resp = SubpartGet(new SubpartDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
+            var response = await _SubpartDL.UpdateAsync(data, cancellationToken);
+
+            response = await _SubpartDL.GetByIdAsync(cancellationToken, response?.ID);
+
             Observers.ObserverStates.SubpartEdit state = new Observers.ObserverStates.SubpartEdit
             {
-                Subpart = resp ?? Response,
+                Subpart = response,
                 User = User,
             };
             Notify(state);
 
-            ResponseStatus = SubpartDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += SubpartDA.ErrorMessage;
-                return null;
-            }
-            return resp ?? Response;
+            return response;
         }
+
         /// <summary>
         /// Delete Logicly
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public SubpartDTO SubpartDelete(SubpartDTO data)
+        public async override Task<SubpartDTO> SoftDeleteAsync(SubpartDTO data, CancellationToken cancellationToken)
         {
-            //Search For Use This Item Before Delete
-            if (!DeletePermission(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
+            CheckDeletePermission(data);
+            
             data.IsDeleted = true;
-            var Response = SubpartDA.SubpartUpdate(data);
+            
+            var response = await _SubpartDL.UpdateAsync(data, cancellationToken);
 
-            var resp = SubpartGet(new SubpartDTO { ID = Response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
             Observers.ObserverStates.SubpartDelete state = new Observers.ObserverStates.SubpartDelete
             {
-                Subpart = resp ?? Response,
+                Subpart = response,
                 User = User,
             };
             Notify(state);
 
-            ResponseStatus = SubpartDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += SubpartDA.ErrorMessage;
-                return null;
-            }
-
-            return resp ?? Response;
+            return response;
         }
+
         /// <summary>
         /// Delete physically
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public SubpartDTO SubpartDeleteComplete(SubpartDTO data)
+        public async override Task<SubpartDTO> DeleteAsync(SubpartDTO data, CancellationToken cancellationToken)
         {
-            if (!DeletePermission(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
-            var Response = SubpartDA.SubpartDelete(data);
+            CheckDeletePermission(data);
+            data = await _SubpartDL.GetByIdAsync(cancellationToken, data.ID);
+            var response = await _SubpartDL.DeleteAsync(data, cancellationToken);
 
-            var resp = SubpartGet(new SubpartDTO { ID = Response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
             Observers.ObserverStates.SubpartDelete state = new Observers.ObserverStates.SubpartDelete
             {
-                Subpart = resp ?? Response,
+                Subpart = data,
                 User = User,
             };
             Notify(state);
 
-            ResponseStatus = SubpartDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += SubpartDA.ErrorMessage;
-                return null;
-            }
-
-            return resp ?? Response;
+            return data;
         }
     }
 }

@@ -5,133 +5,99 @@ using System.Text;
 using System.Threading.Tasks;
 using Alsahab.Setting.DTO;
 using Alsahab.Common;
-using System.Reflection.PortableExecutable;
+using Alsahab.Setting.Data.Interfaces;
+using Alsahab.Setting.Entities.Models;
+using Alsahab.Setting.BL.Validation;
+using System.Threading;
+using Alsahab.Common.Exceptions;
 
 namespace Alsahab.Setting.BL
 {
     public class SubsystemBL : BaseBL<Subsystem, SubsystemDTO, SubsystemFilterDTO>
     {
-        SubsystemDA SubsystemDA = new SubsystemDA();
+        private readonly IBaseDL<Subsystem, SubsystemDTO, SubsystemFilterDTO> _SubsystemDL;
+        private readonly IBaseDL<StatementSubsystem, StatementSubsystemDTO, StatementSubsystemFilterDTO> _StatementSubsystemDL;
+        private readonly IBaseDL<Subpart, SubpartDTO, SubpartFilterDTO> _SubpartDL;
+        public SubsystemBL(IBaseDL<Subsystem, SubsystemDTO, SubsystemFilterDTO> subsystemDL,
+                           IBaseDL<StatementSubsystem, StatementSubsystemDTO, StatementSubsystemFilterDTO> statementSubsystemDL,
+                           IBaseDL<Subpart, SubpartDTO, SubpartFilterDTO> subpartDL) : base(subsystemDL)
+        {
+            _SubsystemDL = subsystemDL;
+            _StatementSubsystemDL = statementSubsystemDL;
+            _SubpartDL = subpartDL;
+        }
+
         private bool Validate(SubsystemDTO data)
         {
-            return Validate<Validation.SubsystemValidator,SubsystemDTO>(data ?? new SubsystemDTO());
-
-            //if (string.IsNullOrWhiteSpace(data.Name))
-            //{
-            //    ErrorMessage = "Subsystem Name Not Entered\n";
-            //    return false;
-            //}
-            //if (data.IsDeleted == true)
-            //{
-            //    ErrorMessage = "Subsystem is not saved in database before.\n";
-            //    return false;
-            //}
-            //var SubsystemList = SubsystemGet(new SubsystemDTO())?.ToList();
-            //var CheckSubsystem = SubsystemList.Where(s => s.Name == data?.Name)?.Count();
-            //if (CheckSubsystem > 0)
-            //{
-            //    ErrorMessage = "This Subsystem Is Exist\n";
-            //    return false;
-            //}
-            //return true;
+            return Validate<BLSubsystemValidator, SubsystemDTO>(data);
         }
+
         /// <summary>
         /// Check Data For Delete
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        private bool DeletePermission(SubsystemDTO data)
+        private async Task<bool> CheckDeletePermission(SubsystemDTO data, CancellationToken cancellationToken)
         {
             if (!(data.ID > 0))
             {
                 ErrorMessage = "Entered Subsystem is Mistake";
                 return false;
             }
-            StatementDA StatementDA = new StatementDA();
-            var StatementSubsystemIDCheck = StatementDA.StatementGet(new DTO.StatementDTO { FilterSubsystemID = data.ID }).Count();
-            SubpartDA SubpartDA = new SubpartDA();
-            var SubpartIDCheck = SubpartDA.SubpartGet(new DTO.SubpartDTO { SubsystemID = data.ID }).Count();
+            var statementSubsystemIDList = await _StatementSubsystemDL.GetAsync(new StatementSubsystemFilterDTO { SubsystemID = data.ID }, cancellationToken);
+            var subpartIDList = await _SubpartDL.GetAsync(new DTO.SubpartFilterDTO { SubsystemID = data.ID }, cancellationToken);
 
-            if (StatementSubsystemIDCheck > 0 || SubpartIDCheck > 0)
-            {
-                ErrorMessage = "This Subsystem use in another Tables,Please Delete  them First";
-                return false;
-            }
+            if (statementSubsystemIDList.Count > 0 || subpartIDList.Count > 0)
+                throw new AppException(ResponseStatus.LoginError, "This Subsystem use in another Tables,Please Delete  them First");
+
             return true;
         }
-        public List<SubsystemDTO> SubsystemGet(SubsystemDTO data)
+
+        public async override Task<IList<SubsystemDTO>> GetAsync(SubsystemFilterDTO data, CancellationToken cancellationToken, PagingInfoDTO paging)
         {
-            var Response = SubsystemDA.SubsystemGet(data);
-
-            ResponseStatus = SubsystemDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += SubsystemDA.ErrorMessage;
-                return null;
-            }
-
-            return Response;
+            return await _SubsystemDL.GetAsync(data, cancellationToken, paging);
         }
+
         /// <summary>
         /// Insert Subsystem In Database
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public SubsystemDTO SubsystemInsert(SubsystemDTO data)
+        public async override Task<SubsystemDTO> InsertAsync(SubsystemDTO data, CancellationToken cancellationToken)
         {
-            //validate data
-            if (!Validate(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
+            Validate(data);
             data.CreateDate = DateTime.Now;
-            var Response = SubsystemDA.SubsystemInsert(data);
-
-            if (Response?.ID > 0)
+            var response = await _SubsystemDL.InsertAsync(data, cancellationToken);
+            response = await _SubsystemDL.GetByIdAsync(cancellationToken, data.ID);
+            
+            Observers.ObserverStates.SubsystemAdd state = new Observers.ObserverStates.SubsystemAdd
             {
-                var resp = SubsystemGet(new SubsystemDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
-                Observers.ObserverStates.SubsystemAdd state = new Observers.ObserverStates.SubsystemAdd
-                {
-                    Subsystem = resp ?? Response,
-                    User = User,
-                };
-                Notify(state);
-                if (resp != null)
-                    Response = resp;
-            }
-
-            ResponseStatus = SubsystemDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += SubsystemDA.ErrorMessage;
-                return null;
-            }
-            return Response;
+                Subsystem = response,
+                User = User,
+            };
+            Notify(state);
+            return response;
         }
+
         /// <summary>
         /// Insert List of Subsystem In Database
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public List<SubsystemDTO> SubsystemInsert(List<SubsystemDTO> data)
+        public async override Task<IList<SubsystemDTO>> InsertListAsync(IList<SubsystemDTO> data, CancellationToken cancellationToken)
         {
             foreach (var d in data)
             {
-                if (!Validate(d))
-                {
-                    ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-
-                    return null;
-                }
+                Validate(d);
                 d.CreateDate = DateTime.Now;
             }
-            var Response = SubsystemDA.SubsystemInsert(data);
+            
+            var response = await _SubsystemDL.InsertListAsync(data, cancellationToken);
 
-            List<SubsystemDTO> respList = new List<SubsystemDTO>();
-            foreach (var val in Response)
+            var respList = new List<SubsystemDTO>();
+            foreach (var val in response)
             {
-                var resp = SubsystemGet(new SubsystemDTO { ID = val?.ID ?? 0 })?.FirstOrDefault();
+                var resp = await _SubsystemDL.GetByIdAsync(cancellationToken, val?.ID);
                 Observers.ObserverStates.SubsystemAdd state = new Observers.ObserverStates.SubsystemAdd
                 {
                     Subsystem = resp ?? val,
@@ -141,110 +107,72 @@ namespace Alsahab.Setting.BL
                 respList.Add(resp);
             }
 
-            ResponseStatus = SubsystemDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += SubsystemDA.ErrorMessage;
-                return null;
-            }
-            
-            return respList ?? Response;
-
+            return respList ?? response;
         }
+
         /// <summary>
         /// SubsystemUpdate
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public SubsystemDTO SubsystemUpdate(SubsystemDTO data)
+        public async override Task<SubsystemDTO> UpdateAsync(SubsystemDTO data, CancellationToken cancellationToken)
         {
-            if (!(data.ID > 0))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                ErrorMessage = "Entered Subsystem is Mistake";
-                return null;
-            }
-            var Response = SubsystemDA.SubsystemUpdate(data);
+            data = await MergeNewAndOldDataForUpdate(data, cancellationToken);
+            Validate(data);
+            var response = await _SubsystemDL.UpdateAsync(data, cancellationToken);
 
-            var resp = SubsystemGet(new SubsystemDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
+            response = await _SubsystemDL.GetByIdAsync(cancellationToken, response?.ID);
             Observers.ObserverStates.SubsystemEdit state = new Observers.ObserverStates.SubsystemEdit
             {
-                Subsystem = resp ?? Response,
+                Subsystem = response,
                 User = User,
             };
             Notify(state);
 
-            ResponseStatus = SubsystemDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += SubsystemDA.ErrorMessage;
-                return null;
-            }
-            return resp ?? Response;
+            return response;
         }
+
         /// <summary>
         /// Delete Logicly
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public SubsystemDTO SubsystemDelete(SubsystemDTO data)
+        public async override Task<SubsystemDTO> SoftDeleteAsync(SubsystemDTO data, CancellationToken cancellationToken)
         {
-            //Search For Use This Item Before Delete
-            if (!DeletePermission(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
+            await CheckDeletePermission(data, cancellationToken);
             data.IsDeleted = true;
-            var Response = SubsystemDA.SubsystemUpdate(data);
 
-            var resp = SubsystemGet(new SubsystemDTO { ID = Response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
+            var response = await _SubsystemDL.UpdateAsync(data, cancellationToken);
+
             Observers.ObserverStates.SubsystemDelete state = new Observers.ObserverStates.SubsystemDelete
             {
-                Subsystem = resp ?? Response,
+                Subsystem = response,
                 User = User,
             };
             Notify(state);
-            
-            ResponseStatus = SubsystemDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += SubsystemDA.ErrorMessage;
-                return null;
-            }
 
-            return resp ?? Response;
+            return response;
         }
+
         /// <summary>
         /// Delete physically
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public SubsystemDTO SubsystemDeleteComplete(SubsystemDTO data)
+        public async override Task<SubsystemDTO> DeleteAsync(SubsystemDTO data, CancellationToken cancellationToken)
         {
-            if (!DeletePermission(data))
-            {
-                ResponseStatus = Alsahab.Common.ResponseStatus.BusinessError;
-                return null;
-            }
-            var Response = SubsystemDA.SubsystemDelete(data);
+            await CheckDeletePermission(data, cancellationToken);
+            data = await _SubsystemDL.GetByIdAsync(cancellationToken, data.ID);
+            var response = await _SubsystemDL.DeleteAsync(data, cancellationToken);
 
-            var resp = SubsystemGet(new SubsystemDTO { ID = Response?.ID ?? 0, IsDeleted = true })?.FirstOrDefault();
             Observers.ObserverStates.SubsystemDelete state = new Observers.ObserverStates.SubsystemDelete
             {
-                Subsystem = resp ?? Response,
+                Subsystem = data,
                 User = User,
             };
             Notify(state);
 
-            ResponseStatus = SubsystemDA.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-            {
-                ErrorMessage += SubsystemDA.ErrorMessage;
-                return null;
-            }
-
-            return resp ?? Response;
+            return data;
         }
     }
 }
