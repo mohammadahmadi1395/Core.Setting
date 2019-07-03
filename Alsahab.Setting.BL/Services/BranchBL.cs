@@ -45,7 +45,7 @@ namespace Alsahab.Setting.BL
         #region Async methods
         public async override Task<IList<BranchDTO>> GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
-            var response = await _BranchDL.GetAsync(filter, cancellationToken, paging);
+            var response = await base.GetAsync(filter, cancellationToken, paging);// await _BranchDL.GetAsync(filter, cancellationToken, paging);
 
             if (!(response.Count > 0))
                 return response;
@@ -91,7 +91,8 @@ namespace Alsahab.Setting.BL
         }
         public async override Task<BranchDTO> InsertAsync(BranchDTO data, CancellationToken cancellationToken)
         {
-            Validate(data);
+            data = await base.InsertAsync(data, cancellationToken);
+            // Validate(data);
 
             data.CreateDate = DateTime.Now;
 
@@ -114,7 +115,7 @@ namespace Alsahab.Setting.BL
         {
             foreach (var d in data)
             {
-                Validate(d);
+                // Validate(d);
                 d.CreateDate = DateTime.Now;
             }
 
@@ -141,7 +142,7 @@ namespace Alsahab.Setting.BL
         {
             data = await MergeNewAndOldDataForUpdate(data, cancellationToken);
 
-            Validate(data);
+            // Validate(data);
 
             var response = await _BranchDL.UpdateAsync(data, cancellationToken);
 
@@ -181,10 +182,10 @@ namespace Alsahab.Setting.BL
         #endregion Async methods
 
         #region Validation
-        private bool Validate(BranchDTO data)
-        {
-            return Validate<BLBranchValidator, BranchDTO>(data ?? new BranchDTO());
-        }
+        // private bool Validate(BranchDTO data)
+        // {
+        //     return Validate<BLBranchValidator, BranchDTO>(data ?? new BranchDTO());
+        // }
         private async Task<bool> CheckDeletePermision(BranchDTO data, CancellationToken cancellationToken)
         {
             if (!(data?.ID > 0))

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Globalization;
@@ -13,6 +14,7 @@ using Alsahab.Common.Api;
 using Alsahab.Setting.DTO;
 using Alsahab.Setting.Data.Interfaces;
 using FluentValidation.Results;
+using Alsahab.Setting.BL.Validation;
 
 namespace Alsahab.Setting.BL
 {
@@ -83,8 +85,10 @@ namespace Alsahab.Setting.BL
         {
             //Set Custom Translation
             ValidatorOptions.LanguageManager = new ErrorLanguageManager();
+            var instanceType = typeof(T).Assembly.GetTypes().Where(t=>t.IsSubclassOf(typeof(T)) && t.BaseType.GenericTypeArguments[1] == typeof(TObject)).ToList().FirstOrDefault();
+            // var instanceType =  a.FirstOrDefault(t=>t.GenericTypeArguments[1] == typeof(TObject));
             //Create Instance From Validator    
-            var validator = Activator.CreateInstance(typeof(T), _BaseDL);
+            var validator = Activator.CreateInstance(instanceType, _BaseDL);
             //Set Culture To Translate
             ValidatorOptions.LanguageManager.Culture = Culture;
             var result = ((AbstractValidator<TObject>)validator).Validate(data);
@@ -146,6 +150,7 @@ namespace Alsahab.Setting.BL
 
         public virtual async Task<Dto> InsertAsync(Dto data, CancellationToken cancellationToken)
         {
+            Validate<BaseBLValidator<TEntity, Dto, FilterDto>, Dto>(data);
             Assert.NotNull(data, nameof(data));
 
             data.CreateDate = DateTime.Now;

@@ -20,11 +20,15 @@ namespace Alsahab.Setting.Data
     // to be added
     // IdentityDbContext<User,Role,int> 
     {
+        // TODO: solve this problem on vscode
+        //Comment it on migration
+        //uncomment it after migration
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {            
         }
 
-        // // For Migrations
+        // // Uncomment it on migration
+        // // Comment it after migration
         // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         // {
         //     optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Setting;Integrated Security=false; user id=sa; password=admin@123");

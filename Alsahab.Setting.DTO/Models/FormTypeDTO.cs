@@ -20,7 +20,8 @@ namespace Alsahab.Setting.DTO {
         public String SubSystemShortName { get; set; }
     }
 
-    public class FormTypeValidator : AbstractValidator<FormTypeDTO> {
+    public class FormTypeValidator : BaseDTOValidator<FormTypeDTO>//AbstractValidator<FormTypeDTO> 
+    {
         public FormTypeValidator () {
             RuleFor (x => x.Title).NotEmpty ();
             RuleFor (x => x.SubSystemID).NotEmpty ();

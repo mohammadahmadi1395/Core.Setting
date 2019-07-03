@@ -12,11 +12,12 @@ using System.Threading.Tasks;
 
 namespace Alsahab.Setting.BL.Validation
 {
-    internal class BLFormTypeValidator : Alsahab.Setting.DTO.FormTypeValidator
-    {
+    internal class BLFormTypeValidator : BaseBLValidator<FormType, FormTypeDTO, FormTypeFilterDTO>
+    {        
         private readonly IBaseDL<FormType, FormTypeDTO, FormTypeFilterDTO> _FormTypeDL;
-        public BLFormTypeValidator(IBaseDL<FormType, FormTypeDTO, FormTypeFilterDTO> formTypeDL): base()
+        public BLFormTypeValidator(IBaseDL<FormType, FormTypeDTO, FormTypeFilterDTO> formTypeDL) : base(formTypeDL)
         {
+            formTypeDL = _FormTypeDL;
             RuleFor(x => x.Title).Must(NotExistTitle).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("NotExist"));
             RuleFor(x => x.PublicCode).Must(NotExistPublicCode).When(x => !string.IsNullOrWhiteSpace(x.PublicCode)).WithMessage(ValidatorOptions.LanguageManager.GetString("NotExist"));
         }
