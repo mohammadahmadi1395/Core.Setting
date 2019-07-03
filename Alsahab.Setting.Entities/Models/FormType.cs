@@ -9,10 +9,10 @@ namespace Alsahab.Setting.Entities.Models
     public class FormType : BaseEntity<FormType, FormTypeDTO, long>
     {
         public string Title { get; set; }
-        public int? EnumId { get; set; }
-        public long SubSystemId { get; set; }
+        public int? EnumID { get; set; }
+        public long SubSystemID { get; set; }
         public string PublicCode { get; set; }
-        public string Coment { get; set; }
+        public string Comment { get; set; }
         //public bool IsDeleted { get; set; }
         //public DateTime CreateDate { get; set; }
 
@@ -27,13 +27,13 @@ namespace Alsahab.Setting.Entities.Models
 
             entity.Property(e => e.CreateDate).HasColumnType("datetime");
 
-            entity.Property(e => e.EnumId).HasColumnName("EnumID");
+            entity.Property(e => e.EnumID).HasColumnName("EnumID");
 
             entity.Property(e => e.PublicCode)
                 .IsRequired()
                 .HasMaxLength(50);
 
-            entity.Property(e => e.SubSystemId).HasColumnName("SubSystemID");
+            entity.Property(e => e.SubSystemID).HasColumnName("SubSystemID");
 
             entity.Property(e => e.Title)
                 .IsRequired()
@@ -41,7 +41,7 @@ namespace Alsahab.Setting.Entities.Models
 
             entity.HasOne(d => d.SubSystem)
                 .WithMany(p => p.FormType)
-                .HasForeignKey(d => d.SubSystemId)
+                .HasForeignKey(d => d.SubSystemID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_FormType_Subsystem");
         }

@@ -85,20 +85,23 @@ namespace Alsahab.Setting.BL
         {
             //Set Custom Translation
             ValidatorOptions.LanguageManager = new ErrorLanguageManager();
-            var instanceType = typeof(T).Assembly.GetTypes().Where(t=>t.IsSubclassOf(typeof(T)) && t.BaseType.GenericTypeArguments[1] == typeof(TObject)).ToList().FirstOrDefault();
-            // var instanceType =  a.FirstOrDefault(t=>t.GenericTypeArguments[1] == typeof(TObject));
+            var blInstanceType = typeof(T).Assembly.GetTypes().Where(t=>t.IsSubclassOf(typeof(T)) && t.BaseType.GenericTypeArguments[1] == typeof(TObject)).ToList().FirstOrDefault();
+            var dtoInstanceType = typeof(TObject).Assembly.GetTypes().FirstOrDefault(t=> t.BaseType.GenericTypeArguments.Length > 0 && t.BaseType.GenericTypeArguments[0].Name.Equals(typeof(TObject).Name));
             //Create Instance From Validator    
-            var validator = Activator.CreateInstance(instanceType, _BaseDL);
+            var blValidator = Activator.CreateInstance(blInstanceType, _BaseDL);
+            var dtoValidator = Activator.CreateInstance(dtoInstanceType, new object[]{});
             //Set Culture To Translate
             ValidatorOptions.LanguageManager.Culture = Culture;
-            var result = ((AbstractValidator<TObject>)validator).Validate(data);
-            ValidationErrors = result.Errors;
+            var blResult = ((AbstractValidator<TObject>)blValidator).Validate(data);
+            var dtoResult = ((AbstractValidator<TObject>)dtoValidator).Validate(data);
+            ValidationErrors = blResult.Errors;
+               ((List<ValidationFailure>)ValidationErrors).AddRange(dtoResult.Errors);
 
             string error = string.Empty;
             foreach (var verror in ValidationErrors)
                 error += "\n" + verror.ErrorMessage;
 
-            if (!result.IsValid)
+            if (!blResult.IsValid || !dtoResult.IsValid)
                 throw new AppException(ResponseStatus.ServerError, error);
             return true;
         }

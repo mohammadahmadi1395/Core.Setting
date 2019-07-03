@@ -4,14 +4,16 @@ using Alsahab.Setting.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Alsahab.Setting.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190703174256_bb")]
+    partial class bb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,12 +143,12 @@ namespace Alsahab.Setting.Data.Migrations
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Comment");
+                    b.Property<string>("Coment");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime");
 
-                    b.Property<int?>("EnumID")
+                    b.Property<int?>("EnumId")
                         .HasColumnName("EnumID");
 
                     b.Property<bool>("IsDeleted");
@@ -155,7 +157,7 @@ namespace Alsahab.Setting.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<long>("SubSystemID")
+                    b.Property<long>("SubSystemId")
                         .HasColumnName("SubSystemID");
 
                     b.Property<string>("Title")
@@ -164,7 +166,7 @@ namespace Alsahab.Setting.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("SubSystemID");
+                    b.HasIndex("SubSystemId");
 
                     b.ToTable("FormTypes");
                 });
@@ -584,7 +586,7 @@ namespace Alsahab.Setting.Data.Migrations
                 {
                     b.HasOne("Alsahab.Setting.Entities.Models.Subsystem", "SubSystem")
                         .WithMany("FormType")
-                        .HasForeignKey("SubSystemID")
+                        .HasForeignKey("SubSystemId")
                         .HasConstraintName("FK_FormType_Subsystem");
                 });
 

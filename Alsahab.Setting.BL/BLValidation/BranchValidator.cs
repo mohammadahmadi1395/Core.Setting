@@ -100,7 +100,7 @@ namespace Alsahab.Setting.BL.Validation
     where TFilterDto : TDto
     {
         private readonly IBaseDL<TEntity, TDto, TFilterDto> _BaseDL;
-        public BaseBLValidator(IBaseDL<TEntity, TDto, TFilterDto> _BaseDL)
+        public BaseBLValidator(IBaseDL<TEntity, TDto, TFilterDto> _BaseDL) : base()
         {
 
         }

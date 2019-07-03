@@ -22,10 +22,10 @@ namespace Alsahab.Setting.BL
             _FormTypeDL = formTypeDL;
         }
 
-        private bool Validate(FormTypeDTO data)
-        {
-            return Validate<BLFormTypeValidator, FormTypeDTO>(data ?? new FormTypeDTO());
-        }
+        // private bool Validate(FormTypeDTO data)
+        // {
+        //     return Validate<BLFormTypeValidator, FormTypeDTO>(data ?? new FormTypeDTO());
+        // }
         
         private bool CheckDeletePermision(FormTypeDTO data)
         {
@@ -45,33 +45,34 @@ namespace Alsahab.Setting.BL
             return response;
         }
 
-        public async override Task<FormTypeDTO> InsertAsync(FormTypeDTO data, CancellationToken cancellationToken)
-        {
-            Validate(data);
+        // public async override Task<FormTypeDTO> InsertAsync(FormTypeDTO data, CancellationToken cancellationToken)
+        // {
+        //     data = await base.InsertAsync(data, cancellationToken);
+        //     // Validate(data);
 
-            data.CreateDate = DateTime.Now;
+        //     data.CreateDate = DateTime.Now;
 
-            var response = await _FormTypeDL.InsertAsync(data, cancellationToken);
+        //     var response = await _FormTypeDL.InsertAsync(data, cancellationToken);
 
-            if (_FormTypeDL?.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.DatabaseError, _FormTypeDL.ErrorMessage);
+        //     if (_FormTypeDL?.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
+        //         throw new AppException(ResponseStatus.DatabaseError, _FormTypeDL.ErrorMessage);
 
-            response = await _FormTypeDL.GetByIdAsync(cancellationToken, response?.ID);
+        //     response = await _FormTypeDL.GetByIdAsync(cancellationToken, response?.ID);
 
-            Observers.ObserverStates.FormTypeAdd state = new Observers.ObserverStates.FormTypeAdd
-            {
-                FormType = response,
-                User = User,
-            };
-            Notify(state);
+        //     Observers.ObserverStates.FormTypeAdd state = new Observers.ObserverStates.FormTypeAdd
+        //     {
+        //         FormType = response,
+        //         User = User,
+        //     };
+        //     Notify(state);
 
-            return response;
-        }
+        //     return response;
+        // }
         public async override Task<IList<FormTypeDTO>> InsertListAsync(IList<FormTypeDTO> data, CancellationToken cancellationToken)
         {
             foreach (var d in data)
             {
-                Validate(d);
+                // Validate(d);
                 d.CreateDate = DateTime.Now;
             }
 
@@ -99,7 +100,7 @@ namespace Alsahab.Setting.BL
         {
             data = await MergeNewAndOldDataForUpdate(data, cancellationToken);
 
-            Validate(data);
+            // Validate(data);
 
             var response = await _FormTypeDL.UpdateAsync(data, cancellationToken);
             if (_FormTypeDL?.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
