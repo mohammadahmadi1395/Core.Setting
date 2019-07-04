@@ -29,6 +29,3 @@
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/obj/Debug/netcoreapp2.1/Alsahab.Setting.MyAPI.csproj.CopyComplete
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/obj/Debug/netcoreapp2.1/Alsahab.Setting.MyAPI.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/obj/Debug/netcoreapp2.1/Alsahab.Setting.MyAPI.pdb
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/obj/Debug/netcoreapp2.1/Alsahab.Setting.MyAPI.RazorAssemblyInfo.cache
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/obj/Debug/netcoreapp2.1/Alsahab.Setting.MyAPI.RazorAssemblyInfo.cs
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/obj/Debug/netcoreapp2.1/Alsahab.Setting.MyAPI.RazorTargetAssemblyInfo.cache

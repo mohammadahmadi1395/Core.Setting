@@ -8,11 +8,11 @@ using static Alsahab.Setting.DTO.Enums;
 
 namespace Alsahab.Setting.BL.Observers.ObserverStates
 {
-    public abstract class ObserverStateBase<TDto>
+    public class ObserverStateBase<TDto>
     where TDto : BaseDTO
     {
         public UserInfoDTO User { get; set; }
-        public abstract LogActionType Type { get; }
+        public LogActionType Type { get; set; }
         public TDto DTO { get; set; }
     }
 }

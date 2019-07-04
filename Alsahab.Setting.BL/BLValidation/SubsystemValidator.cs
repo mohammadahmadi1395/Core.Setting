@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Alsahab.Setting.BL.Validation
 {
-    internal class BLSubsystemValidator : Alsahab.Setting.DTO.SubsystemValidator
+    internal class BLSubsystemValidator : BaseBLValidator<Subsystem, SubsystemDTO, SubsystemFilterDTO>//Alsahab.Setting.DTO.SubsystemValidator
     {
         private readonly IBaseDL<Subsystem, SubsystemDTO, SubsystemFilterDTO> _SubsystemDL;
-        public BLSubsystemValidator(IBaseDL<Subsystem, SubsystemDTO, SubsystemFilterDTO> subsystemDL) : base()
+        public BLSubsystemValidator(IBaseDL<Subsystem, SubsystemDTO, SubsystemFilterDTO> subsystemDL) : base(subsystemDL)
         {
             _SubsystemDL = subsystemDL;
-            RuleFor(x => x.Name).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Name)).WithMessage(ValidatorOptions.LanguageManager.GetString("NotExist"));
+            RuleFor(x => x.Name).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Name)).WithMessage(ValidatorOptions.LanguageManager.GetString("AlreadyIsExists"));
         }
 
         private bool NotExist(string title)

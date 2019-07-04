@@ -20,7 +20,8 @@ namespace Alsahab.Setting.BL
         private readonly IBaseDL<Subpart, SubpartDTO, SubpartFilterDTO> _SubpartDL;
         public SubsystemBL(IBaseDL<Subsystem, SubsystemDTO, SubsystemFilterDTO> subsystemDL,
                            IBaseDL<StatementSubsystem, StatementSubsystemDTO, StatementSubsystemFilterDTO> statementSubsystemDL,
-                           IBaseDL<Subpart, SubpartDTO, SubpartFilterDTO> subpartDL) : base(subsystemDL)
+                           IBaseDL<Subpart, SubpartDTO, SubpartFilterDTO> subpartDL,
+                           IBaseDL<Log, LogDTO, LogFilterDTO> logDL) : base(subsystemDL, logDL)
         {
             _SubsystemDL = subsystemDL;
             _StatementSubsystemDL = statementSubsystemDL;
@@ -63,23 +64,23 @@ namespace Alsahab.Setting.BL
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public async override Task<SubsystemDTO> InsertAsync(SubsystemDTO data, CancellationToken cancellationToken)
-        {
-            Validate(data);
-            data.CreateDate = DateTime.Now;
-            var response = await _SubsystemDL.InsertAsync(data, cancellationToken);
-            response = await _SubsystemDL.GetByIdAsync(cancellationToken, data.ID);
+        // public async override Task<SubsystemDTO> InsertAsync(SubsystemDTO data, CancellationToken cancellationToken)
+        // {
+        //     Validate(data);
+        //     data.CreateDate = DateTime.Now;
+        //     var response = await _SubsystemDL.InsertAsync(data, cancellationToken);
+        //     response = await _SubsystemDL.GetByIdAsync(cancellationToken, data.ID);
             
-            //TODO:
-            // Observers.ObserverStates.SubsystemAdd state = new Observers.ObserverStates.SubsystemAdd
-            // {
-            //     Subsystem = response,
-            //     User = User,
-            // };
-            // Notify(state);
+        //     //TODO:
+        //     // Observers.ObserverStates.SubsystemAdd state = new Observers.ObserverStates.SubsystemAdd
+        //     // {
+        //     //     Subsystem = response,
+        //     //     User = User,
+        //     // };
+        //     // Notify(state);
 
-            return response;
-        }
+        //     return response;
+        // }
 
         /// <summary>
         /// Insert List of Subsystem In Database

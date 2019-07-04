@@ -37,7 +37,7 @@ namespace Alsahab.Setting.BL
         {
             var binding = new BasicHttpBinding();
             var endpoint = new EndpointAddress(new Uri("http://192.168.1.7:1011/UserManagementService.svc"));
-            var client = new ChannelFactory<IUserManagementService>("UserManagementService");
+            var client = new ChannelFactory<IUserManagementService>(binding, endpoint);
             if (client == null)
                 return default(T);
             try
@@ -59,7 +59,7 @@ namespace Alsahab.Setting.BL
         {
             var binding = new BasicHttpBinding();
             var endpoint = new EndpointAddress(new Uri("http://192.168.1.7:1021/MemberService.svc"));
-            // var channelFactory = new ChannelFactory<IUserManagementService>(binding, endpoint);
+            // var channelFactory = new ChannelFactory<IMemberService>(binding, endpoint);
             // var serviceClient = channelFactory.CreateChannel();
             // var result = serviceClient.Ping("Ping");
             // channelFactory.Close();

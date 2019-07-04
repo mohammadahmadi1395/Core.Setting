@@ -10,21 +10,22 @@ using static Alsahab.Setting.DTO.Enums;
 
 namespace Alsahab.Setting.BL.Observers.ActionDTO
 {
-    public class BranchActionDTO : ActionBaseDTO 
+    public class BranchActionDTO : ActionBaseDTO<BranchDTO>
     {
-        public override SettingEntity Entity
-        {
-            get
-            {
-                return SettingEntity.Branch;
-            }
-        }
-        public BranchDTO Branch { get; set; }
+        // public override SettingEntity Entity
+        // {
+        //     get
+        //     {
+        //         return SettingEntity.Branch;
+        //     }
+        // }
+        // public BranchDTO Branch { get; set; }
+        // public BranchDTO DTO {get;set;}
         public override string DisplayMessage
         {
             get
             {
-                return JsonConvert.SerializeObject('\u202B' + "نام شعبه : " + Branch?.Title + "، نام سرپرست : " + Branch?.HeadMemberName);
+                return JsonConvert.SerializeObject('\u202B' + "نام شعبه : " + DTO?.Title + "، نام سرپرست : " + DTO?.HeadMemberName);
             }
         }
     }

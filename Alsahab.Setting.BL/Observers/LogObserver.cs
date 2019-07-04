@@ -8,12 +8,23 @@ using Alsahab.Setting.BL.Observers.ActionDTO;
 using Alsahab.Setting.BL.Observers.ObserverStates;
 using Alsahab.Common;
 using static Alsahab.Setting.DTO.Enums;
+using Alsahab.Setting.Data.Interfaces;
+using Alsahab.Setting.Entities;
+using Alsahab.Setting.Entities.Models;
+using Alsahab.Setting.DTO;
 
 namespace Alsahab.Setting.BL.Observers
 {
     internal class LogObserver<TDto> : ObserverBase<TDto>
     where TDto : BaseDTO
     {
+        // private readonly IBaseDL<TEntity, TDto, TFilterDto> _BaseDL;
+        private readonly IBaseDL<Log, LogDTO, LogFilterDTO> _LogDL;
+        public LogObserver(IBaseDL<Log, LogDTO, LogFilterDTO> logDL)
+        {
+            _LogDL = logDL;
+            // _BaseDL = baseDL;
+        }
         // private List<Alyatim.Member.DTO.PersonDTO> PersonList { get; set; }
         //private UserManagement.DTO.AcUserDTO user { get; set; }
         //private UserManagement.DTO.AcUserDTO team { get; set; }
@@ -25,13 +36,13 @@ namespace Alsahab.Setting.BL.Observers
 
             var stateInfo = state;
             if (stateInfo == null) return 0;
-            var actionDto = Activator.CreateInstance(typeof(ActionBaseDTO), new Object[]
+            ActionBaseDTO<TDto> actionDto = new ActionBaseDTO<TDto>//Activator.CreateInstance(typeof(ActionBaseDTO), new Object[]
             {
-                stateInfo.User,
-                stateInfo.DTO.ID,
-                stateInfo.DTO,
-                Alsahab.Common.ActionType.Insert,
-            }) as ActionBaseDTO;
+                User = stateInfo.User,
+                RecordID = stateInfo.DTO.ID,
+                DTO = stateInfo.DTO,
+                ActionType = Alsahab.Common.ActionType.Insert,                
+            };
             CreateLog(actionDto);
             return 1;
         }
@@ -820,15 +831,14 @@ namespace Alsahab.Setting.BL.Observers
         //     return 1;
         // }
 
-        private void CreateLog(ActionBaseDTO actionDto)
+        private void CreateLog(ActionBaseDTO<TDto> actionDto)
         {
             Alsahab.Common.LogDTO logDto = ConvertToLogDTO(actionDto);
-            //TODO
-            // var response = new DA.LogDA().LogSet(logDto);
+            var response = _LogDL.Insert(logDto);
         }
-        private LogDTO ConvertToLogDTO(ActionBaseDTO actionDto)
+        private LogDTO ConvertToLogDTO(ActionBaseDTO<TDto> actionDto)
         {
-            LogDTO result = null;
+            // LogDTO result = null;
 
             // TODO
             // var person = ServiceUtility.CallMember(s => s.Person(new Alyatim.Member.SC.Messages.PersonRequest
@@ -838,22 +848,22 @@ namespace Alsahab.Setting.BL.Observers
             //     RequestID = actionDto?.User?.UserPersonID,
             // }))?.ResponseDto;
 
-            // var result = new LogDTO
-            // {
-            //     UserID = actionDto?.User?.UserID ?? 0,
-            //     RegistrantPersonID = actionDto?.User?.UserPersonID ?? 0,
-            //     GroupName = actionDto?.User?.GroupName,
-            //     UserRoleType = actionDto?.User?.UserRoleType ?? RoleType.SingleUser,
-            //     // GroupMembersID = team?.ID > 0 ? team?.TeamMembers?.Select(s => s.MemberID)?.ToList() : null,
-            //     // GroupMembersFullName = team?.ID > 0 ? string.Join(", ", MemberList?.Select(t => t.FullName)?.ToList()) : null,// team?.TeamMembers?.Select(s => s.MemberName)?.ToList())
-            //     RegistrantPersonFullName = person?.FullName,
-            //     GroupID = actionDto?.User?.GroupID,
-            //     ActionTypeID = (int)actionDto.ActionType,
-            //     EntityID = (int)actionDto.Entity,
-            //     MessageStr = actionDto.MessageStr,
-            //     // RecordID = actionDto.RecordID,
-            //     CreateDate = DateTime.Now
-            // };
+            var result = new LogDTO
+            {
+                UserID = actionDto?.User?.UserID ?? 0,
+                RegistrantPersonID = actionDto?.User?.UserPersonID ?? 0,
+                GroupName = actionDto?.User?.GroupName,
+                UserRoleType = actionDto?.User?.UserRoleType ?? RoleType.SingleUser,
+                // GroupMembersID = team?.ID > 0 ? team?.TeamMembers?.Select(s => s.MemberID)?.ToList() : null,
+                // GroupMembersFullName = team?.ID > 0 ? string.Join(", ", MemberList?.Select(t => t.FullName)?.ToList()) : null,// team?.TeamMembers?.Select(s => s.MemberName)?.ToList())
+                // RegistrantPersonFullName = person?.FullName,
+                GroupID = actionDto?.User?.GroupID,
+                ActionTypeID = (int)actionDto.ActionType,
+                EntityID = (int)actionDto.Entity,
+                Message = actionDto.MessageStr,
+                RecordID = actionDto.DTO.ID ?? 0,
+                CreateDate = DateTime.Now
+            };
             return result;
             // }
         }

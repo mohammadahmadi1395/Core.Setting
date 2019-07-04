@@ -93,7 +93,7 @@ namespace Alsahab.Common
         public string ActionTypeTitle { get; set; }
         public int EntityID { set; get; }
         public string EntityTitle { get; set; }
-        public string MessageStr { get; set; }
+        public string Message { get; set; }
         public long RecordID { get; set; }
         public long? BranchID { get; set; }
         public string BranchTitle { get; set; }

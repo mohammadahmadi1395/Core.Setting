@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Alsahab.Common;
+using Alsahab.Setting.BL.Observers.ActionDTO;
 using Alsahab.Setting.Data.Interfaces;
 using Alsahab.Setting.Entities.Models;
 using Gostar.Common;
@@ -61,6 +63,7 @@ namespace Alsahab.Setting.BL
                         IDList = member?.Select(t => t.PersonID)?.ToList(),
                     }
                 }))?.ResponseDtoList;
+                //TODO:
                 result = (from r in result
                           join u in users on r.UserID equals u.ID
                           join m in member on u.MemberID equals m.ID
@@ -69,14 +72,14 @@ namespace Alsahab.Setting.BL
                           {
                               ActionTypeID = r.ActionTypeID,
                               EntityID = r.EntityID,
-                              EntityTitle = r.EntityTitle,
+                              EntityTitle = ((Alsahab.Setting.DTO.Enums.SettingEntity)(r.EntityID)).GetDescription(), //r.EntityTitle,
                               CreateDate = r.CreateDate,
                               ActionTypeTitle = r.ActionTypeTitle,
                               GroupID = u.GroupID,
                               GroupName = u.GroupName,
                               RecordID = r.RecordID,
                               IsDeleted = r.IsDeleted,
-                              MessageStr = r.MessageStr,
+                              Message = r.Message,
                               RegistrantPersonFullName = p.FullName,
                               RegistrantPersonID = p.ID,
                               UserID = u.ID ?? 0,
@@ -98,17 +101,26 @@ namespace Alsahab.Setting.BL
                     result = result?.Where(s => data.UserRoleTypes.Contains((int)s.UserRoleType))?.ToList();
                 foreach (var d in result)
                 {
-                    //TODO: فعلا کامنت میشود تا خطاها مشخص شود
-                    // try
-                    // {
-                        var obj = BL.Observers.ActionDTO.ActionBaseDTO.CreateInstance((Alsahab.Setting.DTO.Enums.SettingEntity)d.EntityID, d.MessageStr);
-                        d.MessageStr = obj.DisplayMessage;
-                    // }
-                    // catch (Exception e)
-                    // { }
+                    // TODO: فعلا کامنت میشود تا خطاها مشخص شود
+                    try
+                    {
+                        Type t = Type.GetType("Alsahab.Setting.BL.Observers.ActionDTO." + d.EntityTitle + "ActionDTO");
+                        Type b = Type.GetType("Alsahab.Setting.DTO." + d.EntityTitle + "DTO");
+                        var a = Newtonsoft.Json.JsonConvert.DeserializeObject<ActionBaseDTO>(d.Message);
+                        var obj = Activator.CreateInstance(t, new Object[] { }); //BL.Observers.ActionDTO.ActionBaseDTO<T>.CreateInstance((Alsahab.Setting.DTO.Enums.SettingEntity)d.EntityID, d.Message);
+                        // d.Message = obj.DisplayMessage;
+
+
+                        PropertyInfo prop = t.GetProperty("DisplayMessage");
+
+                        // object list = prop.GetValue(obj);
+                        d.Message = prop.GetValue(obj).ToString();
+                    }
+                    catch (Exception e)
+                    { }
                 }
                 if (!string.IsNullOrWhiteSpace(data?.Message))
-                    result = result?.Where(s => s.MessageStr.Contains(data.Message ?? ""))?.ToList();
+                    result = result?.Where(s => s.Message.Contains(data.Message ?? ""))?.ToList();
             }
             // ResultCount = result.Count;
 
