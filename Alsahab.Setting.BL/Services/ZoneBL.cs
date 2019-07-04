@@ -95,12 +95,13 @@ namespace Alsahab.Setting.BL
 
             response = await _ZoneDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
 
-            Observers.ObserverStates.ZoneAdd state = new Observers.ObserverStates.ZoneAdd
-            {
-                Zone = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.ZoneAdd state = new Observers.ObserverStates.ZoneAdd
+            // {
+            //     Zone = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -121,12 +122,15 @@ namespace Alsahab.Setting.BL
             foreach (var val in response)
             {
                 var resp = await _ZoneDL.GetByIdAsync(cancellationToken, val?.ID);
-                Observers.ObserverStates.ZoneAdd state = new Observers.ObserverStates.ZoneAdd
-                {
-                    Zone = resp,
-                    User = User,
-                };
-                Notify(state);
+                
+                //TODO:
+                // Observers.ObserverStates.ZoneAdd state = new Observers.ObserverStates.ZoneAdd
+                // {
+                //     Zone = resp,
+                //     User = User,
+                // };
+                // Notify(state);
+
                 respList.Add(resp);
             }
 
@@ -150,12 +154,13 @@ namespace Alsahab.Setting.BL
 
             response = await _ZoneDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
 
-            Observers.ObserverStates.ZoneEdit state = new Observers.ObserverStates.ZoneEdit
-            {
-                Zone = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.ZoneEdit state = new Observers.ObserverStates.ZoneEdit
+            // {
+            //     Zone = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -170,12 +175,13 @@ namespace Alsahab.Setting.BL
 
             UpdateTreeIndicesAndCodes();
 
-            Observers.ObserverStates.ZoneDelete state = new Observers.ObserverStates.ZoneDelete
-            {
-                Zone = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.ZoneDelete state = new Observers.ObserverStates.ZoneDelete
+            // {
+            //     Zone = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }

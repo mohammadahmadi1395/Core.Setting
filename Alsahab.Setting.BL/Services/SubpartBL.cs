@@ -67,12 +67,15 @@ namespace Alsahab.Setting.BL
             var response = await _SubpartDL.InsertAsync(data, cancellationToken);
 
             response = await _SubpartDL.GetByIdAsync(cancellationToken, response?.ID);
-            Observers.ObserverStates.SubpartAdd state = new Observers.ObserverStates.SubpartAdd
-            {
-                Subpart = response,
-                User = User,
-            };
-            Notify(state);
+
+            //TODO:
+            // Observers.ObserverStates.SubpartAdd state = new Observers.ObserverStates.SubpartAdd
+            // {
+            //     Subpart = response,
+            //     User = User,
+            // };
+            // Notify(state);
+
             return response;
         }
 
@@ -95,12 +98,15 @@ namespace Alsahab.Setting.BL
             foreach (var val in response)
             {
                 var resp = await _SubpartDL.GetByIdAsync(cancellationToken, val?.ID);
-                Observers.ObserverStates.SubpartAdd state = new Observers.ObserverStates.SubpartAdd
-                {
-                    Subpart = resp ?? val,
-                    User = User,
-                };
-                Notify(state);
+
+                //TODO:
+                // Observers.ObserverStates.SubpartAdd state = new Observers.ObserverStates.SubpartAdd
+                // {
+                //     Subpart = resp ?? val,
+                //     User = User,
+                // };
+                // Notify(state);
+
                 respList.Add(resp);
             }
 
@@ -122,12 +128,13 @@ namespace Alsahab.Setting.BL
 
             response = await _SubpartDL.GetByIdAsync(cancellationToken, response?.ID);
 
-            Observers.ObserverStates.SubpartEdit state = new Observers.ObserverStates.SubpartEdit
-            {
-                Subpart = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.SubpartEdit state = new Observers.ObserverStates.SubpartEdit
+            // {
+            //     Subpart = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -145,12 +152,13 @@ namespace Alsahab.Setting.BL
             
             var response = await _SubpartDL.UpdateAsync(data, cancellationToken);
 
-            Observers.ObserverStates.SubpartDelete state = new Observers.ObserverStates.SubpartDelete
-            {
-                Subpart = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.SubpartDelete state = new Observers.ObserverStates.SubpartDelete
+            // {
+            //     Subpart = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -166,12 +174,13 @@ namespace Alsahab.Setting.BL
             data = await _SubpartDL.GetByIdAsync(cancellationToken, data.ID);
             var response = await _SubpartDL.DeleteAsync(data, cancellationToken);
 
-            Observers.ObserverStates.SubpartDelete state = new Observers.ObserverStates.SubpartDelete
-            {
-                Subpart = data,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.SubpartDelete state = new Observers.ObserverStates.SubpartDelete
+            // {
+            //     Subpart = data,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return data;
         }

@@ -317,224 +317,238 @@ namespace Alsahab.Setting.DTO
             All = 0,
 
             [EnumMember]
-            [Description("افزودن ناحیه")]
-            AreaAdd = 1,
+            [Description("افزودن")]
+            Add = 1,
             [EnumMember]
-            [Description("ویرایش ناحیه")]
-            AreaEdit = 2,
+            [Description("ویرایش")]
+            Edit = 2,
             [EnumMember]
-            [Description("حذف ناحیه")]
-            AreaDelete = 3,
+            [Description("حذف")]
+            Delete = 3,
 
-            [EnumMember]
-            [Description("افزودن شعبه")]
-            BranchAdd = 4,
-            [EnumMember]
-            [Description("ویرایش شعبه")]
-            BranchEdit = 5,
-            [EnumMember]
-            [Description("حذف شعبه")]
-            BranchDelete = 6,
+            // [EnumMember]
+            // [Description("همه موارد")]
+            // All = 0,
 
-            [EnumMember]
-            [Description("افزودن آدرس شعبه")]
-            BranchAddressAdd = 7,
-            [EnumMember]
-            [Description("ویرایش آدرس شعبه")]
-            BranchAddressEdit = 8,
-            [EnumMember]
-            [Description("حذف آدرس شعبه")]
-            BranchAddressDelete = 9,
+            // [EnumMember]
+            // [Description("افزودن ناحیه")]
+            // AreaAdd = 1,
+            // [EnumMember]
+            // [Description("ویرایش ناحیه")]
+            // AreaEdit = 2,
+            // [EnumMember]
+            // [Description("حذف ناحیه")]
+            // AreaDelete = 3,
 
-            [EnumMember]
-            [Description("افزودن ناحیه شعبه")]
-            BranchRegionWorkAdd = 10,
-            [EnumMember]
-            [Description("ویرایش ناحیه شعبه")]
-            BranchRegionWorkEdit = 11,
-            [EnumMember]
-            [Description("حذف ناحیه شعبه")]
-            BranchRegionWorkDelete = 12,
+            // [EnumMember]
+            // [Description("افزودن شعبه")]
+            // BranchAdd = 4,
+            // [EnumMember]
+            // [Description("ویرایش شعبه")]
+            // BranchEdit = 5,
+            // [EnumMember]
+            // [Description("حذف شعبه")]
+            // BranchDelete = 6,
 
-            [EnumMember]
-            [Description("افزودن شهر")]
-            CityAdd = 13,
-            [EnumMember]
-            [Description("ویرایش شهر")]
-            CityEdit = 14,
-            [EnumMember]
-            [Description("حذف شهر")]
-            CityDelete = 15,
+            // [EnumMember]
+            // [Description("افزودن آدرس شعبه")]
+            // BranchAddressAdd = 7,
+            // [EnumMember]
+            // [Description("ویرایش آدرس شعبه")]
+            // BranchAddressEdit = 8,
+            // [EnumMember]
+            // [Description("حذف آدرس شعبه")]
+            // BranchAddressDelete = 9,
 
-            [EnumMember]
-            [Description("افزودن کشور")]
-            CountryAdd = 16,
-            [EnumMember]
-            [Description("ویرایش کشور")]
-            CountryEdit = 17,
-            [EnumMember]
-            [Description("حذف کشور")]
-            CountryDelete = 18,
+            // [EnumMember]
+            // [Description("افزودن ناحیه شعبه")]
+            // BranchRegionWorkAdd = 10,
+            // [EnumMember]
+            // [Description("ویرایش ناحیه شعبه")]
+            // BranchRegionWorkEdit = 11,
+            // [EnumMember]
+            // [Description("حذف ناحیه شعبه")]
+            // BranchRegionWorkDelete = 12,
 
-            [EnumMember]
-            [Description("افزودن ارز")]
-            CurrencyAdd = 19,
-            [EnumMember]
-            [Description("ویرایش ارز")]
-            CurrencyEdit = 20,
-            [EnumMember]
-            [Description("حذف ارز")]
-            CurrencyDelete = 21,
+            // [EnumMember]
+            // [Description("افزودن شهر")]
+            // CityAdd = 13,
+            // [EnumMember]
+            // [Description("ویرایش شهر")]
+            // CityEdit = 14,
+            // [EnumMember]
+            // [Description("حذف شهر")]
+            // CityDelete = 15,
 
-            [EnumMember]
-            [Description("افزودن نرخ تبادلات")]
-            ExchangeRateAdd = 22,
-            [EnumMember]
-            [Description("ویرایش نرخ تبادلات")]
-            ExchangeRateEdit = 23,
-            [EnumMember]
-            [Description("حذف نرخ تبادلات")]
-            ExchangeRateDelete = 24,
+            // [EnumMember]
+            // [Description("افزودن کشور")]
+            // CountryAdd = 16,
+            // [EnumMember]
+            // [Description("ویرایش کشور")]
+            // CountryEdit = 17,
+            // [EnumMember]
+            // [Description("حذف کشور")]
+            // CountryDelete = 18,
 
-            [EnumMember]
-            [Description("افزودن نوع فرم")]
-            FormTypeAdd = 25,
-            [EnumMember]
-            [Description("ویرایش نوع فرم")]
-            FormTypeEdit = 26,
-            [EnumMember]
-            [Description("حذف نوع فرم")]
-            FormTypeDelete = 27,
+            // [EnumMember]
+            // [Description("افزودن ارز")]
+            // CurrencyAdd = 19,
+            // [EnumMember]
+            // [Description("ویرایش ارز")]
+            // CurrencyEdit = 20,
+            // [EnumMember]
+            // [Description("حذف ارز")]
+            // CurrencyDelete = 21,
 
-            [EnumMember]
-            [Description("افزودن فرم تولیدشده")]
-            GeneratedFormAdd = 28,
-            [EnumMember]
-            [Description("ویرایش فرم تولیدشده")]
-            GeneratedFormEdit = 29,
-            [EnumMember]
-            [Description("حذف فرم تولیدشده")]
-            GeneratedFormDelete = 30,
+            // [EnumMember]
+            // [Description("افزودن نرخ تبادلات")]
+            // ExchangeRateAdd = 22,
+            // [EnumMember]
+            // [Description("ویرایش نرخ تبادلات")]
+            // ExchangeRateEdit = 23,
+            // [EnumMember]
+            // [Description("حذف نرخ تبادلات")]
+            // ExchangeRateDelete = 24,
 
-            [EnumMember]
-            [Description("افزودن پیشوند")]
-            PrefixAdd = 31,
-            [EnumMember]
-            [Description("ویرایش پیشوند")]
-            PrefixEdit = 32,
-            [EnumMember]
-            [Description("حذف پیشوند")]
-            PrefixDelete = 33,
+            // [EnumMember]
+            // [Description("افزودن نوع فرم")]
+            // FormTypeAdd = 25,
+            // [EnumMember]
+            // [Description("ویرایش نوع فرم")]
+            // FormTypeEdit = 26,
+            // [EnumMember]
+            // [Description("حذف نوع فرم")]
+            // FormTypeDelete = 27,
 
-            [EnumMember]
-            [Description("افزودن منطقه")]
-            RegionAdd = 34,
-            [EnumMember]
-            [Description("ویرایش منطقه")]
-            RegionEdit = 35,
-            [EnumMember]
-            [Description("حذف منطقه")]
-            RegionDelete = 36,
+            // [EnumMember]
+            // [Description("افزودن فرم تولیدشده")]
+            // GeneratedFormAdd = 28,
+            // [EnumMember]
+            // [Description("ویرایش فرم تولیدشده")]
+            // GeneratedFormEdit = 29,
+            // [EnumMember]
+            // [Description("حذف فرم تولیدشده")]
+            // GeneratedFormDelete = 30,
 
-            [EnumMember]
-            [Description("افزودن مسئول ناحیه")]
-            RegionAgentAdd = 37,
-            [EnumMember]
-            [Description("ویرایش مسئول ناحیه")]
-            RegionAgentEdit = 38,
-            [EnumMember]
-            [Description("حذف مسئول ناحیه")]
-            RegionAgentDelete = 39,
+            // [EnumMember]
+            // [Description("افزودن پیشوند")]
+            // PrefixAdd = 31,
+            // [EnumMember]
+            // [Description("ویرایش پیشوند")]
+            // PrefixEdit = 32,
+            // [EnumMember]
+            // [Description("حذف پیشوند")]
+            // PrefixDelete = 33,
 
-            [EnumMember]
-            [Description("افزودن نقش")]
-            RuleAdd = 40,
-            [EnumMember]
-            [Description("ویرایش نقش")]
-            RuleEdit = 41,
-            [EnumMember]
-            [Description("حذف نقش")]
-            RuleDelete = 42,
+            // [EnumMember]
+            // [Description("افزودن منطقه")]
+            // RegionAdd = 34,
+            // [EnumMember]
+            // [Description("ویرایش منطقه")]
+            // RegionEdit = 35,
+            // [EnumMember]
+            // [Description("حذف منطقه")]
+            // RegionDelete = 36,
 
-            [EnumMember]
-            [Description("افزودن برچسب نقش")]
-            RuleTagAdd = 43,
-            [EnumMember]
-            [Description("ویرایش برچسب نقش")]
-            RuleTagEdit = 44,
-            [EnumMember]
-            [Description("حذف برچسب نقش")]
-            RuleTagDelete = 45,
+            // [EnumMember]
+            // [Description("افزودن مسئول ناحیه")]
+            // RegionAgentAdd = 37,
+            // [EnumMember]
+            // [Description("ویرایش مسئول ناحیه")]
+            // RegionAgentEdit = 38,
+            // [EnumMember]
+            // [Description("حذف مسئول ناحیه")]
+            // RegionAgentDelete = 39,
 
-            [EnumMember]
-            [Description("افزودن بخش")]
-            SectorAdd = 46,
-            [EnumMember]
-            [Description("ویرایش بخش")]
-            SectorEdit = 47,
-            [EnumMember]
-            [Description("حذف بخش")]
-            SectorDelete = 48,
+            // [EnumMember]
+            // [Description("افزودن نقش")]
+            // RuleAdd = 40,
+            // [EnumMember]
+            // [Description("ویرایش نقش")]
+            // RuleEdit = 41,
+            // [EnumMember]
+            // [Description("حذف نقش")]
+            // RuleDelete = 42,
 
-            [EnumMember]
-            [Description("افزودن عبارت")]
-            StatementAdd = 49,
-            [EnumMember]
-            [Description("ویرایش عبارت")]
-            StatementEdit = 50,
-            [EnumMember]
-            [Description("حذف عبارت")]
-            StatementDelete = 51,
+            // [EnumMember]
+            // [Description("افزودن برچسب نقش")]
+            // RuleTagAdd = 43,
+            // [EnumMember]
+            // [Description("ویرایش برچسب نقش")]
+            // RuleTagEdit = 44,
+            // [EnumMember]
+            // [Description("حذف برچسب نقش")]
+            // RuleTagDelete = 45,
 
-            [EnumMember]
-            [Description("افزودن عبارت")]
-            StatementSubsystemAdd = 52,
-            [EnumMember]
-            [Description("ویرایش عبارت")]
-            StatementSubsystemEdit = 53,
-            [EnumMember]
-            [Description("حذف عبارت")]
-            StatementSubsystemDelete = 54,
+            // [EnumMember]
+            // [Description("افزودن بخش")]
+            // SectorAdd = 46,
+            // [EnumMember]
+            // [Description("ویرایش بخش")]
+            // SectorEdit = 47,
+            // [EnumMember]
+            // [Description("حذف بخش")]
+            // SectorDelete = 48,
 
-            [EnumMember]
-            [Description("SubpartAdd")]
-            SubpartAdd = 55,
-            [EnumMember]
-            [Description("SubpartEdit")]
-            SubpartEdit = 56,
-            [EnumMember]
-            [Description("SubpartDelete")]
-            SubpartDelete = 57,
+            // [EnumMember]
+            // [Description("افزودن عبارت")]
+            // StatementAdd = 49,
+            // [EnumMember]
+            // [Description("ویرایش عبارت")]
+            // StatementEdit = 50,
+            // [EnumMember]
+            // [Description("حذف عبارت")]
+            // StatementDelete = 51,
 
-            [EnumMember]
-            [Description("افزودن زیرسیسیتم")]
-            SubsystemAdd = 58,
-            [EnumMember]
-            [Description("ویرایش زیرسیستم")]
-            SubsystemEdit = 59,
-            [EnumMember]
-            [Description("حذف زیرسیستم")]
-            SubsystemDelete = 60,
+            // [EnumMember]
+            // [Description("افزودن عبارت")]
+            // StatementSubsystemAdd = 52,
+            // [EnumMember]
+            // [Description("ویرایش عبارت")]
+            // StatementSubsystemEdit = 53,
+            // [EnumMember]
+            // [Description("حذف عبارت")]
+            // StatementSubsystemDelete = 54,
 
-            [EnumMember]
-            [Description("افزودن نوع سازمان")]
-            OrganizationTypeAdd = 61,
-            [EnumMember]
-            [Description("ویرایش نوع سازمان")]
-            OrganizationTypeEdit = 62,
-            [EnumMember]
-            [Description("حذف نوع سازمان")]
-            OrganizationTypeDelete = 63,
+            // [EnumMember]
+            // [Description("SubpartAdd")]
+            // SubpartAdd = 55,
+            // [EnumMember]
+            // [Description("SubpartEdit")]
+            // SubpartEdit = 56,
+            // [EnumMember]
+            // [Description("SubpartDelete")]
+            // SubpartDelete = 57,
 
-            [EnumMember]
-            [Description("ZoneAdd")]
-            ZoneAdd = 64,
-            [EnumMember]
-            [Description("ZoneEdit")]
-            ZoneEdit = 65,
-            [EnumMember]
-            [Description("ZoneDelete")]
-            ZoneDelete = 66,
+            // [EnumMember]
+            // [Description("افزودن زیرسیسیتم")]
+            // SubsystemAdd = 58,
+            // [EnumMember]
+            // [Description("ویرایش زیرسیستم")]
+            // SubsystemEdit = 59,
+            // [EnumMember]
+            // [Description("حذف زیرسیستم")]
+            // SubsystemDelete = 60,
+
+            // [EnumMember]
+            // [Description("افزودن نوع سازمان")]
+            // OrganizationTypeAdd = 61,
+            // [EnumMember]
+            // [Description("ویرایش نوع سازمان")]
+            // OrganizationTypeEdit = 62,
+            // [EnumMember]
+            // [Description("حذف نوع سازمان")]
+            // OrganizationTypeDelete = 63,
+
+            // [EnumMember]
+            // [Description("ZoneAdd")]
+            // ZoneAdd = 64,
+            // [EnumMember]
+            // [Description("ZoneEdit")]
+            // ZoneEdit = 65,
+            // [EnumMember]
+            // [Description("ZoneDelete")]
+            // ZoneDelete = 66,
         }
 
         [DataContract]

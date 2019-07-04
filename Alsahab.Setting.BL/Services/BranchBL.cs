@@ -102,12 +102,13 @@ namespace Alsahab.Setting.BL
 
             response = await _BranchDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
 
-            Observers.ObserverStates.BranchAdd state = new Observers.ObserverStates.BranchAdd
-            {
-                Branch = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.BranchAdd state = new Observers.ObserverStates.BranchAdd
+            // {
+            //     Branch = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -127,12 +128,14 @@ namespace Alsahab.Setting.BL
             foreach (var val in response)
             {
                 var resp = await _BranchDL.GetByIdAsync(cancellationToken, val?.ID);
-                Observers.ObserverStates.BranchAdd state = new Observers.ObserverStates.BranchAdd
-                {
-                    Branch = resp ?? val,
-                    User = User,
-                };
-                Notify(state);
+
+                //TODO:
+                // Observers.ObserverStates.BranchAdd state = new Observers.ObserverStates.BranchAdd
+                // {
+                //     Branch = resp ?? val,
+                //     User = User,
+                // };
+                // Notify(state);
                 respList.Add(resp);
             }
 
@@ -150,12 +153,13 @@ namespace Alsahab.Setting.BL
 
             response = await _BranchDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
 
-            Observers.ObserverStates.BranchEdit state = new Observers.ObserverStates.BranchEdit
-            {
-                Branch = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.BranchEdit state = new Observers.ObserverStates.BranchEdit
+            // {
+            //     Branch = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -170,12 +174,13 @@ namespace Alsahab.Setting.BL
 
             UpdateTreeIndicesAndCodes();
 
-            Observers.ObserverStates.BranchDelete state = new Observers.ObserverStates.BranchDelete
-            {
-                Branch = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.BranchDelete state = new Observers.ObserverStates.BranchDelete
+            // {
+            //     Branch = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }

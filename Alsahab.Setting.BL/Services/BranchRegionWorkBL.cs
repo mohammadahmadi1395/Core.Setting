@@ -65,12 +65,14 @@ namespace Alsahab.Setting.BL
                 throw new AppException(ResponseStatus.LoginError, _BranchRegionWorkDL.ErrorMessage);
 
             response = await _BranchRegionWorkDL.GetByIdAsync(cancellationToken, response.ID ?? 0);
-            Alsahab.Setting.BL.Observers.ObserverStates.BranchRegionWorkAdd state = new Alsahab.Setting.BL.Observers.ObserverStates.BranchRegionWorkAdd
-            {
-                BranchRegionWork = response,
-                User = User,
-            };
-            Notify(state);
+
+            //TODO:
+            // Alsahab.Setting.BL.Observers.ObserverStates.BranchRegionWorkAdd state = new Alsahab.Setting.BL.Observers.ObserverStates.BranchRegionWorkAdd
+            // {
+            //     BranchRegionWork = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -149,12 +151,13 @@ namespace Alsahab.Setting.BL
 
             response = await _BranchRegionWorkDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
 
-            Observers.ObserverStates.BranchRegionWorkEdit state = new Observers.ObserverStates.BranchRegionWorkEdit
-            {
-                BranchRegionWork = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.BranchRegionWorkEdit state = new Observers.ObserverStates.BranchRegionWorkEdit
+            // {
+            //     BranchRegionWork = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -168,12 +171,13 @@ namespace Alsahab.Setting.BL
             data.IsDeleted = true;
             var response = await _BranchRegionWorkDL.UpdateAsync(data, cancellationToken);
 
-            Observers.ObserverStates.BranchRegionWorkDelete state = new Observers.ObserverStates.BranchRegionWorkDelete
-            {
-                BranchRegionWork = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.BranchRegionWorkDelete state = new Observers.ObserverStates.BranchRegionWorkDelete
+            // {
+            //     BranchRegionWork = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }

@@ -58,12 +58,14 @@ namespace Alsahab.Setting.BL
             var response = await _RuleTagDL.InsertAsync(data, cancellationToken);
 
             response = await _RuleTagDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
-            Observers.ObserverStates.RuleTagAdd state = new Observers.ObserverStates.RuleTagAdd
-            {
-                RuleTag = response,
-                User = User,
-            };
-            Notify(state);
+            
+            //TODO:
+            // Observers.ObserverStates.RuleTagAdd state = new Observers.ObserverStates.RuleTagAdd
+            // {
+            //     RuleTag = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -113,12 +115,13 @@ namespace Alsahab.Setting.BL
 
             response = await _RuleTagDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
 
-            Observers.ObserverStates.RuleTagEdit state = new Observers.ObserverStates.RuleTagEdit
-            {
-                RuleTag = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.RuleTagEdit state = new Observers.ObserverStates.RuleTagEdit
+            // {
+            //     RuleTag = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -131,12 +134,13 @@ namespace Alsahab.Setting.BL
             data.IsDeleted = true;
             var response = await _RuleTagDL.UpdateAsync(data, cancellationToken);
 
-            Observers.ObserverStates.RuleTagDelete state = new Observers.ObserverStates.RuleTagDelete
-            {
-                RuleTag = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.RuleTagDelete state = new Observers.ObserverStates.RuleTagDelete
+            // {
+            //     RuleTag = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -158,12 +162,13 @@ namespace Alsahab.Setting.BL
 
             foreach (var val in response)
             {
-                Observers.ObserverStates.RuleTagDelete state = new Observers.ObserverStates.RuleTagDelete
-                {
-                    RuleTag = val,
-                    User = User,
-                };
-                Notify(state);
+                //TODO:
+                // Observers.ObserverStates.RuleTagDelete state = new Observers.ObserverStates.RuleTagDelete
+                // {
+                //     RuleTag = val,
+                //     User = User,
+                // };
+                // Notify(state);
             }
 
             return response;

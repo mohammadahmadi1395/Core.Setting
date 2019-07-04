@@ -36,7 +36,8 @@ namespace Alsahab.Setting.BL
         public IList<FluentValidation.Results.ValidationFailure> ValidationErrors { get; set; }
         private CultureInfo Culture { get; set; }
         private readonly IBaseDL<TEntity, Dto, FilterDto> _BaseDL;// = new IBaseDL<BranchDTO, Branch>();
-        readonly List<Observers.ObserverBase> _observers;
+        readonly List<Observers.ObserverBase<Dto>> _observers;
+
         // private readonly IBaseValidator<Dto> _BaseValidator;
         // public BranchBL()
         // {
@@ -50,12 +51,12 @@ namespace Alsahab.Setting.BL
             ValidatorOptions.LanguageManager = new ErrorLanguageManager();
             // ValidatorOptions.LanguageManager = new FluentValidation.Resources.LanguageManager();
             ValidatorOptions.LanguageManager.Culture = Culture;
-            _observers = new List<Observers.ObserverBase>();
-            _observers.Add(new Observers.LogObserver());
+            _observers = new List<Observers.ObserverBase<Dto>>();
+            _observers.Add(new Observers.LogObserver<Dto>());
         }
 
         //public long? TeamID { get; set; }
-        protected void Notify<TObserverState>(TObserverState stateInfo) where TObserverState : Observers.ObserverStates.ObserverStateBase
+        protected void Notify<TObserverState>(TObserverState stateInfo) where TObserverState : Observers.ObserverStates.ObserverStateBase<Dto>
         {
             stateInfo.User = User;
             foreach (var observer in _observers)
@@ -155,35 +156,20 @@ namespace Alsahab.Setting.BL
         {
             Validate<BaseBLValidator<TEntity, Dto, FilterDto>, Dto>(data);
             Assert.NotNull(data, nameof(data));
-
             data.CreateDate = DateTime.Now;
-            //TODO
-            // data.Code = GenerateCode(data);
 
             var response = await _BaseDL.InsertAsync(data, cancellationToken);//.BranchInsert(data);
 
-            //TODO
-            // if (Response?.ID > 0)
-            // {
-            //     var resp = BranchGet(new BranchDTO { ID = Response?.ID ?? 0 })?.FirstOrDefault();
-            //     Observers.ObserverStates.BranchAdd state = new Observers.ObserverStates.BranchAdd
-            //     {
-            //         Branch = resp ?? Response,
-            //         User = User,
-            //     };
-            //     Notify(state);
-            //     if (resp != null)
-            //         Response = resp;
-            // }
-
-            ResponseStatus = _BaseDL.ResponseStatus;
-            if (ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.ServerError, _BaseDL.ErrorMessage);
-            // {
-            //     ErrorMessage += _BaseDL.ErrorMessage;
-            //     return null;
-            // }
-
+            if (response?.ID > 0)
+            {
+                response = await _BaseDL.GetByIdAsync(cancellationToken, response?.ID);
+                var state = Activator.CreateInstance(typeof(Observers.ObserverStates.ObserverStateBase<Dto>), new Object[]
+                {
+                    response,
+                    User,
+                }) as Observers.ObserverStates.ObserverStateBase<Dto>;
+                Notify(state);
+            }
             return response;
         }
 

@@ -48,12 +48,14 @@ namespace Alsahab.Setting.BL
             var response = await _RuleDL.InsertAsync(data, cancellationToken);
 
             response = await _RuleDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
-            Observers.ObserverStates.RuleAdd state = new Observers.ObserverStates.RuleAdd
-            {
-                Rule = response,
-                User = User,
-            };
-            Notify(state);
+
+            //TODO:
+            // Observers.ObserverStates.RuleAdd state = new Observers.ObserverStates.RuleAdd
+            // {
+            //     Rule = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -72,12 +74,14 @@ namespace Alsahab.Setting.BL
             foreach (var val in response)
             {
                 var resp = await _RuleDL.GetByIdAsync(cancellationToken, val?.ID ?? 0);
-                Observers.ObserverStates.RuleAdd state = new Observers.ObserverStates.RuleAdd
-                {
-                    Rule = resp ?? val,
-                    User = User,
-                };
-                Notify(state);
+
+                //TODO:
+                // Observers.ObserverStates.RuleAdd state = new Observers.ObserverStates.RuleAdd
+                // {
+                //     Rule = resp ?? val,
+                //     User = User,
+                // };
+                // Notify(state);
                 respList.Add(resp);
             }
 
@@ -94,12 +98,13 @@ namespace Alsahab.Setting.BL
 
             response = await _RuleDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
 
-            Observers.ObserverStates.RuleEdit state = new Observers.ObserverStates.RuleEdit
-            {
-                Rule = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.RuleEdit state = new Observers.ObserverStates.RuleEdit
+            // {
+            //     Rule = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -111,12 +116,13 @@ namespace Alsahab.Setting.BL
             data.IsDeleted = true;
             var response = await _RuleDL.UpdateAsync(data, cancellationToken);
 
-            Observers.ObserverStates.RuleDelete state = new Observers.ObserverStates.RuleDelete
-            {
-                Rule = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.RuleDelete state = new Observers.ObserverStates.RuleDelete
+            // {
+            //     Rule = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }

@@ -36,12 +36,14 @@ namespace Alsahab.Setting.BL
             var response = await _StatementSubsystemDL.InsertAsync(data, cancellationToken);
 
             response = await _StatementSubsystemDL.GetByIdAsync(cancellationToken, response?.ID);
-            Observers.ObserverStates.StatementSubsystemAdd state = new Observers.ObserverStates.StatementSubsystemAdd
-            {
-                StatementSubsystem = response,
-                User = User,
-            };
-            Notify(state);
+            
+            //TODO:
+            // Observers.ObserverStates.StatementSubsystemAdd state = new Observers.ObserverStates.StatementSubsystemAdd
+            // {
+            //     StatementSubsystem = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -64,12 +66,15 @@ namespace Alsahab.Setting.BL
             foreach (var val in response)
             {
                 var resp = await _StatementSubsystemDL.GetByIdAsync(cancellationToken, val?.ID);
-                Observers.ObserverStates.StatementSubsystemAdd state = new Observers.ObserverStates.StatementSubsystemAdd
-                {
-                    StatementSubsystem = resp ?? val,
-                    User = User,
-                };
-                Notify(state);
+                
+                //TODO:
+                // Observers.ObserverStates.StatementSubsystemAdd state = new Observers.ObserverStates.StatementSubsystemAdd
+                // {
+                //     StatementSubsystem = resp ?? val,
+                //     User = User,
+                // };
+                // Notify(state);
+
                 respList.Add(resp);
             }
 
@@ -91,12 +96,14 @@ namespace Alsahab.Setting.BL
             var response = await _StatementSubsystemDL.UpdateAsync(data, cancellationToken);
 
             response = await _StatementSubsystemDL.GetByIdAsync(cancellationToken, response?.ID);
-            Observers.ObserverStates.StatementSubsystemEdit state = new Observers.ObserverStates.StatementSubsystemEdit
-            {
-                StatementSubsystem = response,
-                User = User,
-            };
-            Notify(state);
+
+            //TODO:
+            // Observers.ObserverStates.StatementSubsystemEdit state = new Observers.ObserverStates.StatementSubsystemEdit
+            // {
+            //     StatementSubsystem = response,
+            //     User = User,
+            // };
+            // Notify(state);
             return response;
         }
         public async override Task<StatementSubsystemDTO> SoftDeleteAsync(StatementSubsystemDTO data, CancellationToken cancellationToken)
@@ -107,12 +114,14 @@ namespace Alsahab.Setting.BL
             data.IsDeleted = true;
 
             var response = await _StatementSubsystemDL.UpdateAsync(data, cancellationToken);
-            Observers.ObserverStates.StatementSubsystemDelete state = new Observers.ObserverStates.StatementSubsystemDelete
-            {
-                StatementSubsystem = response,
-                User = User,
-            };
-            Notify(state);
+            
+            //TODO:
+            // Observers.ObserverStates.StatementSubsystemDelete state = new Observers.ObserverStates.StatementSubsystemDelete
+            // {
+            //     StatementSubsystem = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }

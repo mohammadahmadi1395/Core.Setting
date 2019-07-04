@@ -71,12 +71,14 @@ namespace Alsahab.Setting.BL
             var response = await _OrganizationTypeDL.InsertAsync(data, cancellationToken);
 
             response = await _OrganizationTypeDL.GetByIdAsync(cancellationToken, response?.ID);
-            Observers.ObserverStates.OrganizationTypeAdd state = new Observers.ObserverStates.OrganizationTypeAdd
-            {
-                OrganizationType = response,
-                User = User,
-            };
-            Notify(state);
+
+            //TODO:
+            // Observers.ObserverStates.OrganizationTypeAdd state = new Observers.ObserverStates.OrganizationTypeAdd
+            // {
+            //     OrganizationType = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -100,12 +102,15 @@ namespace Alsahab.Setting.BL
             foreach (var val in response)
             {
                 var temp = await _OrganizationTypeDL.GetByIdAsync(cancellationToken, val?.ID);
-                Observers.ObserverStates.OrganizationTypeAdd state = new Observers.ObserverStates.OrganizationTypeAdd
-                {
-                    OrganizationType = val,
-                    User = User,
-                };
-                Notify(state);
+
+                //TODO:
+                // Observers.ObserverStates.OrganizationTypeAdd state = new Observers.ObserverStates.OrganizationTypeAdd
+                // {
+                //     OrganizationType = val,
+                //     User = User,
+                // };
+                // Notify(state);
+
                 respList.Add(temp);
             }
 
@@ -125,12 +130,14 @@ namespace Alsahab.Setting.BL
             var response = await _OrganizationTypeDL.UpdateAsync(data, cancellationToken);
 
             response = await _OrganizationTypeDL.GetByIdAsync(cancellationToken, response?.ID);
-            Observers.ObserverStates.OrganizationTypeEdit state = new Observers.ObserverStates.OrganizationTypeEdit
-            {
-                OrganizationType = response,
-                User = User,
-            };
-            Notify(state);
+
+            //TODO:
+            // Observers.ObserverStates.OrganizationTypeEdit state = new Observers.ObserverStates.OrganizationTypeEdit
+            // {
+            //     OrganizationType = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -146,12 +153,13 @@ namespace Alsahab.Setting.BL
             data.IsDeleted = true;
             var response = await _OrganizationTypeDL.UpdateAsync(data, cancellationToken);
 
-            Observers.ObserverStates.OrganizationTypeDelete state = new Observers.ObserverStates.OrganizationTypeDelete
-            {
-                OrganizationType = data,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.OrganizationTypeDelete state = new Observers.ObserverStates.OrganizationTypeDelete
+            // {
+            //     OrganizationType = data,
+            //     User = User,
+            // };
+            // Notify(state);
             return response;
         }
 
@@ -164,12 +172,14 @@ namespace Alsahab.Setting.BL
         {
             CheckDeletePermission(data);
             var response = await _OrganizationTypeDL.DeleteAsync(data, cancellationToken);
-            Observers.ObserverStates.OrganizationTypeDelete state = new Observers.ObserverStates.OrganizationTypeDelete
-            {
-                OrganizationType = data,
-                User = User,
-            };
-            Notify(state);
+
+            //TODO:
+            // Observers.ObserverStates.OrganizationTypeDelete state = new Observers.ObserverStates.OrganizationTypeDelete
+            // {
+            //     OrganizationType = data,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return data;
         }

@@ -70,12 +70,14 @@ namespace Alsahab.Setting.BL
             var response = await _SubsystemDL.InsertAsync(data, cancellationToken);
             response = await _SubsystemDL.GetByIdAsync(cancellationToken, data.ID);
             
-            Observers.ObserverStates.SubsystemAdd state = new Observers.ObserverStates.SubsystemAdd
-            {
-                Subsystem = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.SubsystemAdd state = new Observers.ObserverStates.SubsystemAdd
+            // {
+            //     Subsystem = response,
+            //     User = User,
+            // };
+            // Notify(state);
+
             return response;
         }
 
@@ -98,12 +100,15 @@ namespace Alsahab.Setting.BL
             foreach (var val in response)
             {
                 var resp = await _SubsystemDL.GetByIdAsync(cancellationToken, val?.ID);
-                Observers.ObserverStates.SubsystemAdd state = new Observers.ObserverStates.SubsystemAdd
-                {
-                    Subsystem = resp ?? val,
-                    User = User,
-                };
-                Notify(state);
+                
+                //TODO:
+                // Observers.ObserverStates.SubsystemAdd state = new Observers.ObserverStates.SubsystemAdd
+                // {
+                //     Subsystem = resp ?? val,
+                //     User = User,
+                // };
+                // Notify(state);
+
                 respList.Add(resp);
             }
 
@@ -122,12 +127,14 @@ namespace Alsahab.Setting.BL
             var response = await _SubsystemDL.UpdateAsync(data, cancellationToken);
 
             response = await _SubsystemDL.GetByIdAsync(cancellationToken, response?.ID);
-            Observers.ObserverStates.SubsystemEdit state = new Observers.ObserverStates.SubsystemEdit
-            {
-                Subsystem = response,
-                User = User,
-            };
-            Notify(state);
+            
+            //TODO:
+            // Observers.ObserverStates.SubsystemEdit state = new Observers.ObserverStates.SubsystemEdit
+            // {
+            //     Subsystem = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -144,12 +151,13 @@ namespace Alsahab.Setting.BL
 
             var response = await _SubsystemDL.UpdateAsync(data, cancellationToken);
 
-            Observers.ObserverStates.SubsystemDelete state = new Observers.ObserverStates.SubsystemDelete
-            {
-                Subsystem = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.SubsystemDelete state = new Observers.ObserverStates.SubsystemDelete
+            // {
+            //     Subsystem = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -165,12 +173,13 @@ namespace Alsahab.Setting.BL
             data = await _SubsystemDL.GetByIdAsync(cancellationToken, data.ID);
             var response = await _SubsystemDL.DeleteAsync(data, cancellationToken);
 
-            Observers.ObserverStates.SubsystemDelete state = new Observers.ObserverStates.SubsystemDelete
-            {
-                Subsystem = data,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.SubsystemDelete state = new Observers.ObserverStates.SubsystemDelete
+            // {
+            //     Subsystem = data,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return data;
         }

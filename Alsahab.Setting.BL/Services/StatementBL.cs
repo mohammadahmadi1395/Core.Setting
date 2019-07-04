@@ -113,12 +113,14 @@ namespace Alsahab.Setting.BL
                 // اگر عبارت جدید باشد، آن را در دیتابیس ذخیره می‌کند
                 data.CreateDate = DateTime.Now;
                 statementResponse = await _StatementDL.InsertAsync(data, cancellationToken);
-                Observers.ObserverStates.StatementAdd state = new Observers.ObserverStates.StatementAdd
-                {
-                    Statement = statementResponse,
-                    User = User,
-                };
-                Notify(state);
+
+                //TODO:
+                // Observers.ObserverStates.StatementAdd state = new Observers.ObserverStates.StatementAdd
+                // {
+                //     Statement = statementResponse,
+                //     User = User,
+                // };
+                // Notify(state);
             }
 
             // اگر از قبل عبارت وجود داشته باشد، فقط زیرسیستم‌های جدید را برای این عبارت استخراج می‌کند تا درج شوند
@@ -134,12 +136,13 @@ namespace Alsahab.Setting.BL
 
             foreach (var val in statementSubsystemResponse)
             {
-                Observers.ObserverStates.StatementSubsystemAdd state = new Observers.ObserverStates.StatementSubsystemAdd
-                {
-                    StatementSubsystem = val,
-                    User = User,
-                };
-                Notify(state);
+                //TODO:
+                // Observers.ObserverStates.StatementSubsystemAdd state = new Observers.ObserverStates.StatementSubsystemAdd
+                // {
+                //     StatementSubsystem = val,
+                //     User = User,
+                // };
+                // Notify(state);
             }
 
             return statementResponse;
@@ -172,12 +175,13 @@ namespace Alsahab.Setting.BL
             Validate(data);
 
             var statementResponse = await _StatementDL.UpdateAsync(data, cancellationToken);
-            Observers.ObserverStates.StatementAdd state = new Observers.ObserverStates.StatementAdd
-            {
-                Statement = statementResponse,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.StatementAdd state = new Observers.ObserverStates.StatementAdd
+            // {
+            //     Statement = statementResponse,
+            //     User = User,
+            // };
+            // Notify(state);
 
             // لیست زیرسیستم‌های قبلی آن را می‌آورد، 
             var statementSubsystemList = await _StatementSubsystemDL.GetAsync(new StatementSubsystemFilterDTO { StatementID = data.ID }, cancellationToken);
@@ -196,12 +200,13 @@ namespace Alsahab.Setting.BL
 
             foreach (var val in statementSubsystemResponse)
             {
-                Observers.ObserverStates.StatementSubsystemAdd newState = new Observers.ObserverStates.StatementSubsystemAdd
-                {
-                    StatementSubsystem = val,
-                    User = User,
-                };
-                Notify(newState);
+                //TODO:
+                // Observers.ObserverStates.StatementSubsystemAdd newState = new Observers.ObserverStates.StatementSubsystemAdd
+                // {
+                //     StatementSubsystem = val,
+                //     User = User,
+                // };
+                // Notify(newState);
             }
             return statementResponse;
         }
@@ -220,24 +225,26 @@ namespace Alsahab.Setting.BL
             {
                 val.IsDeleted = true;
                 var statementSubsystemResponse = await _StatementSubsystemDL.UpdateAsync(val, cancellationToken);
-                var statesubstate = new Observers.ObserverStates.StatementSubsystemDelete
-                {
-                    StatementSubsystem = statementSubsystemResponse,
-                    User = User,
-                };
-                Notify(statesubstate);
+                //TODO:
+                // var statesubstate = new Observers.ObserverStates.StatementSubsystemDelete
+                // {
+                //     StatementSubsystem = statementSubsystemResponse,
+                //     User = User,
+                // };
+                // Notify(statesubstate);
             }
 
             data = await _StatementDL.GetByIdAsync(cancellationToken, data.ID);
             data.IsDeleted = true;
             var response = await _StatementDL.UpdateAsync(data, cancellationToken);
 
-            Observers.ObserverStates.StatementDelete state = new Observers.ObserverStates.StatementDelete
-            {
-                Statement = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.StatementDelete state = new Observers.ObserverStates.StatementDelete
+            // {
+            //     Statement = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }

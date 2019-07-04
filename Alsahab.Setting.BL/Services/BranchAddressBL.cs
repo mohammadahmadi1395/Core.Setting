@@ -92,12 +92,13 @@ namespace Alsahab.Setting.BL
                 throw new AppException(ResponseStatus.DatabaseError, _BranchDL.ErrorMessage);
 
             response = await _BranchAddressDL.GetByIdAsync(cancellationToken, response.ID);
-            Observers.ObserverStates.BranchAddressAdd state = new Observers.ObserverStates.BranchAddressAdd
-            {
-                BranchAddress = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.BranchAddressAdd state = new Observers.ObserverStates.BranchAddressAdd
+            // {
+            //     BranchAddress = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -118,12 +119,13 @@ namespace Alsahab.Setting.BL
             foreach (var val in response)
             {
                 var resp = await _BranchAddressDL.GetByIdAsync(cancellationToken, val?.ID);
-                Observers.ObserverStates.BranchAddressAdd state = new Observers.ObserverStates.BranchAddressAdd
-                {
-                    BranchAddress = resp ?? val,
-                    User = User,
-                };
-                Notify(state);
+                //TODO:
+                // Observers.ObserverStates.BranchAddressAdd state = new Observers.ObserverStates.BranchAddressAdd
+                // {
+                //     BranchAddress = resp ?? val,
+                //     User = User,
+                // };
+                // Notify(state);
                 respList.Add(resp);
             }
 
@@ -145,12 +147,13 @@ namespace Alsahab.Setting.BL
 
             response = await _BranchAddressDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
 
-            Observers.ObserverStates.BranchAddressEdit state = new Observers.ObserverStates.BranchAddressEdit
-            {
-                BranchAddress = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.BranchAddressEdit state = new Observers.ObserverStates.BranchAddressEdit
+            // {
+            //     BranchAddress = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -169,12 +172,13 @@ namespace Alsahab.Setting.BL
 
             var response = await _BranchAddressDL.UpdateAsync(data, cancellationToken);
 
-            Observers.ObserverStates.BranchAddressDelete state = new Observers.ObserverStates.BranchAddressDelete
-            {
-                BranchAddress = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.BranchAddressDelete state = new Observers.ObserverStates.BranchAddressDelete
+            // {
+            //     BranchAddress = response,
+            //     User = User,
+            // };
+            // Notify(state);
             
             return response;
         }

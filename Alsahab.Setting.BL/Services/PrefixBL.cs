@@ -44,12 +44,14 @@ namespace Alsahab.Setting.BL
             var response = await _PrefixDL.InsertAsync(data, cancellationToken);
 
             response = await _PrefixDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
-            Observers.ObserverStates.PrefixAdd state = new Observers.ObserverStates.PrefixAdd
-            {
-                Prefix = response,
-                User = User,
-            };
-            Notify(state);
+
+            //TODO:
+            // Observers.ObserverStates.PrefixAdd state = new Observers.ObserverStates.PrefixAdd
+            // {
+            //     Prefix = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -67,12 +69,15 @@ namespace Alsahab.Setting.BL
             foreach (var val in response)
             {
                 var resp = await _PrefixDL.GetByIdAsync(cancellationToken, val?.ID ?? 0);
-                Observers.ObserverStates.PrefixAdd state = new Observers.ObserverStates.PrefixAdd
-                {
-                    Prefix = resp ?? val,
-                    User = User,
-                };
-                Notify(state);
+                
+                //TODO:
+                // Observers.ObserverStates.PrefixAdd state = new Observers.ObserverStates.PrefixAdd
+                // {
+                //     Prefix = resp ?? val,
+                //     User = User,
+                // };
+                // Notify(state);
+
                 respList.Add(resp);
             }
             
@@ -88,13 +93,14 @@ namespace Alsahab.Setting.BL
             var response = await _PrefixDL.UpdateAsync(data, cancellationToken);
 
             response = await _PrefixDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
-            
-            Observers.ObserverStates.PrefixEdit state = new Observers.ObserverStates.PrefixEdit
-            {
-                Prefix = response,
-                User = User,
-            };
-            Notify(state);
+
+            //TODO:            
+            // Observers.ObserverStates.PrefixEdit state = new Observers.ObserverStates.PrefixEdit
+            // {
+            //     Prefix = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -106,12 +112,13 @@ namespace Alsahab.Setting.BL
             data.IsDeleted = true;
             var response = await _PrefixDL.UpdateAsync(data, cancellationToken);
 
-            Observers.ObserverStates.PrefixDelete state = new Observers.ObserverStates.PrefixDelete
-            {
-                Prefix = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.PrefixDelete state = new Observers.ObserverStates.PrefixDelete
+            // {
+            //     Prefix = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }

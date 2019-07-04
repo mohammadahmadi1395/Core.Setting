@@ -84,12 +84,14 @@ namespace Alsahab.Setting.BL
             foreach (var val in response)
             {
                 var resp = await _FormTypeDL.GetByIdAsync(cancellationToken, val.ID);
-                Observers.ObserverStates.FormTypeAdd state = new Observers.ObserverStates.FormTypeAdd
-                {
-                    FormType = resp ?? val,
-                    User = User,
-                };
-                Notify(state);
+
+                //TODO:
+                // Observers.ObserverStates.FormTypeAdd state = new Observers.ObserverStates.FormTypeAdd
+                // {
+                //     FormType = resp ?? val,
+                //     User = User,
+                // };
+                // Notify(state);
                 respList.Add(resp);
             }
 
@@ -108,12 +110,13 @@ namespace Alsahab.Setting.BL
 
             response = await _FormTypeDL.GetByIdAsync(cancellationToken, response?.ID);
 
-            Observers.ObserverStates.FormTypeEdit state = new Observers.ObserverStates.FormTypeEdit
-            {
-                FormType = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.FormTypeEdit state = new Observers.ObserverStates.FormTypeEdit
+            // {
+            //     FormType = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }
@@ -124,12 +127,13 @@ namespace Alsahab.Setting.BL
             data.IsDeleted = true;
             var response = await _FormTypeDL.UpdateAsync(data, cancellationToken);
 
-            Observers.ObserverStates.FormTypeDelete state = new Observers.ObserverStates.FormTypeDelete
-            {
-                FormType = response,
-                User = User,
-            };
-            Notify(state);
+            //TODO:
+            // Observers.ObserverStates.FormTypeDelete state = new Observers.ObserverStates.FormTypeDelete
+            // {
+            //     FormType = response,
+            //     User = User,
+            // };
+            // Notify(state);
 
             return response;
         }

@@ -8,10 +8,10 @@ using Newtonsoft.Json;
 
 namespace Alsahab.Setting.BL.Observers
 {
-    public abstract class ObserverBase
+    public abstract class ObserverBase<TDto> where TDto : BaseDTO
     {
-        protected abstract int DoNotify(ObserverStates.ObserverStateBase stateInfo);
-        internal int Notify(ObserverStates.ObserverStateBase stateInfo)
+        protected abstract int DoNotify(ObserverStates.ObserverStateBase<TDto> stateInfo);
+        internal int Notify(ObserverStates.ObserverStateBase<TDto> stateInfo)
         {
             // Logger.SaveLog($"Observer = {this.GetType().FullName}\n" + $"Notify: stateInfo = {JsonConvert.SerializeObject(stateInfo)}", LogType.Info);
             int observerResult = 0;

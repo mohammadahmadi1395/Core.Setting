@@ -7,38 +7,37 @@
 
 // namespace Alsahab.Setting.BL.Observers.ObserverStates
 // {
-//     public class BranchRegionWorkAdd : ObserverStateBase
+//     public class OrganizationTypeAdd : ObserverStateBase
 //     {
 //         public override Enums.LogActionType Type
 //         {
 //             get
 //             {
-//                 return Enums.LogActionType.BranchRegionWorkAdd;
+//                 return Enums.LogActionType.OrganizationTypeAdd;
 //             }
 //         }
-//         public BranchRegionWorkDTO BranchRegionWork { get; set; }
+//         public OrganizationTypeDTO OrganizationType { get; set; }
 //     }
-//     public class BranchRegionWorkEdit : ObserverStateBase
+//     public class OrganizationTypeEdit : ObserverStateBase
 //     {
 //         public override Enums.LogActionType Type
 //         {
 //             get
 //             {
-//                 return Enums.LogActionType.BranchRegionWorkEdit;
+//                 return Enums.LogActionType.OrganizationTypeEdit;
 //             }
 //         }
-//         public BranchRegionWorkDTO BranchRegionWork { get; set; }
+//         public OrganizationTypeDTO OrganizationType { get; set; }
 //     }
-//     public class BranchRegionWorkDelete : ObserverStateBase
+//     public class OrganizationTypeDelete : ObserverStateBase
 //     {
 //         public override Enums.LogActionType Type
 //         {
 //             get
 //             {
-//                 return Enums.LogActionType.BranchRegionWorkDelete;
+//                 return Enums.LogActionType.OrganizationTypeDelete;
 //             }
 //         }
-//         public BranchRegionWorkDTO BranchRegionWork { get; set; }
+//         public OrganizationTypeDTO OrganizationType { get; set; }
 //     }
 // }
-

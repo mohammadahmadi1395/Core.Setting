@@ -11,238 +11,255 @@ using static Alsahab.Setting.DTO.Enums;
 
 namespace Alsahab.Setting.BL.Observers
 {
-    internal class LogObserver : ObserverBase
+    internal class LogObserver<TDto> : ObserverBase<TDto>
+    where TDto : BaseDTO
     {
         // private List<Alyatim.Member.DTO.PersonDTO> PersonList { get; set; }
         //private UserManagement.DTO.AcUserDTO user { get; set; }
         //private UserManagement.DTO.AcUserDTO team { get; set; }
-        protected override int DoNotify(ObserverStates.ObserverStateBase state)
+        protected override int DoNotify(ObserverStates.ObserverStateBase<TDto> state)
         {
             if (!(state.User?.UserID > 0))
                 return 0;
 
-            //user = ServiceUtility.CallUserManagement(s => s.AcUserMember(new UserManagement.SC.Messages.AcUserMemberRequest
-            //{
-            //    UserID = state.UserID,
-            //    ActionType = Common.ActionType.Select,
-            //    RequestDto = new UserManagement.DTO.AcUserMemberDTO
-            //    {
-            //        UserID = state?.UserID,
-            //        UserType = (long?)UserManagement.UserType.SingleUser,
-            //    }
-            //}))?.UserList?.FirstOrDefault();
 
-            //if (!(user?.ID > 0))
-            //    return 0;
-
-            //team = ServiceUtility.CallUserManagement(s => s.AcUser(new UserManagement.SC.Messages.AcUserRequest
-            //{
-            //    UserID = state?.TeamID ?? 0,
-            //    ActionType = Common.ActionType.Select,
-            //    RequestDto = new UserManagement.DTO.AcUserDTO
-            //    {
-            //        ID = state?.TeamID,
-            //    }
-            //}))?.ResponseDtoList?.FirstOrDefault();
-
-            //MemberList = ServiceUtility.CallMember(s => s.Member(new Alyatim.Member.SC.Messages.MemberRequest
-            //{
-            //    ActionType = Common.ActionType.Select,
-            //    UserID = user?.ID ?? 0,
-            //    MemberFilter = new Alyatim.Member.DTO.MemberFilterDTO
-            //    {
-            //        IDList = team?.ID > 0 ? team?.TeamMembers?.Select(t => t.MemberID)?.ToList() : new List<long?> { user?.SingleMemberID },
-            //    }
-            //}))?.ResponseDtoList;
-
-            int result = 0;
-            switch (state.Type)
-            {
-                case LogActionType.BranchAdd:
-                    result = BranchAdd(state);
-                    break;
-                case LogActionType.BranchEdit:
-                    result = BranchEdit(state);
-                    break;
-                case LogActionType.BranchDelete:
-                    result = BranchDelete(state);
-                    break;
-
-                // case LogActionType.BranchAddressAdd:
-                //     result = BranchAddressAdd(state);
-                //     break;
-                // case LogActionType.BranchAddressEdit:
-                //     result = BranchAddressEdit(state);
-                //     break;
-                // case LogActionType.BranchAddressDelete:
-                //     result = BranchAddressDelete(state);
-                //     break;
-
-                // case LogActionType.BranchRegionWorkAdd:
-                //     result = BranchRegionWorkAdd(state);
-                //     break;
-                // case LogActionType.BranchRegionWorkEdit:
-                //     result = BranchRegionWorkEdit(state);
-                //     break;
-                // case LogActionType.BranchRegionWorkDelete:
-                //     result = BranchRegionWorkDelete(state);
-                //     break;
-
-                // case LogActionType.FormTypeAdd:
-                //     result = FormTypeAdd(state);
-                //     break;
-                // case LogActionType.FormTypeEdit:
-                //     result = FormTypeEdit(state);
-                //     break;
-                // case LogActionType.FormTypeDelete:
-                //     result = FormTypeDelete(state);
-                //     break;
-
-                // case LogActionType.GeneratedFormAdd:
-                //     result = GeneratedFormAdd(state);
-                //     break;
-                // case LogActionType.GeneratedFormEdit:
-                //     result = GeneratedFormEdit(state);
-                //     break;
-                // case LogActionType.GeneratedFormDelete:
-                //     result = GeneratedFormDelete(state);
-                //     break;
-
-                // case LogActionType.PrefixAdd:
-                //     result = PrefixAdd(state);
-                //     break;
-                // case LogActionType.PrefixEdit:
-                //     result = PrefixEdit(state);
-                //     break;
-                // case LogActionType.PrefixDelete:
-                //     result = PrefixDelete(state);
-                //     break;
-
-                // case LogActionType.RuleAdd:
-                //     result = RuleAdd(state);
-                //     break;
-                // case LogActionType.RuleEdit:
-                //     result = RuleEdit(state);
-                //     break;
-                // case LogActionType.RuleDelete:
-                //     result = RuleDelete(state);
-                //     break;
-
-                // case LogActionType.RuleTagAdd:
-                //     result = RuleTagAdd(state);
-                //     break;
-                // case LogActionType.RuleTagEdit:
-                //     result = RuleTagEdit(state);
-                //     break;
-                // case LogActionType.RuleTagDelete:
-                //     result = RuleTagDelete(state);
-                //     break;
-
-                // case LogActionType.StatementAdd:
-                //     result = StatementAdd(state);
-                //     break;
-                // case LogActionType.StatementEdit:
-                //     result = StatementEdit(state);
-                //     break;
-                // case LogActionType.StatementDelete:
-                //     result = StatementDelete(state);
-                //     break;
-
-                // case LogActionType.StatementSubsystemAdd:
-                //     result = StatementSubsystemAdd(state);
-                //     break;
-                // case LogActionType.StatementSubsystemEdit:
-                //     result = StatementSubsystemEdit(state);
-                //     break;
-                // case LogActionType.StatementSubsystemDelete:
-                //     result = StatementSubsystemDelete(state);
-                //     break;
-
-                // case LogActionType.SubpartAdd:
-                //     result = SubpartAdd(state);
-                //     break;
-                // case LogActionType.SubpartEdit:
-                //     result = SubpartEdit(state);
-                //     break;
-                // case LogActionType.SubpartDelete:
-                //     result = SubpartDelete(state);
-                //     break;
-
-                // case LogActionType.SubsystemAdd:
-                //     result = SubsystemAdd(state);
-                //     break;
-                // case LogActionType.SubsystemEdit:
-                //     result = SubsystemEdit(state);
-                //     break;
-                // case LogActionType.SubsystemDelete:
-                //     result = SubsystemDelete(state);
-                //     break;
-
-                // case LogActionType.TypeoforganizationAdd:
-                //     result = TypeoforganizationAdd(state);
-                //     break;
-                // case LogActionType.TypeoforganizationEdit:
-                //     result = TypeoforganizationEdit(state);
-                //     break;
-                // case LogActionType.TypeoforganizationDelete:
-                //     result = TypeoforganizationDelete(state);
-                //     break;
-
-                // case LogActionType.ZoneAdd:
-                //     result = ZoneAdd(state);
-                //     break;
-                // case LogActionType.ZoneEdit:
-                //     result = ZoneEdit(state);
-                //     break;
-                // case LogActionType.ZoneDelete:
-                //     result = ZoneDelete(state);
-                //     break;
-            }
-            return result;
-        }
-
-        private int BranchAdd(ObserverStateBase state)
-        {
-            var stateInfo = state as BranchAdd;
+            var stateInfo = state;
             if (stateInfo == null) return 0;
-            BranchActionDTO actionDto = new BranchActionDTO
+            var actionDto = Activator.CreateInstance(typeof(ActionBaseDTO), new Object[]
             {
-                User = stateInfo.User,
-                RecordID = stateInfo.Branch.ID,
-                Branch = stateInfo.Branch,
-                ActionType = Alsahab.Common.ActionType.Insert,
-            };
+                stateInfo.User,
+                stateInfo.DTO.ID,
+                stateInfo.DTO,
+                Alsahab.Common.ActionType.Insert,
+            }) as ActionBaseDTO;
             CreateLog(actionDto);
             return 1;
         }
-        private int BranchEdit(ObserverStateBase state)
-        {
-            var stateInfo = state as BranchEdit;
-            if (stateInfo == null) return 0;
-            BranchActionDTO actionDto = new BranchActionDTO
-            {
-                User = stateInfo.User,
-                RecordID = stateInfo.Branch.ID,
-                Branch = stateInfo.Branch,
-                ActionType = Alsahab.Common.ActionType.Update,
-            };
-            CreateLog(actionDto);
-            return 1;
-        }
-        private int BranchDelete(ObserverStateBase state)
-        {
-            var stateInfo = state as BranchDelete;
-            if (stateInfo == null) return 0;
-            BranchActionDTO actionDto = new BranchActionDTO
-            {
-                User = stateInfo.User,
-                RecordID = stateInfo.Branch.ID,
-                Branch = stateInfo.Branch,
-                ActionType = Alsahab.Common.ActionType.Delete,
-            };
-            CreateLog(actionDto);
-            return 1;
-        }
+
+
+
+        //user = ServiceUtility.CallUserManagement(s => s.AcUserMember(new UserManagement.SC.Messages.AcUserMemberRequest
+        //{
+        //    UserID = state.UserID,
+        //    ActionType = Common.ActionType.Select,
+        //    RequestDto = new UserManagement.DTO.AcUserMemberDTO
+        //    {
+        //        UserID = state?.UserID,
+        //        UserType = (long?)UserManagement.UserType.SingleUser,
+        //    }
+        //}))?.UserList?.FirstOrDefault();
+
+        //if (!(user?.ID > 0))
+        //    return 0;
+
+        //team = ServiceUtility.CallUserManagement(s => s.AcUser(new UserManagement.SC.Messages.AcUserRequest
+        //{
+        //    UserID = state?.TeamID ?? 0,
+        //    ActionType = Common.ActionType.Select,
+        //    RequestDto = new UserManagement.DTO.AcUserDTO
+        //    {
+        //        ID = state?.TeamID,
+        //    }
+        //}))?.ResponseDtoList?.FirstOrDefault();
+
+        //MemberList = ServiceUtility.CallMember(s => s.Member(new Alyatim.Member.SC.Messages.MemberRequest
+        //{
+        //    ActionType = Common.ActionType.Select,
+        //    UserID = user?.ID ?? 0,
+        //    MemberFilter = new Alyatim.Member.DTO.MemberFilterDTO
+        //    {
+        //        IDList = team?.ID > 0 ? team?.TeamMembers?.Select(t => t.MemberID)?.ToList() : new List<long?> { user?.SingleMemberID },
+        //    }
+        //}))?.ResponseDtoList;
+
+        // int result = 0;
+        //     switch (state.Type)
+        //     {
+        //         case LogActionType.BranchAdd:
+        //             result = BranchAdd(state);
+        //             break;
+        //         case LogActionType.BranchEdit:
+        //             result = BranchEdit(state);
+        //             break;
+        //         case LogActionType.BranchDelete:
+        //             result = BranchDelete(state);
+        //             break;
+
+        // case LogActionType.BranchAddressAdd:
+        //     result = BranchAddressAdd(state);
+        //     break;
+        // case LogActionType.BranchAddressEdit:
+        //     result = BranchAddressEdit(state);
+        //     break;
+        // case LogActionType.BranchAddressDelete:
+        //     result = BranchAddressDelete(state);
+        //     break;
+
+        // case LogActionType.BranchRegionWorkAdd:
+        //     result = BranchRegionWorkAdd(state);
+        //     break;
+        // case LogActionType.BranchRegionWorkEdit:
+        //     result = BranchRegionWorkEdit(state);
+        //     break;
+        // case LogActionType.BranchRegionWorkDelete:
+        //     result = BranchRegionWorkDelete(state);
+        //     break;
+
+        // case LogActionType.FormTypeAdd:
+        //     result = FormTypeAdd(state);
+        //     break;
+        // case LogActionType.FormTypeEdit:
+        //     result = FormTypeEdit(state);
+        //     break;
+        // case LogActionType.FormTypeDelete:
+        //     result = FormTypeDelete(state);
+        //     break;
+
+        // case LogActionType.GeneratedFormAdd:
+        //     result = GeneratedFormAdd(state);
+        //     break;
+        // case LogActionType.GeneratedFormEdit:
+        //     result = GeneratedFormEdit(state);
+        //     break;
+        // case LogActionType.GeneratedFormDelete:
+        //     result = GeneratedFormDelete(state);
+        //     break;
+
+        // case LogActionType.PrefixAdd:
+        //     result = PrefixAdd(state);
+        //     break;
+        // case LogActionType.PrefixEdit:
+        //     result = PrefixEdit(state);
+        //     break;
+        // case LogActionType.PrefixDelete:
+        //     result = PrefixDelete(state);
+        //     break;
+
+        // case LogActionType.RuleAdd:
+        //     result = RuleAdd(state);
+        //     break;
+        // case LogActionType.RuleEdit:
+        //     result = RuleEdit(state);
+        //     break;
+        // case LogActionType.RuleDelete:
+        //     result = RuleDelete(state);
+        //     break;
+
+        // case LogActionType.RuleTagAdd:
+        //     result = RuleTagAdd(state);
+        //     break;
+        // case LogActionType.RuleTagEdit:
+        //     result = RuleTagEdit(state);
+        //     break;
+        // case LogActionType.RuleTagDelete:
+        //     result = RuleTagDelete(state);
+        //     break;
+
+        // case LogActionType.StatementAdd:
+        //     result = StatementAdd(state);
+        //     break;
+        // case LogActionType.StatementEdit:
+        //     result = StatementEdit(state);
+        //     break;
+        // case LogActionType.StatementDelete:
+        //     result = StatementDelete(state);
+        //     break;
+
+        // case LogActionType.StatementSubsystemAdd:
+        //     result = StatementSubsystemAdd(state);
+        //     break;
+        // case LogActionType.StatementSubsystemEdit:
+        //     result = StatementSubsystemEdit(state);
+        //     break;
+        // case LogActionType.StatementSubsystemDelete:
+        //     result = StatementSubsystemDelete(state);
+        //     break;
+
+        // case LogActionType.SubpartAdd:
+        //     result = SubpartAdd(state);
+        //     break;
+        // case LogActionType.SubpartEdit:
+        //     result = SubpartEdit(state);
+        //     break;
+        // case LogActionType.SubpartDelete:
+        //     result = SubpartDelete(state);
+        //     break;
+
+        // case LogActionType.SubsystemAdd:
+        //     result = SubsystemAdd(state);
+        //     break;
+        // case LogActionType.SubsystemEdit:
+        //     result = SubsystemEdit(state);
+        //     break;
+        // case LogActionType.SubsystemDelete:
+        //     result = SubsystemDelete(state);
+        //     break;
+
+        // case LogActionType.TypeoforganizationAdd:
+        //     result = TypeoforganizationAdd(state);
+        //     break;
+        // case LogActionType.TypeoforganizationEdit:
+        //     result = TypeoforganizationEdit(state);
+        //     break;
+        // case LogActionType.TypeoforganizationDelete:
+        //     result = TypeoforganizationDelete(state);
+        //     break;
+
+        // case LogActionType.ZoneAdd:
+        //     result = ZoneAdd(state);
+        //     break;
+        // case LogActionType.ZoneEdit:
+        //     result = ZoneEdit(state);
+        //     break;
+        // case LogActionType.ZoneDelete:
+        //     result = ZoneDelete(state);
+        //     break;
+        // }
+        // return result;
+        // }
+
+        // private int BranchAdd(ObserverStateBase state)
+        // {
+        //     var stateInfo = state as BranchAdd;
+        //     if (stateInfo == null) return 0;
+        //     BranchActionDTO actionDto = new BranchActionDTO
+        //     {
+        //         User = stateInfo.User,
+        //         RecordID = stateInfo.Branch.ID,
+        //         Branch = stateInfo.Branch,
+        //         ActionType = Alsahab.Common.ActionType.Insert,
+        //     };
+        //     CreateLog(actionDto);
+        //     return 1;
+        // }
+        // private int BranchEdit(ObserverStateBase state)
+        // {
+        //     var stateInfo = state as BranchEdit;
+        //     if (stateInfo == null) return 0;
+        //     BranchActionDTO actionDto = new BranchActionDTO
+        //     {
+        //         User = stateInfo.User,
+        //         RecordID = stateInfo.Branch.ID,
+        //         Branch = stateInfo.Branch,
+        //         ActionType = Alsahab.Common.ActionType.Update,
+        //     };
+        //     CreateLog(actionDto);
+        //     return 1;
+        // }
+        // private int BranchDelete(ObserverStateBase state)
+        // {
+        //     var stateInfo = state as BranchDelete;
+        //     if (stateInfo == null) return 0;
+        //     BranchActionDTO actionDto = new BranchActionDTO
+        //     {
+        //         User = stateInfo.User,
+        //         RecordID = stateInfo.Branch.ID,
+        //         Branch = stateInfo.Branch,
+        //         ActionType = Alsahab.Common.ActionType.Delete,
+        //     };
+        //     CreateLog(actionDto);
+        //     return 1;
+        // }
 
         // private int BranchAddressAdd(ObserverStateBase state)
         // {
@@ -838,6 +855,7 @@ namespace Alsahab.Setting.BL.Observers
             //     CreateDate = DateTime.Now
             // };
             return result;
+            // }
         }
     }
 }
