@@ -7,24 +7,23 @@ using Alsahab.Setting.DTO;
 using Alsahab.Common;
 using Newtonsoft.Json;
 
-namespace Alsahab.Setting.BL.Observers.ActionDTO
+namespace Alsahab.Setting.BL.Log.ActionDTO
 {
-    public class SubsystemActionDTO : ActionBaseDTO<SubsystemDTO>
+    public class PrefixActionDTO : ActionBaseDTO<PrefixDTO>
     {
         // public override DTO.Enums.SettingEntity Entity
         // {
         //     get
         //     {
-        //         return DTO.Enums.SettingEntity.Subsystem;
+        //         return DTO.Enums.SettingEntity.Prefix;
         //     }
         // }
-        // public List<SubsystemDTO> SubsystemList { get; set; }
-        // public SubsystemDTO Subsystem { get; set; }
+        // public PrefixDTO Prefix { get; set; }
         public override string DisplayMessage
         {
             get
             {
-                return JsonConvert.SerializeObject('\u202B' + "نام زیرسیستم : " + DTO?.Name + "، نام مخفف : " + DTO?.ShortName);
+                return JsonConvert.SerializeObject('\u202B' + "عنوان : " + DTO?.Title);
             }
         }
     }

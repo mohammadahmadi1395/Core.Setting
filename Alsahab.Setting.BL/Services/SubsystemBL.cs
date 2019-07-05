@@ -21,7 +21,7 @@ namespace Alsahab.Setting.BL
         public SubsystemBL(IBaseDL<Subsystem, SubsystemDTO, SubsystemFilterDTO> subsystemDL,
                            IBaseDL<StatementSubsystem, StatementSubsystemDTO, StatementSubsystemFilterDTO> statementSubsystemDL,
                            IBaseDL<Subpart, SubpartDTO, SubpartFilterDTO> subpartDL,
-                           IBaseDL<Log, LogDTO, LogFilterDTO> logDL) : base(subsystemDL, logDL)
+                           IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL) : base(subsystemDL, logDL)
         {
             _SubsystemDL = subsystemDL;
             _StatementSubsystemDL = statementSubsystemDL;

@@ -339,7 +339,6 @@ namespace Alsahab.Common
         [EnumMember]
         [Description("تحويل پیامک")]
         SMSDelivery = 14,
-
     }
 
     [DataContract]

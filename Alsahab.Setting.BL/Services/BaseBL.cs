@@ -27,6 +27,7 @@ namespace Alsahab.Setting.BL
         // where Dto : BaseDTO
         // where FilterDto : Dto
     {
+        public virtual bool FormHasTree {get;set;}
         public UserInfoDTO User { get; set; }
         public Language Language { get; set; }
         public ResponseStatus ResponseStatus { get; set; }
@@ -38,29 +39,30 @@ namespace Alsahab.Setting.BL
         private CultureInfo Culture { get; set; }
         private readonly IBaseDL<TEntity, Dto, FilterDto> _BaseDL;// = new IBaseDL<BranchDTO, Branch>();
         // = new IBaseDL<BranchDTO, Branch>();
-        readonly List<Observers.ObserverBase<Dto>> _observers;
+        readonly List<Log.ObserverBase<Dto>> _observers;
 
         // private readonly IBaseValidator<Dto> _BaseValidator;
         // public BranchBL()
         // {
         // }
-        private readonly IBaseDL<Log, LogDTO, LogFilterDTO> _LogDL;
+        private readonly IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> _LogDL;
         public BaseBL(IBaseDL<TEntity, Dto, FilterDto> baseDL
-                    , IBaseDL<Log, LogDTO, LogFilterDTO> logDL = null)//, IBaseValidator<Dto> baseValidator)
+                    , IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL = null)//, IBaseValidator<Dto> baseValidator)
         {
             _BaseDL = baseDL;
             _LogDL = logDL;
             // _BaseValidator = baseValidator;
+            FormHasTree = false;
             ResponseStatus = ResponseStatus.ServerError;
             ValidatorOptions.LanguageManager = new ErrorLanguageManager();
             // ValidatorOptions.LanguageManager = new FluentValidation.Resources.LanguageManager();
             ValidatorOptions.LanguageManager.Culture = Culture;
-            _observers = new List<Observers.ObserverBase<Dto>>();
-            _observers.Add(new Observers.LogObserver<Dto>(logDL));
+            _observers = new List<Log.ObserverBase<Dto>>();
+            _observers.Add(new Log.LogObserver<Dto>(logDL));
         }
 
         //public long? TeamID { get; set; }
-        protected void Notify<TObserverState>(TObserverState stateInfo) where TObserverState : Observers.ObserverStates.ObserverStateBase<Dto>
+        protected void Notify<TObserverState>(TObserverState stateInfo) where TObserverState : Log.ObserverStateBase<Dto>
         {
             stateInfo.User = User;
             foreach (var observer in _observers)
@@ -163,26 +165,30 @@ namespace Alsahab.Setting.BL
             data.CreateDate = DateTime.Now;
 
             var response = await _BaseDL.InsertAsync(data, cancellationToken);//.BranchInsert(data);
+            
+            if (FormHasTree)
+                UpdateTreeIndicesAndCodes();
 
-            if (response?.ID > 0)
-            {
-                response = await _BaseDL.GetByIdAsync(cancellationToken, response?.ID);
-                Observers.ObserverStates.ObserverStateBase<Dto> state = new Observers.ObserverStates.ObserverStateBase<Dto>
-                {
-                    User = User,
-                    Type = Enums.LogActionType.Add,
-                    DTO = response
-                };
-                // Activator.CreateInstance(typeof(Observers.ObserverStates.ObserverStateBase<Dto>), new Object[]
-                // {
-                //     response,
-                //     User,
-                // }) as Observers.ObserverStates.ObserverStateBase<Dto>;
-                Notify(state);
-            }
+
+            RegisterLogAsync(response, ActionType.Insert, cancellationToken);
+            
             return response;
         }
 
+        public async Task RegisterLogAsync(Dto response, ActionType type, CancellationToken cancellationToken)
+        {
+            if (response?.ID > 0)
+            {
+                response = await _BaseDL.GetByIdAsync(cancellationToken, response?.ID);
+                Log.ObserverStateBase<Dto> state = new Log.ObserverStateBase<Dto>
+                {
+                    User = User,
+                    Type = type,
+                    DTO = response
+                };
+                Notify(state);
+            }
+        }
 
         public virtual Dto Insert(Dto data)
         {

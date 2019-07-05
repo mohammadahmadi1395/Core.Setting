@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using System.Configuration;
-using Alsahab.Setting.BL.Observers.ActionDTO;
-using Alsahab.Setting.BL.Observers.ObserverStates;
+using Alsahab.Setting.BL.Log.ActionDTO;
+using Alsahab.Setting.BL.Log;
 using Alsahab.Common;
 using static Alsahab.Setting.DTO.Enums;
 using Alsahab.Setting.Data.Interfaces;
@@ -13,26 +13,25 @@ using Alsahab.Setting.Entities;
 using Alsahab.Setting.Entities.Models;
 using Alsahab.Setting.DTO;
 
-namespace Alsahab.Setting.BL.Observers
+namespace Alsahab.Setting.BL.Log
 {
     internal class LogObserver<TDto> : ObserverBase<TDto>
     where TDto : BaseDTO
     {
-        // private readonly IBaseDL<TEntity, TDto, TFilterDto> _BaseDL;
-        private readonly IBaseDL<Log, LogDTO, LogFilterDTO> _LogDL;
-        public LogObserver(IBaseDL<Log, LogDTO, LogFilterDTO> logDL)
+        private readonly IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> _LogDL;
+        public LogObserver(IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL)
         {
             _LogDL = logDL;
-            // _BaseDL = baseDL;
         }
+
         // private List<Alyatim.Member.DTO.PersonDTO> PersonList { get; set; }
         //private UserManagement.DTO.AcUserDTO user { get; set; }
         //private UserManagement.DTO.AcUserDTO team { get; set; }
-        protected override int DoNotify(ObserverStates.ObserverStateBase<TDto> state)
+
+        protected override int DoNotify(ObserverStateBase<TDto> state)
         {
             if (!(state.User?.UserID > 0))
                 return 0;
-
 
             var stateInfo = state;
             if (stateInfo == null) return 0;
@@ -41,13 +40,45 @@ namespace Alsahab.Setting.BL.Observers
                 User = stateInfo.User,
                 RecordID = stateInfo.DTO.ID,
                 DTO = stateInfo.DTO,
-                ActionType = Alsahab.Common.ActionType.Insert,                
+                ActionType = stateInfo.Type,                
             };
             CreateLog(actionDto);
             return 1;
         }
 
+        private void CreateLog(ActionBaseDTO<TDto> actionDto)
+        {
+            Alsahab.Common.LogDTO logDto = ConvertToLogDTO(actionDto);
+            var response = _LogDL.Insert(logDto);
+        }
+        private LogDTO ConvertToLogDTO(ActionBaseDTO<TDto> actionDto)
+        {
+            // TODO
+            // var person = ServiceUtility.CallMember(s => s.Person(new Alyatim.Member.SC.Messages.PersonRequest
+            // {
+            //     ActionType = Common.ActionType.Select,
+            //     User = actionDto?.User,
+            //     RequestID = actionDto?.User?.UserPersonID,
+            // }))?.ResponseDto;
 
+            var result = new LogDTO
+            {
+                UserID = actionDto?.User?.UserID ?? 0,
+                RegistrantPersonID = actionDto?.User?.UserPersonID ?? 0,
+                GroupName = actionDto?.User?.GroupName,
+                UserRoleType = actionDto?.User?.UserRoleType ?? RoleType.SingleUser,
+                // GroupMembersID = team?.ID > 0 ? team?.TeamMembers?.Select(s => s.MemberID)?.ToList() : null,
+                // GroupMembersFullName = team?.ID > 0 ? string.Join(", ", MemberList?.Select(t => t.FullName)?.ToList()) : null,// team?.TeamMembers?.Select(s => s.MemberName)?.ToList())
+                // RegistrantPersonFullName = person?.FullName,
+                GroupID = actionDto?.User?.GroupID,
+                ActionTypeID = (int)actionDto.ActionType,
+                EntityID = (int)actionDto.Entity,
+                Message = actionDto.MessageStr,
+                RecordID = actionDto.DTO.ID ?? 0,
+                CreateDate = DateTime.Now
+            };
+            return result;
+        }
 
         //user = ServiceUtility.CallUserManagement(s => s.AcUserMember(new UserManagement.SC.Messages.AcUserMemberRequest
         //{
@@ -86,15 +117,6 @@ namespace Alsahab.Setting.BL.Observers
         // int result = 0;
         //     switch (state.Type)
         //     {
-        //         case LogActionType.BranchAdd:
-        //             result = BranchAdd(state);
-        //             break;
-        //         case LogActionType.BranchEdit:
-        //             result = BranchEdit(state);
-        //             break;
-        //         case LogActionType.BranchDelete:
-        //             result = BranchDelete(state);
-        //             break;
 
         // case LogActionType.BranchAddressAdd:
         //     result = BranchAddressAdd(state);
@@ -831,41 +853,5 @@ namespace Alsahab.Setting.BL.Observers
         //     return 1;
         // }
 
-        private void CreateLog(ActionBaseDTO<TDto> actionDto)
-        {
-            Alsahab.Common.LogDTO logDto = ConvertToLogDTO(actionDto);
-            var response = _LogDL.Insert(logDto);
-        }
-        private LogDTO ConvertToLogDTO(ActionBaseDTO<TDto> actionDto)
-        {
-            // LogDTO result = null;
-
-            // TODO
-            // var person = ServiceUtility.CallMember(s => s.Person(new Alyatim.Member.SC.Messages.PersonRequest
-            // {
-            //     ActionType = Common.ActionType.Select,
-            //     User = actionDto?.User,
-            //     RequestID = actionDto?.User?.UserPersonID,
-            // }))?.ResponseDto;
-
-            var result = new LogDTO
-            {
-                UserID = actionDto?.User?.UserID ?? 0,
-                RegistrantPersonID = actionDto?.User?.UserPersonID ?? 0,
-                GroupName = actionDto?.User?.GroupName,
-                UserRoleType = actionDto?.User?.UserRoleType ?? RoleType.SingleUser,
-                // GroupMembersID = team?.ID > 0 ? team?.TeamMembers?.Select(s => s.MemberID)?.ToList() : null,
-                // GroupMembersFullName = team?.ID > 0 ? string.Join(", ", MemberList?.Select(t => t.FullName)?.ToList()) : null,// team?.TeamMembers?.Select(s => s.MemberName)?.ToList())
-                // RegistrantPersonFullName = person?.FullName,
-                GroupID = actionDto?.User?.GroupID,
-                ActionTypeID = (int)actionDto.ActionType,
-                EntityID = (int)actionDto.Entity,
-                Message = actionDto.MessageStr,
-                RecordID = actionDto.DTO.ID ?? 0,
-                CreateDate = DateTime.Now
-            };
-            return result;
-            // }
-        }
     }
 }

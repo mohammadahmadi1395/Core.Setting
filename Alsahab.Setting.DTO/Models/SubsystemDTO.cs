@@ -10,7 +10,7 @@ namespace Alsahab.Setting.DTO
 {
     public class SubsystemDTO : BaseDTO
     {
-        public List<long?> IDList { get; set; }
+        // public List<long?> IDList { get; set; }
         public string Name { get; set; }
         public string ShortName { get; set; }
         public string Description { get; set; }

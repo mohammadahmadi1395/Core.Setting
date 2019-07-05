@@ -6,12 +6,12 @@ using Alsahab.Common;
 using Alsahab.Common.Exceptions;
 using Newtonsoft.Json;
 
-namespace Alsahab.Setting.BL.Observers
+namespace Alsahab.Setting.BL.Log
 {
     public abstract class ObserverBase<TDto> where TDto : BaseDTO
     {
-        protected abstract int DoNotify(ObserverStates.ObserverStateBase<TDto> stateInfo);
-        internal int Notify(ObserverStates.ObserverStateBase<TDto> stateInfo)
+        protected abstract int DoNotify(ObserverStateBase<TDto> stateInfo);
+        internal int Notify(ObserverStateBase<TDto> stateInfo)
         {
             // Logger.SaveLog($"Observer = {this.GetType().FullName}\n" + $"Notify: stateInfo = {JsonConvert.SerializeObject(stateInfo)}", LogType.Info);
             int observerResult = 0;

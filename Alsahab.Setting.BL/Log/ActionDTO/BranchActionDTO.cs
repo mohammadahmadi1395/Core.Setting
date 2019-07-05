@@ -8,7 +8,7 @@ using Alsahab.Common;
 using Newtonsoft.Json;
 using static Alsahab.Setting.DTO.Enums;
 
-namespace Alsahab.Setting.BL.Observers.ActionDTO
+namespace Alsahab.Setting.BL.Log.ActionDTO
 {
     public class BranchActionDTO : ActionBaseDTO<BranchDTO>
     {
