@@ -16,7 +16,8 @@ namespace Alsahab.Setting.BL
     public class OrganizationTypeBL : BaseBL<OrganizationType, OrganizationTypeDTO, OrganizationTypeFilterDTO>
     {
         private readonly IBaseDL<OrganizationType, OrganizationTypeDTO, OrganizationTypeFilterDTO> _OrganizationTypeDL;
-        public OrganizationTypeBL(IBaseDL<OrganizationType, OrganizationTypeDTO, OrganizationTypeFilterDTO> organizationTypeDL) : base(organizationTypeDL)
+        public OrganizationTypeBL(IBaseDL<OrganizationType, OrganizationTypeDTO, OrganizationTypeFilterDTO> organizationTypeDL,
+                                IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL) : base(organizationTypeDL, logDL)
         {
             _OrganizationTypeDL = organizationTypeDL;
         }
@@ -41,7 +42,7 @@ namespace Alsahab.Setting.BL
         {
             if (!(data.ID > 0))
             {
-                ErrorMessage = "Entered OrganizationType is Mistake";
+                // ErrorMessage = "Entered OrganizationType is Mistake";
                 return false;
             }
             return true;
@@ -124,7 +125,7 @@ namespace Alsahab.Setting.BL
         /// <returns></returns>
         public async override Task<OrganizationTypeDTO> UpdateAsync(OrganizationTypeDTO data, CancellationToken cancellationToken)
         {
-            data = await MergeNewAndOldDataForUpdate(data, cancellationToken);
+            data = await MergeNewAndOldDataForUpdateAsync(data, cancellationToken);
             Validate(data);
 
             var response = await _OrganizationTypeDL.UpdateAsync(data, cancellationToken);

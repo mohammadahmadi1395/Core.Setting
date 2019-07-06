@@ -33,8 +33,9 @@ namespace Alsahab.Setting.BL
 
         #region dependency injection
         private readonly IBaseDL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO> _OrganizationalChartDL;
-        public OrganizationalChartBL(IBaseDL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO> organizationalChartDL)
-            : base(organizationalChartDL)
+        public OrganizationalChartBL(IBaseDL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO> organizationalChartDL,
+                                IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL)
+            : base(organizationalChartDL, logDL)
         {
             _OrganizationalChartDL = organizationalChartDL;
         }

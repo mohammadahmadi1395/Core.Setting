@@ -15,7 +15,8 @@ namespace Alsahab.Setting.BL
     public class RuleTagBL : BaseBL<RuleTag, RuleTagDTO, RuleTagFilterDTO>, IRuleTagBL
     {
         private readonly IBaseDL<RuleTag, RuleTagDTO, RuleTagFilterDTO> _RuleTagDL;
-        public RuleTagBL(IBaseDL<RuleTag, RuleTagDTO, RuleTagFilterDTO> ruleTagDL) : base(ruleTagDL)
+        public RuleTagBL(IBaseDL<RuleTag, RuleTagDTO, RuleTagFilterDTO> ruleTagDL,
+                        IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL) : base(ruleTagDL, logDL)
         {
             _RuleTagDL = ruleTagDL;
         }
@@ -107,7 +108,7 @@ namespace Alsahab.Setting.BL
 
         public async override Task<RuleTagDTO> UpdateAsync(RuleTagDTO data, CancellationToken cancellationToken)
         {
-            data = await MergeNewAndOldDataForUpdate(data, cancellationToken);
+            data = await MergeNewAndOldDataForUpdateAsync(data, cancellationToken);
 
             Validate(data);
 

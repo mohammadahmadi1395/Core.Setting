@@ -18,8 +18,10 @@ namespace Alsahab.Setting.BL
     {
         private readonly IBaseDL<BranchRegionWork, BranchRegionWorkDTO, BranchRegionWorkFilterDTO> _BranchRegionWorkDL;
         private readonly IBaseDL<Zone, ZoneDTO, ZoneFilterDTO> _ZoneDL;
-        public BranchRegionWorkBL(IBaseDL<BranchRegionWork, BranchRegionWorkDTO, BranchRegionWorkFilterDTO> branchRegionWorkDL, IBaseDL<Zone, ZoneDTO, ZoneFilterDTO> zoneDL)
-            : base(branchRegionWorkDL)
+        public BranchRegionWorkBL(IBaseDL<BranchRegionWork, BranchRegionWorkDTO, BranchRegionWorkFilterDTO> branchRegionWorkDL, 
+                                IBaseDL<Zone, ZoneDTO, ZoneFilterDTO> zoneDL,
+                                IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL)
+            : base(branchRegionWorkDL, logDL)
         {
             _BranchRegionWorkDL = branchRegionWorkDL;
             _ZoneDL = zoneDL;
@@ -141,7 +143,7 @@ namespace Alsahab.Setting.BL
 
         public override async Task<BranchRegionWorkDTO> UpdateAsync(BranchRegionWorkDTO data, CancellationToken cancellationToken)
         {
-            data = await MergeNewAndOldDataForUpdate(data, cancellationToken);
+            data = await MergeNewAndOldDataForUpdateAsync(data, cancellationToken);
 
             Validate(data);
 

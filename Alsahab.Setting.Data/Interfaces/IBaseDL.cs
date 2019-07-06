@@ -43,7 +43,7 @@ namespace Alsahab.Setting.Data.Interfaces
         Task<IList<TDto>> GetByIdListAsync(CancellationToken cancellationToken, IList<long> idList);
         IList<TDto> GetByIdList(IList<long> idList);
 
-        IList<TDto> InsertList(IList<TDto> dtoList, bool saveNow);
+        IList<TDto> InsertList(IList<TDto> dtoList, bool saveNow = true);
         IList<TDto> UpdateList(IList<TDto> dtoList, bool saveNow = true);
         IList<TDto> DeleteList(IList<TDto> dtoList, bool saveNow = true);
         // void Attach(TEntity entity);

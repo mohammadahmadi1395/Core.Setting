@@ -13,9 +13,9 @@ namespace Alsahab.Setting.DTO
         public BranchDTO()
         {
         }
-        public long? ParentID { get; set; }
-        public String Title { get; set; }
-        public String Code { get; set; }
+        // public long? ParentID { get; set; }
+        // public String Title { get; set; }
+        // public String Code { get; set; }
         public long? HeadPersonID { get; set; }
         public String HeadMemberName { get; set; }
         public String HeadMemberPhoneNo { get; set; }
@@ -24,10 +24,10 @@ namespace Alsahab.Setting.DTO
         public long? BranchAddressID { get; set; }
         public String BranchComment { get; set; }
         public bool? IsCentral { get; set; }
-        public Nullable<long> LeftIndex { get; set; }
-        public Nullable<long> RightIndex { get; set; }
-        public Nullable<long> Depth { get; set; }
-        public string OldCode { get; set; }
+        // public Nullable<long> LeftIndex { get; set; }
+        // public Nullable<long> RightIndex { get; set; }
+        // public Nullable<long> Depth { get; set; }
+        // public string OldCode { get; set; }
     }
 
     public class BranchValidator : BaseDTOValidator<BranchDTO>//AbstractValidator<BranchDTO>

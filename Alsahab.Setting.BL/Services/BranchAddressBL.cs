@@ -18,8 +18,9 @@ namespace Alsahab.Setting.BL
         private readonly IBaseDL<Zone, ZoneDTO, ZoneFilterDTO> _ZoneDL;
         public BranchAddressBL(IBaseDL<BranchAddress, BranchAddressDTO, BranchAddressFilterDTO> branchAddressDL,
                                 IBaseDL<Branch, BranchDTO, BranchFilterDTO> branchDL,
-                                IBaseDL<Zone, ZoneDTO, ZoneFilterDTO> zoneDL)
-            : base(branchAddressDL)
+                                IBaseDL<Zone, ZoneDTO, ZoneFilterDTO> zoneDL,
+                                IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL)
+            : base(branchAddressDL, logDL)
         {
             _BranchAddressDL = branchAddressDL;
             _BranchDL = branchDL;
@@ -139,7 +140,7 @@ namespace Alsahab.Setting.BL
         /// <returns></returns>
         public override async Task<BranchAddressDTO> UpdateAsync(BranchAddressDTO data, CancellationToken cancellationToken)
         {
-            data = await MergeNewAndOldDataForUpdate(data, cancellationToken);
+            data = await MergeNewAndOldDataForUpdateAsync(data, cancellationToken);
 
             Validate(data);
 

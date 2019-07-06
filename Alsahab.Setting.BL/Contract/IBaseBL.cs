@@ -13,14 +13,12 @@ namespace Alsahab.Setting.BL
         where TFilterDto : TDto
     {
         bool FormHasTree {get;set;}
+        bool NeedToAutoCode {get;set;}
         UserInfoDTO User { get; set; }
         Language Language { get; set; }
-        ResponseStatus ResponseStatus { get; set; }
         int? ResultCount { get; set; }
         PagingInfoDTO PagingInfo { get; set; }
-        string ErrorMessage { get; set; }
         IList<FluentValidation.Results.ValidationFailure> ValidationErrors { get; set; }
-        // CultureInfo Culture { get; set; }
 
         Task<IList<TDto>> GetAllAsync(CancellationToken cancellationToken, PagingInfoDTO paging = null);
         IList<TDto> GetAll(PagingInfoDTO paging = null);

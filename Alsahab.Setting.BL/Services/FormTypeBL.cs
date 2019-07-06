@@ -17,7 +17,8 @@ namespace Alsahab.Setting.BL
     public class FormTypeBL : BaseBL<FormType, FormTypeDTO, FormTypeFilterDTO>
     {
         private readonly IBaseDL<FormType, FormTypeDTO, FormTypeFilterDTO> _FormTypeDL;
-        public FormTypeBL(IBaseDL<FormType, FormTypeDTO, FormTypeFilterDTO> formTypeDL) : base(formTypeDL)
+        public FormTypeBL(IBaseDL<FormType, FormTypeDTO, FormTypeFilterDTO> formTypeDL,
+                                IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL) : base(formTypeDL, logDL)
         {
             _FormTypeDL = formTypeDL;
         }
@@ -100,7 +101,7 @@ namespace Alsahab.Setting.BL
         
         public async override Task<FormTypeDTO> UpdateAsync(FormTypeDTO data, CancellationToken cancellationToken)
         {
-            data = await MergeNewAndOldDataForUpdate(data, cancellationToken);
+            data = await MergeNewAndOldDataForUpdateAsync(data, cancellationToken);
 
             // Validate(data);
 

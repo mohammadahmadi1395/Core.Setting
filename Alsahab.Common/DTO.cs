@@ -12,7 +12,7 @@ namespace Alsahab.Common
         public int Size { get; set; }
         public int Index { get; set; }
     }
-    
+
     // public class StatementDTO : BaseDTO
     // {
     //     public string TagName { get; set; }
@@ -58,7 +58,18 @@ namespace Alsahab.Common
         public DateTime? CreateDate { get; set; }
         public DateTime? CreateDateFrom { get; set; }
         public DateTime? CreateDateTo { get; set; }
-        public List<long?> IDList {get;set;}
+        public List<long?> IDList { get; set; }
+
+        //Just for trees
+        public long? ParentID { get; set; }
+        public String Title { get; set; }
+        public String Code { get; set; }
+
+        public Nullable<long> LeftIndex { get; set; }
+        public Nullable<long> RightIndex { get; set; }
+        public Nullable<long> Depth { get; set; }
+        public string OldCode { get; set; }
+
     }
 
 
@@ -339,6 +350,10 @@ namespace Alsahab.Common
         [EnumMember]
         [Description("تحويل پیامک")]
         SMSDelivery = 14,
+        [EnumMember]
+        [Description("SoftDelete")]
+        SoftDelete = 15,
+
     }
 
     [DataContract]

@@ -8,6 +8,7 @@ using Alsahab.Common;
 using Alsahab.Setting.Entities.Models;
 using Alsahab.Setting.Data.Interfaces;
 using System.Threading;
+using Alsahab.Common.Exceptions;
 
 namespace Alsahab.Setting.BL
 {
@@ -18,28 +19,13 @@ namespace Alsahab.Setting.BL
         private readonly IBaseDL<StatementSubsystem, StatementSubsystemDTO, StatementSubsystemFilterDTO> _StatementSubsystemDL;
         public StatementBL(IBaseDL<Statement, StatementDTO, StatementFilterDTO> statementDL,
                         IBaseDL<StatementSubsystem, StatementSubsystemDTO, StatementSubsystemFilterDTO> statementSubsystemDL,
-                        IBaseDL<Subsystem, SubsystemDTO, SubsystemFilterDTO> subsystemDL) : base(statementDL)
+                        IBaseDL<Subsystem, SubsystemDTO, SubsystemFilterDTO> subsystemDL,
+                        IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL) : base(statementDL, logDL)
         {
             _StatementDL = statementDL;
             _StatementSubsystemDL = statementSubsystemDL;
             _SubsystemDL = subsystemDL;
         }
-        private bool Validate(StatementDTO data)
-        {
-            return Validate<Validation.BLStatementValidator, StatementDTO>(data ?? new StatementDTO());
-        }
-
-        /// <summary>
-        /// Check Data For Delete
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        private bool CheckDeletePermission(StatementDTO data)
-        {
-            //TODO:
-            return true;
-        }
-
         public async override Task<IList<StatementDTO>> GetAsync(StatementFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
             var statementList = await _StatementDL.GetAsync(filter, cancellationToken, paging);
@@ -87,14 +73,9 @@ namespace Alsahab.Setting.BL
             return statementList?.Where(s => s.SubsystemIDList?.Count > 0)?.ToList();
         }
 
-        /// <summary>
-        /// Insert Statement In Database
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
         public async override Task<StatementDTO> InsertAsync(StatementDTO data, CancellationToken cancellationToken)
         {
-            Validate(data);
+            Validate<Validation.BLStatementValidator, StatementDTO>(data);
 
             var statementList = await _StatementDL.GetAsync(new StatementFilterDTO { TagName = data.TagName }, cancellationToken);
             var statementResponse = new StatementDTO();
@@ -114,13 +95,7 @@ namespace Alsahab.Setting.BL
                 data.CreateDate = DateTime.Now;
                 statementResponse = await _StatementDL.InsertAsync(data, cancellationToken);
 
-                //TODO:
-                // Observers.ObserverStates.StatementAdd state = new Observers.ObserverStates.StatementAdd
-                // {
-                //     Statement = statementResponse,
-                //     User = User,
-                // };
-                // Notify(state);
+                RegisterLogAsync(data, ActionType.Insert, cancellationToken);
             }
 
             // اگر از قبل عبارت وجود داشته باشد، فقط زیرسیستم‌های جدید را برای این عبارت استخراج می‌کند تا درج شوند
@@ -134,25 +109,12 @@ namespace Alsahab.Setting.BL
 
             var statementSubsystemResponse = await _StatementSubsystemDL.InsertListAsync(newStatementSubsystemList, cancellationToken);
 
-            foreach (var val in statementSubsystemResponse)
-            {
-                //TODO:
-                // Observers.ObserverStates.StatementSubsystemAdd state = new Observers.ObserverStates.StatementSubsystemAdd
-                // {
-                //     StatementSubsystem = val,
-                //     User = User,
-                // };
-                // Notify(state);
-            }
-
+            //TODO:
+            //Log List Insert
+            
             return statementResponse;
         }
 
-        /// <summary>
-        /// Insert List of Statement In Database
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
         public async override Task<IList<StatementDTO>> InsertListAsync(IList<StatementDTO> data, CancellationToken cancellationToken)
         {
             var result = new List<StatementDTO>();
@@ -168,7 +130,7 @@ namespace Alsahab.Setting.BL
         /// <returns></returns>
         public async override Task<StatementDTO> UpdateAsync(StatementDTO data, CancellationToken cancellationToken)
         {
-            var temp = await MergeNewAndOldDataForUpdate(data, cancellationToken);
+            var temp = await MergeNewAndOldDataForUpdateAsync(data, cancellationToken);
             temp.SubsystemIDList = data.SubsystemIDList;
             data = temp;
 
