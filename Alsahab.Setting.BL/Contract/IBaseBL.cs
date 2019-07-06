@@ -38,6 +38,8 @@ namespace Alsahab.Setting.BL
         IList<TDto> DeleteList(IList<TDto> list);
         Task<TDto> SoftDeleteAsync(TDto data, CancellationToken cancellationToken);
         TDto SoftDelete(TDto data);
+        Task<IList<TDto>> SoftDeleteListAsync(IList<TDto> list, CancellationToken cancellationToken);
+        IList<TDto> SoftDeleteList(IList<TDto> list);
     }
 
     public interface IBaseBL<TEntity, TDto> : IBaseBL<TEntity, TDto, TDto>

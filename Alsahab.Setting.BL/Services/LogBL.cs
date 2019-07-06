@@ -15,8 +15,6 @@ namespace Alsahab.Setting.BL
 {
     public class LogBL : BaseBL<Entities.Models.Log, Alsahab.Common.LogDTO, Alsahab.Common.LogFilterDTO>
     {
-        // private LogDA logDA;
-        // private LogDA _LogDA => logDA ?? (logDA = new LogDA());
         private readonly IBaseDL<Entities.Models.Log, Alsahab.Common.LogDTO, Alsahab.Common.LogFilterDTO> _LogDL;
         public LogBL(IBaseDL<Entities.Models.Log, Alsahab.Common.LogDTO, Alsahab.Common.LogFilterDTO> logDL) : base(logDL, logDL)
         {

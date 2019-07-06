@@ -9,6 +9,7 @@ using Alsahab.Setting.Entities.Models;
 using Alsahab.Setting.Data.Interfaces;
 using System.Threading;
 using Alsahab.Common.Exceptions;
+using Alsahab.Setting.BL.Validation;
 
 namespace Alsahab.Setting.BL
 {
@@ -17,14 +18,17 @@ namespace Alsahab.Setting.BL
         private readonly IBaseDL<Subsystem, SubsystemDTO, SubsystemFilterDTO> _SubsystemDL;
         private readonly IBaseDL<Statement, StatementDTO, StatementFilterDTO> _StatementDL;
         private readonly IBaseDL<StatementSubsystem, StatementSubsystemDTO, StatementSubsystemFilterDTO> _StatementSubsystemDL;
+        private readonly IBaseBL<StatementSubsystem, StatementSubsystemDTO, StatementSubsystemFilterDTO> _StatementSubsystemBL;
         public StatementBL(IBaseDL<Statement, StatementDTO, StatementFilterDTO> statementDL,
                         IBaseDL<StatementSubsystem, StatementSubsystemDTO, StatementSubsystemFilterDTO> statementSubsystemDL,
                         IBaseDL<Subsystem, SubsystemDTO, SubsystemFilterDTO> subsystemDL,
+                        IBaseBL<StatementSubsystem, StatementSubsystemDTO, StatementSubsystemFilterDTO> statementSubsystemBL,
                         IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL) : base(statementDL, logDL)
         {
             _StatementDL = statementDL;
             _StatementSubsystemDL = statementSubsystemDL;
             _SubsystemDL = subsystemDL;
+            _StatementSubsystemBL = statementSubsystemBL;
         }
         public async override Task<IList<StatementDTO>> GetAsync(StatementFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
@@ -106,12 +110,10 @@ namespace Alsahab.Setting.BL
             var newStatementSubsystemList = new List<StatementSubsystemDTO>();
             foreach (var val in data.SubsystemIDList)
                 newStatementSubsystemList.Add(new StatementSubsystemDTO { StatementID = statementResponse?.ID, SubsystemID = val });
-
-            var statementSubsystemResponse = await _StatementSubsystemDL.InsertListAsync(newStatementSubsystemList, cancellationToken);
-
-            //TODO:
-            //Log List Insert
             
+            //TODO: Test this
+            var statementSubsystemResponse = await _StatementSubsystemBL.InsertListAsync(newStatementSubsystemList, cancellationToken);
+
             return statementResponse;
         }
 
@@ -134,17 +136,11 @@ namespace Alsahab.Setting.BL
             temp.SubsystemIDList = data.SubsystemIDList;
             data = temp;
 
-            Validate(data);
+            Validate<BLStatementValidator, StatementDTO>(data);
 
             var statementResponse = await _StatementDL.UpdateAsync(data, cancellationToken);
-            //TODO:
-            // Observers.ObserverStates.StatementAdd state = new Observers.ObserverStates.StatementAdd
-            // {
-            //     Statement = statementResponse,
-            //     User = User,
-            // };
-            // Notify(state);
-
+            
+            RegisterLogAsync(data,ActionType.Update, cancellationToken);
             // لیست زیرسیستم‌های قبلی آن را می‌آورد، 
             var statementSubsystemList = await _StatementSubsystemDL.GetAsync(new StatementSubsystemFilterDTO { StatementID = data.ID }, cancellationToken);
             var oldSubsystemIdList = statementSubsystemList?.Select(s => s.SubsystemID)?.ToList();
@@ -158,55 +154,23 @@ namespace Alsahab.Setting.BL
             foreach (var val in data.SubsystemIDList)
                 newStatementSubsystemList.Add(new StatementSubsystemDTO { StatementID = statementResponse?.ID, SubsystemID = val });
 
-            var statementSubsystemResponse = await _StatementSubsystemDL.InsertListAsync(newStatementSubsystemList, cancellationToken);
+            var statementSubsystemResponse = await _StatementSubsystemBL.InsertListAsync(newStatementSubsystemList, cancellationToken);
 
-            foreach (var val in statementSubsystemResponse)
-            {
-                //TODO:
-                // Observers.ObserverStates.StatementSubsystemAdd newState = new Observers.ObserverStates.StatementSubsystemAdd
-                // {
-                //     StatementSubsystem = val,
-                //     User = User,
-                // };
-                // Notify(newState);
-            }
             return statementResponse;
         }
 
-        /// <summary>
-        /// Delete Logicly
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
         public async override Task<StatementDTO> SoftDeleteAsync(StatementDTO data, CancellationToken cancellationToken)
         {
-            CheckDeletePermission(data);
+            CheckDeletePermision(data);
 
             var statementSubsystemList = await _StatementSubsystemDL.GetAsync(new StatementSubsystemFilterDTO { StatementID = data.ID }, cancellationToken);
-            foreach (var val in statementSubsystemList)
-            {
-                val.IsDeleted = true;
-                var statementSubsystemResponse = await _StatementSubsystemDL.UpdateAsync(val, cancellationToken);
-                //TODO:
-                // var statesubstate = new Observers.ObserverStates.StatementSubsystemDelete
-                // {
-                //     StatementSubsystem = statementSubsystemResponse,
-                //     User = User,
-                // };
-                // Notify(statesubstate);
-            }
+            
+            var statementSubsystemResponse = await _StatementSubsystemBL.SoftDeleteListAsync(statementSubsystemList, cancellationToken);
 
             data = await _StatementDL.GetByIdAsync(cancellationToken, data.ID);
             data.IsDeleted = true;
             var response = await _StatementDL.UpdateAsync(data, cancellationToken);
-
-            //TODO:
-            // Observers.ObserverStates.StatementDelete state = new Observers.ObserverStates.StatementDelete
-            // {
-            //     Statement = response,
-            //     User = User,
-            // };
-            // Notify(state);
+            RegisterLogAsync(data, ActionType.SoftDelete, cancellationToken);
 
             return response;
         }

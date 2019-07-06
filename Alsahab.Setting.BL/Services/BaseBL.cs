@@ -430,23 +430,58 @@ namespace Alsahab.Setting.BL
             await CheckDeletePermisionAsync(data, cancellationToken);
             data = await _BaseDL.GetByIdAsync(cancellationToken, data.ID);
             data.IsDeleted = true;
-            await _BaseDL.DeleteAsync(data, cancellationToken);
+            await _BaseDL.UpdateAsync(data, cancellationToken);
             if (FormHasTree)
                 UpdateTreeIndicesAndCodes();
             RegisterLogAsync(data, ActionType.SoftDelete, cancellationToken);
             return data;
+        }
+        public async virtual Task<IList<Dto>> SoftDeleteListAsync(IList<Dto> list, CancellationToken cancellationToken)
+        {
+            var tempList = new List<Dto>();
+            foreach (var dto in list)
+            {
+                await CheckDeletePermisionAsync(dto, cancellationToken);
+                var temp = dto;
+                temp = await _BaseDL.GetByIdAsync(cancellationToken, dto.ID);
+                temp.IsDeleted = true;
+                tempList.Add(temp);
+            }
+            await _BaseDL.UpdateListAsync(tempList, cancellationToken);
+            if (FormHasTree)
+                UpdateTreeIndicesAndCodes();
+            RegisterListLogAsync(tempList, ActionType.SoftDelete, cancellationToken);
+            return tempList;
         }
         public virtual Dto SoftDelete(Dto data)
         {
             CheckDeletePermision(data);
             data = _BaseDL.GetById(data.ID);
             data.IsDeleted = true;
-            _BaseDL.Delete(data);
+            _BaseDL.Update(data);
             if (FormHasTree)
                 UpdateTreeIndicesAndCodes();
             RegisterLog(data, ActionType.SoftDelete);
             return data;
         }
+        public virtual IList<Dto> SoftDeleteList(IList<Dto> list)
+        {
+            var tempList = new List<Dto>();
+            foreach (var dto in list)
+            {
+                CheckDeletePermision(dto);
+                var temp = dto;
+                temp = _BaseDL.GetById(dto.ID);
+                temp.IsDeleted = true;
+                tempList.Add(temp);
+            }
+            _BaseDL.UpdateList(tempList);
+            if (FormHasTree)
+                UpdateTreeIndicesAndCodes();
+            RegisterListLog(tempList, ActionType.SoftDelete);
+            return tempList;
+        }
+
         #endregion SoftDelete
 
         #region related to tree

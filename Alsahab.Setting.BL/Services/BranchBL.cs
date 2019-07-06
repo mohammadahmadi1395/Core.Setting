@@ -83,7 +83,6 @@ namespace Alsahab.Setting.BL
         }
         #endregion Async methods
 
-        #region Validation
         public async override Task CheckDeletePermisionAsync(BranchDTO data, CancellationToken cancellationToken)
         {
             await base.CheckDeletePermisionAsync(data, cancellationToken);
@@ -91,6 +90,5 @@ namespace Alsahab.Setting.BL
             if ((await _BranchRegionWorkDL.GetAsync(new BranchRegionWorkFilterDTO { BranchID = data?.ID }, cancellationToken)).Count > 0)
                 throw new AppException(ResponseStatus.BadRequest, "This node is used in another tables [ node Regions ], Please delete them first");
         }
-        #endregion Validation
     }
 }

@@ -26,11 +26,6 @@ namespace Alsahab.Setting.BL
             _BranchRegionWorkDL = branchRegionWorkDL;
             _ZoneDL = zoneDL;
         }
-        private bool Validate(BranchRegionWorkDTO data)
-        {
-
-            return Validate<BLBranchRegionWorkValidator, BranchRegionWorkDTO>(data ?? new BranchRegionWorkDTO());
-        }
 
         public override async Task<IList<BranchRegionWorkDTO>> GetAsync(BranchRegionWorkFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO pagine = null)
         {
@@ -56,28 +51,6 @@ namespace Alsahab.Setting.BL
             return result;
         }
 
-        public override async Task<BranchRegionWorkDTO> InsertAsync(BranchRegionWorkDTO data, CancellationToken cancellationToken)
-        {
-            Validate(data);
-
-            data.CreateDate = DateTime.Now;
-
-            var response = await _BranchRegionWorkDL.InsertAsync(data, cancellationToken);
-            if (_BranchRegionWorkDL.ResponseStatus != ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.LoginError, _BranchRegionWorkDL.ErrorMessage);
-
-            response = await _BranchRegionWorkDL.GetByIdAsync(cancellationToken, response.ID ?? 0);
-
-            //TODO:
-            // Alsahab.Setting.BL.Observers.ObserverStates.BranchRegionWorkAdd state = new Alsahab.Setting.BL.Observers.ObserverStates.BranchRegionWorkAdd
-            // {
-            //     BranchRegionWork = response,
-            //     User = User,
-            // };
-            // Notify(state);
-
-            return response;
-        }
         // public override async Task<IList<BranchRegionWorkDTO>> InsertListAsync(List<BranchRegionWorkDTO> data)
         // {
             //TODO: از آقای صفری یا متقیان پرسیده شود که این چیست؟
@@ -141,47 +114,5 @@ namespace Alsahab.Setting.BL
             // return respList ?? Response;
         // }
 
-        public override async Task<BranchRegionWorkDTO> UpdateAsync(BranchRegionWorkDTO data, CancellationToken cancellationToken)
-        {
-            data = await MergeNewAndOldDataForUpdateAsync(data, cancellationToken);
-
-            Validate(data);
-
-            var response = await _BranchRegionWorkDL.UpdateAsync(data, cancellationToken);
-            if (_BranchRegionWorkDL?.ResponseStatus != Alsahab.Common.ResponseStatus.Successful)
-                throw new AppException(ResponseStatus.DatabaseError, _BranchRegionWorkDL.ErrorMessage);
-
-            response = await _BranchRegionWorkDL.GetByIdAsync(cancellationToken, response?.ID ?? 0);
-
-            //TODO:
-            // Observers.ObserverStates.BranchRegionWorkEdit state = new Observers.ObserverStates.BranchRegionWorkEdit
-            // {
-            //     BranchRegionWork = response,
-            //     User = User,
-            // };
-            // Notify(state);
-
-            return response;
-        }
-        public override async Task<BranchRegionWorkDTO> SoftDeleteAsync(BranchRegionWorkDTO data, CancellationToken cancellationToken)
-        {
-            //TODO:
-            // باید بررسی شود و در صورت لزوم تعریف شود
-            // CheckDeletePermision(data);
-
-            data = await _BranchRegionWorkDL.GetByIdAsync(cancellationToken, data.ID ?? 0);
-            data.IsDeleted = true;
-            var response = await _BranchRegionWorkDL.UpdateAsync(data, cancellationToken);
-
-            //TODO:
-            // Observers.ObserverStates.BranchRegionWorkDelete state = new Observers.ObserverStates.BranchRegionWorkDelete
-            // {
-            //     BranchRegionWork = response,
-            //     User = User,
-            // };
-            // Notify(state);
-
-            return response;
-        }
     }
 }
