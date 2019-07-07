@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Alsahab.Setting.BL.Validation
 {
-    internal class BLRuleValidator : Alsahab.Setting.DTO.RuleValidator
+    internal class BLRuleValidator : BaseBLValidator<Rule, RuleDTO, RuleFilterDTO>//: Alsahab.Setting.DTO.RuleValidator
     {
         private readonly IBaseDL<Rule, RuleDTO, RuleFilterDTO> _RuleDL;
-        public BLRuleValidator(IBaseDL<Rule, RuleDTO, RuleFilterDTO> ruleDL) : base()
+        public BLRuleValidator(IBaseDL<Rule, RuleDTO, RuleFilterDTO> ruleDL) : base(ruleDL)
         {
             _RuleDL = ruleDL;
-            RuleFor(x => x.Title).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("NotExist"));
+            RuleFor(x => x.Title).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("AlreadyIsExists"));
         }
         private bool NotExist(string title)
         {

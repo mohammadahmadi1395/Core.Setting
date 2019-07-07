@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Alsahab.Common;
@@ -46,8 +47,6 @@ namespace Alsahab.Setting.Data.Repositories
         // }
         public virtual TDto Insert(TDto dto, bool saveNow = true)
         {
-            Assert.NotNull(dto, nameof(dto));
-
             TEntity entity = BaseEntity<TEntity, TDto, long>.FromDto(dto); // AutoMapper.Mapper.Map<TDto, TEntity>(dto);
 
             Entities.Add(entity);
@@ -61,9 +60,34 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual async Task<TDto> InsertAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
         {
-            Assert.NotNull(dto, nameof(dto));
+            // TEntity entity = Activator.CreateInstance(typeof(TEntity)) as TEntity;//, new Object[] {});//new TEntity();//BaseEntity<TEntity, TDto, long>.FromDto(dto);
+            var entity = Mapper.Map<TEntity>(dto);
 
-            TEntity entity = BaseEntity<TEntity, TDto, long>.FromDto(dto); // AutoMapper.Mapper.Map<TDto, TEntity>(dto);
+            // foreach (var property in typeof(TEntity).GetProperties())
+            // {
+            //     try
+            //     {
+            //         var value = property.GetValue(dto);
+            //         var a = property.ChangeType();
+            //     }
+            //     catch
+            //     {
+            //         string filterProp = property.Name;//.Replace("From", "");
+            //         Type infoType = typeof(TEntity);
+            //         PropertyInfo info = infoType.GetProperty(filterProp);
+            //         var type = property.PropertyType;
+            //         // var value = prop.GetValue(filterDto);
+            //         var nullableType = typeof(Nullable<>).MakeGenericType(type);
+            //         var value = property.GetValue(dto);
+            //     }
+            //     if (value != null)
+            //         property.SetValue(entity, value, null);
+            // }
+
+            // foreach (var prop in entity.GetType().GetProperties())
+            //     prop.SetValue(entity,prop.GetValue(dto));
+
+
             await Entities.AddAsync(entity, cancellationToken).ConfigureAwait(false);
             if (saveNow)
                 await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
@@ -75,8 +99,6 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual async Task<IList<TDto>> InsertListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
         {
-            Assert.NotNull(dtoList, nameof(dtoList));
-
             var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
 
             await Entities.AddRangeAsync(entityList, cancellationToken).ConfigureAwait(false);
@@ -89,8 +111,6 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual IList<TDto> InsertList(IList<TDto> dtoList, bool saveNow)
         {
-            Assert.NotNull(dtoList, nameof(dtoList));
-
             var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
 
             Entities.AddRange(entityList);
@@ -103,8 +123,6 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual IList<TDto> UpdateList(IList<TDto> dtoList, bool saveNow = true)
         {
-            Assert.NotNull(dtoList, nameof(dtoList));
-
             IList<TDto> resultList = new List<TDto>();
             foreach (var dto in dtoList)
             {
@@ -134,8 +152,6 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual async Task<List<TDto>> UpdateListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
         {
-            Assert.NotNull(dtoList, nameof(dtoList));
-
             var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
 
             Entities.UpdateRange(entityList);
@@ -149,7 +165,6 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual List<TDto> DeleteRange(IList<TDto> dtoList, bool saveNow = true)
         {
-            Assert.NotNull(dtoList, nameof(dtoList));
             var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
 
             Entities.RemoveRange(entityList);
@@ -163,8 +178,6 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual TDto Update(TDto dto, bool saveNow = true)
         {
-            Assert.NotNull(dto, nameof(dto));
-
             var entity = Entities.Find(dto.ID);
             if (entity == null)
                 throw new AppException(ResponseStatus.NotFound, "not found entity.");
@@ -182,8 +195,6 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual async Task<TDto> UpdateAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
         {
-            Assert.NotNull(dto, nameof(dto));
-
             var entity = await Entities.FindAsync(dto.ID);
             if (entity == null)
                 throw new AppException(ResponseStatus.NotFound, "not found entity.");
@@ -201,7 +212,6 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual TDto Delete(TDto dto, bool saveNow = true)
         {
-            Assert.NotNull(dto, nameof(dto));
             var entity = Entities.Find(dto.ID);
             if (entity == null)
                 throw new AppException(ResponseStatus.NotFound, "not found entity.");
@@ -216,7 +226,6 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual async Task<TDto> DeleteAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
         {
-            Assert.NotNull(dto, nameof(dto));
             var entity = await Entities.FindAsync(dto.ID);
             if (entity == null)
                 throw new AppException(ResponseStatus.NotFound, "not found entity.");

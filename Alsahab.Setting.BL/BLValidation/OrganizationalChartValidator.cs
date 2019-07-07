@@ -13,14 +13,13 @@ using FluentValidation;
 namespace Alsahab.Setting.BL.Validation
 {
 
-    internal class BLOrganizationalChartValidator : Alsahab.Setting.DTO.OrganizationalChartValidator
+    internal class BLOrganizationalChartValidator : BaseBLValidator<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO>//: Alsahab.Setting.DTO.OrganizationalChartValidator
     {
         private readonly IBaseDL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO> _OrganizationalChartDL;
-        public BLOrganizationalChartValidator(IBaseDL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO> organizationalChartDL) : base()
+        public BLOrganizationalChartValidator(IBaseDL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO> organizationalChartDL) : base(organizationalChartDL)
         {
             _OrganizationalChartDL = organizationalChartDL;
-            RuleFor(x => x.Title).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("NotExist"));
-        }
+            RuleFor(x => x.Title).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("AlreadyIsExists"));        }
         private bool NotExist(string title)
         {
             var result = _OrganizationalChartDL.Get(new OrganizationalChartFilterDTO { Title = title });

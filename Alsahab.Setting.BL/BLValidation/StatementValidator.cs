@@ -4,14 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Alsahab.Common.Validation;
+using Alsahab.Setting.Data.Interfaces;
+using Alsahab.Setting.DTO;
+using Alsahab.Setting.Entities.Models;
 
 namespace Alsahab.Setting.BL.Validation
 {
-    internal class BLStatementValidator : Alsahab.Setting.DTO.StatementValidator
+    internal class BLStatementValidator : BaseBLValidator<Statement, StatementDTO, StatementFilterDTO>// : Alsahab.Setting.DTO.StatementValidator
     {
-        public BLStatementValidator() : base()
+        private readonly IBaseDL<Statement, StatementDTO, StatementFilterDTO> _StatementDL;
+        public BLStatementValidator(IBaseDL<Statement, StatementDTO, StatementFilterDTO> statementDL) : base(statementDL)
         {
-
+            _StatementDL = statementDL;
         }
     }
 }

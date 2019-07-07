@@ -8,7 +8,6 @@ using Alsahab.Setting.WebFramework.Configuration;
 using Alsahab.Common;
 using Alsahab.Setting.WebFramework.CustomMapping;
 using Alsahab.Setting.WebFramework.Swagger;
-using Alsahab.Setting.BL;
 
 namespace Alsahab.Setting.MyAPI
 {
@@ -38,6 +37,12 @@ namespace Alsahab.Setting.MyAPI
             services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
 
             services.AddDbContext(Configuration);
+
+            services.AddDistributedRedisCache(options =>
+            {
+                options.InstanceName = "SettingRedisDb";
+                options.Configuration = "127.0.0.1:6379";
+            });
 
             services.AddMinimalMVC();
 

@@ -11,13 +11,13 @@ using FluentValidation;
 
 namespace Alsahab.Setting.BL.Validation
 {
-    internal class BLOrganizationTypeValidator : Alsahab.Setting.DTO.OrganizationTypeValidator
+    internal class BLOrganizationTypeValidator : BaseBLValidator<OrganizationType, OrganizationTypeDTO, OrganizationTypeFilterDTO>//: Alsahab.Setting.DTO.OrganizationTypeValidator
     {
         private readonly IBaseDL<OrganizationType, OrganizationTypeDTO, OrganizationTypeFilterDTO> _OrganizationTypeDL;
-        public BLOrganizationTypeValidator(IBaseDL<OrganizationType, OrganizationTypeDTO, OrganizationTypeFilterDTO> organizationType) : base()
+        public BLOrganizationTypeValidator(IBaseDL<OrganizationType, OrganizationTypeDTO, OrganizationTypeFilterDTO> organizationType) : base(organizationType)
         {
             _OrganizationTypeDL = organizationType;
-            RuleFor(x => x.Title).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("NotExist"));
+            RuleFor(x => x.Title).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("AlreadyIsExists"));
         }
 
         private bool NotExist(string title)

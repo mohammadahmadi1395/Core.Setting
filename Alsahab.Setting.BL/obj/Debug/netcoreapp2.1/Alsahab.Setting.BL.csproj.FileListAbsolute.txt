@@ -1,7 +1,3 @@
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/obj/Debug/netcoreapp2.1/Alsahab.Setting.BL.csprojAssemblyReference.cache
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/obj/Debug/netcoreapp2.1/Alsahab.Setting.BL.csproj.CoreCompileInputs.cache
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/obj/Debug/netcoreapp2.1/Alsahab.Setting.BL.AssemblyInfoInputs.cache
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/obj/Debug/netcoreapp2.1/Alsahab.Setting.BL.AssemblyInfo.cs
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/Alsahab.Setting.BL.deps.json
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/Alsahab.Setting.BL.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/Alsahab.Setting.BL.pdb
@@ -18,6 +14,10 @@
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/Alsahab.Common.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/bin/Debug/netcoreapp2.1/Alsahab.Setting.Entities.pdb
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/obj/Debug/netcoreapp2.1/Alsahab.Setting.BL.csprojAssemblyReference.cache
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/obj/Debug/netcoreapp2.1/Alsahab.Setting.BL.csproj.CoreCompileInputs.cache
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/obj/Debug/netcoreapp2.1/Alsahab.Setting.BL.AssemblyInfoInputs.cache
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/obj/Debug/netcoreapp2.1/Alsahab.Setting.BL.AssemblyInfo.cs
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/obj/Debug/netcoreapp2.1/Alsahab.Setting.BL.csproj.CopyComplete
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/obj/Debug/netcoreapp2.1/Alsahab.Setting.BL.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/obj/Debug/netcoreapp2.1/Alsahab.Setting.BL.pdb

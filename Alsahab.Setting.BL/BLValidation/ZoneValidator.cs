@@ -11,13 +11,13 @@ using FluentValidation;
 
 namespace Alsahab.Setting.BL.Validation
 {
-    internal class BLZoneValidator : Alsahab.Setting.DTO.ZoneValidator
+    internal class BLZoneValidator : BaseBLValidator<Zone, ZoneDTO, ZoneFilterDTO>//: Alsahab.Setting.DTO.ZoneValidator
     {
         private readonly IBaseDL<Zone, ZoneDTO, ZoneFilterDTO> _ZoneDL;
-        public BLZoneValidator(IBaseDL<Zone, ZoneDTO, ZoneFilterDTO> zoneDL) : base()
+        public BLZoneValidator(IBaseDL<Zone, ZoneDTO, ZoneFilterDTO> zoneDL) : base(zoneDL)
         {
             _ZoneDL = zoneDL;
-            RuleFor(x => x.Title).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("NotExist"));
+            RuleFor(x => x.Title).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("AlreadyIsExists"));
         }
         private bool NotExist(string title)
         {

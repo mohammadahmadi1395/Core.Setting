@@ -21,7 +21,7 @@
             کنترلر مربوط به شعبه‌ها
             </summary>
         </member>
-        <member name="M:Alsahab.Setting.WebFramework.Api.BranchController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.Branch,Alsahab.Setting.DTO.BranchDTO,Alsahab.Setting.DTO.BranchFilterDTO})">
+        <member name="M:Alsahab.Setting.WebFramework.Api.BranchController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.Branch,Alsahab.Setting.DTO.BranchDTO,Alsahab.Setting.DTO.BranchFilterDTO},Microsoft.Extensions.Caching.Distributed.IDistributedCache)">
             <summary>
             سازنده کنترلر شعبه‌ها
             </summary>

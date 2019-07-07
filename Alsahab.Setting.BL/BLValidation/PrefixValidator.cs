@@ -13,13 +13,13 @@ using FluentValidation;
 namespace Alsahab.Setting.BL.Validation
 {
 
-    internal class BLPrefixValidator : Alsahab.Setting.DTO.PrefixValidator
+    internal class BLPrefixValidator : BaseBLValidator<Prefix, PrefixDTO, PrefixFilterDTO>//: Alsahab.Setting.DTO.PrefixValidator
     {
         private readonly IBaseDL<Prefix, PrefixDTO, PrefixFilterDTO> _PrefixDL;        
-        public BLPrefixValidator(IBaseDL<Prefix, PrefixDTO, PrefixFilterDTO> prefixDL) : base()
+        public BLPrefixValidator(IBaseDL<Prefix, PrefixDTO, PrefixFilterDTO> prefixDL) : base(prefixDL)
         {
             _PrefixDL = prefixDL;
-            RuleFor(x => x.Title).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("NotExist"));
+            RuleFor(x => x.Title).Must(NotExist).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("AlreadyIsExists"));
             RuleFor(x => x.IsDefault).Must(DefaltCount).When(x => x.IsDefault.HasValue && x.IsDefault == true).WithMessage(ValidatorOptions.LanguageManager.GetString("Default"));
         }
         private bool NotExist(string title)

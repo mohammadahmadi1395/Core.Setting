@@ -10,12 +10,12 @@ using Alsahab.Setting.Entities.Models;
 
 namespace Alsahab.Setting.BL.Validation
 {
-    internal class BLBranchRegionWorkValidator : Alsahab.Setting.DTO.BranchRegionWorkValidator
+    internal class BLBranchRegionWorkValidator : BaseBLValidator<BranchRegionWork, BranchRegionWorkDTO, BranchRegionWorkFilterDTO> //  : Alsahab.Setting.DTO.BranchRegionWorkValidator
     {
         private readonly IBaseDL<BranchRegionWork, BranchRegionWorkDTO, BranchRegionWorkFilterDTO> _BranchRegionWorkDL;
         private readonly IBaseDL<Branch, BranchDTO, BranchFilterDTO> _BranchDL;
         public BLBranchRegionWorkValidator(IBaseDL<BranchRegionWork, BranchRegionWorkDTO, BranchRegionWorkFilterDTO> _branchRegionWorkDL,
-                                IBaseDL<Branch, BranchDTO, BranchFilterDTO> _branchDL) : base()
+                                IBaseDL<Branch, BranchDTO, BranchFilterDTO> _branchDL) : base(_branchRegionWorkDL)
         {
             _BranchRegionWorkDL = _branchRegionWorkDL;
             _BranchDL = _branchDL;

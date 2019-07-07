@@ -9,8 +9,8 @@
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alyatim.Member.SC.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alyatim.Member.DTO.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/UserManagement.SC.dll
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/UserManagement.DTO.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Gostar.Common.dll
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/UserManagement.DTO.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.BL.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Common.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.Data.pdb

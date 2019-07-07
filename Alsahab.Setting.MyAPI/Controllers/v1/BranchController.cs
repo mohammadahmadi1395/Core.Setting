@@ -4,6 +4,12 @@ using Alsahab.Setting.DTO;
 using Alsahab.Setting.WebFramework.Filter;
 using Microsoft.AspNetCore.Authorization;
 using Alsahab.Setting.Entities.Models;
+using Microsoft.Extensions.Caching.Distributed;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Alsahab.Setting.MyAPI;
+using System.Threading;
+using System;
 
 namespace Alsahab.Setting.WebFramework.Api
 {
@@ -18,13 +24,34 @@ namespace Alsahab.Setting.WebFramework.Api
     // public class BranchController : ControllerBase
     public class BranchController : CrudController<Branch, BranchDTO, BranchFilterDTO>
     {
+        private readonly IDistributedCache _DistributedCache;
         /// <summary>
         /// سازنده کنترلر شعبه‌ها
         /// </summary>
         /// <param name="tBL"></param>
         /// <returns></returns>
-        public BranchController(IBaseBL<Branch, BranchDTO, BranchFilterDTO> tBL) : base(tBL)
+        public BranchController(IBaseBL<Branch, BranchDTO, BranchFilterDTO> tBL, IDistributedCache distributedCache) : base(tBL)
         {
+            _DistributedCache = distributedCache;
         }
+
+        [Route("Test")]
+        [HttpPost]
+        public async Task<string> Test()
+        {
+            var cachKey = "time";
+            var existingTime = _DistributedCache.GetString(cachKey);
+            if (!string.IsNullOrEmpty(existingTime))
+            {
+                return "Fetched from cache : " + existingTime;
+            }
+            else
+            {
+                existingTime = DateTime.UtcNow.ToString();
+                _DistributedCache.SetString(cachKey, existingTime);
+                return "Added to cache : " + existingTime;
+            }
+        }
+
     }
 }

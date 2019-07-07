@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace Alsahab.Setting.BL.Validation
 {
-    internal class BLSubpartValidator : Alsahab.Setting.DTO.SubpartValidator
+    internal class BLSubpartValidator : BaseBLValidator<Subpart, SubpartDTO, SubpartFilterDTO>//: Alsahab.Setting.DTO.SubpartValidator
     {
         private readonly IBaseDL<Subpart, SubpartDTO, SubpartFilterDTO> _SubpartDL;
-        public BLSubpartValidator(IBaseDL<Subpart, SubpartDTO, SubpartFilterDTO> subpartDL) : base()
+        public BLSubpartValidator(IBaseDL<Subpart, SubpartDTO, SubpartFilterDTO> subpartDL) : base(subpartDL)
         {
             _SubpartDL = subpartDL;
-            RuleFor(x => x.Name).Must((DTO, Name) => NotExist(DTO, DTO.Name)).When(x => !string.IsNullOrWhiteSpace(x.Name)).WithMessage(ValidatorOptions.LanguageManager.GetString("NotExist"));
+            RuleFor(x => x.Name).Must((DTO, Name) => NotExist(DTO, DTO.Name)).When(x => !string.IsNullOrWhiteSpace(x.Name)).WithMessage(ValidatorOptions.LanguageManager.GetString("AlreadyIsExists"));
         }
         private bool NotExist(SubpartDTO dto, string title)
         {            
