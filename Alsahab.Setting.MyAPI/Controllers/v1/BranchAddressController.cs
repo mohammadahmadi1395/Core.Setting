@@ -8,7 +8,7 @@ using Alsahab.Setting.Entities.Models;
 namespace Alsahab.Setting.WebFramework.Api
 {
     /// <summary>
-    /// کنترلر مربوط به أذرس شعبه‌ها
+    /// کنترلر مربوط به آدرس شعبه‌ها
     /// </summary>
     [ApiController]
     [ApiResultFilter]

@@ -60,8 +60,24 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual async Task<TDto> InsertAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
         {
-            // TEntity entity = Activator.CreateInstance(typeof(TEntity)) as TEntity;//, new Object[] {});//new TEntity();//BaseEntity<TEntity, TDto, long>.FromDto(dto);
-            var entity = Mapper.Map<TEntity>(dto);
+            TEntity entity = Activator.CreateInstance(typeof(TEntity)) as TEntity;//, new Object[] {});//new TEntity();//BaseEntity<TEntity, TDto, long>.FromDto(dto);
+            // var entity = Mapper.Map<TEntity>(dto);
+            var dtoType = typeof(TDto);
+            var entityType = typeof(TEntity);
+            //Ignore any property of source (like Post.Author) that does not contain in destination
+            foreach(var property in entityType.GetProperties())
+            {
+                var v = dtoType.GetProperty(property.Name);
+                var p = entityType.GetProperty(property.Name);
+                if ( v == null)
+                {    
+                    p.SetValue(entity, null, null);
+                    continue;
+                }
+                var value = v.GetValue(dto, null);
+                // if (value != null)
+                    p.SetValue(entity, value, null);
+            }
 
             // foreach (var property in typeof(TEntity).GetProperties())
             // {

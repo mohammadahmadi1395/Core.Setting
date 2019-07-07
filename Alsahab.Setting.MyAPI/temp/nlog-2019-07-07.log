@@ -356,3 +356,81 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updatin
    at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 47 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Subpart/Create | action: Create
+2019-07-07 23:23:25.1452 | ERROR | Object of type 'System.Reflection.RuntimePropertyInfo' cannot be converted to type 'System.String'. | System.ArgumentException: Object of type 'System.Reflection.RuntimePropertyInfo' cannot be converted to type 'System.String'.
+   at System.RuntimeType.TryChangeType(Object value, Binder binder, CultureInfo culture, Boolean needsSpecialCast)
+   at System.Reflection.MethodBase.CheckArguments(Object[] parameters, Binder binder, BindingFlags invokeAttr, CultureInfo culture, Signature sig)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   at System.Reflection.RuntimePropertyInfo.SetValue(Object obj, Object value, Object[] index)
+   at Alsahab.Setting.Data.Repositories.BaseDL`3.InsertAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 72
+   at Alsahab.Setting.BL.BaseBL`3.InsertAsync(Dto data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 375
+   at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 47 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Subpart/Create | action: Create
+2019-07-07 23:48:40.8782 | ERROR | Object does not match target type. | System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Alsahab.Setting.Data.Repositories.BaseDL`3.InsertAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 71
+   at Alsahab.Setting.BL.BaseBL`3.InsertAsync(Dto data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 375
+   at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 47 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Subpart/Create | action: Create
+2019-07-07 23:58:45.8689 | ERROR | Object does not match target type. | System.Reflection.TargetException: Object does not match target type.
+   at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Alsahab.Setting.Data.Repositories.BaseDL`3.InsertAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 72
+   at Alsahab.Setting.BL.BaseBL`3.InsertAsync(Dto data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 375
+   at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 47 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Subpart/Create | action: Create

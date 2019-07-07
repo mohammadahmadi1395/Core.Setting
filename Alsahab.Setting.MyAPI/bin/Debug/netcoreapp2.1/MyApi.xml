@@ -6,7 +6,7 @@
     <members>
         <member name="T:Alsahab.Setting.WebFramework.Api.BranchAddressController">
             <summary>
-            کنترلر مربوط به أذرس شعبه‌ها
+            کنترلر مربوط به آدرس شعبه‌ها
             </summary>
         </member>
         <member name="M:Alsahab.Setting.WebFramework.Api.BranchAddressController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.BranchAddress,Alsahab.Setting.DTO.BranchAddressDTO,Alsahab.Setting.DTO.BranchAddressFilterDTO})">
