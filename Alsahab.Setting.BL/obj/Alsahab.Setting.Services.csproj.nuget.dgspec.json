@@ -128,14 +128,14 @@
         }
       }
     },
-    "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Alsahab.Setting.Data.csproj": {
+    "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Alsahab.Setting.DL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Alsahab.Setting.Data.csproj",
-        "projectName": "Alsahab.Setting.Data",
-        "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Alsahab.Setting.Data.csproj",
+        "projectUniqueName": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Alsahab.Setting.DL.csproj",
+        "projectName": "Alsahab.Setting.DL",
+        "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Alsahab.Setting.DL.csproj",
         "packagesPath": "/home/mohammad/.nuget/packages/",
-        "outputPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/obj/",
+        "outputPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/share/dotnet/sdk/NuGetFallbackFolder"
@@ -275,8 +275,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Alsahab.Setting.Data.csproj": {
-                "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Alsahab.Setting.Data.csproj"
+              "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Alsahab.Setting.DL.csproj": {
+                "projectPath": "/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Alsahab.Setting.DL.csproj"
               }
             }
           }

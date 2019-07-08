@@ -4867,7 +4867,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
-          "Alsahab.Setting.Data": "1.0.0",
+          "Alsahab.Setting.DL": "1.0.0",
           "Microsoft.Extensions.Identity.Core": "2.1.6",
           "Microsoft.IdentityModel.Tokens": "(, )",
           "System.IdentityModel.Tokens.Jwt": "(, )",
@@ -4885,7 +4885,7 @@
           "bin/placeholder/Alsahab.Setting.BL.dll": {}
         }
       },
-      "Alsahab.Setting.Data/1.0.0": {
+      "Alsahab.Setting.DL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
@@ -4895,10 +4895,10 @@
           "Microsoft.EntityFrameworkCore.Design": "2.1.0"
         },
         "compile": {
-          "bin/placeholder/Alsahab.Setting.Data.dll": {}
+          "bin/placeholder/Alsahab.Setting.DL.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Alsahab.Setting.Data.dll": {}
+          "bin/placeholder/Alsahab.Setting.DL.dll": {}
         }
       },
       "Alsahab.Setting.DTO/1.0.0": {
@@ -13265,10 +13265,10 @@
       "path": "../Alsahab.Setting.BL/Alsahab.Setting.BL.csproj",
       "msbuildProject": "../Alsahab.Setting.BL/Alsahab.Setting.BL.csproj"
     },
-    "Alsahab.Setting.Data/1.0.0": {
+    "Alsahab.Setting.DL/1.0.0": {
       "type": "project",
-      "path": "../Alsahab.Setting.Data/Alsahab.Setting.Data.csproj",
-      "msbuildProject": "../Alsahab.Setting.Data/Alsahab.Setting.Data.csproj"
+      "path": "../Alsahab.Setting.DL/Alsahab.Setting.DL.csproj",
+      "msbuildProject": "../Alsahab.Setting.DL/Alsahab.Setting.DL.csproj"
     },
     "Alsahab.Setting.DTO/1.0.0": {
       "type": "project",

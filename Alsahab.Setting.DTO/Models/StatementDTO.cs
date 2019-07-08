@@ -23,7 +23,7 @@ namespace Alsahab.Setting.DTO
         public string PersianText { get; set; }
         public string EnglishText { get; set; }
         public string ArabicText { get; set; }
-        public List<long?> IDList { get; set; }
+        // public List<long?> IDList { get; set; }
     }
 
     public class StatementValidator : AbstractValidator<StatementDTO>

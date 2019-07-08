@@ -10,12 +10,12 @@ namespace Alsahab.Setting.DTO
 {
     public class SubpartDTO : BaseDTO
     {
-        public List<long?> IDList { get; set; }
+        // public List<long?> IDList { get; set; }
         public long? SubsystemID { get; set; }
         public string SubsystemName { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public bool? IsSystem { get; set; } = false;
+        public bool? IsSystem { get; set; }
         public bool? IsActive { get; set; } = true;
     }
 

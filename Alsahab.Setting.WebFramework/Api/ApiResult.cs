@@ -101,7 +101,7 @@ namespace Alsahab.Setting.WebFramework.Api
                 var typeOfData = result.Value.GetType().GetTypeInfo().GenericTypeArguments[0];
                 return new ApiResult<T>(true, ResponseStatus.Successful, default, (T)(result.Value));
             }
-            catch (Exception ex)
+            catch// (Exception ex)
             {
                 return new ApiResult<T>(true, ResponseStatus.Successful, (T)(result.Value));
             }

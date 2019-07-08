@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Alsahab.Setting.DTO;
-using Alsahab.Setting.Data.Interfaces;
+using Alsahab.Setting.DL.Interfaces;
 using Alsahab.Setting.Entities.Models;
-using Alsahab.Setting.BL.Validation;
-using Alsahab.Common.Exceptions;
 using Alsahab.Common;
 using System.Threading;
 using System.Threading.Tasks;

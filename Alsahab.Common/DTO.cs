@@ -56,9 +56,6 @@ namespace Alsahab.Common
         public long? ID { get; set; }
         public bool? IsDeleted { get; set; }
         public DateTime? CreateDate { get; set; }
-        public DateTime? CreateDateFrom { get; set; }
-        public DateTime? CreateDateTo { get; set; }
-        public List<long?> IDList { get; set; }
 
         //Just for trees
         public long? ParentID { get; set; }
@@ -68,7 +65,6 @@ namespace Alsahab.Common
         public Nullable<long> RightIndex { get; set; }
         public Nullable<long> Depth { get; set; }
         public string OldCode { get; set; }
-
     }
 
 
@@ -113,12 +109,15 @@ namespace Alsahab.Common
     {
         public DateTime? FromDate { set; get; }
         public DateTime? ToDate { set; get; }
+        public DateTime? CreateDateFrom { get; set; }
+        public DateTime? CreateDateTo { get; set; }
+        public List<long?> IDList { get; set; }
         //public TimeSpan FromTime { set; get; }
         //public TimeSpan ToTime { set; get; }
         public List<long> UserIDS { set; get; }
         public List<int> ActionTypeIDs { set; get; }
         public List<int> EntityIDs { set; get; }
-        public string Message { set; get; }
+        // public string Message { set; get; }
         public List<long> BranchIDs { set; get; }
         public List<long> GroupIDs { set; get; }
         public string FullName { set; get; }

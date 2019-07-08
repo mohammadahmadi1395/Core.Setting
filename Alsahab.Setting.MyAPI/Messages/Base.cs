@@ -6,6 +6,11 @@ using Alsahab.Setting.DTO;
 
 namespace Alsahab.Setting.MyAPI
 {
+    /// <summary>
+    /// base request class (this is for select)
+    /// </summary>
+    /// <typeparam name="TDto"></typeparam>
+    /// <typeparam name="TFilterDto"></typeparam>
     public class BaseRequest<TDto, TFilterDto>
     where TDto : BaseDTO
     where TFilterDto : TDto
@@ -60,6 +65,10 @@ namespace Alsahab.Setting.MyAPI
         public PagingInfoDTO PagingInfo { get; set; }
     }
 
+    /// <summary>
+    /// another way of base request class (this is for insert, update, delete)
+    /// </summary>
+    /// <typeparam name="TDto"></typeparam>
     public class BaseRequest<TDto> : BaseRequest<TDto, TDto>
     where TDto : BaseDTO
     {

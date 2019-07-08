@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\Alsahab.Setting.Data\Alsahab.Setting.Data.csproj"/>
+    <ProjectReference Include="..\Alsahab.Setting.DL\Alsahab.Setting.DL.csproj"/>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="*"/>

@@ -8,7 +8,7 @@ using Alsahab.Setting.Entities.Models;
 namespace Alsahab.Setting.WebFramework.Api
 {
     /// <summary>
-    /// کنترلر مربوط به شعبه‌ها
+    /// کنترلر مربوط به پیشوند نام‌ها
     /// </summary>
     [ApiController]
     [ApiResultFilter]
@@ -19,7 +19,7 @@ namespace Alsahab.Setting.WebFramework.Api
     public class PrefixController : CrudController<Prefix, PrefixDTO, PrefixFilterDTO>
     {
         /// <summary>
-        /// سازنده کنترلر شعبه‌ها
+        /// سازنده کنترلر
         /// </summary>
         /// <param name="tBL"></param>
         /// <returns></returns>

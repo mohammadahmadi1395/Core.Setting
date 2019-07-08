@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Alsahab.Setting.DTO;
 using Alsahab.Common;
 using Alsahab.Setting.Entities.Models;
-using Alsahab.Setting.Data.Interfaces;
+using Alsahab.Setting.DL.Interfaces;
 using System.Threading;
-using Alsahab.Common.Exceptions;
-using Alsahab.Setting.BL.Validation;
+using Alsahab.Setting.BL.BLValidation;
 
 namespace Alsahab.Setting.BL
 {
@@ -79,7 +77,7 @@ namespace Alsahab.Setting.BL
 
         public async override Task<StatementDTO> InsertAsync(StatementDTO data, CancellationToken cancellationToken)
         {
-            Validate<Validation.BLStatementValidator, StatementDTO>(data);
+            Validate<BLValidation.StatementBLValidator, StatementDTO>(data);
 
             var statementList = await _StatementDL.GetAsync(new StatementFilterDTO { TagName = data.TagName }, cancellationToken);
             var statementResponse = new StatementDTO();
@@ -99,7 +97,7 @@ namespace Alsahab.Setting.BL
                 data.CreateDate = DateTime.Now;
                 statementResponse = await _StatementDL.InsertAsync(data, cancellationToken);
 
-                RegisterLogAsync(data, ActionType.Insert, cancellationToken);
+                RegisterLog(data, ActionType.Insert);
             }
 
             // اگر از قبل عبارت وجود داشته باشد، فقط زیرسیستم‌های جدید را برای این عبارت استخراج می‌کند تا درج شوند
@@ -136,11 +134,11 @@ namespace Alsahab.Setting.BL
             temp.SubsystemIDList = data.SubsystemIDList;
             data = temp;
 
-            Validate<BLStatementValidator, StatementDTO>(data);
+            Validate<StatementBLValidator, StatementDTO>(data);
 
             var statementResponse = await _StatementDL.UpdateAsync(data, cancellationToken);
             
-            RegisterLogAsync(data,ActionType.Update, cancellationToken);
+            RegisterLog(data,ActionType.Update);
             // لیست زیرسیستم‌های قبلی آن را می‌آورد، 
             var statementSubsystemList = await _StatementSubsystemDL.GetAsync(new StatementSubsystemFilterDTO { StatementID = data.ID }, cancellationToken);
             var oldSubsystemIdList = statementSubsystemList?.Select(s => s.SubsystemID)?.ToList();
@@ -170,7 +168,7 @@ namespace Alsahab.Setting.BL
             data = await _StatementDL.GetByIdAsync(cancellationToken, data.ID);
             data.IsDeleted = true;
             var response = await _StatementDL.UpdateAsync(data, cancellationToken);
-            RegisterLogAsync(data, ActionType.SoftDelete, cancellationToken);
+            RegisterLog(data, ActionType.SoftDelete);
 
             return response;
         }

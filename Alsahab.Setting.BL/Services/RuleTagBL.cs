@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Alsahab.Setting.DTO;
-using Alsahab.Setting.Data;
 using Alsahab.Setting.Entities.Models;
-using Alsahab.Setting.Data.Interfaces;
+using Alsahab.Setting.DL.Interfaces;
 using Alsahab.Common;
 using System.Threading;
 
@@ -36,7 +32,7 @@ namespace Alsahab.Setting.BL
 
             var response = await _RuleTagDL.UpdateListAsync(temp, cancellationToken);
 
-            RegisterListLogAsync(temp, ActionType.Update, cancellationToken);
+            RegisterListLog(temp, ActionType.Update);
             
             return response;
         }

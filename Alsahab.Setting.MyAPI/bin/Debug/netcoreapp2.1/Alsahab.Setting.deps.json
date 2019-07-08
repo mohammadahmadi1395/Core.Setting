@@ -1223,17 +1223,17 @@
           "Alsahab.Common.dll": {}
         }
       },
-      "Alsahab.Setting.Data/1.0.0": {
+      "Alsahab.Setting.DL/1.0.0": {
         "dependencies": {
           "Alsahab.Setting.Entities": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.1.6",
           "Microsoft.EntityFrameworkCore.Design": "2.1.1"
         },
         "runtime": {
-          "Alsahab.Setting.Data.dll": {}
+          "Alsahab.Setting.DL.dll": {}
         },
         "compile": {
-          "Alsahab.Setting.Data.dll": {}
+          "Alsahab.Setting.DL.dll": {}
         }
       },
       "Alsahab.Setting.Entities/1.0.0": {
@@ -1250,7 +1250,7 @@
       },
       "Alsahab.Setting.Services/1.0.0": {
         "dependencies": {
-          "Alsahab.Setting.Data": "1.0.0",
+          "Alsahab.Setting.DL": "1.0.0",
           "Microsoft.Extensions.Identity.Core": "2.1.6",
           "Microsoft.IdentityModel.Tokens": "5.4.0",
           "System.IdentityModel.Tokens.Jwt": "5.4.0"
@@ -4240,7 +4240,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Alsahab.Setting.Data/1.0.0": {
+    "Alsahab.Setting.DL/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -26,6 +26,13 @@
             سازنده کنترلر شعبه‌ها
             </summary>
             <param name="tBL"></param>
+            <param name="distributedCache"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alsahab.Setting.WebFramework.Api.BranchController.Test">
+            <summary>
+            test of redis cache
+            </summary>
             <returns></returns>
         </member>
         <member name="T:Alsahab.Setting.WebFramework.Api.BranchRegionWorkController">
@@ -51,149 +58,212 @@
             </summary>
             <param name="tBL"></param>
         </member>
+        <member name="M:Alsahab.Setting.WebFramework.Api.CrudController`3.Create(Alsahab.Setting.MyAPI.BaseRequest{`1},System.Threading.CancellationToken)">
+            <summary>
+            insert object
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alsahab.Setting.WebFramework.Api.CrudController`3.CreateList(Alsahab.Setting.MyAPI.BaseRequest{`1},System.Threading.CancellationToken)">
+            <summary>
+            insert list of objects
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alsahab.Setting.WebFramework.Api.CrudController`3.Get(Alsahab.Setting.MyAPI.BaseRequest{`1,`2},System.Threading.CancellationToken)">
+            <summary>
+            select by filterdto
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alsahab.Setting.WebFramework.Api.CrudController`3.Update(Alsahab.Setting.MyAPI.BaseRequest{`1},System.Threading.CancellationToken)">
+            <summary>
+            update object
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alsahab.Setting.WebFramework.Api.CrudController`3.UpdateList(Alsahab.Setting.MyAPI.BaseRequest{`1},System.Threading.CancellationToken)">
+            <summary>
+            update list of objects
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alsahab.Setting.WebFramework.Api.CrudController`3.Delete(Alsahab.Setting.MyAPI.BaseRequest{`1},System.Threading.CancellationToken)">
+            <summary>
+            delete : here is soft delete
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alsahab.Setting.WebFramework.Api.CrudController`3.DeleteList(Alsahab.Setting.MyAPI.BaseRequest{`1},System.Threading.CancellationToken)">
+            <summary>
+            delete (soft delete) list of objects
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
         <member name="T:Alsahab.Setting.WebFramework.Api.FormTypeController">
             <summary>
-            کنترلر مربوط به شعبه‌ها
+            کنترلر مربوط به انواع فرم
             </summary>
         </member>
         <member name="M:Alsahab.Setting.WebFramework.Api.FormTypeController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.FormType,Alsahab.Setting.DTO.FormTypeDTO,Alsahab.Setting.DTO.FormTypeFilterDTO})">
             <summary>
-            سازنده کنترلر شعبه‌ها
+            سازنده کنترلر
             </summary>
             <param name="tBL"></param>
             <returns></returns>
         </member>
         <member name="T:Alsahab.Setting.WebFramework.Api.GeneratedFormController">
             <summary>
-            کنترلر مربوط به شعبه‌ها
+            کنترلر مربوط به فرم‌های تولید شده
             </summary>
         </member>
         <member name="M:Alsahab.Setting.WebFramework.Api.GeneratedFormController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.GeneratedForm,Alsahab.Setting.DTO.GeneratedFormDTO,Alsahab.Setting.DTO.GeneratedFormFilterDTO})">
             <summary>
-            سازنده کنترلر شعبه‌ها
+            سازنده کنترلر
             </summary>
             <param name="tBL"></param>
             <returns></returns>
         </member>
         <member name="T:Alsahab.Setting.WebFramework.Api.LogController">
             <summary>
-            کنترلر مربوط به شعبه‌ها
+            کنترلر مربوط به لاگ
             </summary>
         </member>
         <member name="M:Alsahab.Setting.WebFramework.Api.LogController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.Log,Alsahab.Common.LogDTO,Alsahab.Common.LogFilterDTO})">
             <summary>
-            سازنده کنترلر شعبه‌ها
+            سازنده کنترلر
             </summary>
             <param name="tBL"></param>
             <returns></returns>
         </member>
         <member name="T:Alsahab.Setting.WebFramework.Api.OrganizationalChartController">
             <summary>
-            کنترلر مربوط به شعبه‌ها
+            کنترلر مربوط به چارت سازمانی
             </summary>
         </member>
         <member name="M:Alsahab.Setting.WebFramework.Api.OrganizationalChartController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.OrganizationalChart,Alsahab.Setting.DTO.OrganizationalChartDTO,Alsahab.Setting.DTO.OrganizationalChartFilterDTO})">
             <summary>
-            سازنده کنترلر شعبه‌ها
+            سازنده کنترلر
             </summary>
             <param name="tBL"></param>
             <returns></returns>
         </member>
         <member name="T:Alsahab.Setting.WebFramework.Api.OrganizationTypeController">
             <summary>
-            کنترلر مربوط به شعبه‌ها
+            کنترلر مربوط به نوع سازمان
             </summary>
         </member>
         <member name="M:Alsahab.Setting.WebFramework.Api.OrganizationTypeController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.OrganizationType,Alsahab.Setting.DTO.OrganizationTypeDTO,Alsahab.Setting.DTO.OrganizationTypeFilterDTO})">
             <summary>
-            سازنده کنترلر شعبه‌ها
+            سازنده کنترلر
             </summary>
             <param name="tBL"></param>
             <returns></returns>
         </member>
         <member name="T:Alsahab.Setting.WebFramework.Api.PrefixController">
             <summary>
-            کنترلر مربوط به شعبه‌ها
+            کنترلر مربوط به پیشوند نام‌ها
             </summary>
         </member>
         <member name="M:Alsahab.Setting.WebFramework.Api.PrefixController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.Prefix,Alsahab.Setting.DTO.PrefixDTO,Alsahab.Setting.DTO.PrefixFilterDTO})">
             <summary>
-            سازنده کنترلر شعبه‌ها
+            سازنده کنترلر
             </summary>
             <param name="tBL"></param>
             <returns></returns>
         </member>
         <member name="T:Alsahab.Setting.WebFramework.Api.RuleController">
             <summary>
-            کنترلر مربوط به شعبه‌ها
+            کنترلر مربوط به قانون فرم‌ها
             </summary>
         </member>
         <member name="M:Alsahab.Setting.WebFramework.Api.RuleController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.Rule,Alsahab.Setting.DTO.RuleDTO,Alsahab.Setting.DTO.RuleFilterDTO})">
             <summary>
-            سازنده کنترلر شعبه‌ها
+            سازنده کنترلر
             </summary>
             <param name="tBL"></param>
             <returns></returns>
         </member>
         <member name="T:Alsahab.Setting.WebFramework.Api.RuleTagController">
             <summary>
-            کنترلر مربوط به شعبه‌ها
+            کنترلر مربوط به برچسب قانون فرم‌ها
             </summary>
         </member>
         <member name="M:Alsahab.Setting.WebFramework.Api.RuleTagController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.RuleTag,Alsahab.Setting.DTO.RuleTagDTO,Alsahab.Setting.DTO.RuleTagFilterDTO})">
             <summary>
-            سازنده کنترلر شعبه‌ها
+            سازنده کنترلر
             </summary>
             <param name="tBL"></param>
             <returns></returns>
         </member>
         <member name="T:Alsahab.Setting.WebFramework.Api.StatementController">
             <summary>
-            کنترلر مربوط به شعبه‌ها
+            کنترلر مربوط به عبارات ترجمه
             </summary>
         </member>
         <member name="M:Alsahab.Setting.WebFramework.Api.StatementController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.Statement,Alsahab.Setting.DTO.StatementDTO,Alsahab.Setting.DTO.StatementFilterDTO})">
             <summary>
-            سازنده کنترلر شعبه‌ها
+            سازنده کنترلر
             </summary>
             <param name="tBL"></param>
             <returns></returns>
         </member>
         <member name="T:Alsahab.Setting.WebFramework.Api.SubpartController">
             <summary>
-            کنترلر مربوط به شعبه‌ها
+            کنترلر مربوط به زیربخش‌ها
             </summary>
         </member>
         <member name="M:Alsahab.Setting.WebFramework.Api.SubpartController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.Subpart,Alsahab.Setting.DTO.SubpartDTO,Alsahab.Setting.DTO.SubpartFilterDTO})">
             <summary>
-            سازنده کنترلر شعبه‌ها
+            سازنده کنترلر
             </summary>
             <param name="tBL"></param>
             <returns></returns>
         </member>
         <member name="T:Alsahab.Setting.WebFramework.Api.SubsystemController">
             <summary>
-            کنترلر مربوط به شعبه‌ها
+            کنترلر مربوط به زیرسیستم‌ها
             </summary>
         </member>
         <member name="M:Alsahab.Setting.WebFramework.Api.SubsystemController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.Subsystem,Alsahab.Setting.DTO.SubsystemDTO,Alsahab.Setting.DTO.SubsystemFilterDTO})">
             <summary>
-            سازنده کنترلر شعبه‌ها
+            سازنده کنترلر
             </summary>
             <param name="tBL"></param>
             <returns></returns>
         </member>
         <member name="T:Alsahab.Setting.WebFramework.Api.ZoneController">
             <summary>
-            کنترلر مربوط به شعبه‌ها
+            کنترلر مربوط به نواحی
             </summary>
         </member>
         <member name="M:Alsahab.Setting.WebFramework.Api.ZoneController.#ctor(Alsahab.Setting.BL.IBaseBL{Alsahab.Setting.Entities.Models.Zone,Alsahab.Setting.DTO.ZoneDTO,Alsahab.Setting.DTO.ZoneFilterDTO})">
             <summary>
-            سازنده کنترلر شعبه‌ها
+            سازنده کنترلر
             </summary>
             <param name="tBL"></param>
             <returns></returns>
+        </member>
+        <member name="T:Alsahab.Setting.MyAPI.BaseRequest`2">
+            <summary>
+            base request class (this is for select)
+            </summary>
+            <typeparam name="TDto"></typeparam>
+            <typeparam name="TFilterDto"></typeparam>
         </member>
         <member name="P:Alsahab.Setting.MyAPI.BaseRequest`2.User">
             <summary>
@@ -242,6 +312,64 @@
             اطلاعات صفحه‌بندی
             </summary>
             <value></value>
+        </member>
+        <member name="T:Alsahab.Setting.MyAPI.BaseRequest`1">
+            <summary>
+            another way of base request class (this is for insert, update, delete)
+            </summary>
+            <typeparam name="TDto"></typeparam>
+        </member>
+        <member name="T:Alsahab.Setting.MyAPI.Program">
+            <summary>
+            program class
+            </summary>
+        </member>
+        <member name="M:Alsahab.Setting.MyAPI.Program.Main(System.String[])">
+            <summary>
+            main method
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Alsahab.Setting.MyAPI.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            configuration of nlog file
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Alsahab.Setting.MyAPI.Startup">
+            <summary>
+            startup file
+            </summary>
+        </member>
+        <member name="P:Alsahab.Setting.MyAPI.Startup.Configuration">
+            <summary>
+            configuration property
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Alsahab.Setting.MyAPI.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            startup constructor
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Alsahab.Setting.MyAPI.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            اگر از اتوفک استفاده می‌کنیم باید خروجی این تابع را از 
+            void
+            تغییر دهیم و متناسب با آن در پایان تابع مقدار لازم را برگردانیم
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alsahab.Setting.MyAPI.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+             <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+             </summary>
+             <param name="app"></param>
+             <param name="env"></param>
         </member>
     </members>
 </doc>

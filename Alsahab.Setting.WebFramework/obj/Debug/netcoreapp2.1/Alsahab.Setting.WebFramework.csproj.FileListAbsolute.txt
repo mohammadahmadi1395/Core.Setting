@@ -3,7 +3,7 @@
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.WebFramework.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Common.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.BL.dll
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.Data.dll
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.DL.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.Entities.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alyatim.Member.SC.dll
@@ -13,7 +13,7 @@
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/UserManagement.DTO.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.BL.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Common.pdb
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.Data.pdb
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.DL.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.DTO.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/bin/Debug/netcoreapp2.1/Alsahab.Setting.Entities.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/obj/Debug/netcoreapp2.1/Alsahab.Setting.WebFramework.csprojAssemblyReference.cache

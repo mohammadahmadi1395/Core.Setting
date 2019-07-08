@@ -8,7 +8,7 @@ using Alsahab.Setting.Entities.Models;
 namespace Alsahab.Setting.WebFramework.Api
 {
     /// <summary>
-    /// کنترلر مربوط به شعبه‌ها
+    /// کنترلر مربوط به نواحی
     /// </summary>
     [ApiController]
     [ApiResultFilter]
@@ -19,7 +19,7 @@ namespace Alsahab.Setting.WebFramework.Api
     public class ZoneController : CrudController<Zone, ZoneDTO, ZoneFilterDTO>
     {
         /// <summary>
-        /// سازنده کنترلر شعبه‌ها
+        /// سازنده کنترلر
         /// </summary>
         /// <param name="tBL"></param>
         /// <returns></returns>

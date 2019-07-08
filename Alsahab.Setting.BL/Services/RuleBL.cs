@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Alsahab.Setting.DTO;
-using Alsahab.Setting.Data;
-using Alsahab.Setting.BL;
-using System.Data;
-using Alsahab.Setting.Data.Interfaces;
+﻿using Alsahab.Setting.DTO;
+using Alsahab.Setting.DL.Interfaces;
 using Alsahab.Setting.Entities.Models;
-using System.Threading;
 using Alsahab.Common;
 
 namespace Alsahab.Setting.BL

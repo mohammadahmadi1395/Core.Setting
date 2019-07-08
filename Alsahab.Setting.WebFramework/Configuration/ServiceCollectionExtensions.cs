@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using Alsahab.Setting.Data;
+using Alsahab.Setting.DL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +20,6 @@ namespace Alsahab.Setting.WebFramework.Configuration
                 // options.UseSqlServer("Data Source=.;Initial Catalog=MyApiDb;IntegratedSecurity=true");
                 options.UseSqlServer(configuration.GetConnectionString("SqlServer"));
             });
-
         }
 
         public static void AddMinimalMVC(this IServiceCollection services)

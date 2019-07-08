@@ -11,11 +11,22 @@ using Alsahab.Setting.WebFramework.Swagger;
 
 namespace Alsahab.Setting.MyAPI
 {
+    /// <summary>
+    /// startup file
+    /// </summary>
     public class Startup
     {
         private readonly SiteSettings _siteSettings;
+        /// <summary>
+        /// configuration property
+        /// </summary>
+        /// <value></value>
         public IConfiguration Configuration { get; }
 
+        /// <summary>
+        /// startup constructor
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,10 +37,14 @@ namespace Alsahab.Setting.MyAPI
         }
 
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // اگر از اتوفک استفاده می‌کنیم باید خروجی این تابع را از 
-        // void
-        // تغییر دهیم و متناسب با آن در پایان تابع مقدار لازم را برگردانیم
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// اگر از اتوفک استفاده می‌کنیم باید خروجی این تابع را از 
+        /// void
+        /// تغییر دهیم و متناسب با آن در پایان تابع مقدار لازم را برگردانیم
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             //با این کار تنظیمات سایت در سازنده همه پروژه‌های برنامه قابل دسترسی است
@@ -67,7 +82,11 @@ namespace Alsahab.Setting.MyAPI
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        ///This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseCustomExceptionHandler();

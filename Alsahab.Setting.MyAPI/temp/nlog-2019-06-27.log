@@ -37,7 +37,7 @@ SELECT @@ROWCOUNT; | System.Data.SqlTypes.SqlTypeException: SqlDateTime overflow
    at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
 --- End of stack trace from previous location where exception was thrown ---
    at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken) | Microsoft.EntityFrameworkCore.Database.Command | url: https://localhost/api/v1/Branch/Update | action: Update
-2019-06-27 14:43:58.4663 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-27 14:43:58.4663 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlTypes.SqlTypeException: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
    at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -85,7 +85,7 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updatin
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 178
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 178
    at Alsahab.Setting.BL.BranchBL.UpdateAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 146
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Update(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 140
    at lambda_method(Closure , Object )
@@ -117,7 +117,7 @@ SELECT @@ROWCOUNT; | System.Data.SqlTypes.SqlTypeException: SqlDateTime overflow
    at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
 --- End of stack trace from previous location where exception was thrown ---
    at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken) | Microsoft.EntityFrameworkCore.Database.Command | url: https://localhost/api/v1/Branch/Update | action: Update
-2019-06-27 14:46:47.7824 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-27 14:46:47.7824 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlTypes.SqlTypeException: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
    at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -165,7 +165,7 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updatin
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 178
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 178
    at Alsahab.Setting.BL.BranchBL.UpdateAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 146
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Update(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 140
    at lambda_method(Closure , Object )
@@ -197,7 +197,7 @@ SELECT @@ROWCOUNT; | System.Data.SqlTypes.SqlTypeException: SqlDateTime overflow
    at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot)
 --- End of stack trace from previous location where exception was thrown ---
    at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken) | Microsoft.EntityFrameworkCore.Database.Command | url: https://localhost/api/v1/Branch/Update | action: Update
-2019-06-27 14:50:27.6061 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-27 14:50:27.6061 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlTypes.SqlTypeException: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
    at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -245,7 +245,7 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updatin
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 178
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 178
    at Alsahab.Setting.BL.BranchBL.UpdateAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 146
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Update(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 140
    at lambda_method(Closure , Object )
@@ -615,7 +615,7 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updatin
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 47 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Branch/Delete | action: Delete
 2019-06-27 17:41:57.8783 | ERROR | The method or operation is not implemented. | System.NotImplementedException: The method or operation is not implemented.
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.Alsahab.Setting.Data.Contracts.IBaseDL<TEntity,TDto,TFilterDto>.UpdateListAsync(IList`1 dtoList, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 343
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.Alsahab.Setting.DL.Contracts.IBaseDL<TEntity,TDto,TFilterDto>.UpdateListAsync(IList`1 dtoList, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 343
    at Alsahab.Setting.BL.BranchBL.UpdateTreeIndicesAndCodesAsync(CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 320
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 228
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
@@ -829,7 +829,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.BranchDTO, Alsahab
    --- End of inner exception stack trace ---
    at lambda_method(Closure , IEnumerable`1 , IQueryable`1 , ResolutionContext )
    at AutoMapper.Mapper.AutoMapper.IMapper.Map[TSource,TDestination](TSource source) in C:\projects\automapper\src\AutoMapper\Mapper.cs:line 233
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 108
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 108
    at Alsahab.Setting.BL.BranchBL.UpdateTreeIndicesAndCodes() in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 321
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 228
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
@@ -864,7 +864,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.BranchDTO, Alsahab
    --- End of inner exception stack trace ---
    at lambda_method(Closure , IEnumerable`1 , IQueryable`1 , ResolutionContext )
    at AutoMapper.Mapper.AutoMapper.IMapper.Map[TSource,TDestination](TSource source) in C:\projects\automapper\src\AutoMapper\Mapper.cs:line 233
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 108
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 108
    at Alsahab.Setting.BL.BranchBL.UpdateTreeIndicesAndCodes() in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 321
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 228
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
@@ -898,7 +898,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.BranchDTO, Alsahab
    --- End of inner exception stack trace ---
    at lambda_method(Closure , IEnumerable`1 , IQueryable`1 , ResolutionContext )
    at AutoMapper.Mapper.AutoMapper.IMapper.Map[TSource,TDestination](TSource source) in C:\projects\automapper\src\AutoMapper\Mapper.cs:line 233
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 108
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 108
    at Alsahab.Setting.BL.BranchBL.UpdateTreeIndicesAndCodes() in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 321
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 228
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
@@ -932,7 +932,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.BranchDTO, Alsahab
    --- End of inner exception stack trace ---
    at lambda_method(Closure , IEnumerable`1 , IQueryable`1 , ResolutionContext )
    at AutoMapper.Mapper.AutoMapper.IMapper.Map[TSource,TDestination](TSource source) in C:\projects\automapper\src\AutoMapper\Mapper.cs:line 233
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 108
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 108
    at Alsahab.Setting.BL.BranchBL.UpdateTreeIndicesAndCodes() in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 321
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 228
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
@@ -966,7 +966,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.BranchDTO, Alsahab
    --- End of inner exception stack trace ---
    at lambda_method(Closure , IEnumerable`1 , IQueryable`1 , ResolutionContext )
    at AutoMapper.Mapper.AutoMapper.IMapper.Map[TSource,TDestination](TSource source) in C:\projects\automapper\src\AutoMapper\Mapper.cs:line 233
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 108
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 108
    at Alsahab.Setting.BL.BranchBL.UpdateTreeIndicesAndCodes() in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 321
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 228
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
@@ -1058,7 +1058,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.BranchDTO, Alsahab
    --- End of inner exception stack trace ---
    at lambda_method(Closure , IEnumerable`1 , IQueryable`1 , ResolutionContext )
    at AutoMapper.Mapper.AutoMapper.IMapper.Map[TSource,TDestination](TSource source) in C:\projects\automapper\src\AutoMapper\Mapper.cs:line 233
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 111
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 111
    at Alsahab.Setting.BL.BranchBL.UpdateTreeIndicesAndCodes() in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 321
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 228
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
@@ -1092,7 +1092,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.BranchDTO, Alsahab
    at Microsoft.EntityFrameworkCore.DbContext.SetEntityStates(IEnumerable`1 entities, EntityState entityState)
    at Microsoft.EntityFrameworkCore.DbContext.UpdateRange(IEnumerable`1 entities)
    at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.UpdateRange(IEnumerable`1 entities)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 113
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 113
    at Alsahab.Setting.BL.BranchBL.UpdateTreeIndicesAndCodes() in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 321
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 228
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
@@ -1127,7 +1127,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.BranchDTO, Alsahab
    at Microsoft.EntityFrameworkCore.DbContext.SetEntityStates(IEnumerable`1 entities, EntityState entityState)
    at Microsoft.EntityFrameworkCore.DbContext.UpdateRange(IEnumerable`1 entities)
    at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.UpdateRange(IEnumerable`1 entities)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 114
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 114
    at Alsahab.Setting.BL.BranchBL.UpdateTreeIndicesAndCodes() in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 321
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 228
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
@@ -1162,7 +1162,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.BranchDTO, Alsahab
    at Microsoft.EntityFrameworkCore.DbContext.SetEntityStates(IEnumerable`1 entities, EntityState entityState)
    at Microsoft.EntityFrameworkCore.DbContext.UpdateRange(IEnumerable`1 entities)
    at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.UpdateRange(IEnumerable`1 entities)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 114
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 114
    at Alsahab.Setting.BL.BranchBL.UpdateTreeIndicesAndCodes() in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 321
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 228
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
@@ -1196,7 +1196,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.BranchDTO, Alsahab
    at Microsoft.EntityFrameworkCore.DbContext.SetEntityStates(IEnumerable`1 entities, EntityState entityState)
    at Microsoft.EntityFrameworkCore.DbContext.UpdateRange(IEnumerable`1 entities)
    at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.UpdateRange(IEnumerable`1 entities)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 114
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 114
    at Alsahab.Setting.BL.BranchBL.UpdateTreeIndicesAndCodes() in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 321
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 228
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
@@ -1231,7 +1231,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.BranchDTO, Alsahab
    at Microsoft.EntityFrameworkCore.DbContext.SetEntityState[TEntity](TEntity entity, EntityState entityState)
    at Microsoft.EntityFrameworkCore.DbContext.Update[TEntity](TEntity entity)
    at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Update(TEntity entity)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 115
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 115
    at Alsahab.Setting.BL.BranchBL.UpdateTreeIndicesAndCodes() in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 321
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 228
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
@@ -1266,7 +1266,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.BranchDTO, Alsahab
    at Microsoft.EntityFrameworkCore.DbContext.SetEntityState[TEntity](TEntity entity, EntityState entityState)
    at Microsoft.EntityFrameworkCore.DbContext.Update[TEntity](TEntity entity)
    at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Update(TEntity entity)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 119
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateList(IList`1 dtoList, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 119
    at Alsahab.Setting.BL.BranchBL.UpdateTreeIndicesAndCodes() in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 321
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 228
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100

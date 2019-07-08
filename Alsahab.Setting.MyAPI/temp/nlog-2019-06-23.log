@@ -8,7 +8,7 @@
 2019-06-23 16:37:21.8219 | WARN | The LINQ expression 'where __prop_14.GetValue([s]).ToString().Contains(__ToString_15)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-23 16:37:21.8293 | WARN | The LINQ expression 'where (Convert(__8__locals2_prop_16.GetValue([s]), DateTime) > __GetValue_17)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-23 16:37:21.8301 | WARN | The LINQ expression 'where (Convert(__8__locals3_prop_18.GetValue([s]), DateTime) < __GetValue_19)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
-2019-06-23 16:37:22.3145 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-23 16:37:22.3145 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 System.Reflection.TargetException: Object does not match target type.
    at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
    at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -50,7 +50,7 @@ System.Reflection.TargetException: Object does not match target type.
 2019-06-23 16:37:26.7657 | WARN | The LINQ expression 'where __prop_14.GetValue([s]).ToString().Contains(__ToString_15)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-23 16:37:26.7657 | WARN | The LINQ expression 'where (Convert(__8__locals2_prop_16.GetValue([s]), DateTime) > __GetValue_17)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-23 16:37:26.7657 | WARN | The LINQ expression 'where (Convert(__8__locals3_prop_18.GetValue([s]), DateTime) < __GetValue_19)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
-2019-06-23 16:37:26.9771 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-23 16:37:26.9771 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 System.Reflection.TargetException: Object does not match target type.
    at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
    at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -102,7 +102,7 @@ System.Reflection.TargetException: Object does not match target type.
    at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
    at System.Linq.AsyncEnumerable.Aggregate_[TSource,TAccumulate,TResult](IAsyncEnumerable`1 source, TAccumulate seed, Func`3 accumulator, Func`2 resultSelector, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.GetAsync(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 288
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.GetAsync(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 288
    at Alsahab.Setting.BL.BaseBL`3.GetAsync(FilterDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 74
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 93
    at lambda_method(Closure , Object )
@@ -133,7 +133,7 @@ System.Reflection.TargetException: Object does not match target type.
 2019-06-23 16:41:11.6300 | WARN | The LINQ expression 'where __prop_14.GetValue([s]).ToString().Contains(__ToString_15)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-23 16:41:11.6371 | WARN | The LINQ expression 'where (Convert(__8__locals2_prop_16.GetValue([s]), DateTime) > __GetValue_17)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-23 16:41:11.6379 | WARN | The LINQ expression 'where (Convert(__8__locals3_prop_18.GetValue([s]), DateTime) < __GetValue_19)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
-2019-06-23 16:41:11.9956 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-23 16:41:11.9956 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 System.Reflection.TargetException: Object does not match target type.
    at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
    at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -185,7 +185,7 @@ System.Reflection.TargetException: Object does not match target type.
    at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
    at System.Linq.AsyncEnumerable.Aggregate_[TSource,TAccumulate,TResult](IAsyncEnumerable`1 source, TAccumulate seed, Func`3 accumulator, Func`2 resultSelector, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.GetAsync(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 288
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.GetAsync(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 288
    at Alsahab.Setting.BL.BaseBL`3.GetAsync(FilterDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 74
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 93
    at lambda_method(Closure , Object )
@@ -216,7 +216,7 @@ System.Reflection.TargetException: Object does not match target type.
 2019-06-23 16:46:58.5856 | WARN | The LINQ expression 'where __prop_14.GetValue([s]).ToString().Contains(__ToString_15)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-23 16:46:58.5913 | WARN | The LINQ expression 'where (Convert(__8__locals2_prop_16.GetValue([s]), DateTime) > __GetValue_17)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-23 16:46:58.5913 | WARN | The LINQ expression 'where (Convert(__8__locals3_prop_18.GetValue([s]), DateTime) < __GetValue_19)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
-2019-06-23 16:46:58.8503 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-23 16:46:58.8503 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 System.Reflection.TargetException: Object does not match target type.
    at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
    at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -258,7 +258,7 @@ System.Reflection.TargetException: Object does not match target type.
 2019-06-23 16:47:00.4180 | WARN | The LINQ expression 'where __prop_14.GetValue([s]).ToString().Contains(__ToString_15)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-23 16:47:00.4180 | WARN | The LINQ expression 'where (Convert(__8__locals2_prop_16.GetValue([s]), DateTime) > __GetValue_17)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-23 16:47:00.4217 | WARN | The LINQ expression 'where (Convert(__8__locals3_prop_18.GetValue([s]), DateTime) < __GetValue_19)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
-2019-06-23 16:47:00.6360 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-23 16:47:00.6360 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 System.Reflection.TargetException: Object does not match target type.
    at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
    at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -310,7 +310,7 @@ System.Reflection.TargetException: Object does not match target type.
    at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
    at System.Linq.AsyncEnumerable.Aggregate_[TSource,TAccumulate,TResult](IAsyncEnumerable`1 source, TAccumulate seed, Func`3 accumulator, Func`2 resultSelector, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.GetAsync(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 288
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.GetAsync(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 288
    at Alsahab.Setting.BL.BranchBL.GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 38
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 93
    at lambda_method(Closure , Object )

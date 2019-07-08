@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Alsahab.Common;
 using Alsahab.Setting.BL.Log.ActionDTO;
-using Alsahab.Setting.Data.Interfaces;
-using Alsahab.Setting.Entities.Models;
+using Alsahab.Setting.DL.Interfaces;
 using Gostar.Common;
 
 namespace Alsahab.Setting.BL
@@ -121,7 +118,7 @@ namespace Alsahab.Setting.BL
                         PropertyInfo p = actionDtoType.GetProperty("DisplayMessage");
                         d.Message = p.GetValue(obj).ToString();
                     }
-                    catch (Exception e)
+                    catch //(Exception e)
                     { }
                 }
                 if (!string.IsNullOrWhiteSpace(data?.Message))

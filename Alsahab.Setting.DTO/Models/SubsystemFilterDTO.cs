@@ -9,5 +9,8 @@ namespace Alsahab.Setting.DTO
 {
     public class SubsystemFilterDTO : SubsystemDTO
     {
+        public DateTime? CreateDateFrom { get; set; }
+        public DateTime? CreateDateTo { get; set; }
+        public List<long?> IDList { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 2019-07-08 00:07:10.6688 | ERROR | Object reference not set to an instance of an object. | System.NullReferenceException: Object reference not set to an instance of an object.
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.InsertAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 72
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.InsertAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 72
    at Alsahab.Setting.BL.BaseBL`3.InsertAsync(Dto data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 375
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
    at lambda_method(Closure , Object )
@@ -21,7 +21,7 @@
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 47 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Subpart/Create | action: Create
 2019-07-08 00:08:24.6717 | ERROR | Object reference not set to an instance of an object. | System.NullReferenceException: Object reference not set to an instance of an object.
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.InsertAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 72
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.InsertAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 72
    at Alsahab.Setting.BL.BaseBL`3.InsertAsync(Dto data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 375
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
    at lambda_method(Closure , Object )
@@ -42,7 +42,7 @@
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 47 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Subpart/Create | action: Create
 2019-07-08 00:14:01.0313 | ERROR | Object reference not set to an instance of an object. | System.NullReferenceException: Object reference not set to an instance of an object.
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.InsertAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 72
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.InsertAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 72
    at Alsahab.Setting.BL.BaseBL`3.InsertAsync(Dto data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 375
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 100
    at lambda_method(Closure , Object )
@@ -74,7 +74,7 @@
    at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
    at System.Data.SqlClient.SqlConnection.Open()
    at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected) | Microsoft.EntityFrameworkCore.Database.Connection | url: https://localhost/api/v1/Subpart/GetByFilter | action: Get
-2019-07-08 07:05:05.8364 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-07-08 07:05:05.8364 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 System.Threading.ThreadAbortException: System error.
    at System.Data.ProviderBase.DbConnectionInternal.get_CanBePooled()
    at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
@@ -122,7 +122,7 @@ System.Threading.ThreadAbortException: System error.
    at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
    at System.Data.SqlClient.SqlConnection.Open()
    at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected) | Microsoft.EntityFrameworkCore.Database.Connection | url: https://localhost/api/v1/Subpart/GetByFilter | action: Get
-2019-07-08 07:05:12.3593 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-07-08 07:05:12.3593 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 System.Threading.ThreadAbortException: System error.
    at System.Data.ProviderBase.DbConnectionInternal.get_CanBePooled()
    at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
@@ -195,7 +195,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.SubpartDTO, Alsaha
    --- End of inner exception stack trace ---
    at lambda_method(Closure , IEnumerable`1 , IQueryable`1 , ResolutionContext )
    at AutoMapper.Mapper.AutoMapper.IMapper.Map[TSource,TDestination](TSource source) in C:\projects\automapper\src\AutoMapper\Mapper.cs:line 233
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.InsertListAsync(IList`1 dtoList, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 76
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.InsertListAsync(IList`1 dtoList, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 76
    at Alsahab.Setting.BL.BaseBL`3.InsertListAsync(IList`1 list, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 398
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 105
    at lambda_method(Closure , Object )
@@ -229,7 +229,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.SubpartDTO, Alsaha
    --- End of inner exception stack trace ---
    at lambda_method(Closure , IEnumerable`1 , IQueryable`1 , ResolutionContext )
    at AutoMapper.Mapper.AutoMapper.IMapper.Map[TSource,TDestination](TSource source) in C:\projects\automapper\src\AutoMapper\Mapper.cs:line 233
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.InsertListAsync(IList`1 dtoList, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 76
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.InsertListAsync(IList`1 dtoList, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 76
    at Alsahab.Setting.BL.BaseBL`3.InsertListAsync(IList`1 list, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 398
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 105
    at lambda_method(Closure , Object )
@@ -252,7 +252,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.SubpartDTO, Alsaha
 2019-07-08 08:06:05.3338 | ERROR | The source IQueryable doesn't implement IAsyncEnumerable<Alsahab.Setting.DTO.SubpartDTO>. Only sources that implement IAsyncEnumerable can be used for Entity Framework asynchronous operations. | System.InvalidOperationException: The source IQueryable doesn't implement IAsyncEnumerable<Alsahab.Setting.DTO.SubpartDTO>. Only sources that implement IAsyncEnumerable can be used for Entity Framework asynchronous operations.
    at Microsoft.EntityFrameworkCore.Extensions.Internal.QueryableExtensions.AsAsyncEnumerable[TSource](IQueryable`1 source)
    at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.InsertListAsync(IList`1 dtoList, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 83
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.InsertListAsync(IList`1 dtoList, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 83
    at Alsahab.Setting.BL.BaseBL`3.InsertListAsync(IList`1 list, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 398
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 105
    at lambda_method(Closure , Object )
@@ -278,7 +278,7 @@ System.Collections.Generic.IEnumerable`1[[Alsahab.Setting.DTO.SubpartDTO, Alsaha
    at System.Linq.Enumerable.SelectListIterator`2.MoveNext()
    at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)
    at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.InsertListAsync(IList`1 dtoList, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 83
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.InsertListAsync(IList`1 dtoList, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 83
    at Alsahab.Setting.BL.BaseBL`3.InsertListAsync(IList`1 list, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BaseBL.cs:line 398
    at Alsahab.Setting.WebFramework.Api.CrudController`3.Create(BaseRequest`1 request, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 105
    at lambda_method(Closure , Object )

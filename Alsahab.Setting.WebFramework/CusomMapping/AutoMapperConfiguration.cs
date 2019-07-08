@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using AutoMapper;
 using Alsahab.Setting.Entities;
-using Alsahab.Setting.Data.Repositories;
+using Alsahab.Setting.DL.Repositories;
 using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities.Models;
 using Alsahab.Setting.Entities.Common;

@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v2.1": {
       "Alsahab.Setting.BL/1.0.0": {
         "dependencies": {
-          "Alsahab.Setting.Data": "1.0.0",
+          "Alsahab.Setting.DL": "1.0.0",
           "Microsoft.Extensions.Identity.Core": "2.1.6",
           "Microsoft.IdentityModel.Tokens": "5.5.0",
           "System.IdentityModel.Tokens.Jwt": "5.5.0",
@@ -2189,7 +2189,7 @@
           "Alsahab.Common.dll": {}
         }
       },
-      "Alsahab.Setting.Data/1.0.0": {
+      "Alsahab.Setting.DL/1.0.0": {
         "dependencies": {
           "Alsahab.Setting.DTO": "1.0.0",
           "Alsahab.Setting.Entities": "1.0.0",
@@ -2197,7 +2197,7 @@
           "Microsoft.EntityFrameworkCore.Design": "2.1.0"
         },
         "runtime": {
-          "Alsahab.Setting.Data.dll": {}
+          "Alsahab.Setting.DL.dll": {}
         }
       },
       "Alsahab.Setting.DTO/1.0.0": {
@@ -3617,7 +3617,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Alsahab.Setting.Data/1.0.0": {
+    "Alsahab.Setting.DL/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

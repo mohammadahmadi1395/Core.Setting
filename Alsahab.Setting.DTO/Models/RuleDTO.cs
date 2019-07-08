@@ -10,7 +10,7 @@ namespace Alsahab.Setting.DTO
 {
     public class RuleDTO : BaseDTO//<RuleDTO, Rule>
     {
-        public String Title { get; set; }
+        // public String Title { get; set; }
         public String Description { get; set; }
         public RuleType? Type { get; set; }
     }

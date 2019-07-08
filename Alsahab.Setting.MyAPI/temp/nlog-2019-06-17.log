@@ -149,7 +149,7 @@ The statement has been terminated.
    at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
 ClientConnectionId:3e13855f-309c-4a3a-b03c-fa2c9ff2427c
 Error Number:547,State:0,Class:16 | Microsoft.EntityFrameworkCore.Database.Command | url: https://localhost/api/v1/Branch | action: Create
-2019-06-17 20:12:49.2103 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-17 20:12:49.2103 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Branch_BranchAddress". The conflict occurred in database "Setting", table "dbo.BranchAddresses", column 'ID'.
 The statement has been terminated.
    at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
@@ -200,7 +200,7 @@ The statement has been terminated.
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`2.AddAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 42
+   at Alsahab.Setting.DL.Repositories.BaseDL`2.AddAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 42
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 226
    at Alsahab.Setting.WebFramework.Api.BranchController.Create(BranchDTO dto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/BranchController.cs:line 78
    at lambda_method(Closure , Object )
@@ -238,7 +238,7 @@ The statement has been terminated.
    at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
 ClientConnectionId:3e13855f-309c-4a3a-b03c-fa2c9ff2427c
 Error Number:547,State:0,Class:16 | Microsoft.EntityFrameworkCore.Database.Command | url: https://localhost/api/v1/Branch | action: Create
-2019-06-17 20:14:11.1097 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-17 20:14:11.1097 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Branch_BranchAddress". The conflict occurred in database "Setting", table "dbo.BranchAddresses", column 'ID'.
 The statement has been terminated.
    at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
@@ -289,7 +289,7 @@ The statement has been terminated.
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`2.AddAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 42
+   at Alsahab.Setting.DL.Repositories.BaseDL`2.AddAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 42
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 226
    at Alsahab.Setting.WebFramework.Api.BranchController.Create(BranchDTO dto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/BranchController.cs:line 78
    at lambda_method(Closure , Object )
@@ -326,7 +326,7 @@ The statement has been terminated.
    at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
 ClientConnectionId:cb86f436-44ae-40c4-a4e0-610340992816
 Error Number:547,State:0,Class:16 | Microsoft.EntityFrameworkCore.Database.Command | url: https://localhost/api/v1/Branch | action: Create
-2019-06-17 20:21:17.5929 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-17 20:21:17.5929 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Branch_BranchAddress". The conflict occurred in database "Setting", table "dbo.BranchAddresses", column 'ID'.
 The statement has been terminated.
    at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
@@ -377,7 +377,7 @@ The statement has been terminated.
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`2.AddAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 42
+   at Alsahab.Setting.DL.Repositories.BaseDL`2.AddAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 42
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 226
    at Alsahab.Setting.WebFramework.Api.BranchController.Create(BranchDTO dto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/BranchController.cs:line 78
    at lambda_method(Closure , Object )

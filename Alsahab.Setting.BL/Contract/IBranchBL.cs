@@ -4,8 +4,8 @@
 // using System.Text;
 // using System.Threading;
 // using System.Threading.Tasks;
-// using Alsahab.Setting.Data.Contracts;
-// using Alsahab.Setting.Data.Repositories;
+// using Alsahab.Setting.DL.Contracts;
+// using Alsahab.Setting.DL.Repositories;
 // using Alsahab.Setting.DTO;
 // using Alsahab.Setting.Entities.Models;
 

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Alsahab.Common.Exceptions;
-using Alsahab.Setting.Data.Interfaces;
+using Alsahab.Setting.DL.Interfaces;
 using Alsahab.Setting.DTO;
 using Alsahab.Setting.Entities.Models;
 using Alsahab.Common;

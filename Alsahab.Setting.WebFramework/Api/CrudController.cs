@@ -5,7 +5,7 @@
 // using System.Threading.Tasks;
 // using AutoMapper;
 // using AutoMapper.QueryableExtensions;
-// using Alsahab.Setting.Data.Contracts;
+// using Alsahab.Setting.DL.Contracts;
 // using Alsahab.Setting.Entities;
 // using Alsahab.Setting.WebFramework.Api;
 // using Alsahab.Setting.WebFramework.Filter;

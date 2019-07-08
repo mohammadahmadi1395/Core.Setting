@@ -1,7 +1,7 @@
 ﻿using Alsahab.Setting.DTO;
 using Alsahab.Common;
 using Alsahab.Setting.Entities.Models;
-using Alsahab.Setting.Data.Interfaces;
+using Alsahab.Setting.DL.Interfaces;
 
 namespace Alsahab.Setting.BL
 {

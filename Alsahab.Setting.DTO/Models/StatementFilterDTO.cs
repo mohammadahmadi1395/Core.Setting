@@ -11,5 +11,8 @@ namespace Alsahab.Setting.DTO
 {
     public class StatementFilterDTO : StatementDTO
     {
+        public DateTime? CreateDateFrom { get; set; }
+        public DateTime? CreateDateTo { get; set; }
+        public List<long?> IDList { get; set; }
     }
 }

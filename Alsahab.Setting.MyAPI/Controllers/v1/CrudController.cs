@@ -90,6 +90,12 @@ namespace Alsahab.Setting.WebFramework.Api
         //     return Mapper.Map(CastToDerivedClass(this), entity);
         // }
 
+        /// <summary>
+        /// insert object
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [Route("Create")]
         [HttpPost]
         public virtual async Task<ApiResult<TDto>> Create(BaseRequest<TDto> request, CancellationToken cancellationToken)//TDto dto, CancellationToken cancellationToken)
@@ -101,6 +107,12 @@ namespace Alsahab.Setting.WebFramework.Api
             return Ok(resultDto);
         }
 
+        /// <summary>
+        /// insert list of objects
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [Route("CreateList")]
         [HttpPost]
         public virtual async Task<ApiResult<List<TDto>>> CreateList(BaseRequest<TDto> request, CancellationToken cancellationToken)//TDto dto, CancellationToken cancellationToken)
@@ -115,6 +127,12 @@ namespace Alsahab.Setting.WebFramework.Api
                 return Ok(resultDtoList);
         }
 
+        /// <summary>
+        /// select by filterdto
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [Route("Get")]
         [HttpPost]
         public virtual async Task<ApiResult<IList<TDto>>> Get(BaseRequest<TDto, TFilteDto> request, CancellationToken cancellationToken)
@@ -129,21 +147,26 @@ namespace Alsahab.Setting.WebFramework.Api
             return Ok(result);
         }
 
-        [Route("GetByFilter")]
-        [HttpPost]
-        public virtual async Task<ApiResult<IList<TDto>>> Get(BaseRequest<TFilteDto> request, CancellationToken cancellationToken)
-        {
-            if (request.ActionType != Alsahab.Common.ActionType.Select)
-                throw new BadRequestException("ActionType of Request is not valid");
+        // [Route("GetByFilter")]
+        // [HttpPost]
+        // public virtual async Task<ApiResult<IList<TDto>>> Get(BaseRequest<TFilteDto> request, CancellationToken cancellationToken)
+        // {
+        //     if (request.ActionType != Alsahab.Common.ActionType.Select)
+        //         throw new BadRequestException("ActionType of Request is not valid");
+        //     IList<TDto> result;
+        //     if (request.RequestFilterDto == null)
+        //         result = await _TBL.CallBL(b => b.GetAllAsync(cancellationToken), request.User, request.PagingInfo, request.Language);
+        //     else
+        //         result = await _TBL.CallBL(b => b.GetAsync(request.RequestFilterDto, cancellationToken), request.User, request.PagingInfo, request.Language);
+        //     return Ok(result);
+        // }
 
-            IList<TDto> result;
-            if (request.RequestFilterDto == null)
-                result = await _TBL.CallBL(b => b.GetAllAsync(cancellationToken), request.User, request.PagingInfo, request.Language);
-            else
-                result = await _TBL.CallBL(b => b.GetAsync(request.RequestFilterDto, cancellationToken), request.User, request.PagingInfo, request.Language);
-            return Ok(result);
-        }
-
+        /// <summary>
+        /// update object
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [Route("Update")]
         // [HttpPut]
         [HttpPost]
@@ -155,6 +178,12 @@ namespace Alsahab.Setting.WebFramework.Api
             return await _TBL.CallBL(b => b.UpdateAsync(request.RequestDto, cancellationToken), request.User, request.PagingInfo, request.Language);
         }
 
+        /// <summary>
+        /// update list of objects
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [Route("UpdateList")]
         [HttpPost]
         public virtual async Task<ApiResult<List<TDto>>> UpdateList(BaseRequest<TDto> request, CancellationToken cancellationToken)//TDto dto, CancellationToken cancellationToken)
@@ -169,6 +198,12 @@ namespace Alsahab.Setting.WebFramework.Api
                 return Ok(resultDtoList);
         }
 
+        /// <summary>
+        /// delete : here is soft delete
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [Route("Delete")]
         // [HttpDelete]
         [HttpPost]
@@ -185,6 +220,12 @@ namespace Alsahab.Setting.WebFramework.Api
             return await _TBL.CallBL(b => b.SoftDeleteAsync(request.RequestDto, cancellationToken), request.User, request.PagingInfo, request.Language);
         }
 
+        /// <summary>
+        /// delete (soft delete) list of objects
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [Route("DeleteList")]
         [HttpPost]
         public virtual async Task<ApiResult<List<TDto>>> DeleteList(BaseRequest<TDto> request, CancellationToken cancellationToken)//TDto dto, CancellationToken cancellationToken)

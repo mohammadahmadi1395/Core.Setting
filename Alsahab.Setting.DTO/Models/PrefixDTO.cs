@@ -10,7 +10,7 @@ namespace Alsahab.Setting.DTO
 {
     public class PrefixDTO : BaseDTO//<PrefixDTO, Prefix>
     {
-        public String Title { get; set; }
+        // public String Title { get; set; }
         public bool? IsDefault { get; set; }
     }
 

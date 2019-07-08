@@ -8,7 +8,7 @@ using Alsahab.Setting.Entities.Models;
 namespace Alsahab.Setting.WebFramework.Api
 {
     /// <summary>
-    /// کنترلر مربوط به شعبه‌ها
+    /// کنترلر مربوط به برچسب قانون فرم‌ها
     /// </summary>
     [ApiController]
     [ApiResultFilter]
@@ -19,7 +19,7 @@ namespace Alsahab.Setting.WebFramework.Api
     public class RuleTagController : CrudController<RuleTag, RuleTagDTO, RuleTagFilterDTO>
     {
         /// <summary>
-        /// سازنده کنترلر شعبه‌ها
+        /// سازنده کنترلر
         /// </summary>
         /// <param name="tBL"></param>
         /// <returns></returns>

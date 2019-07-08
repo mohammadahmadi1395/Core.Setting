@@ -25,19 +25,25 @@ namespace Alsahab.Setting.WebFramework.Api
     public class BranchController : CrudController<Branch, BranchDTO, BranchFilterDTO>
     {
         private readonly IDistributedCache _DistributedCache;
+        
         /// <summary>
         /// سازنده کنترلر شعبه‌ها
         /// </summary>
         /// <param name="tBL"></param>
+        /// <param name="distributedCache"></param>
         /// <returns></returns>
         public BranchController(IBaseBL<Branch, BranchDTO, BranchFilterDTO> tBL, IDistributedCache distributedCache) : base(tBL)
         {
             _DistributedCache = distributedCache;
         }
 
+        /// <summary>
+        /// test of redis cache
+        /// </summary>
+        /// <returns></returns>
         [Route("Test")]
         [HttpPost]
-        public async Task<string> Test()
+        public string Test()
         {
             var cachKey = "time";
             var existingTime = _DistributedCache.GetString(cachKey);

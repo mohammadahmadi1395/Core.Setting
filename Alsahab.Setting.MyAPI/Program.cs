@@ -12,8 +12,15 @@ using NLog.Web;
 
 namespace Alsahab.Setting.MyAPI
 {
+    /// <summary>
+    /// program class
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// main method
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             //Set default proxy
@@ -41,6 +48,11 @@ namespace Alsahab.Setting.MyAPI
             }
         }
 
+        /// <summary>
+        /// configuration of nlog file
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureLogging(options=>options.ClearProviders())

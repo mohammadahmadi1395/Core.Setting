@@ -8,7 +8,7 @@ using Alsahab.Setting.BL.Log.ActionDTO;
 using Alsahab.Setting.BL.Log;
 using Alsahab.Common;
 using static Alsahab.Setting.DTO.Enums;
-using Alsahab.Setting.Data.Interfaces;
+using Alsahab.Setting.DL.Interfaces;
 using Alsahab.Setting.Entities;
 using Alsahab.Setting.Entities.Models;
 using Alsahab.Setting.DTO;

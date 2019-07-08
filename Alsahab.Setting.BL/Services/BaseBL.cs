@@ -10,9 +10,9 @@ using System.Threading;
 using Alsahab.Setting.Entities;
 using Alsahab.Common.Utilities;
 using Alsahab.Common.Exceptions;
-using Alsahab.Setting.Data.Interfaces;
+using Alsahab.Setting.DL.Interfaces;
 using FluentValidation.Results;
-using Alsahab.Setting.BL.Validation;
+using Alsahab.Setting.BL.BLValidation;
 
 namespace Alsahab.Setting.BL
 {
@@ -31,7 +31,7 @@ namespace Alsahab.Setting.BL
         public CascadeMode CascadeMode { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public IList<FluentValidation.Results.ValidationFailure> ValidationErrors { get; set; }
         private CultureInfo Culture { get; set; }
-        public readonly List<Log.ObserverBase<Dto>> _observers;
+        public readonly List<Alsahab.Setting.BL.Log.ObserverBase<Dto>> _observers;
         private readonly IBaseDL<TEntity, Dto, FilterDto> _BaseDL;// = new IBaseDL<Dto, Branch>();
         private readonly IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> _LogDL;
         #endregion
@@ -61,40 +61,42 @@ namespace Alsahab.Setting.BL
                 observer.Notify(stateInfo);
             }
         }
-        public async Task RegisterLogAsync(Dto response, ActionType type, CancellationToken cancellationToken)
+        
+        
+        // public async Task RegisterLogAsync(Dto response, ActionType type, CancellationToken cancellationToken)
+        // {
+        //     if (response?.ID > 0)
+        //     {
+        //         Log.ObserverStateBase<Dto> state = new Log.ObserverStateBase<Dto>
+        //         {
+        //             User = User,
+        //             Type = type,
+        //             DTO = response
+        //         };
+        //         Notify(state);
+        //     }
+        // }
+        // public async Task RegisterListLogAsync(IList<Dto> response, ActionType type, CancellationToken cancellationToken)
+        // {
+        //     foreach (var dto in response)
+        //     {
+        //         var temp = dto;
+        //         if (temp?.ID > 0)
+        //         {
+        //             // temp = await _BaseDL.GetByIdAsync(cancellationToken, temp?.ID);
+        //             Log.ObserverStateBase<Dto> state = new Log.ObserverStateBase<Dto>
+        //             {
+        //                 User = User,
+        //                 Type = type,
+        //                 DTO = temp
+        //             };
+        //             Notify(state);
+        //         }
+        //     }
+        // }
+        public async void RegisterLog(Dto response, ActionType type)
         {
-            if (response?.ID > 0)
-            {
-                Log.ObserverStateBase<Dto> state = new Log.ObserverStateBase<Dto>
-                {
-                    User = User,
-                    Type = type,
-                    DTO = response
-                };
-                Notify(state);
-            }
-        }
-        public async Task RegisterListLogAsync(IList<Dto> response, ActionType type, CancellationToken cancellationToken)
-        {
-            foreach (var dto in response)
-            {
-                var temp = dto;
-                if (temp?.ID > 0)
-                {
-                    // temp = await _BaseDL.GetByIdAsync(cancellationToken, temp?.ID);
-                    Log.ObserverStateBase<Dto> state = new Log.ObserverStateBase<Dto>
-                    {
-                        User = User,
-                        Type = type,
-                        DTO = temp
-                    };
-                    Notify(state);
-                }
-            }
-        }
-        public void RegisterLog(Dto response, ActionType type)
-        {
-            Task.Run(() =>
+            await Task.Run(() =>
             {
                 if (response?.ID > 0)
                 {
@@ -109,9 +111,9 @@ namespace Alsahab.Setting.BL
                 }
             });
         }
-        public void RegisterListLog(IList<Dto> response, ActionType type)
+        public async void RegisterListLog(IList<Dto> response, ActionType type)
         {
-            Task.Run(() =>
+            await Task.Run(() =>
             {
                 foreach (var dto in response)
                 {
@@ -234,7 +236,7 @@ namespace Alsahab.Setting.BL
             if (FormHasTree)
                 UpdateTreeIndicesAndCodes();
 
-            RegisterLogAsync(response, ActionType.Update, cancellationToken);
+            RegisterLog(response, ActionType.Update);
 
             return response;
         }
@@ -267,7 +269,7 @@ namespace Alsahab.Setting.BL
             if (FormHasTree)
                 UpdateTreeIndicesAndCodes();
 
-            RegisterListLogAsync(response, ActionType.Update, cancellationToken);
+            RegisterListLog(response, ActionType.Update);
 
             return response;
         }
@@ -325,7 +327,7 @@ namespace Alsahab.Setting.BL
             await CheckDeletePermisionAsync(data, cancellationToken);
             data = await _BaseDL.GetByIdAsync(cancellationToken, data.ID);
             await _BaseDL.DeleteAsync(data, cancellationToken);
-            RegisterLogAsync(data, ActionType.Delete, cancellationToken);
+            RegisterLog(data, ActionType.Delete);
             return data;
         }
         public virtual Dto Delete(Dto data)
@@ -347,7 +349,7 @@ namespace Alsahab.Setting.BL
                 tempList.Add(temp);
             }
             await _BaseDL.DeleteListAsync(tempList, cancellationToken);
-            RegisterListLogAsync(tempList, ActionType.Delete, cancellationToken);
+            RegisterListLog(tempList, ActionType.Delete);
             return tempList;
         }
         public virtual IList<Dto> DeleteList(IList<Dto> list)
@@ -374,7 +376,7 @@ namespace Alsahab.Setting.BL
             var response = await _BaseDL.InsertAsync(data, cancellationToken);
             if (FormHasTree)
                 UpdateTreeIndicesAndCodes();
-            RegisterLogAsync(response, ActionType.Insert, cancellationToken);
+            RegisterLog(response, ActionType.Insert);
             return response;
         }
         public virtual Dto Insert(Dto data)
@@ -400,7 +402,7 @@ namespace Alsahab.Setting.BL
             if (FormHasTree)
                 UpdateTreeIndicesAndCodes();
 
-            RegisterListLogAsync(list, ActionType.Insert, cancellationToken);
+            RegisterListLog(list, ActionType.Insert);
 
             return response;
         }
@@ -432,7 +434,7 @@ namespace Alsahab.Setting.BL
             await _BaseDL.UpdateAsync(data, cancellationToken);
             if (FormHasTree)
                 UpdateTreeIndicesAndCodes();
-            RegisterLogAsync(data, ActionType.SoftDelete, cancellationToken);
+            RegisterLog(data, ActionType.SoftDelete);
             return data;
         }
         public async virtual Task<IList<Dto>> SoftDeleteListAsync(IList<Dto> list, CancellationToken cancellationToken)
@@ -449,7 +451,7 @@ namespace Alsahab.Setting.BL
             await _BaseDL.UpdateListAsync(tempList, cancellationToken);
             if (FormHasTree)
                 UpdateTreeIndicesAndCodes();
-            RegisterListLogAsync(tempList, ActionType.SoftDelete, cancellationToken);
+            RegisterListLog(tempList, ActionType.SoftDelete);
             return tempList;
         }
         public virtual Dto SoftDelete(Dto data)

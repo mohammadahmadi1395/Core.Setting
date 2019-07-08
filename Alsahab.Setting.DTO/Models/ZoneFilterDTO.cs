@@ -8,6 +8,8 @@ namespace Alsahab.Setting.DTO
 {
     public class ZoneFilterDTO : ZoneDTO
     {
-        public List<long> IDList { get; set; }
+        public DateTime? CreateDateFrom { get; set; }
+        public DateTime? CreateDateTo { get; set; }
+        public List<long?> IDList { get; set; }
     }
 }

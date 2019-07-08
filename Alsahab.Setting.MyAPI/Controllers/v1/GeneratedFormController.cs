@@ -8,7 +8,7 @@ using Alsahab.Setting.Entities.Models;
 namespace Alsahab.Setting.WebFramework.Api
 {
     /// <summary>
-    /// کنترلر مربوط به شعبه‌ها
+    /// کنترلر مربوط به فرم‌های تولید شده
     /// </summary>
     [ApiController]
     [ApiResultFilter]
@@ -18,7 +18,7 @@ namespace Alsahab.Setting.WebFramework.Api
     public class GeneratedFormController : CrudController<GeneratedForm, GeneratedFormDTO, GeneratedFormFilterDTO>
     {
         /// <summary>
-        /// سازنده کنترلر شعبه‌ها
+        /// سازنده کنترلر
         /// </summary>
         /// <param name="tBL"></param>
         /// <returns></returns>

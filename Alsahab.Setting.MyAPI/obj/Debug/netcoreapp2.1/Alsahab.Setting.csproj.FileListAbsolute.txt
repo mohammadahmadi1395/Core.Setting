@@ -6,13 +6,13 @@
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Setting.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Setting.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Common.dll
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Setting.Data.dll
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Setting.DL.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Setting.Entities.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Setting.Services.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Setting.WebFramework.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Setting.WebFramework.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Common.pdb
-/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Setting.Data.pdb
+/home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Setting.DL.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Setting.Entities.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/Alsahab.Setting.Services.pdb
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/obj/Debug/netcoreapp2.1/Alsahab.Setting.csprojAssemblyReference.cache

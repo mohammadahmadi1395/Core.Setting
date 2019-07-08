@@ -11,7 +11,7 @@ VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13
    at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteAsync(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues, CancellationToken cancellationToken)
 ClientConnectionId:c65e2bca-1f25-47d3-95bc-474b8a9f57bc
 Error Number:544,State:1,Class:16 | Microsoft.EntityFrameworkCore.Database.Command | url: https://localhost/api/v1/Branch | action: Create
-2019-06-18 19:56:28.4428 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-18 19:56:28.4428 | ERROR | An exception occurred in the database while saving changes for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert explicit value for identity column in table 'Branches' when IDENTITY_INSERT is set to OFF.
    at System.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__122_0(Task`1 result)
    at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
@@ -59,7 +59,7 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updatin
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IReadOnlyList`1 entriesToSave, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.AddAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 51
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.AddAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 51
    at Alsahab.Setting.BL.BranchBL.InsertAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 230
    at Alsahab.Setting.WebFramework.Api.CrudController`2.Create(TDto dto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 81
    at lambda_method(Closure , Object )
@@ -104,7 +104,7 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updatin
    at Microsoft.EntityFrameworkCore.Internal.EntityFinder`1.FindTracked(Object[] keyValues, IReadOnlyList`1& keyProperties)
    at Microsoft.EntityFrameworkCore.Internal.EntityFinder`1.FindAsync(Object[] keyValues, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.FindAsync(Object[] keyValues)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 63
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 63
    at Alsahab.Setting.BL.BranchBL.UpdateAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 220
    at Alsahab.Setting.WebFramework.Api.CrudController`2.Update(TDto dto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 97
    at lambda_method(Closure , Object )
@@ -129,7 +129,7 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updatin
    at Microsoft.EntityFrameworkCore.Internal.EntityFinder`1.FindTracked(Object[] keyValues, IReadOnlyList`1& keyProperties)
    at Microsoft.EntityFrameworkCore.Internal.EntityFinder`1.FindAsync(Object[] keyValues, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.FindAsync(Object[] keyValues)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.UpdateAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 63
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.UpdateAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 63
    at Alsahab.Setting.BL.BranchBL.UpdateAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 220
    at Alsahab.Setting.WebFramework.Api.CrudController`2.Update(TDto dto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 97
    at lambda_method(Closure , Object )
@@ -174,7 +174,7 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updatin
    at Microsoft.EntityFrameworkCore.Internal.EntityFinder`1.FindTracked(Object[] keyValues, IReadOnlyList`1& keyProperties)
    at Microsoft.EntityFrameworkCore.Internal.EntityFinder`1.FindAsync(Object[] keyValues, CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.FindAsync(Object[] keyValues)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.DeleteAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 82
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.DeleteAsync(TDto dto, CancellationToken cancellationToken, Boolean saveNow) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 82
    at Alsahab.Setting.BL.BranchBL.DeleteAsync(BranchDTO data, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 225
    at Alsahab.Setting.WebFramework.Api.CrudController`2.Delete(TDto dto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 103
    at lambda_method(Closure , Object )
@@ -208,7 +208,7 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updatin
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 46 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/swagger/v1/swagger.json | action: 
 2019-06-18 20:37:48.2551 | ERROR | Unable to cast object of type 'System.Collections.Generic.List`1[System.Nullable`1[System.Int64]]' to type 'System.Int64'. | System.InvalidCastException: Unable to cast object of type 'System.Collections.Generic.List`1[System.Nullable`1[System.Int64]]' to type 'System.Int64'.
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.Get(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 102
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.Get(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 102
    at Alsahab.Setting.BL.BranchBL.Get(BranchFilterDTO filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 215
    at Alsahab.Setting.WebFramework.Api.CrudController`2.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 91
    at lambda_method(Closure , Object )
@@ -230,7 +230,7 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updatin
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 46 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-18 20:39:07.8210 | ERROR | Unable to cast object of type 'System.Collections.Generic.List`1[System.Nullable`1[System.Int64]]' to type 'System.Int64'. | System.InvalidCastException: Unable to cast object of type 'System.Collections.Generic.List`1[System.Nullable`1[System.Int64]]' to type 'System.Int64'.
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.Get(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 102
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.Get(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 102
    at Alsahab.Setting.BL.BranchBL.Get(BranchFilterDTO filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 215
    at Alsahab.Setting.WebFramework.Api.CrudController`2.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 91
    at lambda_method(Closure , Object )
@@ -251,7 +251,7 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updatin
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware.Invoke(HttpContext context) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.WebFramework/Middlewares/CustomExceptionHandlerMiddleware.cs:line 46 | Alsahab.Setting.WebFramework.Middlewares.CustomExceptionHandlerMiddleware | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-18 20:51:46.6300 | WARN | The LINQ expression 'where (__prop_0.GetValue([s]) == __GetValue_1)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
-2019-06-18 20:51:47.0838 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-18 20:51:47.0838 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 System.Reflection.TargetException: Object does not match target type.
    at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
    at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -276,7 +276,7 @@ System.Reflection.TargetException: Object does not match target type.
    at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
    at System.Linq.AsyncEnumerable.Aggregate_[TSource,TAccumulate,TResult](IAsyncEnumerable`1 source, TAccumulate seed, Func`3 accumulator, Func`2 resultSelector, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.Get(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 163
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.Get(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 163
    at Alsahab.Setting.BL.BranchBL.Get(BranchFilterDTO filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 215
    at Alsahab.Setting.WebFramework.Api.CrudController`2.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 91
    at lambda_method(Closure , Object )
@@ -300,7 +300,7 @@ System.Reflection.TargetException: Object does not match target type.
 2019-06-18 20:52:49.1621 | WARN | The LINQ expression 'where (__prop_0.GetValue([s]) == __GetValue_1)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-18 20:52:49.1621 | WARN | The LINQ expression 'Count()' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-18 20:56:06.5965 | WARN | The LINQ expression 'where (__prop_0.GetValue([s]) == __GetValue_1)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
-2019-06-18 20:56:06.9021 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-18 20:56:06.9021 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 System.Reflection.TargetException: Object does not match target type.
    at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
    at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -325,7 +325,7 @@ System.Reflection.TargetException: Object does not match target type.
    at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
    at System.Linq.AsyncEnumerable.Aggregate_[TSource,TAccumulate,TResult](IAsyncEnumerable`1 source, TAccumulate seed, Func`3 accumulator, Func`2 resultSelector, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.Get(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 163
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.Get(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 163
    at Alsahab.Setting.BL.BranchBL.Get(BranchFilterDTO filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 215
    at Alsahab.Setting.WebFramework.Api.CrudController`2.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 91
    at lambda_method(Closure , Object )
@@ -355,7 +355,7 @@ System.Reflection.TargetException: Object does not match target type.
 2019-06-18 21:16:20.4235 | WARN | The LINQ expression 'where (__prop_14.GetValue([s]) == __GetValue_15)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-18 21:16:20.4235 | WARN | The LINQ expression 'where (Convert(__8__locals2_prop_16.GetValue([s]), DateTime) > __GetValue_17)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
 2019-06-18 21:16:20.4235 | WARN | The LINQ expression 'where (Convert(__8__locals3_prop_18.GetValue([s]), DateTime) < __GetValue_19)' could not be translated and will be evaluated locally. |  | Microsoft.EntityFrameworkCore.Query | url: https://localhost/api/v1/Branch/Get | action: Get
-2019-06-18 21:16:20.8868 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.Data.ApplicationDbContext'.
+2019-06-18 21:16:20.8868 | ERROR | An exception occurred in the database while iterating the results of a query for context type 'Alsahab.Setting.DL.ApplicationDbContext'.
 System.Reflection.TargetException: Object does not match target type.
    at System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
    at System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
@@ -407,7 +407,7 @@ System.Reflection.TargetException: Object does not match target type.
    at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken)
    at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
    at System.Linq.AsyncEnumerable.Aggregate_[TSource,TAccumulate,TResult](IAsyncEnumerable`1 source, TAccumulate seed, Func`3 accumulator, Func`2 resultSelector, CancellationToken cancellationToken)
-   at Alsahab.Setting.Data.Repositories.BaseDL`3.Get(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.Data/Repositories/BaseDL.cs:line 163
+   at Alsahab.Setting.DL.Repositories.BaseDL`3.Get(TFilterDto filterDto, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.DL/Repositories/BaseDL.cs:line 163
    at Alsahab.Setting.BL.BranchBL.Get(BranchFilterDTO filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.BL/Services/BranchBL.cs:line 215
    at Alsahab.Setting.WebFramework.Api.CrudController`2.Get(TFilteDto filter, CancellationToken cancellationToken) in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/Controllers/v1/CrudController.cs:line 91
    at lambda_method(Closure , Object )

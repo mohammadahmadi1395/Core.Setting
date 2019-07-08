@@ -9,7 +9,7 @@ using Alsahab.Common;
 namespace Alsahab.Setting.WebFramework.Api
 {
     /// <summary>
-    /// کنترلر مربوط به شعبه‌ها
+    /// کنترلر مربوط به لاگ
     /// </summary>
     [ApiController]
     [ApiResultFilter]
@@ -19,7 +19,7 @@ namespace Alsahab.Setting.WebFramework.Api
     public class LogController : CrudController<Log, LogDTO, LogFilterDTO>
     {
         /// <summary>
-        /// سازنده کنترلر شعبه‌ها
+        /// سازنده کنترلر
         /// </summary>
         /// <param name="tBL"></param>
         /// <returns></returns>
