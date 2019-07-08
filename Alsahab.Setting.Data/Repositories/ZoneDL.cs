@@ -24,9 +24,17 @@ namespace Alsahab.Setting.Data.Repositories
         public override async Task<IList<ZoneDTO>> GetAsync(ZoneFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
             var query = TableNoTracking;
-            ResultCount = query.Count();
             if (filter == null)
-                return await query.Where(s=>s.IsDeleted == false).ProjectTo<ZoneDTO>().ToListAsync(cancellationToken);
+            {
+                query = query.Where(s=>s.IsDeleted == false);
+                ResultCount = await query.CountAsync(cancellationToken);
+                if (paging?.IsPaging == true)
+                {
+                    int skip = (paging.Index - 1) * paging.Size;
+                    query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
+                }
+                return await query.ProjectTo<ZoneDTO>().ToListAsync(cancellationToken);
+            }
 
             if (filter?.IDList?.Count > 0)
                 query = query.Where(s => filter.IDList.Contains(s.ID));
@@ -69,13 +77,15 @@ namespace Alsahab.Setting.Data.Repositories
             else
                 query = query.Where(s => s.IsDeleted == false);
 
+            IList<ZoneDTO> result;
+            ResultCount = await query.CountAsync(cancellationToken);
             if (paging?.IsPaging == true)
             {
                 int skip = (paging.Index - 1) * paging.Size;
                 query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
             }
-
-            return await query.ProjectTo<ZoneDTO>().ToListAsync(cancellationToken);
+            result = await query.Where(s => s.IsDeleted == false).ProjectTo<ZoneDTO>().ToListAsync(cancellationToken);
+            return result;
         }
 
 }

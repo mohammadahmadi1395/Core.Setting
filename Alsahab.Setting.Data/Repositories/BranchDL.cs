@@ -20,10 +20,19 @@ namespace Alsahab.Setting.Data.Repositories
         public override async Task<IList<BranchDTO>> GetAsync(BranchFilterDTO filter, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
             var query = TableNoTracking;
+
             if (filter == null)
             {
+                query = query.Where(s=>s.IsDeleted == false);
+                ResultCount = await query.CountAsync(cancellationToken);
+                if (paging?.IsPaging == true)
+                {
+                    int skip = (paging.Index - 1) * paging.Size;
+                    query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
+                }
                 return await query.ProjectTo<BranchDTO>().ToListAsync(cancellationToken);
             }
+
 
             if (filter?.ID > 0)
                 query = query.Where(s => s.ID == filter.ID);
@@ -63,23 +72,32 @@ namespace Alsahab.Setting.Data.Repositories
             else
                 query = query.Where(s => s.IsDeleted == false);
 
-            ResultCount = query.Count();
+            IList<BranchDTO> result;
+            ResultCount = await query.CountAsync(cancellationToken);
             if (paging?.IsPaging == true)
             {
                 int skip = (paging.Index - 1) * paging.Size;
                 query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
             }
-
-            return await query.ProjectTo<BranchDTO>().ToListAsync(cancellationToken);
+            result = await query.Where(s => s.IsDeleted == false).ProjectTo<BranchDTO>().ToListAsync(cancellationToken);
+            return result;
         }
 
         public override IList<BranchDTO> Get(BranchFilterDTO filter, PagingInfoDTO paging = null)
         {
             var query = TableNoTracking;
+
             if (filter == null)
             {
-                return query.ProjectTo<BranchDTO>().ToList();
+                ResultCount = query.Count();
+                if (paging?.IsPaging == true)
+                {
+                    int skip = (paging.Index - 1) * paging.Size;
+                    query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
+                }
+                return query.Where(s => s.IsDeleted == false).ProjectTo<BranchDTO>().ToList();
             }
+
 
             if (filter?.ID > 0)
                 query = query.Where(s => s.ID == filter.ID);
@@ -119,14 +137,15 @@ namespace Alsahab.Setting.Data.Repositories
             else
                 query = query.Where(s => s.IsDeleted == false);
 
+            IList<BranchDTO> result;
             ResultCount = query.Count();
             if (paging?.IsPaging == true)
             {
                 int skip = (paging.Index - 1) * paging.Size;
                 query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
             }
-
-            return query.ProjectTo<BranchDTO>().ToList();
+            result = query.ProjectTo<BranchDTO>().ToList();
+            return result;
         }
 
     }

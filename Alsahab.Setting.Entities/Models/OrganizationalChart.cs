@@ -12,7 +12,7 @@ namespace Alsahab.Setting.Entities.Models
         public string Title { get; set; }
         //public bool IsDeleted { get; set; }
         //public DateTime CreateDate { get; set; }
-        public long? ParentId { get; set; }
+        public long? ParentID { get; set; }
         public string Code { get; set; }
         public long? LeftIndex { get; set; }
         public long? RightIndex { get; set; }
@@ -35,7 +35,7 @@ namespace Alsahab.Setting.Entities.Models
 
             entity.Property(e => e.OldCode).HasMaxLength(50);
 
-            entity.Property(e => e.ParentId).HasColumnName("ParentID");
+            entity.Property(e => e.ParentID).HasColumnName("ParentID");
 
             entity.Property(e => e.Title)
                 .IsRequired()
@@ -43,7 +43,7 @@ namespace Alsahab.Setting.Entities.Models
 
             entity.HasOne(d => d.Parent)
                 .WithMany(p => p.InverseParent)
-                .HasForeignKey(d => d.ParentId)
+                .HasForeignKey(d => d.ParentID)
                 .HasConstraintName("FK_OrganizationalChart_OrganizationalChart");
         }
     }
