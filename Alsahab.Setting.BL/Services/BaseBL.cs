@@ -65,7 +65,6 @@ namespace Alsahab.Setting.BL
         {
             if (response?.ID > 0)
             {
-                response = await _BaseDL.GetByIdAsync(cancellationToken, response?.ID);
                 Log.ObserverStateBase<Dto> state = new Log.ObserverStateBase<Dto>
                 {
                     User = User,
@@ -82,7 +81,7 @@ namespace Alsahab.Setting.BL
                 var temp = dto;
                 if (temp?.ID > 0)
                 {
-                    temp = await _BaseDL.GetByIdAsync(cancellationToken, temp?.ID);
+                    // temp = await _BaseDL.GetByIdAsync(cancellationToken, temp?.ID);
                     Log.ObserverStateBase<Dto> state = new Log.ObserverStateBase<Dto>
                     {
                         User = User,
@@ -99,7 +98,7 @@ namespace Alsahab.Setting.BL
             {
                 if (response?.ID > 0)
                 {
-                    response = _BaseDL.GetById(response?.ID);
+                    // response = _BaseDL.GetById(response?.ID);
                     Log.ObserverStateBase<Dto> state = new Log.ObserverStateBase<Dto>
                     {
                         User = User,
@@ -119,7 +118,7 @@ namespace Alsahab.Setting.BL
                     var temp = dto;
                     if (temp?.ID > 0)
                     {
-                        temp = _BaseDL.GetById(temp?.ID);
+                        // temp = _BaseDL.GetById(temp?.ID);
                         Log.ObserverStateBase<Dto> state = new Log.ObserverStateBase<Dto>
                         {
                             User = User,

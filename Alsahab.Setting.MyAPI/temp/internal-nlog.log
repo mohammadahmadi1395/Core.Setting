@@ -1426,3 +1426,123 @@
 2019-07-08 00:16:55.5299 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
 2019-07-08 00:16:55.5464 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
 2019-07-08 00:16:55.5870 Info Found 36 configuration items
+2019-07-08 06:29:50.4268 Info Message Template Auto Format enabled
+2019-07-08 06:29:50.6776 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 06:29:51.0380 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 06:29:51.0432 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 06:29:51.0602 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 06:29:51.1037 Info Found 36 configuration items
+2019-07-08 06:56:31.2393 Info Message Template Auto Format enabled
+2019-07-08 06:56:31.2593 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 06:56:31.5151 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 06:56:31.5204 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 06:56:31.5364 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 06:56:31.5788 Info Found 36 configuration items
+2019-07-08 07:04:19.8748 Info Message Template Auto Format enabled
+2019-07-08 07:04:19.8935 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 07:04:20.1182 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 07:04:20.1231 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 07:04:20.1454 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 07:04:20.1911 Info Found 36 configuration items
+2019-07-08 07:08:48.5612 Info Message Template Auto Format enabled
+2019-07-08 07:08:48.5777 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 07:08:48.8049 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 07:08:48.8105 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 07:08:48.8283 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 07:08:48.8701 Info Found 36 configuration items
+2019-07-08 07:15:06.7995 Info Message Template Auto Format enabled
+2019-07-08 07:15:06.8166 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 07:15:07.0418 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 07:15:07.0484 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 07:15:07.0645 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 07:15:07.1072 Info Found 36 configuration items
+2019-07-08 07:19:34.0717 Info Message Template Auto Format enabled
+2019-07-08 07:19:34.0931 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 07:19:34.3092 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 07:19:34.3150 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 07:19:34.3339 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 07:19:34.3848 Info Found 36 configuration items
+2019-07-08 07:23:05.0186 Info Message Template Auto Format enabled
+2019-07-08 07:23:05.0363 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 07:23:05.2555 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 07:23:05.2600 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 07:23:05.2791 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 07:23:05.3207 Info Found 36 configuration items
+2019-07-08 07:36:15.4801 Info Message Template Auto Format enabled
+2019-07-08 07:36:15.5194 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 07:36:15.7377 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 07:36:15.7422 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 07:36:15.7606 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 07:36:15.8122 Info Found 36 configuration items
+2019-07-08 07:39:14.8958 Info Message Template Auto Format enabled
+2019-07-08 07:39:14.9155 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 07:39:15.1476 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 07:39:15.1526 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 07:39:15.1723 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 07:39:15.2172 Info Found 36 configuration items
+2019-07-08 07:48:54.8597 Info Message Template Auto Format enabled
+2019-07-08 07:48:54.8765 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 07:48:55.0892 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 07:48:55.0942 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 07:48:55.1117 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 07:48:55.1613 Info Found 36 configuration items
+2019-07-08 07:55:51.6315 Info Message Template Auto Format enabled
+2019-07-08 07:55:51.6494 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 07:55:51.8773 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 07:55:51.8846 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 07:55:51.9010 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 07:55:51.9436 Info Found 36 configuration items
+2019-07-08 08:01:49.6692 Info Message Template Auto Format enabled
+2019-07-08 08:01:49.6868 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 08:01:49.9005 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 08:01:49.9053 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 08:01:49.9254 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 08:01:49.9692 Info Found 36 configuration items
+2019-07-08 08:04:38.6946 Info Message Template Auto Format enabled
+2019-07-08 08:04:38.7111 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 08:04:38.9356 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 08:04:38.9419 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 08:04:38.9595 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 08:04:39.0013 Info Found 36 configuration items
+2019-07-08 08:09:15.4285 Info Message Template Auto Format enabled
+2019-07-08 08:09:15.4483 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 08:09:15.6757 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 08:09:15.6808 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 08:09:15.6968 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 08:09:15.7416 Info Found 36 configuration items
+2019-07-08 08:20:27.5169 Info Message Template Auto Format enabled
+2019-07-08 08:20:27.5369 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 08:20:27.7625 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 08:20:27.7671 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 08:20:27.7860 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 08:20:27.8307 Info Found 36 configuration items
+2019-07-08 08:21:13.7249 Info Message Template Auto Format enabled
+2019-07-08 08:21:13.7674 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 08:21:13.9889 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 08:21:13.9950 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 08:21:14.0119 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 08:21:14.0535 Info Found 36 configuration items
+2019-07-08 08:33:31.1598 Info Message Template Auto Format enabled
+2019-07-08 08:33:31.1807 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 08:33:31.3982 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 08:33:31.4033 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 08:33:31.4214 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 08:33:31.4656 Info Found 36 configuration items
+2019-07-08 08:59:18.7325 Info Message Template Auto Format enabled
+2019-07-08 08:59:18.7767 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 08:59:19.0045 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 08:59:19.0129 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 08:59:19.0294 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 08:59:19.0700 Info Found 36 configuration items
+2019-07-08 09:07:09.5345 Info Message Template Auto Format enabled
+2019-07-08 09:07:09.5508 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 09:07:09.7668 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 09:07:09.7714 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 09:07:09.7907 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 09:07:09.8382 Info Found 36 configuration items
+2019-07-08 09:12:49.6185 Info Message Template Auto Format enabled
+2019-07-08 09:12:49.6363 Info Loading assembly: NLog.Web.AspNetCore
+2019-07-08 09:12:49.8704 Info Adding target AsyncWrapper Target[LogFile](File Target[LogFile_wrapped])
+2019-07-08 09:12:49.8773 Info Adding target AsyncWrapper Target[ColorConsole](ColoredConsole Target[ColorConsole_wrapped])
+2019-07-08 09:12:49.8960 Info Configured from an XML element in /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Setting.MyAPI/bin/Debug/netcoreapp2.1/nlog.config...
+2019-07-08 09:12:49.9395 Info Found 36 configuration items

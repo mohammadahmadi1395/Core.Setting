@@ -62,16 +62,28 @@ namespace Alsahab.Setting.Entities
 
         public void CreateMappings(Profile profile)
         {
-            var mappingExpression = profile.CreateMap<TEntity, TDto>();
+            var mappingExpression = profile.CreateMap<TDto, TEntity>();
+
             var dtoType = typeof(TDto);
             var entityType = typeof(TEntity);
             //Ignore any property of source (like Post.Author) that does not contain in destination
-            foreach (var property in dtoType.GetProperties())
+            foreach(var property in entityType.GetProperties())
             {
-                if (entityType.GetProperty(property.Name) == null)
-                    mappingExpression.ForMember(property.Name, opt => opt.Ignore());
+                if (dtoType.GetProperty(property.Name) == null)
+                    mappingExpression.ForMember(property.Name, opt=>opt.Ignore());
             }
-            CustomMappings(mappingExpression.ReverseMap());
+
+
+            // var mappingExpression = profile.CreateMap<TEntity, TDto>();
+            // var dtoType = typeof(TDto);
+            // var entityType = typeof(TEntity);
+            // //Ignore any property of source (like Post.Author) that does not contain in destination
+            // foreach (var property in dtoType.GetProperties())
+            // {
+            //     if (entityType.GetProperty(property.Name) == null)
+            //         mappingExpression.ForMember(property.Name, opt => opt.Ignore());
+            // }
+            // CustomMappings(mappingExpression.ReverseMap());
         }
 
         public virtual void CustomMappings(IMappingExpression<TDto, TEntity> mapping)

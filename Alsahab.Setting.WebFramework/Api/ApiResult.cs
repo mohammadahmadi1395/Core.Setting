@@ -99,11 +99,11 @@ namespace Alsahab.Setting.WebFramework.Api
             try
             {
                 var typeOfData = result.Value.GetType().GetTypeInfo().GenericTypeArguments[0];
-                return new ApiResult<T>(true, ResponseStatus.Successful, default(T), (T)result.Value);
+                return new ApiResult<T>(true, ResponseStatus.Successful, default, (T)(result.Value));
             }
             catch (Exception ex)
             {
-                return new ApiResult<T>(true, ResponseStatus.Successful, (T)result.Value);
+                return new ApiResult<T>(true, ResponseStatus.Successful, (T)(result.Value));
             }
 
             // return new ApiResult<TData>(true, ResponseStatus.Successful, (TData)result.Value);

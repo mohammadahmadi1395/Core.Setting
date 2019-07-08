@@ -97,9 +97,22 @@ namespace Alsahab.Setting.WebFramework.Api
             if (request.ActionType != Alsahab.Common.ActionType.Insert)
                 throw new AppException(ResponseStatus.BadRequest, "ActionType of Request is not valid");
 
-            var resultDto = await _TBL.CallBL(b => b.InsertAsync(request.RequestDto, cancellationToken), request.User, request.PagingInfo, request.Language);
-
+                var resultDto = await _TBL.CallBL(b => b.InsertAsync(request.RequestDto, cancellationToken), request.User, request.PagingInfo, request.Language);
             return Ok(resultDto);
+        }
+
+        [Route("CreateList")]
+        [HttpPost]
+        public virtual async Task<ApiResult<List<TDto>>> CreateList(BaseRequest<TDto> request, CancellationToken cancellationToken)//TDto dto, CancellationToken cancellationToken)
+        {
+            if (request.ActionType != Alsahab.Common.ActionType.Insert)
+                throw new AppException(ResponseStatus.BadRequest, "ActionType of Request is not valid");
+
+            if (! (request.RequestDtoList.Count > 0))
+                throw new AppException(ResponseStatus.BadRequest);
+            
+            var resultDtoList = await _TBL.CallBL(b=>b.InsertListAsync(request.RequestDtoList, cancellationToken), request.User, request.PagingInfo, request.Language);
+                return Ok(resultDtoList);
         }
 
         [Route("Get")]

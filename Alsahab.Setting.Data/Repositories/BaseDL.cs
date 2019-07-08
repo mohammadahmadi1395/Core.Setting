@@ -24,7 +24,7 @@ namespace Alsahab.Setting.Data.Repositories
         private readonly ApplicationDbContext DbContext;
         public DbSet<TEntity> Entities { get; }
         public virtual IQueryable<TEntity> TableAllData => Entities;
-        public virtual IQueryable<TEntity> Table => Entities.Where(s => s.IsDeleted == false).AsNoTracking();
+        public virtual IQueryable<TEntity> Table => Entities.Where(s => s.IsDeleted == false);
         public virtual IQueryable<TEntity> TableNoTrackingAllData => Entities.AsNoTracking();
         public virtual IQueryable<TEntity> TableNoTracking => Entities.Where(s => s.IsDeleted == false).AsNoTracking();
         public ResponseStatus ResponseStatus { get; set; }
@@ -60,49 +60,7 @@ namespace Alsahab.Setting.Data.Repositories
         }
         public virtual async Task<TDto> InsertAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
         {
-            TEntity entity = Activator.CreateInstance(typeof(TEntity)) as TEntity;//, new Object[] {});//new TEntity();//BaseEntity<TEntity, TDto, long>.FromDto(dto);
-            // var entity = Mapper.Map<TEntity>(dto);
-            var dtoType = typeof(TDto);
-            var entityType = typeof(TEntity);
-            //Ignore any property of source (like Post.Author) that does not contain in destination
-            foreach(var property in entityType.GetProperties())
-            {
-                var v = dtoType.GetProperty(property.Name);
-                var p = entityType.GetProperty(property.Name);
-                if ( v == null)
-                {    
-                    p.SetValue(entity, null, null);
-                    continue;
-                }
-                var value = v.GetValue(dto, null);
-                // if (value != null)
-                    p.SetValue(entity, value, null);
-            }
-
-            // foreach (var property in typeof(TEntity).GetProperties())
-            // {
-            //     try
-            //     {
-            //         var value = property.GetValue(dto);
-            //         var a = property.ChangeType();
-            //     }
-            //     catch
-            //     {
-            //         string filterProp = property.Name;//.Replace("From", "");
-            //         Type infoType = typeof(TEntity);
-            //         PropertyInfo info = infoType.GetProperty(filterProp);
-            //         var type = property.PropertyType;
-            //         // var value = prop.GetValue(filterDto);
-            //         var nullableType = typeof(Nullable<>).MakeGenericType(type);
-            //         var value = property.GetValue(dto);
-            //     }
-            //     if (value != null)
-            //         property.SetValue(entity, value, null);
-            // }
-
-            // foreach (var prop in entity.GetType().GetProperties())
-            //     prop.SetValue(entity,prop.GetValue(dto));
-
+            TEntity entity = BaseEntity<TEntity, TDto, long>.FromDto(dto); // AutoMapper.Mapper.Map<TDto, TEntity>(dto);
 
             await Entities.AddAsync(entity, cancellationToken).ConfigureAwait(false);
             if (saveNow)
@@ -110,20 +68,22 @@ namespace Alsahab.Setting.Data.Repositories
 
             var resultDto = await TableNoTracking.ProjectTo<TDto>()
                 .SingleOrDefaultAsync(s => s.ID == entity.ID, cancellationToken);
-
+            
             return resultDto;
         }
         public virtual async Task<IList<TDto>> InsertListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
         {
-            var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
+            var entityList = Mapper.Map<IList<TEntity>>(dtoList).AsQueryable();
 
             await Entities.AddRangeAsync(entityList, cancellationToken).ConfigureAwait(false);
 
             if (saveNow)
                 await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
-            var resultDto = await entityList.ProjectTo<TDto>().ToListAsync(cancellationToken);
-            return resultDto;
+            IList<TDto> resultDtoList = new List<TDto>();
+            foreach(var val in entityList)
+                resultDtoList.Add(TableNoTracking.ProjectTo<TDto>().SingleOrDefault(s=>s.ID == val.ID));
+            return resultDtoList;
         }
         public virtual IList<TDto> InsertList(IList<TDto> dtoList, bool saveNow)
         {
