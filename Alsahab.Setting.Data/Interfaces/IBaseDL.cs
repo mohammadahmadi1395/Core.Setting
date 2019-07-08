@@ -17,8 +17,6 @@ namespace Alsahab.Setting.Data.Interfaces
         where TDto : BaseDTO
         where TFilterDto : TDto
     {
-        ResponseStatus ResponseStatus { get; set; }
-        string ErrorMessage { get; set; }
         int ResultCount { get; set; }
         DbSet<TEntity> Entities { get; }
         IQueryable<TEntity> Table { get; }

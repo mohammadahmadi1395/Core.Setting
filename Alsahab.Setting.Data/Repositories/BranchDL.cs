@@ -22,8 +22,6 @@ namespace Alsahab.Setting.Data.Repositories
             var query = TableNoTracking;
             if (filter == null)
             {
-                ResponseStatus = Alsahab.Common.ResponseStatus.Successful;
-                ErrorMessage = "";
                 return await query.ProjectTo<BranchDTO>().ToListAsync(cancellationToken);
             }
 
@@ -72,8 +70,6 @@ namespace Alsahab.Setting.Data.Repositories
                 query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
             }
 
-            ResponseStatus = Alsahab.Common.ResponseStatus.Successful;
-            ErrorMessage = "";
             return await query.ProjectTo<BranchDTO>().ToListAsync(cancellationToken);
         }
 
@@ -82,8 +78,6 @@ namespace Alsahab.Setting.Data.Repositories
             var query = TableNoTracking;
             if (filter == null)
             {
-                ResponseStatus = Alsahab.Common.ResponseStatus.Successful;
-                ErrorMessage = "";
                 return query.ProjectTo<BranchDTO>().ToList();
             }
 
@@ -132,8 +126,6 @@ namespace Alsahab.Setting.Data.Repositories
                 query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
             }
 
-            ResponseStatus = Alsahab.Common.ResponseStatus.Successful;
-            ErrorMessage = "";
             return query.ProjectTo<BranchDTO>().ToList();
         }
 

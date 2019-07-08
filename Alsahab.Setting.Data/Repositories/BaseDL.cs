@@ -27,249 +27,37 @@ namespace Alsahab.Setting.Data.Repositories
         public virtual IQueryable<TEntity> Table => Entities.Where(s => s.IsDeleted == false);
         public virtual IQueryable<TEntity> TableNoTrackingAllData => Entities.AsNoTracking();
         public virtual IQueryable<TEntity> TableNoTracking => Entities.Where(s => s.IsDeleted == false).AsNoTracking();
-        public ResponseStatus ResponseStatus { get; set; }
-        public string ErrorMessage { get; set; }
         public int ResultCount { get; set; }
         public BaseDL(ApplicationDbContext dbContext)
         {
             DbContext = dbContext;
             Entities = DbContext.Set<TEntity>();
-            ResponseStatus = ResponseStatus.DatabaseError;
-            ErrorMessage = "خطای پایگاه داده";
             ResultCount = 0;
         }
-        // public virtual async Task DeleteRangeAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken, bool saveNow = true)
-        // {
-        //     Assert.NotNull(entities, nameof(entities));
-        //     Entities.RemoveRange(entities);
-        //     if (saveNow)
-        //         await DbContext.SaveChangesAsync(cancellationToken);
-        // }
-        public virtual TDto Insert(TDto dto, bool saveNow = true)
-        {
-            TEntity entity = BaseEntity<TEntity, TDto, long>.FromDto(dto); // AutoMapper.Mapper.Map<TDto, TEntity>(dto);
 
-            Entities.Add(entity);
-            if (saveNow)
-                DbContext.SaveChanges();
-
-            var resultDto = TableNoTracking.ProjectTo<TDto>()
-                .SingleOrDefault(s => s.ID == entity.ID);
-
-            return resultDto;
-        }
-        public virtual async Task<TDto> InsertAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
-        {
-            TEntity entity = BaseEntity<TEntity, TDto, long>.FromDto(dto); // AutoMapper.Mapper.Map<TDto, TEntity>(dto);
-
-            await Entities.AddAsync(entity, cancellationToken).ConfigureAwait(false);
-            if (saveNow)
-                await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-
-            var resultDto = await TableNoTracking.ProjectTo<TDto>()
-                .SingleOrDefaultAsync(s => s.ID == entity.ID, cancellationToken);
-            
-            return resultDto;
-        }
-        public virtual async Task<IList<TDto>> InsertListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
-        {
-            var entityList = Mapper.Map<IList<TEntity>>(dtoList).AsQueryable();
-
-            await Entities.AddRangeAsync(entityList, cancellationToken).ConfigureAwait(false);
-
-            if (saveNow)
-                await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-
-            IList<TDto> resultDtoList = new List<TDto>();
-            foreach(var val in entityList)
-                resultDtoList.Add(TableNoTracking.ProjectTo<TDto>().SingleOrDefault(s=>s.ID == val.ID));
-            return resultDtoList;
-        }
-        public virtual IList<TDto> InsertList(IList<TDto> dtoList, bool saveNow)
-        {
-            var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
-
-            Entities.AddRange(entityList);
-
-            if (saveNow)
-                DbContext.SaveChanges();
-
-            var resultDto = entityList.ProjectTo<TDto>().ToList();
-            return resultDto;
-        }
-        public virtual IList<TDto> UpdateList(IList<TDto> dtoList, bool saveNow = true)
-        {
-            IList<TDto> resultList = new List<TDto>();
-            foreach (var dto in dtoList)
-            {
-                resultList.Add(Update(dto));
-            }
-            return resultList;
-            // List<TEntity> tempList = new List<TEntity>();
-
-            // foreach (var dto in dtoList)
-            // {
-            //     TEntity entity = (TEntity)Activator.CreateInstance(typeof(TEntity), new object[] { });
-            //     tempList.Add(entity.ToEntity(dto)); // AutoMapper.Mapper.Map<TDto, TEntity>(dto);
-            // }
-            // // var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
-            // // var entityList = tempList.AsQueryable();
-
-            // foreach (var temp in tempList)
-            //     Entities.Update(temp);
-            // // Entities.UpdateRange(tempList);
-            // if (saveNow)
-            //     DbContext.SaveChanges();
-
-            // // var resultDto = entityList.Select(s=>Mapper.Map<TDto>(s))?.ToList();// await entityList.ProjectTo<TDto>().ToListAsync(cancellationToken);
-            // var resultDto = tempList.AsQueryable().ProjectTo<TDto>().ToList();
-
-            // return resultDto;
-        }
-        public virtual async Task<List<TDto>> UpdateListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
-        {
-            var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
-
-            Entities.UpdateRange(entityList);
-
-            if (saveNow)
-                await DbContext.SaveChangesAsync(cancellationToken);
-
-            var resultDto = entityList.ProjectTo<TDto>().ToList();
-
-            return resultDto;
-        }
-        public virtual List<TDto> DeleteRange(IList<TDto> dtoList, bool saveNow = true)
-        {
-            var entityList = Mapper.Map<IEnumerable<TDto>, IQueryable<TEntity>>(dtoList);
-
-            Entities.RemoveRange(entityList);
-
-            if (saveNow)
-                DbContext.SaveChanges();
-
-            var resultDto = entityList.ProjectTo<TDto>().ToList();
-
-            return resultDto;
-        }
-        public virtual TDto Update(TDto dto, bool saveNow = true)
-        {
-            var entity = Entities.Find(dto.ID);
-            if (entity == null)
-                throw new AppException(ResponseStatus.NotFound, "not found entity.");
-
-            entity = entity.ToEntity(dto);
-            Entities.Update(entity);
-
-            if (saveNow)
-                DbContext.SaveChanges();
-
-            var resultDto = TableNoTrackingAllData.ProjectTo<TDto>()
-                .SingleOrDefault(q => q.ID.Equals(dto.ID));
-
-            return resultDto;
-        }
-        public virtual async Task<TDto> UpdateAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
-        {
-            var entity = await Entities.FindAsync(dto.ID);
-            if (entity == null)
-                throw new AppException(ResponseStatus.NotFound, "not found entity.");
-
-            entity = entity.ToEntity(dto);
-            Entities.Update(entity);
-
-            if (saveNow)
-                await DbContext.SaveChangesAsync(cancellationToken);
-
-            var resultDto = await TableNoTracking.ProjectTo<TDto>()
-                .SingleOrDefaultAsync(q => q.ID == dto.ID, cancellationToken);
-
-            return resultDto;
-        }
-        public virtual TDto Delete(TDto dto, bool saveNow = true)
-        {
-            var entity = Entities.Find(dto.ID);
-            if (entity == null)
-                throw new AppException(ResponseStatus.NotFound, "not found entity.");
-
-            entity = entity.ToEntity(dto);
-
-            Entities.Remove(entity);
-            if (saveNow)
-                DbContext.SaveChanges();
-
-            return dto;
-        }
-        public virtual async Task<TDto> DeleteAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
-        {
-            var entity = await Entities.FindAsync(dto.ID);
-            if (entity == null)
-                throw new AppException(ResponseStatus.NotFound, "not found entity.");
-
-            entity = entity.ToEntity(dto);
-
-            Entities.Remove(entity);
-            if (saveNow)
-                await DbContext.SaveChangesAsync(cancellationToken);
-
-            return dto;
-        }
+        #region Async Get
         public virtual async Task<IList<TDto>> GetAllAsync(CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
             var query = TableNoTracking;
-            ResultCount = query.Count();
+            ResultCount = await query.CountAsync(cancellationToken);
             if (paging?.IsPaging == true)
             {
                 int skip = (paging.Index - 1) * paging.Size;
                 query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
             }
             var result = await query.ProjectTo<TDto>().ToListAsync(cancellationToken);
-            ErrorMessage = "";
-            ResponseStatus = ResponseStatus.Successful;
-            return result;
-        }
-        public virtual IList<TDto> Get(TFilterDto filterDto, PagingInfoDTO paging = null)
-        {
-            var query = TableNoTracking;
-            ResultCount = query.Count();
-            if (paging?.IsPaging == true)
-            {
-                int skip = (paging.Index - 1) * paging.Size;
-                query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
-            }
-            var result = query.ProjectTo<TDto>().ToList();
-            ErrorMessage = "";
-            ResponseStatus = ResponseStatus.Successful;
-            return result;
-            //TODO:
-            // اگر تابع ای‌سینک بالا کامل شد، در اینجا هم بیاید
-        }
-        public virtual IList<TDto> GetAll(PagingInfoDTO paging = null)
-        {
-            var query = TableNoTracking;
-            ResultCount = query.Count();
-            if (paging?.IsPaging == true)
-            {
-                int skip = (paging.Index - 1) * paging.Size;
-                query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
-            }
-            var result = query.ProjectTo<TDto>().ToList();
-            ErrorMessage = "";
-            ResponseStatus = ResponseStatus.Successful;
             return result;
         }
         public virtual async Task<IList<TDto>> GetAsync(TFilterDto filterDto, CancellationToken cancellationToken, PagingInfoDTO paging = null)
         {
             var query = TableNoTracking;
-            ResultCount = query.Count();
+            ResultCount = await query.CountAsync(cancellationToken);
             if (paging?.IsPaging == true)
             {
                 int skip = (paging.Index - 1) * paging.Size;
                 query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
             }
             var result = await query.ProjectTo<TDto>().ToListAsync(cancellationToken);
-            ErrorMessage = "";
-            ResponseStatus = ResponseStatus.Successful;
             return result;
             //TODO:
             // foreach (var prop in filterDto.GetType().GetProperties())
@@ -340,18 +128,6 @@ namespace Alsahab.Setting.Data.Repositories
             // return await query.ProjectTo<TDto>()
             //     .ToListAsync(cancellationToken); ;
         }
-        Task<IList<TDto>> IBaseDL<TEntity, TDto, TFilterDto>.UpdateListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow)
-        {
-            throw new NotImplementedException();
-        }
-        public Task<IList<TDto>> DeleteListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
-        {
-            throw new NotImplementedException();
-        }
-        public IList<TDto> DeleteList(IList<TDto> dtoList, bool saveNow = true)
-        {
-            throw new NotImplementedException();
-        }
         public virtual async Task<TDto> GetByIdAsync(CancellationToken cancellationToken, long? id)
         {
             if (!(id > 0))
@@ -360,6 +136,43 @@ namespace Alsahab.Setting.Data.Repositories
             return await TableNoTracking.ProjectTo<TDto>()
                 .SingleOrDefaultAsync(q => q.ID.Equals(id), cancellationToken);
         }
+        public virtual async Task<IList<TDto>> GetByIdListAsync(CancellationToken cancellationToken, IList<long> idList)
+        {
+            idList = idList.Where(s => s > 0)?.ToList();
+            if (idList?.Count > 0)
+                return await TableNoTracking.ProjectTo<TDto>()
+                    .Where(q => idList.Contains(q.ID ?? 0)).ToListAsync(cancellationToken);
+            else
+                return new List<TDto>();
+        }
+        #endregion Async Get
+        #region Sync Get
+        public virtual IList<TDto> GetAll(PagingInfoDTO paging = null)
+        {
+            var query = TableNoTracking;
+            ResultCount = query.Count();
+            if (paging?.IsPaging == true)
+            {
+                int skip = (paging.Index - 1) * paging.Size;
+                query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
+            }
+            var result = query.ProjectTo<TDto>().ToList();
+            return result;
+        }
+        public virtual IList<TDto> Get(TFilterDto filterDto, PagingInfoDTO paging = null)
+        {
+            var query = TableNoTracking;
+            ResultCount = query.Count();
+            if (paging?.IsPaging == true)
+            {
+                int skip = (paging.Index - 1) * paging.Size;
+                query = query.OrderBy(s => s.ID).Skip(skip).Take(paging.Size);
+            }
+            var result = query.ProjectTo<TDto>().ToList();
+            return result;
+            //TODO:
+            // اگر تابع ای‌سینک بالا کامل شد، در اینجا هم بیاید
+        }
         public virtual TDto GetById(long? id)
         {
             if (!(id > 0))
@@ -367,32 +180,200 @@ namespace Alsahab.Setting.Data.Repositories
 
             return TableNoTracking.ProjectTo<TDto>().SingleOrDefault(q => q.ID.Equals(id));
         }
-        public virtual async Task<IList<TDto>> GetByIdListAsync(CancellationToken cancellationToken, IList<long> idList)
-        {
-            return await TableNoTracking.ProjectTo<TDto>()
-                .Where(q => idList.Contains(q.ID ?? 0)).ToListAsync(cancellationToken);
-        }
         public virtual IList<TDto> GetByIdList(IList<long> idList)
         {
-            return TableNoTracking.ProjectTo<TDto>()
-                .Where(q => idList.Contains(q.ID ?? 0)).ToList();
+            idList = idList.Where(s => s > 0)?.ToList();
+            if (idList?.Count > 0)
+                return TableNoTracking.ProjectTo<TDto>()
+                    .Where(q => idList.Contains(q.ID ?? 0)).ToList();
+            else return new List<TDto>();
+        }
+        #endregion Sync Get
+
+        #region Async Insert
+        public virtual async Task<TDto> InsertAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
+        {
+            TEntity entity = BaseEntity<TEntity, TDto, long>.FromDto(dto); // AutoMapper.Mapper.Map<TDto, TEntity>(dto);
+
+            await Entities.AddAsync(entity, cancellationToken).ConfigureAwait(false);
+            if (saveNow)
+                await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            var resultDto = await TableNoTracking.ProjectTo<TDto>()
+                .SingleOrDefaultAsync(s => s.ID == entity.ID, cancellationToken);
+
+            return resultDto;
+        }
+        public virtual async Task<IList<TDto>> InsertListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
+        {
+            var entityList = Mapper.Map<IList<TEntity>>(dtoList).AsQueryable();
+
+            await Entities.AddRangeAsync(entityList, cancellationToken).ConfigureAwait(false);
+
+            if (saveNow)
+                await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            IList<TDto> resultDtoList = new List<TDto>();
+            foreach (var val in entityList)
+                resultDtoList.Add(await TableNoTracking.ProjectTo<TDto>().SingleOrDefaultAsync(s => s.ID == val.ID, cancellationToken));
+            return resultDtoList;
+        }
+        #endregion Async Insert
+        #region Sync Insert
+        public virtual TDto Insert(TDto dto, bool saveNow = true)
+        {
+            TEntity entity = BaseEntity<TEntity, TDto, long>.FromDto(dto); // AutoMapper.Mapper.Map<TDto, TEntity>(dto);
+
+            Entities.Add(entity);
+            if (saveNow)
+                DbContext.SaveChanges();
+
+            var resultDto = TableNoTracking.ProjectTo<TDto>()
+                .SingleOrDefault(s => s.ID == entity.ID);
+
+            return resultDto;
+        }
+        public virtual IList<TDto> InsertList(IList<TDto> dtoList, bool saveNow)
+        {
+            var entityList = Mapper.Map<IList<TEntity>>(dtoList).AsQueryable();
+
+            Entities.AddRange(entityList);
+
+            if (saveNow)
+                DbContext.SaveChanges();
+
+            IList<TDto> resultDtoList = new List<TDto>();
+            foreach (var val in entityList)
+                resultDtoList.Add(TableNoTracking.ProjectTo<TDto>().SingleOrDefault(s => s.ID == val.ID));
+            return resultDtoList;
+        }
+        #endregion SyncInsert
+
+        #region Async Update
+        public virtual async Task<TDto> UpdateAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
+        {
+            var entity = await Entities.FindAsync(dto.ID);
+            if (entity == null)
+                throw new AppException(ResponseStatus.NotFound, "not found entity.");
+
+            entity = entity.ToEntity(dto);
+            Entities.Update(entity);
+
+            if (saveNow)
+                await DbContext.SaveChangesAsync(cancellationToken);
+
+            var resultDto = await TableNoTracking.ProjectTo<TDto>()
+                .SingleOrDefaultAsync(q => q.ID == dto.ID, cancellationToken);
+
+            return resultDto;
+        }
+        public virtual async Task<IList<TDto>> UpdateListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
+        {
+            var entityList = Mapper.Map<IList<TEntity>>(dtoList).AsQueryable();
+
+            Entities.UpdateRange(entityList);
+
+            if (saveNow)
+                await DbContext.SaveChangesAsync(cancellationToken);
+
+            IList<TDto> resultDtoList = new List<TDto>();
+            foreach (var val in entityList)
+                resultDtoList.Add(TableNoTracking.ProjectTo<TDto>().SingleOrDefault(s => s.ID == val.ID));
+            return resultDtoList;
+        }
+        #endregion Async Update
+
+        #region Sync Update
+        public virtual TDto Update(TDto dto, bool saveNow = true)
+        {
+            var entity = Entities.Find(dto.ID);
+            if (entity == null)
+                throw new AppException(ResponseStatus.NotFound, "not found entity.");
+
+            entity = entity.ToEntity(dto);
+            Entities.Update(entity);
+
+            if (saveNow)
+                DbContext.SaveChanges();
+
+            var resultDto = TableNoTrackingAllData.ProjectTo<TDto>()
+                .SingleOrDefault(q => q.ID.Equals(dto.ID));
+
+            return resultDto;
         }
 
-        // #region  Async Methods
-        // public virtual Task<TEntity> GetByIdAsync(CancellationToken cancellationToken, params object[] ids)
-        // {
-        //     return Entities.FindAsync(ids);
-        // }
+        public virtual IList<TDto> UpdateList(IList<TDto> dtoList, bool saveNow = true)
+        {
+            var entityList = Mapper.Map<IList<TEntity>>(dtoList).AsQueryable();
+            Entities.UpdateRange(entityList);
+            if (saveNow)
+                DbContext.SaveChanges();
+            IList<TDto> resultDtoList = new List<TDto>();
+            foreach (var val in entityList)
+                resultDtoList.Add(TableNoTracking.ProjectTo<TDto>().SingleOrDefault(s => s.ID == val.ID));
+            return resultDtoList;
+        }
+        #endregion Sync Update
 
-        // #endregion
 
-        // #region Sync Methods
-        // public virtual TEntity GetById(params object[] ids)
-        // {
-        //     return Entities.Find(ids);
-        // }
+        #region Delete Async
+        public virtual async Task<TDto> DeleteAsync(TDto dto, CancellationToken cancellationToken, bool saveNow = true)
+        {
+            var entity = await Entities.FindAsync(dto.ID);
+            if (entity == null)
+                throw new AppException(ResponseStatus.NotFound, "not found entity.");
+            entity = entity.ToEntity(dto);
 
-        // #endregion
+            var result = TableNoTracking.ProjectTo<TDto>()
+                    .SingleOrDefault(q => q.ID.Equals(dto.ID));
+
+            Entities.Remove(entity);
+            if (saveNow)
+                await DbContext.SaveChangesAsync(cancellationToken);
+
+            return result;
+        }
+        public async virtual Task<IList<TDto>> DeleteListAsync(IList<TDto> dtoList, CancellationToken cancellationToken, bool saveNow = true)
+        {
+            var entityList = Mapper.Map<IList<TEntity>>(dtoList).AsQueryable();
+            var idList = dtoList?.Select(s=>s.ID)?.ToList();
+            var result = await TableNoTracking.ProjectTo<TDto>()
+                    .Where(q => idList.Contains(q.ID ?? 0)).ToListAsync(cancellationToken);
+
+            Entities.RemoveRange(entityList);
+            if (saveNow)
+                DbContext.SaveChanges();
+            
+            return result;
+        }
+        #endregion Delete Async
+        #region Deleted sync
+        public virtual TDto Delete(TDto dto, bool saveNow = true)
+        {
+            var entity = Entities.Find(dto.ID);
+            if (entity == null)
+                throw new AppException(ResponseStatus.NotFound, "not found entity.");
+            entity = entity.ToEntity(dto);
+            Entities.Remove(entity);
+            if (saveNow)
+                DbContext.SaveChanges();
+            return dto;
+        }
+        public IList<TDto> DeleteList(IList<TDto> dtoList, bool saveNow = true)
+        {
+            var entityList = Mapper.Map<IList<TEntity>>(dtoList).AsQueryable();
+            var idList = dtoList?.Select(s=>s.ID)?.ToList();
+            var result = TableNoTracking.ProjectTo<TDto>()
+                    .Where(q => idList.Contains(q.ID ?? 0)).ToList();
+
+            Entities.RemoveRange(entityList);
+            if (saveNow)
+                DbContext.SaveChanges();
+            
+            return result;
+        }
+        #endregion Delete sync
+
 
         // #region Attach && Detach
         // public virtual void Attach(TEntity entity)

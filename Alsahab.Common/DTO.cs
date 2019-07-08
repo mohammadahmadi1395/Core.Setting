@@ -64,7 +64,6 @@ namespace Alsahab.Common
         public long? ParentID { get; set; }
         public String Title { get; set; }
         public String Code { get; set; }
-
         public Nullable<long> LeftIndex { get; set; }
         public Nullable<long> RightIndex { get; set; }
         public Nullable<long> Depth { get; set; }

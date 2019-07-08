@@ -155,6 +155,20 @@ namespace Alsahab.Setting.WebFramework.Api
             return await _TBL.CallBL(b => b.UpdateAsync(request.RequestDto, cancellationToken), request.User, request.PagingInfo, request.Language);
         }
 
+        [Route("UpdateList")]
+        [HttpPost]
+        public virtual async Task<ApiResult<List<TDto>>> UpdateList(BaseRequest<TDto> request, CancellationToken cancellationToken)//TDto dto, CancellationToken cancellationToken)
+        {
+            if (request.ActionType != Alsahab.Common.ActionType.Update)
+                throw new AppException(ResponseStatus.BadRequest, "ActionType of Request is not valid");
+
+            if (! (request.RequestDtoList.Count > 0))
+                throw new AppException(ResponseStatus.BadRequest);
+            
+            var resultDtoList = await _TBL.CallBL(b=>b.UpdateListAsync(request.RequestDtoList, cancellationToken), request.User, request.PagingInfo, request.Language);
+                return Ok(resultDtoList);
+        }
+
         [Route("Delete")]
         // [HttpDelete]
         [HttpPost]
@@ -164,16 +178,25 @@ namespace Alsahab.Setting.WebFramework.Api
                 throw new BadRequestException("ActionType of Request is not valid");
             
             TDto data =  (TDto)Activator.CreateInstance(typeof(TDto), new object[] { });
-            // BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Instance;
-            // CultureInfo culture = null; // use InvariantCulture or other if you prefer
-            // TDto data = Activator.CreateInstance(typeof(TDto), flags, null, new object[] {}, culture) as TDto;
-            // TDto data = Activator.CreateInstance(typeof(TDto), new object[] { null, null }) as TDto;
             if (request.RequestID > 0)
                 data.ID = request.RequestID;
             else
                 data = request.RequestDto;
-            data.IsDeleted = true;
             return await _TBL.CallBL(b => b.SoftDeleteAsync(request.RequestDto, cancellationToken), request.User, request.PagingInfo, request.Language);
+        }
+
+        [Route("DeleteList")]
+        [HttpPost]
+        public virtual async Task<ApiResult<List<TDto>>> DeleteList(BaseRequest<TDto> request, CancellationToken cancellationToken)//TDto dto, CancellationToken cancellationToken)
+        {
+            if (request.ActionType != Alsahab.Common.ActionType.SoftDelete && request.ActionType != Alsahab.Common.ActionType.Delete)
+                throw new AppException(ResponseStatus.BadRequest, "ActionType of Request is not valid");
+
+            if (! (request.RequestDtoList.Count > 0))
+                throw new AppException(ResponseStatus.BadRequest);
+            
+            var resultDtoList = await _TBL.CallBL(b=>b.SoftDeleteListAsync(request.RequestDtoList, cancellationToken), request.User, request.PagingInfo, request.Language);
+                return Ok(resultDtoList);
         }
 
         // [HttpDelete("{id:guid}")]
