@@ -149,8 +149,6 @@ namespace Alsahab.Setting.BL
             //Set Culture To Translate
             ValidatorOptions.LanguageManager.Culture = Culture;
             var blResult = ((AbstractValidator<TObject>)blValidator).Validate(data);
-            var cc = (AbstractValidator<TObject>)dtoValidator;
-            var xc = cc.Validate(data);
             var dtoResult = ((AbstractValidator<TObject>)dtoValidator).Validate(data);
             ValidationErrors = blResult.Errors;
             ((List<ValidationFailure>)ValidationErrors).AddRange(dtoResult.Errors);
