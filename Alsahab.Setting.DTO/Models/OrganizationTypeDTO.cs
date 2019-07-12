@@ -5,7 +5,7 @@ namespace Alsahab.Setting.DTO
 {
     public class OrganizationTypeDTO : BaseDTO
     {
-        // public string Title { get; set; }
+         public string Title { get; set; }
     }
 
     public class OrganizationTypeValidator : AbstractValidator<OrganizationTypeDTO>

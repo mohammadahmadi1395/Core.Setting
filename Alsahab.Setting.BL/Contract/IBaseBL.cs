@@ -12,7 +12,6 @@ namespace Alsahab.Setting.BL
         where TDto : BaseDTO//class
         where TFilterDto : TDto
     {
-        bool FormHasTree {get;set;}
         bool NeedToAutoCode {get;set;}
         UserInfoDTO User { get; set; }
         Language Language { get; set; }

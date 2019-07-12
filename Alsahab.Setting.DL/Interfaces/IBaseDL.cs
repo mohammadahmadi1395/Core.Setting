@@ -14,7 +14,7 @@ namespace Alsahab.Setting.DL.Interfaces
 {
     public interface IBaseDL<TEntity, TDto, TFilterDto>
         where TEntity : class, IEntity
-        where TDto : BaseDTO
+        where TDto : IBaseDTO
         where TFilterDto : TDto
     {
         int ResultCount { get; set; }

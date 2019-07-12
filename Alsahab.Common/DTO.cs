@@ -51,12 +51,17 @@ namespace Alsahab.Common
         public int ID { get; set; }
     }
 
-    public abstract class BaseDTO
+    public abstract class BaseDTO : IBaseDTO
     {
         public long? ID { get; set; }
         public bool? IsDeleted { get; set; }
         public DateTime? CreateDate { get; set; }
 
+
+    }
+
+    public abstract class BaseTreeDTO : BaseDTO, IBaseTreeDTO
+    {
         //Just for trees
         public long? ParentID { get; set; }
         public String Title { get; set; }
@@ -66,7 +71,6 @@ namespace Alsahab.Common
         public Nullable<long> Depth { get; set; }
         public string OldCode { get; set; }
     }
-
 
 
     public class LogDTO : BaseDTO

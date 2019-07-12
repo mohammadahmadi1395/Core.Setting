@@ -5,7 +5,7 @@ using Alsahab.Common;
 
 namespace Alsahab.Setting.BL
 {
-    public class OrganizationalChartBL : BaseBL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO>
+    public class OrganizationalChartBL : BaseTreeBL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO>
     {
         private readonly IBaseDL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO> _OrganizationalChartDL;
         public OrganizationalChartBL(IBaseDL<OrganizationalChart, OrganizationalChartDTO, OrganizationalChartFilterDTO> organizationalChartDL,
@@ -13,7 +13,6 @@ namespace Alsahab.Setting.BL
             : base(organizationalChartDL, logDL)
         {
             _OrganizationalChartDL = organizationalChartDL;
-            FormHasTree = true;
             NeedToAutoCode = true;
         }
     }

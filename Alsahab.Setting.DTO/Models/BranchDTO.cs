@@ -8,7 +8,7 @@ using FluentValidation;
 
 namespace Alsahab.Setting.DTO
 {
-    public class BranchDTO : BaseDTO
+    public class BranchDTO : BaseTreeDTO
     {
         public BranchDTO()
         {
@@ -42,7 +42,7 @@ namespace Alsahab.Setting.DTO
     }
 
     public class BaseDTOValidator<TDto> : AbstractValidator<TDto>
-    where TDto : BaseDTO
+    where TDto : class
     {
         public BaseDTOValidator()
         {

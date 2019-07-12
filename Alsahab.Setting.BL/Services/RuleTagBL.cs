@@ -15,7 +15,6 @@ namespace Alsahab.Setting.BL
                         IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL) : base(ruleTagDL, logDL)
         {
             _RuleTagDL = ruleTagDL;
-            FormHasTree = true;
             NeedToAutoCode = true;
         }
 

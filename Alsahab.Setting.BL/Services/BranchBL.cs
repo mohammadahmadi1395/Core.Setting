@@ -11,7 +11,7 @@ using Alsahab.Common.Exceptions;
 
 namespace Alsahab.Setting.BL
 {
-    public class BranchBL : BaseBL<Branch, BranchDTO, BranchFilterDTO>
+    public class BranchBL : BaseTreeBL<Branch, BranchDTO, BranchFilterDTO>
     {
         #region properties
         private readonly IBaseDL<Branch, BranchDTO, BranchFilterDTO> _BranchDL;
@@ -26,7 +26,6 @@ namespace Alsahab.Setting.BL
         {
             _BranchDL = branchDL;
             _BranchRegionWorkDL = branchRegionWorkDL;
-            FormHasTree = true;
             NeedToAutoCode = true;
         }
         #endregion constructor

@@ -19,7 +19,7 @@ namespace Alsahab.Setting.BL.BLValidation
         public RuleTagBLValidator(IBaseDL<RuleTag, RuleTagDTO, RuleTagFilterDTO> _ruleTagDL) : base(_ruleTagDL)
         {
             _RuleTagDL = _ruleTagDL;
-            RuleFor(x => x.RuleID).Must((DTO, formTypeId) => UniqueCondition(DTO.RuleID ?? 0, DTO.FormTypeID ?? 0, DTO.ID ?? 0)).When(x => !string.IsNullOrWhiteSpace(x.Title)).WithMessage(ValidatorOptions.LanguageManager.GetString("AlreadyIsExists"));
+            RuleFor(x => x.RuleID).Must((DTO, formTypeId) => UniqueCondition(DTO.RuleID ?? 0, DTO.FormTypeID ?? 0, DTO.ID ?? 0)).When(x => x.RuleID>0).WithMessage(ValidatorOptions.LanguageManager.GetString("AlreadyIsExists"));
         }
 
         private bool UniqueCondition(long ruleID, long formTypeID, long id)

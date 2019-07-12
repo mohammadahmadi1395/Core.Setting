@@ -8,7 +8,7 @@ using FluentValidation;
 
 namespace Alsahab.Setting.DTO
 {
-    public class ZoneDTO : BaseDTO
+    public class ZoneDTO : BaseTreeDTO
     {
         // public String Code { get; set; }
         // public long? ParentID { get; set; }

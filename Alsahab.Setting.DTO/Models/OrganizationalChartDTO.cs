@@ -8,7 +8,7 @@ using FluentValidation;
 
 namespace Alsahab.Setting.DTO
 {
-    public class OrganizationalChartDTO : BaseDTO//<OrganizationalChartDTO, OrganizationalChart>
+    public class OrganizationalChartDTO : BaseTreeDTO//<OrganizationalChartDTO, OrganizationalChart>
     {
         // public string Title { get; set; }
         public string Title_ { get { return String.Format("{0} {1} {2}", Code, arg1: " - ", arg2: Title); } } //  عنوان

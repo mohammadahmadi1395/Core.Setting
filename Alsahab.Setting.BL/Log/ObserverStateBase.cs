@@ -9,7 +9,7 @@ using static Alsahab.Setting.DTO.Enums;
 namespace Alsahab.Setting.BL.Log
 {
     public class ObserverStateBase<TDto>
-    where TDto : BaseDTO
+    where TDto : IBaseDTO
     {
         public UserInfoDTO User { get; set; }
         public ActionType Type { get; set; }

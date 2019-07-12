@@ -9,7 +9,7 @@ using FluentValidation;
 namespace Alsahab.Setting.DTO {
     public class FormTypeDTO : BaseDTO//<FormTypeDTO, FormType>
     {
-        // public String Title { get; set; }
+         public String Title { get; set; }
         public long? SubSystemID { get; set; }
         public Enums.RequestType? Enum { get; set; }
         public String PublicCode { get; set; }

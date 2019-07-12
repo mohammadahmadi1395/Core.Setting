@@ -13,7 +13,6 @@ namespace Alsahab.Setting.DTO
         public long? RuleID { get; set; }
         public long? FormTypeID { get; set; }
 
-        //
         public String RuleDescription { get; set; }
         public RuleType? RuleType { get; set; }
         public String FormTypeTitle { get; set; }

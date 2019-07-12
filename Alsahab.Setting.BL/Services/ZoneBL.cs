@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Alsahab.Setting.BL
 {
-    public class ZoneBL : BaseBL<Zone, ZoneDTO, ZoneFilterDTO>
+    public class ZoneBL : BaseTreeBL<Zone, ZoneDTO, ZoneFilterDTO>
     {
         #region dependency injection
         private readonly IBaseDL<Zone, ZoneDTO, ZoneFilterDTO> _ZoneDL;

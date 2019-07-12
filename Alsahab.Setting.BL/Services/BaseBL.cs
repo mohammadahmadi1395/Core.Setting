@@ -17,12 +17,12 @@ using Alsahab.Setting.BL.BLValidation;
 namespace Alsahab.Setting.BL
 {
     public class BaseBL<TEntity, Dto, FilterDto> : IBaseBL<TEntity, Dto, FilterDto>
+        where Dto : BaseDTO, IBaseDTO //class
         where TEntity : BaseEntity<TEntity, Dto, long>, IEntity
-        where Dto : BaseDTO//class
         where FilterDto : Dto
     {
         #region properties
-        public bool FormHasTree { get; set; }
+        //  protected bool FormHasTree {  get;  set; }
         public bool NeedToAutoCode { get; set; }
         public UserInfoDTO User { get; set; }
         public Language Language { get; set; }
@@ -42,7 +42,7 @@ namespace Alsahab.Setting.BL
         {
             _BaseDL = baseDL;
             _LogDL = logDL;
-            FormHasTree = false;
+            //     FormHasTree = false;
             NeedToAutoCode = false;
             ValidatorOptions.LanguageManager = new ErrorLanguageManager();
             // ValidatorOptions.LanguageManager = new FluentValidation.Resources.LanguageManager();
@@ -61,8 +61,8 @@ namespace Alsahab.Setting.BL
                 observer.Notify(stateInfo);
             }
         }
-        
-        
+
+
         // public async Task RegisterLogAsync(Dto response, ActionType type, CancellationToken cancellationToken)
         // {
         //     if (response?.ID > 0)
@@ -149,6 +149,8 @@ namespace Alsahab.Setting.BL
             //Set Culture To Translate
             ValidatorOptions.LanguageManager.Culture = Culture;
             var blResult = ((AbstractValidator<TObject>)blValidator).Validate(data);
+            var cc = (AbstractValidator<TObject>)dtoValidator;
+            var xc = cc.Validate(data);
             var dtoResult = ((AbstractValidator<TObject>)dtoValidator).Validate(data);
             ValidationErrors = blResult.Errors;
             ((List<ValidationFailure>)ValidationErrors).AddRange(dtoResult.Errors);
@@ -167,32 +169,12 @@ namespace Alsahab.Setting.BL
 
             if (!(data?.ID > 0))
                 throw new AppException(ResponseStatus.BadRequest, "node Entered Is Mistake.");
-
-            if (FormHasTree)
-            {
-                var deletingItem = _BaseDL.GetById(data.ID);
-                var myLeft = deletingItem.LeftIndex;
-                var myRight = deletingItem.RightIndex;
-                var deleteCount = AllDtos.Where(i => i.LeftIndex >= myLeft && i.LeftIndex <= myRight && i.IsDeleted == false).Count();
-                if (deleteCount > 1)
-                    throw new AppException(ResponseStatus.LoginError, "You can't delete this node. this node has child");
-            }
         }
         public async virtual Task CheckDeletePermisionAsync(Dto data, CancellationToken cancellationToken)
         {
             Assert.NotNull(data, nameof(data));
             if (!(data?.ID > 0))
                 throw new AppException(ResponseStatus.BadRequest, "node Entered Is Mistake.");
-
-            if (FormHasTree)
-            {
-                var deletingItem = await _BaseDL.GetByIdAsync(cancellationToken, data.ID);
-                var myLeft = deletingItem.LeftIndex;
-                var myRight = deletingItem.RightIndex;
-                var deleteCount = AllDtos.Where(i => i.LeftIndex >= myLeft && i.LeftIndex <= myRight && i.IsDeleted == false).Count();
-                if (deleteCount > 1)
-                    throw new AppException(ResponseStatus.LoginError, "You can't delete this node. this node has child");
-            }
         }
         #endregion Validation
 
@@ -233,9 +215,6 @@ namespace Alsahab.Setting.BL
 
             var response = await _BaseDL.UpdateAsync(data, cancellationToken);
 
-            if (FormHasTree)
-                UpdateTreeIndicesAndCodes();
-
             RegisterLog(response, ActionType.Update);
 
             return response;
@@ -247,8 +226,8 @@ namespace Alsahab.Setting.BL
 
             var response = _BaseDL.Update(data);
 
-            if (FormHasTree)
-                UpdateTreeIndicesAndCodes();
+            //if (FormHasTree)
+            //    UpdateTreeIndicesAndCodes();
 
             RegisterLog(response, ActionType.Update);
 
@@ -266,8 +245,8 @@ namespace Alsahab.Setting.BL
             }
             var response = await _BaseDL.UpdateListAsync(tempList, cancellationToken);
 
-            if (FormHasTree)
-                UpdateTreeIndicesAndCodes();
+            //if (FormHasTree)
+            //    UpdateTreeIndicesAndCodes();
 
             RegisterListLog(response, ActionType.Update);
 
@@ -285,8 +264,9 @@ namespace Alsahab.Setting.BL
             }
             var response = _BaseDL.UpdateList(tempList);
 
-            if (FormHasTree)
-                UpdateTreeIndicesAndCodes();
+            //if (FormHasTree)
+            //    UpdateTreeIndicesAndCodes();
+
 
             RegisterListLog(response, ActionType.Update);
 
@@ -374,8 +354,8 @@ namespace Alsahab.Setting.BL
             Validate<BaseBLValidator<TEntity, Dto, FilterDto>, Dto>(data);
             data.CreateDate = DateTime.Now;
             var response = await _BaseDL.InsertAsync(data, cancellationToken);
-            if (FormHasTree)
-                UpdateTreeIndicesAndCodes();
+            //if (FormHasTree)
+            //    UpdateTreeIndicesAndCodes();
             RegisterLog(response, ActionType.Insert);
             return response;
         }
@@ -384,8 +364,8 @@ namespace Alsahab.Setting.BL
             Validate<BaseBLValidator<TEntity, Dto, FilterDto>, Dto>(data);
             data.CreateDate = DateTime.Now;
             var response = _BaseDL.Insert(data);
-            if (FormHasTree)
-                UpdateTreeIndicesAndCodes();
+            //if (FormHasTree)
+            //    UpdateTreeIndicesAndCodes();
             RegisterLog(response, ActionType.Insert);
             return response;
         }
@@ -399,8 +379,8 @@ namespace Alsahab.Setting.BL
 
             var response = await _BaseDL.InsertListAsync(list, cancellationToken);
 
-            if (FormHasTree)
-                UpdateTreeIndicesAndCodes();
+            //if (FormHasTree)
+            //    UpdateTreeIndicesAndCodes();
 
             RegisterListLog(list, ActionType.Insert);
 
@@ -416,8 +396,8 @@ namespace Alsahab.Setting.BL
 
             var response = _BaseDL.InsertList(list);
 
-            if (FormHasTree)
-                UpdateTreeIndicesAndCodes();
+            //if (FormHasTree)
+            //    UpdateTreeIndicesAndCodes();
 
             RegisterListLog(list, ActionType.Insert);
 
@@ -432,8 +412,8 @@ namespace Alsahab.Setting.BL
             data = await _BaseDL.GetByIdAsync(cancellationToken, data.ID);
             data.IsDeleted = true;
             await _BaseDL.UpdateAsync(data, cancellationToken);
-            if (FormHasTree)
-                UpdateTreeIndicesAndCodes();
+            //if (FormHasTree)
+            //    UpdateTreeIndicesAndCodes();
             RegisterLog(data, ActionType.SoftDelete);
             return data;
         }
@@ -449,8 +429,8 @@ namespace Alsahab.Setting.BL
                 tempList.Add(temp);
             }
             await _BaseDL.UpdateListAsync(tempList, cancellationToken);
-            if (FormHasTree)
-                UpdateTreeIndicesAndCodes();
+            //if (FormHasTree)
+            //    UpdateTreeIndicesAndCodes();
             RegisterListLog(tempList, ActionType.SoftDelete);
             return tempList;
         }
@@ -460,8 +440,8 @@ namespace Alsahab.Setting.BL
             data = _BaseDL.GetById(data.ID);
             data.IsDeleted = true;
             _BaseDL.Update(data);
-            if (FormHasTree)
-                UpdateTreeIndicesAndCodes();
+            //if (FormHasTree)
+            //    UpdateTreeIndicesAndCodes();
             RegisterLog(data, ActionType.SoftDelete);
             return data;
         }
@@ -477,14 +457,147 @@ namespace Alsahab.Setting.BL
                 tempList.Add(temp);
             }
             _BaseDL.UpdateList(tempList);
-            if (FormHasTree)
-                UpdateTreeIndicesAndCodes();
+            //if (FormHasTree)
+            //    UpdateTreeIndicesAndCodes();
             RegisterListLog(tempList, ActionType.SoftDelete);
             return tempList;
         }
 
         #endregion SoftDelete
 
+
+    }
+
+
+    public class BaseTreeBL<TEntity, Dto, FilterDto> : BaseBL<TEntity, Dto, FilterDto>
+           where Dto : BaseTreeDTO //class
+    where TEntity : BaseEntity<TEntity, Dto, long>, IEntity
+    where FilterDto : Dto
+    {
+
+        private readonly IBaseDL<TEntity, Dto, FilterDto> _BaseDL;// = new IBaseDL<Dto, Branch>();
+
+        #region constructor
+        public BaseTreeBL(IBaseDL<TEntity, Dto, FilterDto> baseDL
+                    , IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL) : base(baseDL, logDL)
+        {
+            _BaseDL = baseDL;
+
+        }
+        #endregion constructor
+        #region Validation
+        public override void CheckDeletePermision(Dto data)
+        {
+            base.CheckDeletePermision(data);
+
+            if (!(data?.ID > 0))
+                throw new AppException(ResponseStatus.BadRequest, "node Entered Is Mistake.");
+            var deletingItem = _BaseDL.GetById(data.ID);
+            var myLeft = deletingItem.LeftIndex;
+            var myRight = deletingItem.RightIndex;
+            var deleteCount = AllDtos.Where(i => i.LeftIndex >= myLeft && i.LeftIndex <= myRight && i.IsDeleted == false).Count();
+            if (deleteCount > 1)
+                throw new AppException(ResponseStatus.LoginError, "You can't delete this node. this node has child");
+
+        }
+
+        public async override Task CheckDeletePermisionAsync(Dto data, CancellationToken cancellationToken)
+        {
+            await base.CheckDeletePermisionAsync(data, cancellationToken);
+            var deletingItem = await _BaseDL.GetByIdAsync(cancellationToken, data.ID);
+            var myLeft = deletingItem.LeftIndex;
+            var myRight = deletingItem.RightIndex;
+            var deleteCount = AllDtos.Where(i => i.LeftIndex >= myLeft && i.LeftIndex <= myRight && i.IsDeleted == false).Count();
+            if (deleteCount > 1)
+                throw new AppException(ResponseStatus.LoginError, "You can't delete this node. this node has child");
+
+        }
+        #endregion Validation
+        #region Update
+        public override async Task<Dto> UpdateAsync(Dto data, CancellationToken cancellationToken)
+        {
+            var response = await base.UpdateAsync(data, cancellationToken);
+            UpdateTreeIndicesAndCodes();
+            return response;
+        }
+        public override Dto Update(Dto data)
+        {
+            var response = base.Update(data);
+            UpdateTreeIndicesAndCodes();
+            return response;
+        }
+        public override async Task<IList<Dto>> UpdateListAsync(IList<Dto> list, CancellationToken cancellationToken)
+        {
+
+            var response = await base.UpdateListAsync(list, cancellationToken);
+            UpdateTreeIndicesAndCodes();
+            return response;
+        }
+        public override IList<Dto> UpdateList(IList<Dto> list)
+        {
+
+            var response = base.UpdateList(list);
+            UpdateTreeIndicesAndCodes();
+            return response;
+        }
+        #endregion Update
+        #region Insert
+        public override async Task<Dto> InsertAsync(Dto data, CancellationToken cancellationToken)
+        {
+
+            var response = await base.InsertAsync(data, cancellationToken);
+
+            UpdateTreeIndicesAndCodes();
+            return response;
+
+        }
+        public override Dto Insert(Dto data)
+        {
+            var response = base.Insert(data);
+            UpdateTreeIndicesAndCodes();
+            return response;
+        }
+        public override async Task<IList<Dto>> InsertListAsync(IList<Dto> list, CancellationToken cancellationToken)
+        {
+            var response = await base.InsertListAsync(list, cancellationToken);
+            UpdateTreeIndicesAndCodes();
+            return response;
+        }
+        public override IList<Dto> InsertList(IList<Dto> list)
+        {
+            var response = base.InsertList(list);
+            UpdateTreeIndicesAndCodes();
+            return response;
+        }
+        #endregion Insert
+        #region SoftDelete
+        public override async Task<Dto> SoftDeleteAsync(Dto data, CancellationToken cancellationToken)
+        {
+            var response = await base.UpdateAsync(data, cancellationToken);
+            UpdateTreeIndicesAndCodes();
+            return data;
+        }
+        public override async Task<IList<Dto>> SoftDeleteListAsync(IList<Dto> list, CancellationToken cancellationToken)
+        {
+            var response = await base.UpdateListAsync(list, cancellationToken);
+            UpdateTreeIndicesAndCodes();
+            return response;
+        }
+        public override Dto SoftDelete(Dto data)
+        {
+
+            var response = base.Update(data);
+            UpdateTreeIndicesAndCodes();
+            return response;
+        }
+        public override IList<Dto> SoftDeleteList(IList<Dto> list)
+        {
+            var response = base.UpdateList(list);
+            UpdateTreeIndicesAndCodes();
+            return response;
+        }
+
+        #endregion SoftDelete
         #region related to tree
         private IList<Dto> _AllDtos;
         public IList<Dto> AllDtos
@@ -492,7 +605,7 @@ namespace Alsahab.Setting.BL
             get
             {
                 if (!(_AllDtos?.Count > 0))
-                    _AllDtos = _BaseDL.GetAll();
+                    _AllDtos = base.GetAll();
                 return _AllDtos;
             }
         }
@@ -523,7 +636,7 @@ namespace Alsahab.Setting.BL
             if (NeedToAutoCode)
             {
                 codedDtos = GenerateNewCodeList(rootList);
-                _BaseDL.UpdateList(codedDtos);
+                base.UpdateList(codedDtos);
             }
         }
         // مراحل:
@@ -606,11 +719,13 @@ namespace Alsahab.Setting.BL
             return AllDtos?.FirstOrDefault(s => s.ID == data?.ParentID);
         }
         #endregion related to tree
+
     }
 
     public class BaseBL<TEntity, Dto> : BaseBL<TEntity, Dto, Dto>
         where TEntity : BaseEntity<TEntity, Dto, long>, IEntity
-        where Dto : BaseDTO
+        where Dto : BaseTreeDTO, IBaseDTO
+
     {
         public BaseBL(IBaseDL<TEntity, Dto, Dto> baseDL
                     , IBaseDL<Entities.Models.Log, LogDTO, LogFilterDTO> logDL) : base(baseDL, logDL)

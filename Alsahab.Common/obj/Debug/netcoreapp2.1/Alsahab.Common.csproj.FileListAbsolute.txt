@@ -9,3 +9,13 @@
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/obj/Debug/netcoreapp2.1/Alsahab.Common.csproj.CopyComplete
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/obj/Debug/netcoreapp2.1/Alsahab.Common.dll
 /home/mohammad/Documents/company/Alsahab.Setting/Alsahab.Common/obj/Debug/netcoreapp2.1/Alsahab.Common.pdb
+C:\Users\Reza\Source\Repos\Alsahab.Setting\Alsahab.Common\bin\Debug\netcoreapp2.1\Alsahab.Common.deps.json
+C:\Users\Reza\Source\Repos\Alsahab.Setting\Alsahab.Common\bin\Debug\netcoreapp2.1\Alsahab.Common.dll
+C:\Users\Reza\Source\Repos\Alsahab.Setting\Alsahab.Common\bin\Debug\netcoreapp2.1\Alsahab.Common.pdb
+C:\Users\Reza\Source\Repos\Alsahab.Setting\Alsahab.Common\bin\Debug\netcoreapp2.1\Gostar.Common.dll
+C:\Users\Reza\Source\Repos\Alsahab.Setting\Alsahab.Common\obj\Debug\netcoreapp2.1\Alsahab.Common.csproj.CoreCompileInputs.cache
+C:\Users\Reza\Source\Repos\Alsahab.Setting\Alsahab.Common\obj\Debug\netcoreapp2.1\Alsahab.Common.AssemblyInfoInputs.cache
+C:\Users\Reza\Source\Repos\Alsahab.Setting\Alsahab.Common\obj\Debug\netcoreapp2.1\Alsahab.Common.AssemblyInfo.cs
+C:\Users\Reza\Source\Repos\Alsahab.Setting\Alsahab.Common\obj\Debug\netcoreapp2.1\Alsahab.Common.csproj.CopyComplete
+C:\Users\Reza\Source\Repos\Alsahab.Setting\Alsahab.Common\obj\Debug\netcoreapp2.1\Alsahab.Common.dll
+C:\Users\Reza\Source\Repos\Alsahab.Setting\Alsahab.Common\obj\Debug\netcoreapp2.1\Alsahab.Common.pdb
